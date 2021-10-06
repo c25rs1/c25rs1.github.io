@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Journal
+	</title>
+	<style type="text/css">
+		.redirect{
+			font-size: 25px;
+			color:blue;
+			background-color:lime;
+			position: absolute;
+			top:50px;
+		}
+		#home{
+			left:30%;
+		}
+		#aboutme{
+			left:40%;
+		}
+		#journal{
+			left:53%;
+		}
+		#projects{
+			left:63%;
+		}
+		#redirect{
+			width: 10000px;
+			height:25px;
+			background-color: lime;
+		}
+		#title {
+			font-size: 40px;
+			text-align: center;
+			background-color:lime;
+		}
+		.break {
+			height:20px;
+			width:1000px;
+			background-color:lightblue;
+		}
+		.date {
+			font-size: 20px;
+			width:100px;
+			background-color:lime;
+			color:blue;
+		}
+		.text{
+			width:45%;
+			background-color:lime;
+
+		}
+		body {
+			background-color: lightblue;
+		}
+	</style>
+</head>
+<body>
+	<div id="title">
+		Journal
+	</div>
+	<a href="index.html"><div class="redirect" id="home"> Home </div></a>
+	<a href="aboutme.html"><div class="redirect" id="aboutme"> About Me </div></a>
+	<a href="projects.html"><div class="redirect" id="projects"> Projects </div></a>
+	<a href="journal.html"><div class="redirect" id="journal"> Journal </div></a>
+	<div id="redirect">
+	</div>
+
+<!-- COPY LINES AND REPEAT -->
+	<div class="break" id="break1">
+		<br>
+		 </div>
+	<div class="date" id="date1">
+		Oct 3rd, 21
+	</div>
+	<div class="text" id="text1">
+		So far in CS1, I have learned how to create shapes and images and how to move them around the screen. Recently, I finished coding the design part of my website home screen which shows a background image that fills the screen, a tree, and a bird. I think it looks cool and it has taken me a considerable amount of time as I am not yet used to this format of coding. I was able to complete this by using nested divs which was a bit frustrating at first because as a parent div was moved, all the children divs moved as well. This made it hard to make small adjustments because it would lead to me having to fix all of the smaller issues that it would cause. Currently, I am designing my website to have multiple invisible boxes that link to different pages, which is my goal for the next few days. I want to make the invisible boxes hyperlink, but they are currently in nested divs. The problem with this is that one parent div will override the redirect code of its child div. I want to try and fix this which I think may result in me having to redo all the divs. 
+	</div>
+<!-- 	COPY ABOVE -->
+
+	<div class="break" id="break2">
+			<br>
+		 </div>
+	<div class="date" id="date2">
+		Oct 4th, 21
+	</div>
+	<div class="text" id="text2">
+		Today, I worked on designing the journal page of my website. I was able to design the code to be copy paste so that I could easily enter new entries every time. I designed it with a heading as well as played with font sizing a little. I am trying to get the text to appear in a box by giving background colors in two columns, but I ran into an issue. I got the background colors, but to do that, I need to create a new class to break the texts from one another as I am using a br tag in the class of date. This creates a background color for that br as well which is the problem. This problem was just fixed as I wrote this. The other problem is that I do not know how to make the text alternate between two columns! Small change that I just made was to add a redirect bar to jump between pages at the top. This included making new divs and a tags to redirect the text to differet code pages.
+	</div>
+
+</body>
+</html>

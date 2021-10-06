@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		About Me
+	</title>
+	<style type="text/css">
+		.redirect{
+			font-size: 25px;
+			color:blue;
+			background-color:lime;
+			position: absolute;
+			top:50px;
+		}
+		#home{
+			left:30%;
+		}
+		#aboutme{
+			left:40%;
+		}
+		#journal{
+			left:53%;
+		}
+		#projects{
+			left:63%;
+		}
+		#redirect{
+			width: 10000px;
+			height:25px;
+			background-color: lime;
+		}
+		#title {
+			font-size: 40px;
+			text-align: center;
+			background-color:lime;
+		}
+		#bird{
+			position: absolute;
+			width:700px;
+			height:700px;
+			/*background-color:red;*/
+			/*border:3px solid black;*/
+			background-image: url(bird.png);
+			background-size:contain;
+			background-repeat:no-repeat;
+			top:20%;
+			left:20%;
+			z-index: 1;	
+		}
+		body {
+			background-color: lightblue;
+		}
+		.lightning{
+			background-image:url(tree.png);
+			background-size:contain;
+			background-repeat: no-repeat;
+			z-index: 2;
+			position: absolute;
+			height: 100px;
+			width: 100px;
+		}	
+
+	</style>
+</head>
+<body>
+	<div id="bird">	</div>
+
+	<div id="title">
+		About Me
+	</div>
+	<a href="index.html"><div class="redirect" id="home"> Home </div></a>
+	<a href="aboutme.html"><div class="redirect" id="aboutme"> About Me </div></a>
+	<a href="projects.html"><div class="redirect" id="projects"> Projects </div></a>
+	<a href="journal.html"><div class="redirect" id="journal"> Journal </div></a>
+	<div id="redirect">
+	</div>
+
+	<script type="text/javascript">
+		bird.addEventListener('click', function makeLight(event){
+		var light = document.createElement('div');
+		light.classList.add("lightning");
+		light.style.position = "absolute";
+		document.body.appendChild(light);
+		light.style.left = event.clientX - 45 + "px";
+		light.style.top = event.clientY - 45 + "px";
+
+});
+
+
+	</script>
