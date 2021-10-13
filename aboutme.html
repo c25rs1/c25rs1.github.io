@@ -1,90 +1,446 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>
-		About Me
-	</title>
-	<style type="text/css">
-		.redirect{
-			font-size: 25px;
-			color:blue;
-			background-color:lime;
-			position: absolute;
-			top:50px;
-		}
-		#home{
-			left:30%;
-		}
-		#aboutme{
-			left:40%;
-		}
-		#journal{
-			left:53%;
-		}
-		#projects{
-			left:63%;
-		}
-		#redirect{
-			width: 10000px;
-			height:25px;
-			background-color: lime;
-		}
-		#title {
-			font-size: 40px;
-			text-align: center;
-			background-color:lime;
-		}
-		#bird{
-			position: absolute;
-			width:700px;
-			height:700px;
-			/*background-color:red;*/
-			/*border:3px solid black;*/
-			background-image: url(bird.png);
-			background-size:contain;
-			background-repeat:no-repeat;
-			top:20%;
-			left:20%;
-			z-index: 1;	
-		}
-		body {
-			background-color: lightblue;
-		}
-		.lightning{
-			background-image:url(tree.png);
-			background-size:contain;
-			background-repeat: no-repeat;
-			z-index: 2;
-			position: absolute;
-			height: 100px;
-			width: 100px;
-		}	
+    <title>
+        About Me
+    </title>
+    <style type="text/css">
+        body{
+            background-color:lightblue;
+        }
+        .redirect{
+            font-size: 25px;
+            color:blue;
+            background-color:lime;
+            position: absolute;
+            top:50px;
+        }
+        #home{
+            left:30%;
+        }
+        #aboutme{
+            left:40%;
+        }
+        #journal{
+            left:53%;
+        }
+        #projects{
+            left:63%;
+        }
+        #redirect{
+            width: 100%;
+            height:25px;
+            background-color: lime;
+        }
+        #title {
+            font-size: 40px;
+            text-align: center;
+            background-color:lime;
+        }
+        
+        #box {
+        position: fixed; 
+        margin: auto;
+        width: 100%;
+        height: 500px;
+        border: 3px solid #98b2e6;
+        font-family: 'Concert One';
+        text-align: center;
+        color: blue;
+        /*line-height:500px;*/
 
-	</style>
+    }
+    #bird{
+            position: absolute;
+            width:700px;
+            height:700px;
+            /*background-color:red;*/
+            /*border:3px solid black;*/
+            background-image: url(bird.png);
+            background-size:contain;
+            background-repeat:no-repeat;
+            top:10%;
+            left:20%;
+            z-index: 1; 
+
+    }
+    .r {
+        position: absolute;
+        z-index: 1;
+        width: 150px;
+        height: 150px;
+        background-image:url(r.png);
+        background-size:contain;
+        opacity: 85%;
+        transition: 2s;
+
+    }
+
+    .o {
+        position: absolute;
+        z-index: 1;
+        width: 150px;
+        height: 150px;
+        background-image:url(o.png);
+        background-size:contain;
+        opacity: 85%;
+        transition: 2s;
+    }
+
+    .h {
+        position: absolute;
+        z-index: 1;
+        width: 130px;
+        height: 150px;
+        background-image:url(h.png);
+        background-size:contain;
+        opacity: 85%;
+        transition: 2s;
+    }
+
+    .a {
+        position: absolute;
+        z-index: 1;
+        width: 130px;
+        height: 150px;
+        background-image:url(a.png);
+        background-size:contain;
+        opacity: 85%;
+        transition: 2s;
+    }
+
+    .n {
+        position: absolute;
+        z-index: 1;
+        width: 150px;
+        height: 150px;
+        background-image:url(n.png);
+        background-size:contain;
+        opacity: 85%;
+        transition: 2s;
+    }
+
+    .s {
+        position: absolute;
+        z-index: 1;
+        width: 150px;
+        height: 150px;
+        background-image:url(s.png);
+        background-size:contain;
+        opacity: 85%;
+        transition: 2s;
+    }
+
+    .h2 {
+        position: absolute;
+        z-index: 1;
+        width: 130px;
+        height: 150px;
+        background-image:url(h2.png);
+        background-size:contain;
+        opacity: 85%;
+        transition: 2s;
+    }
+
+    .a2 {
+        position: absolute;
+        z-index: 1;
+        width: 130px;
+        height: 150px;
+        background-image:url(a2.png);
+        background-size:contain;
+        opacity: 85%;
+        transition: 2s;
+    }
+    .h3 {
+        position: absolute;
+        z-index: 1;
+        width: 130px;
+        height: 150px;
+        background-image:url(h3.png);
+        background-size:contain;
+        opacity: 85%;
+        transition: 2s;
+    }
+    .text1 {
+        position: absolute;
+        z-index: 1;
+        width: 150px;
+        height: 150px;
+        background-image:url(text1.png);
+        background-size:contain;
+        background-repeat:no-repeat;
+        opacity: 85%;
+        transition: 2s;
+    }
+
+    .text2 {
+        position: absolute;
+        z-index: 1;
+        width: 150px;
+        height: 150px;
+        background-image:url(text2.png);
+        background-size:contain;
+        background-repeat:no-repeat;
+        opacity: 85%;
+        transition: 2s;
+    }
+
+    .text3 {
+        position: absolute;
+        z-index: 1;
+        width: 170px;
+        height: 150px;
+        background-image:url(text3.png);
+        background-size:contain;
+        background-repeat:no-repeat;
+        opacity: 85%;
+        transition: 2s;
+    }
+
+    .text4 {
+        position: absolute;
+        z-index: 1;
+        width: 130px;
+        height: 150px;
+        background-image:url(text4.png);
+        background-size:contain;
+        background-repeat:no-repeat;
+        opacity: 85%;
+        transition: 2s;
+    }
+    .text5 {
+        position: absolute;
+        z-index: 1;
+        width: 190px;
+        height: 150px;
+        background-image:url(text5.png);
+        background-size:contain;
+        background-repeat:no-repeat;
+        opacity: 85%;
+        transition: 2s;
+    }
+
+
+    </style>
 </head>
 <body>
-	<div id="bird">	</div>
+    <div id="bird"> </div>
 
-	<div id="title">
-		About Me
-	</div>
-	<a href="index.html"><div class="redirect" id="home"> Home </div></a>
-	<a href="aboutme.html"><div class="redirect" id="aboutme"> About Me </div></a>
-	<a href="projects.html"><div class="redirect" id="projects"> Projects </div></a>
-	<a href="journal.html"><div class="redirect" id="journal"> Journal </div></a>
-	<div id="redirect">
-	</div>
+    <div id="title">
+        About Me
+    </div>
+    <a href="index.html"><div class="redirect" id="home"> Home </div></a>
+    <a href="aboutme.html"><div class="redirect" id="aboutme"> About Me </div></a>
+    <a href="projects.html"><div class="redirect" id="projects"> Projects </div></a>
+    <a href="journal.html"><div class="redirect" id="journal"> Journal </div></a>
+    <div id="redirect">
+    </div>
+    <div id="box"> click anywhere in the box</div>
+    <script type="text/javascript">
+        
+    var box = document.getElementById("box");
 
-	<script type="text/javascript">
-		bird.addEventListener('click', function makeLight(event){
-		var light = document.createElement('div');
-		light.classList.add("lightning");
-		light.style.position = "absolute";
-		document.body.appendChild(light);
-		light.style.left = event.clientX - 45 + "px";
-		light.style.top = event.clientY - 45 + "px";
+    var counter = 0;
 
-});
+    var array  = [];
+
+    var r = document.createElement("rCircle")
+    var o = document.createElement("oCircle");
+    var h = document.createElement("hCircle");
+    var a = document.createElement("aCircle");
+    var n = document.createElement("nCircle");
+    var s = document.createElement("sCircle");
+    var h2 = document.createElement("h2Circle");
+    var a2 = document.createElement("a2Circle");
+    var h3 = document.createElement("h3Circle");
+    var text1 = document.createElement("text1Circle")
+    var text2 = document.createElement("text2Circle")
+    var text3 = document.createElement("text3Circle")
+    var text4 = document.createElement("text4Circle")
+    var text5 = document.createElement("text5Circle")
 
 
-	</script>
+
+
+    document.addEventListener("click",function makej(event)
+    
+        {
+            counter = counter + 1;
+            var j = document.createElement("div");
+            
+            if (counter == 1) {
+                r.classList.add("r");
+                document.body.appendChild(r);
+                r.style.left = event.clientX - 75 + "px";
+                r.style.top = event.clientY - 75 + "px";   
+            }
+
+            else if (counter == 2) {
+                o.classList.add("o");
+                document.body.appendChild(o);
+                o.style.left = event.clientX - 75 + "px";
+                o.style.top = event.clientY - 75 + "px";   
+            }
+
+            else if (counter == 3) {
+                h.classList.add("h");
+                document.body.appendChild(h);
+                h.style.left = event.clientX - 75 + "px";
+                h.style.top = event.clientY - 75 + "px";   
+            }
+
+            else if (counter == 4) {
+                a.classList.add("a");
+                document.body.appendChild(a);
+                a.style.left = event.clientX - 75 + "px";
+                a.style.top = event.clientY - 75 + "px";   
+            }
+
+            else if (counter == 5) {
+                n.classList.add("n");
+                document.body.appendChild(n);
+                n.style.left = event.clientX - 75 + "px";
+                n.style.top = event.clientY - 75 + "px";   
+            }
+
+            else if (counter == 6) {
+                s.classList.add("s");
+                document.body.appendChild(s);
+                s.style.left = event.clientX - 75 + "px";
+                s.style.top = event.clientY - 75 + "px";   
+            }
+
+            else if (counter == 7) {
+                h2.classList.add("h2");
+                document.body.appendChild(h2);
+                h2.style.left = event.clientX - 75 + "px";
+                h2.style.top = event.clientY - 75 + "px";   
+            }  
+
+            else if (counter == 8) {
+                a2.classList.add("a2");
+                document.body.appendChild(a2);
+                a2.style.left = event.clientX - 75 + "px";
+                a2.style.top = event.clientY - 75 + "px";
+            }
+            else if (counter == 9) {
+                h3.classList.add("h3");
+                document.body.appendChild(h3);
+                h3.style.left = event.clientX - 75 + "px";
+                h3.style.top = event.clientY - 75 + "px";
+            }
+
+            else if (counter == 10){      
+                array.forEach(function(j){
+                    j.style.transition="2s";
+                    j.style.left = "5%";
+                    j.style.top = "50%";
+                    j.style.opacity = "32.5%"
+                })
+                r.style.transition="2s";
+                r.style.left="0%";
+                r.style.top = "80%";
+
+                o.style.transition="2s";
+                o.style.left = "10%";
+                o.style.top = "80%";
+
+                h.style.transition="2s";
+                h.style.left = "20%";
+                h.style.top = "80%";
+
+                a.style.transition="2s";
+                a.style.left = "30%";
+                a.style.top = "80%";
+
+                n.style.transition="2s";
+                n.style.left = "40%";
+                n.style.top = "80%";
+
+                s.style.transition="2s";
+                s.style.left = "60%";
+                s.style.top = "80%";
+
+                h2.style.transition="2s";
+                h2.style.left = "70%";
+                h2.style.top = "80%";
+
+                a2.style.transition="2s";
+                a2.style.left = "80%";
+                a2.style.top = "80%";
+
+                h3.style.transition="2s";
+                h3.style.left = "90%";
+                h3.style.top = "80%";
+
+            }
+            else if (counter == 11) {
+                text1.classList.add("text1");
+                document.body.appendChild(text1);
+                text1.style.left = event.clientX - 75 + "px";
+                text1.style.top = event.clientY - 75 + "px";   
+            }
+
+            else if (counter == 12) {
+                text2.classList.add("text2");
+                document.body.appendChild(text2);
+                text2.style.left = event.clientX - 75 + "px";
+                text2.style.top = event.clientY - 75 + "px";   
+            }
+
+            else if (counter == 13) {
+                text3.classList.add("text3");
+                document.body.appendChild(text3);
+                text3.style.left = event.clientX - 75 + "px";
+                text3.style.top = event.clientY - 75 + "px";   
+            }  
+
+            else if (counter == 14) {
+                text4.classList.add("text4");
+                document.body.appendChild(text4);
+                text4.style.left = event.clientX - 75 + "px";
+                text4.style.top = event.clientY - 75 + "px";
+            }
+            else if (counter == 15) {
+                text5.classList.add("text5");
+                document.body.appendChild(text5);
+                text5.style.left = event.clientX - 75 + "px";
+                text5.style.top = event.clientY - 75 + "px";
+            }
+            else if (counter == 16){      
+                array.forEach(function(j){
+                    j.style.transition="2s";
+                    j.style.left = "5%";
+                    j.style.top = "50%";
+                    j.style.opacity = "32.5%"
+                })
+                text1.style.transition="2s";
+                text1.style.left="10%";
+                text1.style.top = "30%";
+
+                text2.style.transition="2s";
+                text2.style.left = "10%";
+                text2.style.top = "50%";
+
+                text3.style.transition="2s";
+                text3.style.left = "80%";
+                text3.style.top = "30%";
+
+                text4.style.transition="2s";
+                text4.style.left = "40%";
+                text4.style.top = "60%";
+
+                text5.style.transition="2s";
+                text5.style.left = "80%";
+                text5.style.top = "50%";
+            }
+
+        });
+
+
+
+    </script>
+
+</body>
+</html>

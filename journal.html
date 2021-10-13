@@ -34,6 +34,10 @@
 			text-align: center;
 			background-color:lime;
 		}
+		#instruct{
+			font-size:20px;
+			text-align:center;
+		}
 		.break {
 			height:20px;
 			width:1000px;
@@ -47,9 +51,27 @@
 		}
 		.text{
 			width:45%;
+			background-color:lightblue;
+			color:lightblue;
+		}
+		.text:hover{
 			background-color:lime;
+			color:black;
+			transition:1.5s;
+		}
+		.text2{
+			width:45%;
+			left:55%;
+			background-color:lightblue;
+			color:lightblue;
+		}
+		.text2:hover{
+			background-color: lime;
+			color:black;
+			transition:1.5s;
 
 		}
+
 		body {
 			background-color: lightblue;
 		}
@@ -64,6 +86,9 @@
 	<a href="projects.html"><div class="redirect" id="projects"> Projects </div></a>
 	<a href="journal.html"><div class="redirect" id="journal"> Journal </div></a>
 	<div id="redirect">
+	</div>
+	<div id="instruct">
+		Move the mouse around!
 	</div>
 
 <!-- COPY LINES AND REPEAT -->
@@ -84,9 +109,38 @@
 	<div class="date" id="date2">
 		Oct 4th, 21
 	</div>
-	<div class="text" id="text2">
+	<div class="text2" id="text2">
 		Today, I worked on designing the journal page of my website. I was able to design the code to be copy paste so that I could easily enter new entries every time. I designed it with a heading as well as played with font sizing a little. I am trying to get the text to appear in a box by giving background colors in two columns, but I ran into an issue. I got the background colors, but to do that, I need to create a new class to break the texts from one another as I am using a br tag in the class of date. This creates a background color for that br as well which is the problem. This problem was just fixed as I wrote this. The other problem is that I do not know how to make the text alternate between two columns! Small change that I just made was to add a redirect bar to jump between pages at the top. This included making new divs and a tags to redirect the text to differet code pages.
 	</div>
 
+	<div class="break" id="break3">
+		<br>
+		 </div>
+	<div class="date" id="date3">
+		Oct 6th, 21
+	</div>
+	<div class="text" id="text3">
+		Today, in CS1, I worked on javascript. I made my homescreen have invisible boxes behind the two sides of the sky and the field. These three parts were then coded with events to tell if they were clicked to run a function. I looked at previous student's code to try and find the way to control the function. What I found is to create a list that would keep adding to it for each new click. Then it would style a small icon to be added to the screen. This was not that difficult and I think it looks quite good. My next plan is for two things. One to create the journal to be side by side text boxes. Which I tried doing by setting two classes, but that did not work. Then the second thing is to create the AboutMe page to cycle through textboxes at the click instead of creating a div in a list. 
+	</div>
+
+	<div class="break" id="break4">
+		<br>
+		 </div>
+	<div class="date" id="date4">
+		Oct 8th, 21
+	</div>
+	<div class="text2" id="text4">
+		These last few days, I have spent a lot of time working with Java. I created an AboutMe page that has a similiar redirect bar to the Journal. The way the aboutme page looks is that you click on the screen to show letters that spell out my name that are placed where it is clicked. Then those letters organize themselves at the bottom of the screen under the bird in a transition. So, the first 9 clicks write my name, and the tenth click organizes the letters. The letters are screenshots of a fun text to make them easier to move around as a div. Clicking 5 more times creates 5 new text boxes about me which are also screenshots. The next click then organizes them. The hardest thing here was to make sure the letters were spaced out correctly as they are all different widths. I also worked on the jounral page. Now, to make the entry appear, one must hover over the empty space using the hover feature. The next step for the weekend will be to try and automate the home screen to make the birds and trees organize themselves and them have the trees turn into birds, and the birds fly away. 
+	</div>
+
+	<div class="break" id="break5">
+		<br>
+		 </div>
+	<div class="date" id="date5">
+		Oct 13th, 21
+	</div>
+	<div class="text" id="text5">
+		As I stated in my previous entry, my goal for this weekend was to automate my homescreen a little bit more. Up until this point, the aboutme page was much more animated and difficult than the homescreen, so I decided to make some changes. I already had the homescreen set to where birds would appear in the sky facing one of two directions based on where on the screen is clicked. Then the ground clicks turn into trees. The first step I did was to create an overall counter of how many clicks have occured. Then, I needed to change the code, so there were a maximum amount of clicks allowed in one space. Instead of using a while loop, I chose to use if statements so that each bird/tree would be a new div that I could control individually. After adding debugs into that to make sure they were working, I made it so each tree click actually stacked 4 trees in that spot, so as to use them later. This step also entailed adding variable definitions for each of the 60 trees and 13 birds. It also meant adding a style tag for each one as well. For the birds, the 77th thing placed on the counter will organize the birds into a flight triangle utilizing the big bird already on the screen. the other side would then mirror that appearence. Then the trees would split from their stacks into a 2 (one on each side of the main tree) 6x5 grids. The 78th click rotates the trees in unison by -70 degrees. The 79th click turns all the trees into birds and rotates them back up. The 80th click sets the original birds to fly off screen upwards. The 81st click makes the tree-birds fly up to the sky in unison. The 82nd click gives a nice timed effect as the birds all cross the screen to the sides off screen. Lastly, I added a else statement to make sure any clicks that were unwanted would undo the counter. This code was then copied so that the clicks anywhere on the screen would lead to the same actions. There are a few bugs with this new code. One, sometimes if the clicks happen too fast, the code is not able to register what step it is on and it skips ahead. Two, when making the 82nd click, the ground being clicked for the 82nd time does nothing. Three, the code has created an extended width somehow, that I do not know how to remove. I have tried debugging, and that has not worked. The next steps would be to try and make the code cycle back to the start at the end. The issue with that is every new bird would have to be converted to a tree offscreen (which was not working when I tried) and as I saw with the original problems, the trees would just be replaced with new tree divs. Overall, this code is a success. 
+	</div>
 </body>
 </html>
