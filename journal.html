@@ -25,7 +25,7 @@
 			left:63%;
 		}
 		#redirect{
-			width: 10000px;
+			width: 100%;
 			height:25px;
 			background-color: lime;
 		}
@@ -38,12 +38,24 @@
 			font-size:20px;
 			text-align:center;
 		}
+		#bigbox{
+			top:125px;
+			width:45%;
+			left:54%;
+			position:absolute;
+		}
 		.break {
 			height:20px;
 			width:1000px;
 			background-color:lightblue;
 		}
 		.date {
+			font-size: 20px;
+			width:100px;
+			background-color:lime;
+			color:blue;
+		}
+		.date2 {
 			font-size: 20px;
 			width:100px;
 			background-color:lime;
@@ -60,8 +72,7 @@
 			transition:1.5s;
 		}
 		.text2{
-			width:45%;
-			left:55%;
+			position:relative;
 			background-color:lightblue;
 			color:lightblue;
 		}
@@ -102,16 +113,30 @@
 		So far in CS1, I have learned how to create shapes and images and how to move them around the screen. Recently, I finished coding the design part of my website home screen which shows a background image that fills the screen, a tree, and a bird. I think it looks cool and it has taken me a considerable amount of time as I am not yet used to this format of coding. I was able to complete this by using nested divs which was a bit frustrating at first because as a parent div was moved, all the children divs moved as well. This made it hard to make small adjustments because it would lead to me having to fix all of the smaller issues that it would cause. Currently, I am designing my website to have multiple invisible boxes that link to different pages, which is my goal for the next few days. I want to make the invisible boxes hyperlink, but they are currently in nested divs. The problem with this is that one parent div will override the redirect code of its child div. I want to try and fix this which I think may result in me having to redo all the divs. 
 	</div>
 <!-- 	COPY ABOVE -->
-
-	<div class="break" id="break2">
+	<div id="bigbox">
+		<div class="break" id="break2">
 			<br>
 		 </div>
-	<div class="date" id="date2">
-		Oct 4th, 21
+		<div class="date2" id="date2">
+			Oct 4th, 21
+		</div>
+		<div class="text2" id="text2">
+			Today, I worked on designing the journal page of my website. I was able to design the code to be copy paste so that I could easily enter new entries every time. I designed it with a heading as well as played with font sizing a little. I am trying to get the text to appear in a box by giving background colors in two columns, but I ran into an issue. I got the background colors, but to do that, I need to create a new class to break the texts from one another as I am using a br tag in the class of date. This creates a background color for that br as well which is the problem. This problem was just fixed as I wrote this. The other problem is that I do not know how to make the text alternate between two columns! Small change that I just made was to add a redirect bar to jump between pages at the top. This included making new divs and a tags to redirect the text to differet code pages.
+		</div>
+		<div class="break" id="break4">
+		<br>
+		 </div>
+		<div class="date2" id="date4">
+			Oct 8th, 21
+		</div>
+		<div class="text2" id="text4">
+			These last few days, I have spent a lot of time working with Java. I created an AboutMe page that has a similiar redirect bar to the Journal. The way the aboutme page looks is that you click on the screen to show letters that spell out my name that are placed where it is clicked. Then those letters organize themselves at the bottom of the screen under the bird in a transition. So, the first 9 clicks write my name, and the tenth click organizes the letters. The letters are screenshots of a fun text to make them easier to move around as a div. Clicking 5 more times creates 5 new text boxes about me which are also screenshots. The next click then organizes them. The hardest thing here was to make sure the letters were spaced out correctly as they are all different widths. I also worked on the jounral page. Now, to make the entry appear, one must hover over the empty space using the hover feature. The next step for the weekend will be to try and automate the home screen to make the birds and trees organize themselves and them have the trees turn into birds, and the birds fly away. 
+		</div>
+
+
+
 	</div>
-	<div class="text2" id="text2">
-		Today, I worked on designing the journal page of my website. I was able to design the code to be copy paste so that I could easily enter new entries every time. I designed it with a heading as well as played with font sizing a little. I am trying to get the text to appear in a box by giving background colors in two columns, but I ran into an issue. I got the background colors, but to do that, I need to create a new class to break the texts from one another as I am using a br tag in the class of date. This creates a background color for that br as well which is the problem. This problem was just fixed as I wrote this. The other problem is that I do not know how to make the text alternate between two columns! Small change that I just made was to add a redirect bar to jump between pages at the top. This included making new divs and a tags to redirect the text to differet code pages.
-	</div>
+	
 
 	<div class="break" id="break3">
 		<br>
@@ -123,15 +148,7 @@
 		Today, in CS1, I worked on javascript. I made my homescreen have invisible boxes behind the two sides of the sky and the field. These three parts were then coded with events to tell if they were clicked to run a function. I looked at previous student's code to try and find the way to control the function. What I found is to create a list that would keep adding to it for each new click. Then it would style a small icon to be added to the screen. This was not that difficult and I think it looks quite good. My next plan is for two things. One to create the journal to be side by side text boxes. Which I tried doing by setting two classes, but that did not work. Then the second thing is to create the AboutMe page to cycle through textboxes at the click instead of creating a div in a list. 
 	</div>
 
-	<div class="break" id="break4">
-		<br>
-		 </div>
-	<div class="date" id="date4">
-		Oct 8th, 21
-	</div>
-	<div class="text2" id="text4">
-		These last few days, I have spent a lot of time working with Java. I created an AboutMe page that has a similiar redirect bar to the Journal. The way the aboutme page looks is that you click on the screen to show letters that spell out my name that are placed where it is clicked. Then those letters organize themselves at the bottom of the screen under the bird in a transition. So, the first 9 clicks write my name, and the tenth click organizes the letters. The letters are screenshots of a fun text to make them easier to move around as a div. Clicking 5 more times creates 5 new text boxes about me which are also screenshots. The next click then organizes them. The hardest thing here was to make sure the letters were spaced out correctly as they are all different widths. I also worked on the jounral page. Now, to make the entry appear, one must hover over the empty space using the hover feature. The next step for the weekend will be to try and automate the home screen to make the birds and trees organize themselves and them have the trees turn into birds, and the birds fly away. 
-	</div>
+	
 
 	<div class="break" id="break5">
 		<br>
