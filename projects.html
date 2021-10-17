@@ -41,25 +41,26 @@
 		body {
 			background-color: lightblue;
 		}
-		#personcard{
+		.icons{
 			color:blue;
-			font-size: 25px;
-			background-image: url(personcardcover.png);
+			font-size:25px;
 			width:200px;
 			height:200px;
 			background-size:contain;
 			position:relative;
 		}
+		#personcard{
+			background-image: url(personcardcover.png);
+		}
 		#present{
-			color:blue;
-			font-size: 25px;
 			background-image: url(background.jpeg);
-			width:200px;
-			height:200px;
-			background-size:contain;
-			position:relative;
 			left:250px;
 			top:-200px;
+		}
+		#scienceresearch{
+			background-image:url(brain.jpeg);
+			left:500px;
+			top:-400px;
 		}
 
 	</style>
@@ -79,13 +80,18 @@
 		Click on the various projects
 	</div>
 	<a href="https://codepen.io/c25rs1/pen/wvejYbQ">
-		<div id="personcard">
+		<div class = "icons" id="personcard">
 		Person Card
 		</div>
 	</a>
 	<a href="present.html">
-		<div id="present">
+		<div class = "icons" id="present">
 			Present
+		</div>
+	</a>
+	<a href="ScienceResearch.html">
+		<div class = "icons" id="scienceresearch">
+			Science Research
 		</div>
 	</a>
 
