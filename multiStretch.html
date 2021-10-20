@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Multi-Stretch
+	</title>
+
+	<style type="text/css">
+		body {
+		  display: flex;
+		  align-items: center;
+		  justify-content: center;
+		  background-color:lightblue;
+		}
+		body,html {
+		  height: 100%;
+		}
+		.shape {
+		  height: 500px;
+		  width: 500px;
+		  margin: 0 auto;
+		  background-color: red;
+		 }
+		 #shape1{
+		  animation-name: stretchA;
+		  animation-duration: 1.5s; 
+		  animation-timing-function: ease-out; 
+		  animation-direction: alternate;
+		  animation-iteration-count: infinite;
+		  animation-fill-mode: none;
+		  animation-play-state: running;
+		}
+		#shape2{
+		  animation-name: stretchB;
+		  animation-duration: 1.5s; 
+		  animation-timing-function: ease-out; 
+		  animation-direction: alternate;
+		  animation-iteration-count: infinite;
+		  animation-fill-mode: none;
+		  animation-play-state: running;
+		}
+		#shape3{
+		  animation-name: stretchC;
+		  animation-duration: 1.5s; 
+		  animation-timing-function: ease-out; 
+		  animation-direction: alternate;
+		  animation-iteration-count: infinite;
+		  animation-fill-mode: none;
+		  animation-play-state: running;
+		}
+		#shape4{
+		  animation-name: stretchD;
+		  animation-duration: 1.5s; 
+		  animation-timing-function: ease-out; 
+		  animation-direction: alternate;
+		  animation-iteration-count: infinite;
+		  animation-fill-mode: none;
+		  animation-play-state: running;
+		}
+
+		@keyframes stretchA {
+		  0% {
+		    transform: scale(.3);
+		    background-color: red;
+		    border-radius: 100%;
+		  }
+		  50% {
+		    background-color: purple;
+		  }
+		  100% {
+		    transform: scale(1.5);
+		    background-color: blue;
+		  }
+		}
+		@keyframes stretchB {
+		  0% {
+		    transform: scale(1.5);
+		    background-color: blue;
+		    border-radius: 100%;
+		  }
+		  50% {
+		    background-color: purple;
+		  }
+		  100% {
+		    transform: scale(.3);
+		    background-color: red;
+		  }
+		}
+		@keyframes stretchC {
+		  0% {
+		    transform: scale(.3);
+		    background-color: red;
+		    border-radius: 100%;
+		  }
+		  50% {
+		    background-color: purple;
+		  }
+		  100% {
+		    transform: scale(1.5);
+		    background-color: blue;
+		  }
+		}
+		@keyframes stretchD {
+		  0% {
+		    transform: scale(1.5);
+		    background-color: blue;
+		    border-radius: 100%;
+		  }
+		  50% {
+		    background-color: purple;
+		  }
+		  100% {
+		    transform: scale(.3);
+		    background-color: red;
+		  }
+		}
+
+	</style>
+</head>
+<body>
+	<div class="shape" id="shape1"></div>
+	<div class="shape" id="shape2"></div>
+	<div class="shape" id="shape3"></div>
+	<div class="shape" id="shape4"></div>
+
+
+
+	
+</body>
+</html>

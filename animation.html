@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Rube Goldberg Machine
+	</title>
+
+	<style type="text/css">
+		body{
+			width: 1425px;
+			height: 800px;
+			background-color:lightblue;
+		}
+		#marble{
+			width:100px;
+			height:100px;
+			position:absolute;
+			background-image:url(marble.png);
+			background-repeat:no-repeat;
+			background-size:contain;
+			top:200px;
+			left:5%;
+
+			animation-name: marbleRoll;
+			animation-duration:5s;
+			animation-iteration-count:1;
+		}
+
+		#slide{
+			width:500px;
+			height:300px;
+			position:absolute;
+			background-image:url(slide.png);
+			background-repeat:no-repeat;
+			background-size:contain;
+			top:28%;
+
+		}
+
+		@keyframes marbleRoll{
+			0%{
+				transform:rotate(48deg);
+				left:0px;
+				top:200px;
+			}
+			6.66%{
+				transform:rotate(96deg);
+				left:100px;
+				top:200px;
+			}
+			13.33%{
+				transform:rotate(144deg);
+				left:200px;
+				top:250px;
+			}
+			20%{
+				transform:rotate(192deg);
+				left:300px;
+				top:350px;
+			}
+			26.66%{
+				transform:rotate(240deg);
+				left:400px;
+				top:350px;
+			}
+			33.33%{
+				transform:rotate(288deg);
+				left:500px;
+			}
+			40%{
+				transform:rotate(326deg);
+				left:600px;
+			}
+			46.66%{
+				transform:rotate(359deg);
+				left:700px;
+			}
+			53.33%{
+				transform:rotate(48deg);
+				left:800px;
+			}
+			60%{
+				transform:rotate(96deg);
+				left:900px;
+			}
+			66.66%{
+				transform:rotate(144deg);
+				left:1000px;
+			}
+			73.33%{
+				transform:rotate(192deg);
+				left:1100px;
+			}
+			80%{
+				transform:rotate(240deg);
+				left:1200px;
+			}
+			86.66%{
+				transform:rotate(288deg);
+				left:1300px;
+			}
+			93.33%{
+				transform:rotate(326deg);
+				left:1400px;
+			}
+
+		}
+
+	</style>
+</head>
+<body>
+	<div id="marble"></div>
+	<div id="slide"></div>
+</body>
+</html>
