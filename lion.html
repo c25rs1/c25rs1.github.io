@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lion Showdown</title>
+	<style type="text/css">
+		#title{
+			font-size:40px;
+			z-index:20;
+			background-color:lime;
+		}
+		body{
+			background-color:lightblue;
+		}
+		.lionplace{
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			width:1800px;
+			height:900px;
+			background-image:url(lion1.png);
+			background-size:contain;
+			background-repeat:no-repeat;
+		}
+		.lionplace2{
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			width:1800px;
+			height:900px;
+			background-image:url(lion2.png);
+			background-size:contain;
+			background-repeat:no-repeat;
+		}
+	</style>
+</head>
+<body>
+	<center>
+		<div id="title">Lion Showdown</div>
+	</center>
+
+	<script type="text/javascript">
+		var counter = 0;
+		function lionPlace () {
+			counter = counter + 1
+
+			if (counter % 2 == 0){
+				var lion1 = document.createElement("div")
+				document.body.appendChild(lion1);
+				lion1.classList.add("lionplace")
+			} else {
+				var lion2 = document.createElement("div")
+				document.body.appendChild(lion2)
+				lion2.classList.add("lionplace2")
+			}
+
+		}
+		lionPlace();
+		setInterval(lionPlace,1000)
+	</script>
+
+</body>
+</html>
