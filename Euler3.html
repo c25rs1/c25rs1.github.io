@@ -1,0 +1,22 @@
+What is the largest prime factor of the number 600851475143 ?
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Euler #3</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var number = 600851475143;
+
+		for(var i = 2; i <= number; i++) {
+         while(number%i == 0) {
+            console.log(i);
+            number = number/i;
+         }
+      }
+      i = i -1;
+      console.log("CHALLENGE ANSWER:", i)
+	</script>
+
+</body>
+</html>

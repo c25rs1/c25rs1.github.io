@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Euler #2</title>
+</head>
+<body>
+
+	<script type="text/javascript">
+		var sum = 1;
+		var num1 = 0;
+		var num2 = 1;
+		var totalSum = 0;
+		function add(){
+			while (sum < 4000000){
+				num1 = num2;
+				num2 = sum;
+				sum = num1 + num2;
+				if (sum < 4000000 && sum % 2 == 0){
+					console.log("sequence", sum);
+					totalSum = totalSum + sum;
+				}
+			}
+			console.log("CHALLENGE ANSWER: ", totalSum)
+		}
+		add();
+	</script>
+
+</body>
+</html>

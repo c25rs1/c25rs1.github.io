@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <style>
+        body{
+            background-color:lightblue;
+        }
+        #endgame{
+            opacity:0%;
+            font-size: 90px;
+            text-align: center;
+            background-color:lime;
+            z-index:3;
+        }
+        #victor{
+            opacity:0%;
+            font-size: 90px;
+            text-align: center;
+            background-color:lime;
+            z-index:3;
+        }
+        #welcome{
+            font-size:40px;
+            text-align:center;
+            background-color:lime;
+            z-index:3;
+        }
+        .pumpkins{
+        	width:100px;
+            height:100px;
+
+            background-image:url(pumpkin.png);
+            background-position:center;
+            background-repeat:no-repeat;
+            background-size:contain;
+
+
+            left:0px;
+        	top:800px;
+            position:absolute;
+            z-index:1;
+
+			transition:.5s;
+			margin:10px;
+		}
+	</style>
+</head>
+
+<body>
+    <center>
+    <div id="welcome">Collect all 100 pumpkins! Dont miss more than 7! Remember to scroll...</div>
+    </center>
+
+    <p>pumpkins collected:</p><input id="box"></input>
+    <p>total pumpkins on screen:</p><input id="box2"></input>
+
+    <center>
+    <div id="endgame"> GAME OVER</div>
+    <div id="victor"> VICTORY</div>
+    </center>
+
+    <script type="text/javascript">
+        var box = document.getElementById('box');
+        var box2 = document.getElementById('box2');
+        var box3 = document.getElementById('box3');
+        var score= 0;
+        var total = 0;
+
+        function create() {
+            if (total < 7 && score < 100){
+            total = total + 1;
+            box2.value = total;
+            console.log("hi hi", total)
+            var pumpkin = document.createElement('div');
+            document.body.appendChild(pumpkin);
+            pumpkin.classList.add("pumpkins");
+
+            function change() {
+                if (total<7 && score < 100){
+                pumpkin.style.left = 1000 * Math.random() + "px";
+                pumpkin.style.top = 1000 * Math.random() + "px";
+            }
+            };
+
+
+            pumpkin.addEventListener("click", function() {
+                if (total<7 && score < 100){
+                score = score + 1;
+                box.value = score;
+                pumpkin.classList.remove("pumpkins");
+                total = total - 1;
+                box2.value = total;
+            }
+            })
+
+            setInterval(change, 2000)
+        }
+        function endGame(){
+            endgame.style.opacity = "100%";
+        }
+        function victory(){
+            victor.style.opacity = "100%";
+        }
+
+        if (total == 7 && score < 100){
+            endGame();
+            console.log("endgame called")
+        }
+        if (score == 100){
+            victory();
+            console.log("victory called")
+        }
+        };
+        if (total < 7 && score < 100){
+            console.log("hi total", total)
+            setInterval(create, 1000);
+
+        }
+        
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+Challenge 1: write function that counts from 1-100 every 1s. printing every integer starting with 0-100 in order
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Function Challenges</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var counter = 0;
+		console.log("counter = ", counter)
+		function count(){
+			if (counter <=100){
+				counter = counter + 1;
+				console.log("counter = ", counter)
+			}
+		}
+          setInterval(count, 1000);
+	</script>
+</body>
+</html>

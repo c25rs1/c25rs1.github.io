@@ -1,0 +1,30 @@
+Challenge 2: make a counting function that counts 1-100 but multiples of 3 print fizz, multiples of 5 prints buzz, multiples of 3 and 5 print fizzbuzz
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Functions Challenge 2</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var counter = 0;
+		function count(){
+			if (counter <=100){
+				counter = counter + 1;
+				if (counter % 3 == 0 && counter % 5 == 0) {
+					console.log("fizzbuzz");
+				}
+				else if (counter % 3 == 0) {
+					console.log("fizz");
+				}
+				else if (counter % 5 == 0) {
+					console.log("buzz");
+				}else{
+					console.log("counter = ", counter)
+
+				}
+			}
+		}
+          setInterval(count, 1000);
+	</script>
+</body>
+</html>
