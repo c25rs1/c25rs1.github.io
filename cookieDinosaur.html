@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cookie --> Dinosaur</title>
+	<style type="text/css">
+		#announcements{
+			width:100%;
+			height:50px;
+			background-color:lime;
+			font-size:45px;
+			text-align:center;
+		}
+	</style>
+
+</head>
+<body>
+	<div id = "announcements"> Watch Out! </div>
+<script type="text/javascript">
+	var cookiecount = 0;
+	function makeCookie (){
+		cookiecount = cookiecount + 1;
+		var cookie = document.createElement("div")
+		document.body.appendChild(cookie);
+		cookie.style.height = "200px";
+		cookie.style.width = "200px";
+		cookie.style.backgroundImage = "url(cookie2.png)";
+		cookie.style.backgroundSize = "contain";
+		cookie.style.backgroundRepeat = "no-repeat";
+		cookie.style.display = "inline-block";
+		
+		cookie.addEventListener("click", function(){
+			cookie.style.backgroundImage = "url(dinosaur.png)"
+		})
+		if (cookiecount % 5 == 0){
+			announcements.innerText = "ASTEROID INCOMING (Keep Clicking!)";
+			cookie.style.backgroundImage = "url(cookie2.png)";
+		}
+		if (cookiecount % 5 == 2){
+			announcements.innerText = "Watch Out!";
+		}
+	}
+	setInterval(makeCookie, 1000)
+</script>
+</body>
+</html>

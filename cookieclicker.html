@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ROHAN COOKIE CLICKER</title>
+	<style type="text/css">
+		#title {
+			font-size: 40px;
+			text-align: center;
+			background-color:lime;
+		}
+		body{
+			background-color:lightblue;
+		}
+		#player{
+			font-size:30px;
+			text-align:center;
+			background-color:green;
+		}
+		#updates{
+			font-size:30px;
+			text-align:center;
+			background-color:green;
+		}
+		#cookie{
+			width:500px;
+            height:500px;
+
+            background-image:url(cookie.png);
+            background-position:center;
+            background-repeat:no-repeat;
+            background-size:contain;
+
+
+            left:40px;
+        	top:210px;
+            position:absolute;
+            z-index:1;
+		}
+		#box{
+			width:143px;
+			background-color:lime;
+		}
+		#box2{
+			width:143px;
+			background-color:lime;
+		}
+		#box3{
+			width:143px;
+			background-color:lime;
+		}
+		#boxText{
+			width:150px;
+			background-color:lime;
+		}
+		#box2Text{
+			width:150px;
+			background-color:lime;
+		}
+		#box3Text{
+			width:150px;
+			background-color:lime;
+		}
+		.goldenCookies{
+			width:200px;
+			height:200px;
+			position:absolute;
+			background-image:url(goldencookie.png);
+			z-index:4;
+		}
+		#shop{
+			font-size:40px;
+			text-align:center;
+			width:500px;
+			height:100%;
+			position:absolute;
+			z-index:1;
+			left:64.7%;
+			top:125px;
+			background-color:lightgreen;
+		}
+		.shopIcons{
+			font-size:30px;
+			width:500px;
+			height:100px;
+			position:absolute;
+			z-index:3;
+			background-color:green;
+		}
+		#pointer{
+			top:180px;
+			left:64.7%;
+		}
+		#grandma{
+			top:350px;
+			left:64.7%;
+		}
+		#superbaker{
+			top:520px;
+			left:64.7%;
+		}
+		.shopSell{
+			font-size:30px;
+			width:500px;
+			height:50px;
+			position:absolute;
+			z-index:3;
+			background-color:green;
+		}
+		#pointerSell{
+			top:260px;
+			left:64.7%;
+		}
+		#grandmaSell{
+			top:430px;
+			left:64.7%;
+		}
+		#superbakerSell{
+			top:600px;
+			left:64.7%;
+		}
+	</style>
+</head>
+<body>
+	<div id="title">
+		Rohan's Cookie Clicker
+	</div>
+	<div id="player"></div>
+	<div id="updates">Updates Appear Here</div>
+	<div id="cookie"></div>
+
+	<div id="boxText">  Cookies:</div><input id="box"></input>
+    <div id="box2Text">  Total Collected:</div><input id="box2"></input>
+    <div id="box3Text">  CPS:</div><input id="box3"></input>
+
+    <div id="shop">Shop:</div>
+    <div id="pointer" class="shopIcons">POINTER Cost: 150 <br>Owned: 0, CPS + 1, CPS bonus: 0</div>
+    <div id="pointerSell" class="shopSell">Pointer Sell: 50 click here to sell</div>
+    <div id="grandma" class="shopIcons">GRANDMA Cost: 500<br>Owned: 0, CPS + 10, CPS bonus: 0</div>
+    <div id="grandmaSell" class="shopSell">Grandma Sell: 150 click here to sell</div>
+    <div id="superbaker" class="shopIcons">SUPERBAKER Cost: 10,000<br>Owned: 0, CPS + 100, CPS bonus: 0</div>
+    <div id="superbakerSell" class="shopSell">Superbaker Sell: 1,000 click here to sell</div>
+
+	<script type="text/javascript">
+        var player = document.getElementById('player');
+        var updates = document.getElementById('updates');
+        var cookieStored = 0;
+        var totalClicked = 0;
+        var cps = 0;
+        var goldenCounter = 0;
+        var goldenFrequency = 10000;
+        
+        var pointerOwned = 0;
+        var pointerBoosts = 0;
+        var grandmaOwned = 0;
+        var grandmaBoosts = 0;
+        var superbakerOwned = 0;
+        var superbakerBoosts = 0;
+
+		var name = window.prompt("Welcome! What is your name?");
+		alert("Your name is " + name);
+		player.innerText = name + "'s kitchen!";
+
+		cookie.addEventListener("click", function() {
+                cookieStored = cookieStored + 1;
+                box.value = cookieStored;
+                totalClicked = totalClicked + 1;
+                box2.value = totalClicked;
+                if (totalClicked % 2 != 0){
+                cookie.style.width="550px";
+                cookie.style.height="550px";
+            	}
+            	else{
+                cookie.style.width="500px";
+                cookie.style.height="500px";
+            	}
+            })
+		function makeCookie(){
+			if (goldenCounter == 0){
+			goldenCounter = 1;
+			updates.innerText = "Click golden cookie";
+			updates.style.backgroundColor = "blue";
+			var goldenCookie = document.createElement('div');
+            document.body.appendChild(goldenCookie);
+            goldenCookie.classList.add("goldenCookies");
+            goldenCookie.style.left = 1000 * Math.random() + "px";
+            goldenCookie.style.top = 1000 * Math.random() + "px";
+        	}
+
+            goldenCookie.addEventListener("click", function() {
+                cookieStored = cookieStored + 50;
+                box.value = cookieStored;
+                totalClicked = totalClicked + 50;
+                box2.value = totalClicked;
+                goldenCookie.classList.remove("goldenCookies");
+                updates.innerText = "Golden cookie clicked";
+                updates.style.backgroundColor = "green";
+                goldenCounter = 0;
+            })
+		}
+		pointer.addEventListener("click", function(){
+			if (cookieStored > 150){
+				pointerOwned = pointerOwned + 1;
+				pointerBoosts = pointerBoosts + 1;
+				cps = cps + 1;
+				cookieStored = cookieStored - 150;
+			}
+		})
+		pointerSell.addEventListener("click", function(){
+			if (pointerOwned >= 1){
+				pointerOwned = pointerOwned - 1;
+				pointerBoosts = pointerBoosts - 1;
+				cps = cps - 1;
+				cookieStored = cookieStored + 50;
+			}
+		})
+		grandma.addEventListener("click", function(){
+			if (cookieStored > 500){
+				grandmaOwned = grandmaOwned + 1;
+				grandmaBoosts = grandmaBoosts + 10;
+				cps = cps + 10;
+				cookieStored = cookieStored - 500;
+			}
+		})
+		grandmaSell.addEventListener("click", function(){
+			if (grandmaOwned >= 1){
+				grandmaOwned = grandmaOwned - 1;
+				grandmaBoosts = grandmaBoosts - 10;
+				cps = cps - 10;
+				cookieStored = cookieStored + 150;
+			}
+		})
+		superbaker.addEventListener("click", function(){
+			if (cookieStored > 10000){
+				superbakerOwned = superbakerOwned + 1;
+				superbakerBoosts = superbakerBoosts + 100;
+				cps = cps + 10;
+				cookieStored = cookieStored - 500;
+			}
+		})
+		superbakerSell.addEventListener("click", function(){
+			if (grandmaOwned >= 1){
+				grandmaOwned = grandmaOwned - 1;
+				grandmaBoosts = grandmaBoosts - 100;
+				cps = cps - 10;
+				cookieStored = cookieStored + 1000;
+			}
+		})
+		function autoClicks(){
+			pointer.innerText = "POINTER Cost: 150 Owned: " + pointerOwned + ", CPS + 1, CPS bonus: " + pointerBoosts + "   click here to buy";
+			grandma.innerText = "GRANDMA Cost: 500 Owned: " + grandmaOwned + ", CPS + 10, CPS bonus: " + grandmaBoosts + "   click here to buy";
+			superbaker.innerText = "SUPERBAKER Cost: 10k Owned: " + superbakerOwned + ", CPS + 100, CPS bonus: " + superbakerBoosts + "   click here to buy";
+			cookieStored = cookieStored + cps;
+			box.value = cookieStored;
+			totalClicked = totalClicked + cps;
+			box2.value = totalClicked;
+			box3.value = cps;
+		}
+		setInterval(makeCookie, goldenFrequency);
+		setInterval(autoClicks, 1000);
+	</script>
+</body>
+</html>
