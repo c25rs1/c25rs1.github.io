@@ -160,6 +160,16 @@
 		alert("Your name is " + name);
 		player.innerText = name + "'s kitchen!";
 
+		if (name == "hack"){
+			var hack = window.prompt("You have opted to hack. Enter starting cookies");
+			var hack2 = window.prompt("Enter starting cps");
+			var hackInt = parseInt(hack);
+			cookieStored = hackInt;
+			totalClicked = hackInt;
+			var hack2Int = parseInt(hack2)
+			cps = hack2Int;
+		}
+
 		cookie.addEventListener("click", function() {
                 cookieStored = cookieStored + 1;
                 box.value = cookieStored;
@@ -233,15 +243,15 @@
 			if (cookieStored > 10000){
 				superbakerOwned = superbakerOwned + 1;
 				superbakerBoosts = superbakerBoosts + 100;
-				cps = cps + 10;
+				cps = cps + 100;
 				cookieStored = cookieStored - 500;
 			}
 		})
 		superbakerSell.addEventListener("click", function(){
-			if (grandmaOwned >= 1){
-				grandmaOwned = grandmaOwned - 1;
-				grandmaBoosts = grandmaBoosts - 100;
-				cps = cps - 10;
+			if (superbakerOwned >= 1){
+				superbakerOwned = superbakerOwned - 1;
+				superbakerBoosts = superbakerBoosts - 100;
+				cps = cps - 100;
 				cookieStored = cookieStored + 1000;
 			}
 		})

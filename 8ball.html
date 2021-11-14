@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>8 Ball</title>
+	<style type="text/css">
+		body{
+			background-color:lightblue;
+		}
+		#title{
+			font-size:40px;
+			z-index:20;
+			background-color:lime;
+		}
+		#questions{
+			font-size:30px;
+			text-align:center;
+			background-color:lime;
+			position:relative;
+			top:-600px;
+		}
+		#answers{
+			font-size:30px;
+			text-align:center;
+			background-color:lime;
+			position:relative;
+			top:-600px;
+		}
+		#ball{
+			width:600px;
+			height:600px;
+			background-size:cover;
+			position:relative;
+			top:75px;
+			background-image:url(8ball.png);
+		}
+		#forceYes{
+			width:400px;
+			height:50%;
+			position:absolute;
+/*			background-color:green;
+*/			top:0px;
+		}
+		#forceNo{
+			width:400px;
+			height:50%;
+			position:absolute;
+/*			background-color:orange;
+*/			top:0px;
+			left:72%;
+		}
+		#forceMaybe{
+			width:400px;
+			height:350px;
+			position:absolute;
+/*			background-color:yellow;
+*/			top:400px;
+		}
+
+	</style>
+</head>
+<body>
+<center>
+	<div id="title">Click the 8 Ball! (or here?)</div>
+	<div id="ball"></div>
+</center>
+	<div id="questions">What is your question?</div>
+	<div id="answers">Answers appear here</div>
+
+	<div id="forceYes"></div>
+	<div id="forceNo"></div>
+	<div id="forceMaybe"></div>
+
+
+<script type="text/javascript">
+	var question;
+	var min=1;
+	var max=21;
+	var clicks = 0;
+
+	function getAnswer(){ 
+	    var random = Math.floor(Math.random() * (+max - +min)) + +min;
+	    console.log(random)
+	    if (random == 1){
+	    	answers.innerText = "It is certain";
+	    	answers.style.backgroundColor = "green";
+	    }
+	    if (random == 2){
+	    	answers.innerText = "It is decidedly so";
+	    	answers.style.backgroundColor = "green";
+
+	    }
+	    if (random == 3){
+	    	answers.innerText = "Without a doubt";
+	    	answers.style.backgroundColor = "green";
+	    }
+	    if (random == 4){
+	    	answers.innerText = "Yes definitely";
+	    	answers.style.backgroundColor = "green";
+	    }
+	    if (random == 5){
+	    	answers.innerText = "You may rely on it";
+	    	answers.style.backgroundColor = "green";
+	    }
+	    if (random == 6){
+	    	answers.innerText = "As I see it, yes";
+	    	answers.style.backgroundColor = "green";
+	    }
+	    if (random == 7){
+	    	answers.innerText = "Most likely";
+	    	answers.style.backgroundColor = "green";
+	    }
+	    if (random == 8){
+	    	answers.innerText = "Outlook good";
+	    	answers.style.backgroundColor = "green";
+	    }
+	    if (random == 9){
+	    	answers.innerText = "Yes";
+	    	answers.style.backgroundColor = "green";
+	    }
+	    if (random == 10){
+	    	answers.innerText = "Signs point to yes";
+	    	answers.style.backgroundColor = "green";
+	    }
+	    if (random == 11){
+	    	answers.innerText = "Reply hazy, try again";
+	    	answers.style.backgroundColor = "yellow";
+	    }
+	    if (random == 12){
+	    	answers.innerText = "Ask again later";
+	    	answers.style.backgroundColor = "yellow";
+	    }
+	    if (random == 13){
+	    	answers.innerText = "Better not tell you now";
+	    	answers.style.backgroundColor = "yellow";
+	    }
+	    if (random == 14){
+	    	answers.innerText = "Cannot predict now";
+	    	answers.style.backgroundColor = "yellow";
+	    }
+	    if (random == 15){
+	    	answers.innerText = "Concentrate and ask again";
+	    	answers.style.backgroundColor = "yellow";
+	    }
+	    if (random == 16){
+	    	answers.innerText = "Don't count on it";
+	    	answers.style.backgroundColor = "orange";
+	    }
+	    if (random == 17){
+	    	answers.innerText = "My reply is no";
+	    	answers.style.backgroundColor = "orange";
+	    }
+	    if (random == 18){
+	    	answers.innerText = "My sources say no";
+	    	answers.style.backgroundColor = "orange";
+	    }
+	    if (random == 19){
+	    	answers.innerText = "Outlook not so good";
+	    	answers.style.backgroundColor = "orange";
+	    }
+	    if (random == 20){
+	    	answers.innerText = "Very doubtful";
+	    	answers.style.backgroundColor = "orange";
+	    }	
+	}
+
+	ball.addEventListener("click", function(){
+			question = window.prompt("What is your question?");
+			questions.innerText = "Question: " + question;
+			min = 1;
+			max = 21;
+			getAnswer();
+	})
+
+	forceYes.addEventListener("click", function(){
+			question = window.prompt("What is your question?");
+			questions.innerText = "Question: " + question;
+			min = 1;
+			max = 11;
+			getAnswer();
+	})
+
+	forceNo.addEventListener("click", function(){
+			question = window.prompt("What is your question?");
+			questions.innerText = "Question: " + question;
+			min = 16;
+			max = 21;
+			getAnswer();
+	})
+
+	forceMaybe.addEventListener("click", function(){
+			question = window.prompt("What is your question?");
+			questions.innerText = "Question: " + question;
+			min = 11;
+			max = 15;
+			getAnswer();
+	})
+
+	title.addEventListener("click", function(){
+		if (clicks == 0){
+			clicks = 1;
+			title.innerText = "Force Yes = top right, No = top left, Maybe = bottom right";
+			questions.innerText = "click title to hide!";
+			answers.style.opacity = "0%";
+			ball.style.opacity = "0%";
+			title.style.backgroundColor = "purple";
+			questions.style.backgroundColor = "purple";
+		} else {
+			clicks = 0;
+			title.innerText = "Click the 8 Ball! (or here?)";
+			questions.innerText = "What is your question?";
+			answers.style.opacity = "100%";
+			ball.style.opacity = "100%";
+			title.style.backgroundColor = "lime";
+			questions.style.backgroundColor = "lime";
+		}
+	})
+
+</script>
+
+</body>
+</html>
