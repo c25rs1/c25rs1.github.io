@@ -37,23 +37,29 @@
 			width:400px;
 			height:50%;
 			position:absolute;
-/*			background-color:green;
-*/			top:0px;
+			background-color:green;
+			top:0px;
+			opacity: 0%;
+			z-index:1;
 		}
 		#forceNo{
 			width:400px;
 			height:50%;
 			position:absolute;
-/*			background-color:orange;
-*/			top:0px;
+			background-color:orange;
+			top:0px;
 			left:72%;
+			opacity:0%;
+			z-index:1;
 		}
 		#forceMaybe{
 			width:400px;
 			height:350px;
 			position:absolute;
-/*			background-color:yellow;
-*/			top:400px;
+			background-color:yellow;
+			top:400px;
+			opacity:0%;
+			z-index:1;
 		}
 
 	</style>
@@ -198,12 +204,15 @@
 	title.addEventListener("click", function(){
 		if (clicks == 0){
 			clicks = 1;
-			title.innerText = "Force Yes = top right, No = top left, Maybe = bottom right";
+			title.innerText = "Yes = green, No = orange, Maybe = yellow";
 			questions.innerText = "click title to hide!";
 			answers.style.opacity = "0%";
 			ball.style.opacity = "0%";
 			title.style.backgroundColor = "purple";
 			questions.style.backgroundColor = "purple";
+			forceYes.style.opacity = "50%";
+			forceNo.style.opacity = "50%";
+			forceMaybe.style.opacity = "50%";
 		} else {
 			clicks = 0;
 			title.innerText = "Click the 8 Ball! (or here?)";
@@ -212,6 +221,9 @@
 			ball.style.opacity = "100%";
 			title.style.backgroundColor = "lime";
 			questions.style.backgroundColor = "lime";
+			forceYes.style.opacity = "0%";
+			forceNo.style.opacity = "0%";
+			forceMaybe.style.opacity = "0%";
 		}
 	})
 
