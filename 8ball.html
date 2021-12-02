@@ -172,6 +172,12 @@
 	ball.addEventListener("click", function(){
 			question = window.prompt("What is your question?");
 			questions.innerText = "Question: " + question;
+			if (question == null){
+				console.log("question is cancel");
+			}
+			if (question == ""){
+				console.log("question is blanks");
+			}
 			min = 1;
 			max = 21;
 			getAnswer();

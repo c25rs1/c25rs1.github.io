@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CS1 Instructions</title>
+	<style type="text/css">
+		body{
+			background-color:lightblue;
+		}
+		#header{
+            font-size:40px;
+            text-align:center;
+            background-color:lime;
+            z-index:3;
+        }
+        #question{
+        	font-size:30px;
+        	text-align:center;
+        	background-color:lime;
+        }
+        .buttons{
+        	height:300px;
+        	width:300px;
+        	background-color:blue;
+        	position:absolute;
+        	font-size:40px;
+        	transition: 1s;
+        }
+        #button1{
+        	top:120px;
+        	left:300px;
+        }
+        #button2{
+        	top:120px;
+        	left:800px;
+        }
+        #button3{
+        	top:440px;
+        	left:300px;
+        }
+        #button4{
+        	top:440px;
+        	left:800px;
+        }
+        #closebutton{
+        	width:200px;
+        	height:50px;
+        	top:5%;
+        	background-color:blue;
+        	z-index:5001;
+        	font-size:40px;
+        	opacity:100%;
+        	position:relative;
+        }
+        #loading{
+        	width:100%;
+        	height:100%;
+        	top:-5000px;
+        	background-color:lightblue;
+        	z-index:5000;
+        	font-size:50px;
+        	opacity:0%;
+        }
+        #instructions{
+        	width:100%;
+        	height:100%;
+        	top:-5000px;
+        	background-color:lightblue;
+        	z-index:5000;
+        	font-size:80px;
+        	opacity:0%;
+        	text-align: center;
+        }
+        
+	</style>
+</head>
+<body>
+	<div id="header">CS1 Instructions</div>
+	<div id="question">What section are you interested in learning about?</div>
+	<div id="button1" class="buttons">______HTML___ _____Coding____</div>
+	<div id="button2" class="buttons">______CSS____ _____Coding____</div>
+	<div id="button3" class="buttons">__JAVASCRIPT_ _____Coding____</div>
+	<div id="button4" class="buttons">___PROJECTS__ _____Coding____</div>
+	<div id = "closebutton">__CLOSE_</div>
+
+	<div id="loading">LOADING</div>
+	<div id = "instructions"></div>
+
+
+
+	<script type="text/javascript">
+		var looperCounter = 0;
+		var button1Clicker = 0;
+		var button2Clicker = 0;
+		var button3Clicker = 0;
+		var button4Clicker = 0;
+		var button11 = 0;
+		var button12 = 0;
+		var button13 = 0;
+		var button14 = 0;
+
+		var AA = "HTML1";
+		var AB = "HTML2";
+		var AC = "HTML3";
+		var AD = "HTML4";
+		var BA = "CSS1";
+		var BB = "CSS2";
+		var BC = "CSS3";
+		var BD = "CSS4";
+		var CA = "JAVA1";
+		var CB = "JAVA2";
+		var CC = "JAVA3";
+		var CD = "JAVA4";
+		var DA = "PROJECT1";
+		var DB = "PROJECT2";
+		var DC = "PROJECT3";
+		var DD = "PROJECT4";
+
+		button1.addEventListener("click", function() {
+			console.log("button1 hit");
+			if (button1Clicker == 0){
+				htmlCoding();
+			} else if (button1Clicker ==  1){
+				console.log("Titling your files clicked");
+				button11 = 1;
+				html1();
+			}
+			if (button2Clicker == 1){
+				console.log("CSS1 clicked");
+				button12 = 1;
+				css1();
+			}
+			if (button3Clicker == 1){
+				console.log("Java1 clicked");
+				button13 = 1;
+				java1();
+			}
+			if (button4Clicker == 1){
+				console.log("Project1 clicked");
+				button14 = 1;
+				project1();
+			}
+        })
+        button2.addEventListener("click", function() {
+			console.log("button2 hit");
+			if (button2Clicker == 0){
+				cssCoding();
+			} else if (button2Clicker == 1){
+				console.log("CSS button 2 clicked");
+				button12 = 2;
+				css1();
+			}
+			if (button1Clicker == 1){
+				console.log("Adding ids and classes clicked")
+				button11 = 2;
+				html1();
+			}
+			if (button3Clicker == 1){
+				console.log("Java1 clicked");
+				button13 = 2;
+				java1();
+			}
+			if (button4Clicker == 1){
+				console.log("Project1 clicked");
+				button14 = 2;
+				project1();
+			}
+        })
+        button3.addEventListener("click", function() {
+			console.log("button3 hit");
+			if (button3Clicker == 0){
+				javaCoding();
+			} else if (button3Clicker == 1){
+				console.log("Java button 3 clicked");
+				button13 = 3;
+				java1();
+			}
+			if (button1Clicker == 1){
+				console.log("Fonts, background images")
+				button11 = 3;
+				html1();
+			}
+			if (button2Clicker == 1){
+				console.log("CSS1 clicked");
+				button12 = 3;
+				css1();
+			}
+			if (button4Clicker == 1){
+				console.log("Project1 clicked");
+				button14 = 3;
+				project1();
+			}
+        })
+        button4.addEventListener("click", function() {
+			console.log("button4 hit");
+			if (button4Clicker == 0){
+				projectCoding();
+			} else if (button4Clicker == 1){
+				console.log("projects button 4 hit");
+				button14 = 4;
+				project1();
+			}
+			if (button1Clicker == 1){
+				console.log("Linking to another page")
+				button11 = 4;
+				html1();
+			}
+			if (button2Clicker == 1){
+				console.log("CSS1 clicked");
+				button12 = 4;
+				css1();
+			}
+			if (button3Clicker == 1){
+				console.log("Java1 clicked");
+				button13 = 4;
+				java1();
+			}
+        })
+        closebutton.addEventListener("click", function(){
+        	console.log("close button hit")
+        	goHome();
+        })
+
+        function goHome(){
+        	button1.innerText = "______HTML___ _____Coding____";
+        	button2.innerText = "______CSS____ _____Coding____";
+        	button3.innerText = "__JAVASCRIPT_ _____Coding____";
+        	button4.innerText = "___PROJECTS__ _____Coding____";
+        	question.innerText = "What section are you interested in learning about?"
+        	button1.style.opacity = "100%";
+        	button2.style.opacity = "100%";
+        	button3.style.opacity = "100%";
+        	button4.style.opacity = "100%";
+        	looperCounter = 0;
+		 	button1Clicker = 0;
+		 	button2Clicker = 0;
+		 	button3Clicker = 0;
+		 	button4Clicker = 0;
+		 	button11 = 0;
+		 	button12 = 0;
+		 	button13 = 0;
+		 	button14 = 0;
+		 	loading.style.top = "-5000px";
+		 	loading.style.opacity = "0%";
+		 	instructions.style.opacity = "0%";
+		 	instructions.style.top = "-5000px";
+        }
+
+		function htmlCoding(){
+			console.log("HTMLCODING Called");
+			button1Clicker = 1;
+			loading.style.top = "-5000px";
+	      	loading.style.opacity = "100%";
+			var looper = setInterval(function(){
+				looperCounter = looperCounter + 1;
+				console.log(looperCounter) ;
+	      	    
+	      	    if (looperCounter == 1){
+	      	    	loading.style.top = "0px";
+	      	    	loading.style.opacity = "0%";
+	      	    	clearInterval(looper);
+	      	    	looperCounter = 0;
+	      	    }
+	      	}, 1000);
+			question.innerText = "What would you like to learn in HTML?"
+			button1.innerText = "Titling your files, tab, and adding a header";
+			button2.innerText = "Adding ids and classes";
+			button3.innerText = "Fonts, background images";
+			button4.innerText = "Linking to another page";
+		}
+
+		function html1(){
+			console.log("HTML1 called");
+			loading.style.top = "-5000px";
+	      	loading.style.opacity = "100%";
+			var looper = setInterval(function(){
+				looperCounter = looperCounter + 1;
+				console.log(looperCounter) ;
+	      	    
+	      	    if (looperCounter == 1){
+	      	    	loading.style.top = "0px";
+	      	    	loading.style.opacity = "0%";
+	      	    	clearInterval(looper);
+	      	    	looperCounter = 0;
+	      	    }
+	      	}, 1000);
+	      	button1.style.opacity = "0%";
+	      	button2.style.opacity = "0%";
+	      	button3.style.opacity = "0%";
+	      	button4.style.opacity = "0%";
+	      	instructions.style.top = "0px";
+	      	instructions.style.opacity = "100%";
+	      	if (button11 == 1){
+	      		question.innerText = "Titling your files, tab, and adding a header";
+	      		instructions.innerText = AA;
+	     	} else if (button11 == 2){
+	      		question.innerText = "Adding ids and classes";
+	      		instructions.innerText = AB;
+	     	} else if (button11 == 3){
+	      		question.innerText = "Fonts, background images";
+	      		instructions.innerText = AC;
+	     	} else if (button11 == 4){
+	      		question.innerText = "Linking to another page";
+	      		instructions.innerText = AD;
+	     	}
+		}
+		function cssCoding(){
+			console.log("CSS Called");
+			button2Clicker = 1;
+			loading.style.top = "-5000px";
+	      	loading.style.opacity = "100%";
+			var looper = setInterval(function(){
+				looperCounter = looperCounter + 1;
+				console.log(looperCounter) ;
+	      	    
+	      	    if (looperCounter == 1){
+	      	    	loading.style.top = "0px";
+	      	    	loading.style.opacity = "0%";
+	      	    	clearInterval(looper);
+	      	    	looperCounter = 0;
+	      	    }
+	      	}, 1000);
+			question.innerText = "What would you like to learn in CSS?"
+			button1.innerText = "Styling basics (width, height, top, bottom etc)";
+			button2.innerText = "Styling (colors, z index, position, opacity)";
+			button3.innerText = "Body styling";
+			button4.innerText = "CSS Animations";
+		}
+		function css1(){
+			console.log("CSS1 called");
+			loading.style.top = "-5000px";
+	      	loading.style.opacity = "100%";
+			var looper = setInterval(function(){
+				looperCounter = looperCounter + 1;
+				console.log(looperCounter) ;
+	      	    
+	      	    if (looperCounter == 1){
+	      	    	loading.style.top = "0px";
+	      	    	loading.style.opacity = "0%";
+	      	    	clearInterval(looper);
+	      	    	looperCounter = 0;
+	      	    }
+	      	}, 1000);
+	      	button1.style.opacity = "0%";
+	      	button2.style.opacity = "0%";
+	      	button3.style.opacity = "0%";
+	      	button4.style.opacity = "0%";
+	      	instructions.style.top = "0px";
+	      	instructions.style.opacity = "100%";
+	      	if (button12 == 1){
+	      		question.innerText = "Styling basics (width, height, top, bottom etc)";
+	      		instructions.innerText = BA;
+	     	} else if (button12 == 2){
+	      		question.innerText = "Styling (colors, z index, position, opacity)";
+	      		instructions.innerText = BB;
+	     	} else if (button12 == 3){
+	      		question.innerText = "Body styling";
+	      		instructions.innerText = BC;
+	     	} else if (button12 == 4){
+	      		question.innerText = "CSS Animations";
+	      		instructions.innerText = BD;
+	     	}
+		}
+		function javaCoding(){
+			console.log("Java Called");
+			button3Clicker = 1;
+			loading.style.top = "-5000px";
+	      	loading.style.opacity = "100%";
+			var looper = setInterval(function(){
+				looperCounter = looperCounter + 1;
+				console.log(looperCounter) ;
+	      	    
+	      	    if (looperCounter == 1){
+	      	    	loading.style.top = "0px";
+	      	    	loading.style.opacity = "0%";
+	      	    	clearInterval(looper);
+	      	    	looperCounter = 0;
+	      	    }
+	      	}, 1000);
+			question.innerText = "What would you like to learn in JAVASCRIPT?"
+			button1.innerText = "Defining variables";
+			button2.innerText = "Functions";
+			button3.innerText = "Creating divs with functions";
+			button4.innerText = "Event listeners";
+		}
+		function java1(){
+			console.log("Java1 called");
+			loading.style.top = "-5000px";
+	      	loading.style.opacity = "100%";
+			var looper = setInterval(function(){
+				looperCounter = looperCounter + 1;
+				console.log(looperCounter) ;
+	      	    
+	      	    if (looperCounter == 1){
+	      	    	loading.style.top = "0px";
+	      	    	loading.style.opacity = "0%";
+	      	    	clearInterval(looper);
+	      	    	looperCounter = 0;
+	      	    }
+	      	}, 1000);
+	      	button1.style.opacity = "0%";
+	      	button2.style.opacity = "0%";
+	      	button3.style.opacity = "0%";
+	      	button4.style.opacity = "0%";
+	      	instructions.style.top = "0px";
+	      	instructions.style.opacity = "100%";
+	      	if (button13 == 1){
+	      		question.innerText = "Defining variables";
+	      		instructions.innerText = CA;
+	     	} else if (button13 == 2){
+	      		question.innerText = "Functions";
+	      		instructions.innerText = CB;
+	     	} else if (button13 == 3){
+	      		question.innerText = "Creating divs with functions";
+	      		instructions.innerText = CC;
+	     	} else if (button13 == 4){
+	      		question.innerText = "Event listeners";
+	      		instructions.innerText = CD;
+	     	}
+		}
+		function projectCoding(){
+			console.log("Project Called");
+			button4Clicker = 1;
+			loading.style.top = "-5000px";
+	      	loading.style.opacity = "100%";
+			var looper = setInterval(function(){
+				looperCounter = looperCounter + 1;
+				console.log(looperCounter) ;
+	      	    
+	      	    if (looperCounter == 1){
+	      	    	loading.style.top = "0px";
+	      	    	loading.style.opacity = "0%";
+	      	    	clearInterval(looper);
+	      	    	looperCounter = 0;
+	      	    }
+	      	}, 1000);
+			question.innerText = "What would you like to learn in Projects?"
+			button1.innerText = "Student projects";
+			button2.innerText = "Class projects";
+			button3.innerText = "Gifts/Holiday themed inspiration";
+			button4.innerText = "Ideas for codes list";
+		}
+		function project1(){
+			console.log("Project1 called");
+			loading.style.top = "-5000px";
+	      	loading.style.opacity = "100%";
+			var looper = setInterval(function(){
+				looperCounter = looperCounter + 1;
+				console.log(looperCounter) ;
+	      	    
+	      	    if (looperCounter == 1){
+	      	    	loading.style.top = "0px";
+	      	    	loading.style.opacity = "0%";
+	      	    	clearInterval(looper);
+	      	    	looperCounter = 0;
+	      	    }
+	      	}, 1000);
+	      	button1.style.opacity = "0%";
+	      	button2.style.opacity = "0%";
+	      	button3.style.opacity = "0%";
+	      	button4.style.opacity = "0%";
+	      	instructions.style.top = "0px";
+	      	instructions.style.opacity = "100%";
+	      	if (button14 == 1){
+	      		question.innerText = "Student projects";
+	      		instructions.innerText = DA;
+	     	} else if (button14 == 2){
+	      		question.innerText = "Class projects";
+	      		instructions.innerText = DB;
+	     	} else if (button14 == 3){
+	      		question.innerText = "Gifts/Holiday themed inspiration";
+	      		instructions.innerText = DC;
+	     	} else if (button14 == 4){
+	      		question.innerText = "Ideas for codes list";
+	      		instructions.innerText = DD;
+	     	}
+		}
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Key Press</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var number = 0;
+
+		document.addEventListener("keypress", function(event){
+			if (event.key != "1" && event.key != "2" && event.key != "3"){
+			} else {
+			number = number + 1;
+			if (number == 4) {
+				number = 1;
+			}
+			var x = document.createElement("div");
+			document.body.appendChild(x);
+			x.id = number;
+			x.style.display = "inline-block";
+			x.style.width = "100px";
+			x.style.height = "100px";
+			x.style.backgroundSize = "contain";
+			// x.backgroundImage = number + ".png";
+			x.style.backgroundImage = "url(" + number + ".png)";
+				
+			if (event.key == "1"){
+				x.innerText = "Hi!";
+			} else if (event.key == "2"){
+				x.innerText = "Bye!";
+			} else if (event.key == "3"){
+				x.innerText = "Ugh!";
+			}
+		}
+		})
+
+		
+	</script>
+</body>
+</html>

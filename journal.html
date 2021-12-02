@@ -179,6 +179,16 @@
 		<div class="text2" id="text8">
 			Today, I worked on another new code: 8 ball. This code was fun to make because it is not your average 8 ball. While the ball is coded to when clicked prompt the user to enter a question and then sends that to a function to randomize an answer, it has hacks added. If the user clicks on the title, they will see that there are three boxes in three corners and when clicked, those force an answer. These forced answers do not force the specific answer but rather forcing the answer to mean no. Try it! I also added a hack to the cookie clicker so when the name entered is "hack", it will allow me to edit the game and test out the later progression. Both were really fun, and the only thing I would add to the 8 ball is a way to make sure that a question is being asked rather than a statement like "hi". 
 		</div>
+		<div class="break" id="break8">
+			<br>
+		 </div>
+		<div class="date2" id="date8">
+			Nov 29th,21
+		</div>
+		<div class="text2" id="text8">
+			Over Thanksgiving Break, I created a new 1000 line code that is a game! For the spirit of Thanksgiving, this game is related to Fall and pumpkins (again)! This code is more like whack-a-mole which is a carnaval game. In the real game, little creatures pop out of holes on a platform and the player has to try and whack the creature with a bat before the creature goes back into its hole. For my code, my objective was to use as many functions as possible, so every aspect of the code minus the declaring variables and style section is in a function. This makes the code a little hard to understand, so I will go through it. The first things that happen are a welcome message explains the rules, and two input boxes are created to display time and score. Other variables are also defined, but I will review those later. Next, a for loop is called and runs the function of setPumpkin 40 times. This function counts how many times it has created pumpkins, then creates new divs and adds them to a class. The interesting part here was I actually gave the individual pumpkins their own id based on the counter. The code then lists various functions which are called later until the var looper comes up. This is the interval that is counting out the one minute that the game is played in and is runnning the game. This first calls timeCount which adds one second to the timer in the top left (note that the interval is set to one second as well). It also updates the score to ensure the player can not tamper with the input box. Next, the code runs the function pumpkinAppear which immediately calls another function of pumpkinClear. pumpkinClear only sets all the pumpkins to be invisible (0% opacity). pumpkinAppear then gets a random number between 1-40 (as there are 40 pumpkins), and calls the function checkRandom. checkRandom reads the random number and sets the corresponding pumpkin to be visible. (It also does something else which will be touched on later.) Next, the code goes back to the interval and runs the next function of checkClick. This function adds eventlistners to every pumpkin, makes sure that the pumkin is visible at that time using other variables defined at earlier places and reset in checkRandom. This adds a point to the score if it is visible and then makes it vanish. Lastly, once the time reaches 60 seconds, the code detects this and evaluates how to end the game in another function of evaluateEnd. It also ends the interval. EvaluateEnd assesses if the score was above 55 or below and based on that, calls one of two functions to display the winning or losing message. While there are other functions, these mainly run the game set up, reset, and start buttons.  This is my game and I would argue it was one of the best and most fun to make and play! 
+		</div>
+
 
 
 
@@ -241,6 +251,15 @@
 	</div>
 	<div class="text" id="text11">
 		So, these last two days, I created two new codes. The first one is a little easier and I finished it quickly called Cookie Dinosaur. This code calls a function to print a cookie per second on screen and when it is clicked, it turns into a dinosaur. I learned how to use "cookie.style.display = "inline-block"" to print in one row. The harder code that I made is the Cookie Clicker Game. This game functions like the real cookie clicker game where a player enters their name using system alerts, then clicks a cookie to gain points which are recorded. Those points then can be spent in the shop to gain cps which automatically clicks cookies per second gaining points. This game has a lot of potential to expand by adding more to the shop or more animations and liveliness to the game. 
+	</div>
+	<div class="break" id="break11">
+		<br>
+		 </div>
+	<div class="date" id="date11">
+		Nov 17th,21
+	</div>
+	<div class="text" id="text11">
+		Today, I made Key Press which as the code title implies, is an eventlisner working with the keyboard. When any of the three keys (1,2,3) is pressed, an image on a cycle is created using the inline block as well. Then depending on which key is pressed, the image will have an inner text of Hi, Bye, or Ugh. This code was easy aside from adding the background image to work with a variable. It was a neat tactic but was a pain to understand.  
 	</div>
 </body>
 </html>

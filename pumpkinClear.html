@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pumpkin Game v2</title>
+	<style type="text/css">
+		body{
+			background-color:lightblue;
+		}
+		#welcome{
+            font-size:40px;
+            text-align:center;
+            background-color:lime;
+            z-index:3;
+        }
+        #startButton{
+        	width:130px;
+			font-size:40px;
+			text-align:center;
+			background-color:lime;
+			z-index:3;
+			position:relative;
+		}
+		#startButton:hover{
+			color:red;
+		}
+		#ready{
+			width:100%;
+			height:100%;
+			top:0px;
+			font-size:300px;
+			text-align:center;
+			background-color:blue;
+			z-index:-5000;
+			position:absolute;
+			opacity:0%;
+		}
+        #endgame{
+            opacity:0%;
+            font-size: 90px;
+            text-align: center;
+            background-color:lime;
+            z-index:1000;
+        }
+        #victor{
+            opacity:0%;
+            font-size: 90px;
+            text-align: center;
+            background-color:lime;
+            z-index:1000;
+        }
+        .pumpkins{
+        	width:120px;
+            height:120px;
+
+            background-image:url(pumpkin.png);
+            background-position:center;
+            background-repeat:no-repeat;
+            background-size:contain;
+            display:inline-block;
+            top:-200px;
+            position:relative;
+            z-index:-100;
+            opacity:100%;
+
+			transition:1s;
+			margin:10px;
+		}
+		.pums{
+			width:120px;
+			height:120px;
+
+			background-position:center;
+			background-size:contain;
+			display:inline-block;
+			z-index:500;
+
+			position:absolute;
+			opacity:50%;
+			margin:10px;
+		}
+		#pum1{
+			top:145px;
+			left:10px;
+		}
+		#pum2{
+			top:145px;
+			left:150px;
+		}
+		#pum3{
+			top:145px;
+			left:290px;
+		}
+		#pum4{
+			top:145px;
+			left:430px;
+		}
+		#pum5{
+			top:145px;
+			left:570px;
+		}
+		#pum6{
+			top:145px;
+			left:710px;
+		}
+		#pum7{
+			top:145px;
+			left:850px;
+		}
+		#pum8{
+			top:145px;
+			left:990px;
+		}
+		#pum9{
+			top:145px;
+			left:1130px;
+		}
+		#pum10{
+			top:145px;
+			left:1270px;
+		}
+		#pum11{
+			top:290px;
+			left:10px;
+		}
+		#pum12{
+			top:290px;
+			left:150px;
+		}
+		#pum13{
+			top:290px;
+			left:290px;
+		}
+		#pum14{
+			top:290px;
+			left:430px;
+		}
+		#pum15{
+			top:290px;
+			left:570px;
+		}
+		#pum16{
+			top:290px;
+			left:710px;
+		}
+		#pum17{
+			top:290px;
+			left:850px;
+		}
+		#pum18{
+			top:290px;
+			left:990px;
+		}
+		#pum19{
+			top:290px;
+			left:1130px;
+		}
+		#pum20{
+			top:290px;
+			left:1270px;
+		}
+		#pum21{
+			top:435px;
+			left:10px;
+		}
+		#pum22{
+			top:435px;
+			left:150px;
+		}
+		#pum23{
+			top:435px;
+			left:290px;
+		}
+		#pum24{
+			top:435px;
+			left:430px;
+		}
+		#pum25{
+			top:435px;
+			left:570px;
+		}
+		#pum26{
+			top:435px;
+			left:710px;
+		}
+		#pum27{
+			top:435px;
+			left:850px;
+		}
+		#pum28{
+			top:435px;
+			left:990px;
+		}
+		#pum29{
+			top:435px;
+			left:1130px;
+		}
+		#pum30{
+			top:435px;
+			left:1270px;
+		}
+		#pum31{
+			top:580px;
+			left:10px;
+		}
+		#pum32{
+			top:580px;
+			left:150px;
+		}
+		#pum33{
+			top:580px;
+			left:290px;
+		}
+		#pum34{
+			top:580px;
+			left:430px;
+		}
+		#pum35{
+			top:580px;
+			left:570px;
+		}
+		#pum36{
+			top:580px;
+			left:710px;
+		}
+		#pum37{
+			top:580px;
+			left:850px;
+		}
+		#pum38{
+			top:580px;
+			left:990px;
+		}
+		#pum39{
+			top:580px;
+			left:1130px;
+		}
+		#pum40{
+			top:580px;
+			left:1270px;
+		}
+	</style>
+</head>
+<body>
+	<center>
+    	<div id="welcome">Smash as many pumpkins as you can!</div>
+    	<div id="startButton">START</div>
+    	<div id="ready">READY</div>
+    </center>
+    <div>Time:</div><input id="box1"></input>
+    <div>Score:</div><input id="box2"></input>
+
+
+    <center>
+    <div id="endgame"> YOU LOSE</div>
+    <div id="victor"> VICTORY</div>
+    </center>
+
+    <div id="pum1" class = "pums"></div>
+    <div id="pum2" class = "pums"></div>
+    <div id="pum3" class = "pums"></div>
+    <div id="pum4" class = "pums"></div>
+    <div id="pum5" class = "pums"></div>
+    <div id="pum6" class = "pums"></div>
+    <div id="pum7" class = "pums"></div>
+    <div id="pum8" class = "pums"></div>
+    <div id="pum9" class = "pums"></div>
+    <div id="pum10" class = "pums"></div>
+    <div id="pum11" class = "pums"></div>
+    <div id="pum12" class = "pums"></div>
+    <div id="pum13" class = "pums"></div>
+    <div id="pum14" class = "pums"></div>
+    <div id="pum15" class = "pums"></div>
+    <div id="pum16" class = "pums"></div>
+    <div id="pum17" class = "pums"></div>
+    <div id="pum18" class = "pums"></div>
+    <div id="pum19" class = "pums"></div>
+    <div id="pum20" class = "pums"></div>
+    <div id="pum21" class = "pums"></div>
+    <div id="pum22" class = "pums"></div>
+    <div id="pum23" class = "pums"></div>
+    <div id="pum24" class = "pums"></div>
+    <div id="pum25" class = "pums"></div>
+    <div id="pum26" class = "pums"></div>
+    <div id="pum27" class = "pums"></div>
+    <div id="pum28" class = "pums"></div>
+    <div id="pum29" class = "pums"></div>
+    <div id="pum30" class = "pums"></div>
+    <div id="pum31" class = "pums"></div>
+    <div id="pum32" class = "pums"></div>
+    <div id="pum33" class = "pums"></div>
+    <div id="pum34" class = "pums"></div>
+    <div id="pum35" class = "pums"></div>
+    <div id="pum36" class = "pums"></div>
+    <div id="pum37" class = "pums"></div>
+    <div id="pum38" class = "pums"></div>
+    <div id="pum39" class = "pums"></div>
+    <div id="pum40" class = "pums"></div>
+
+
+    <script type="text/javascript">
+    	var pumpkins = 0;
+    	var score = 0;
+    	box2.value = score;
+    	var time = 60; 
+    	var time2 = 0;
+    	box1.value = time + " sec";
+    	var min=1;
+		var max=40;
+		var random;
+		var scoreMultiplier = 1;
+		var startButtonClicked = 0;
+
+			var pumpkin1Opacity = 0;
+      		var pumpkin2Opacity = 0;
+      		var pumpkin3Opacity = 0;
+      		var pumpkin4Opacity = 0;
+      		var pumpkin5Opacity = 0;
+      		var pumpkin6Opacity = 0;
+      		var pumpkin7Opacity = 0;
+      		var pumpkin8Opacity = 0;
+      		var pumpkin9Opacity = 0;
+      		var pumpkin10Opacity = 0;
+      		var pumpkin11Opacity = 0;
+      		var pumpkin12Opacity = 0;
+      		var pumpkin13Opacity = 0;
+      		var pumpkin14Opacity = 0;
+      		var pumpkin15Opacity = 0;
+      		var pumpkin16Opacity = 0;
+      		var pumpkin17Opacity = 0;
+      		var pumpkin18Opacity = 0;
+      		var pumpkin19Opacity = 0;
+      		var pumpkin20Opacity = 0;
+      		var pumpkin21Opacity = 0;
+      		var pumpkin22Opacity = 0;
+      		var pumpkin23Opacity = 0;
+      		var pumpkin24Opacity = 0;
+      		var pumpkin25Opacity = 0;
+      		var pumpkin26Opacity = 0;
+      		var pumpkin27Opacity = 0;
+      		var pumpkin28Opacity = 0;
+      		var pumpkin29Opacity = 0;
+      		var pumpkin30Opacity = 0;
+      		var pumpkin31Opacity = 0;
+      		var pumpkin32Opacity = 0;
+      		var pumpkin33Opacity = 0;
+      		var pumpkin34Opacity = 0;
+      		var pumpkin35Opacity = 0;
+      		var pumpkin36Opacity = 0;
+      		var pumpkin37Opacity = 0;
+      		var pumpkin38Opacity = 0;
+      		var pumpkin39Opacity = 0;
+      		var pumpkin40Opacity = 0;
+
+    	startButton.addEventListener("click", function() {
+    		console.log("startbutton pressed");
+    		if (startButtonClicked == 0){
+		         startButtonClicked = 1;
+		         startButton.style.opacity = "0%";
+		         gameStart();
+	     	}
+	    })
+
+	    startSetUp();
+
+	    function startSetUp(){
+		    for (let i = 0; i < 40; i++){
+	    		setPumpkin();
+	    	}
+   		}
+
+    	function setPumpkin() {
+    		pumpkins = pumpkins + 1;
+            console.log("pumpkin placed: ", pumpkins);
+            var pumpkin = document.createElement('div');
+            document.body.appendChild(pumpkin);
+            pumpkin.classList.add("pumpkins");
+            pumpkin.id = "pumpkin"+pumpkins;
+        }
+
+        function getReady(){
+        	console.log("getready called");
+        	ready.style.zIndex = "5000";
+        	ready.style.opacity = "100%";
+        	ready.innerText = "READY";
+        	var looper2 = setInterval(function(){
+        		time2 = time2 + 1;
+        		if (time2 == 2){
+        			ready.innerText = "SET";
+        		}
+        		if (time2 == 3){
+        			ready.innerText = "GO!";
+        		}
+        		if (time2 == 4){
+        			ready.style.opacity = "0%";
+        			ready.style.zIndex = "-5000";
+        			startGame();
+        			clearInterval(looper2);
+        		}
+
+        	}, 1200)
+        }
+
+        function pumpkinAppear(){
+        	pumpkinClear();
+		    random = Math.floor(Math.random() * (+max - +min)) + +min;
+		    checkRandom();
+		    console.log("random=", random);
+        }
+
+        function pumpkinClear(){
+        	console.log("pumpkincleared");
+        	pumpkin1.style.opacity = "0%";
+        	pumpkin2.style.opacity = "0%";
+        	pumpkin3.style.opacity = "0%";
+        	pumpkin4.style.opacity = "0%";
+        	pumpkin5.style.opacity = "0%";
+        	pumpkin6.style.opacity = "0%";
+        	pumpkin7.style.opacity = "0%";
+        	pumpkin8.style.opacity = "0%";
+        	pumpkin9.style.opacity = "0%";
+        	pumpkin10.style.opacity = "0%";
+        	pumpkin11.style.opacity = "0%";
+        	pumpkin12.style.opacity = "0%";
+        	pumpkin13.style.opacity = "0%";
+        	pumpkin14.style.opacity = "0%";
+        	pumpkin15.style.opacity = "0%";
+        	pumpkin16.style.opacity = "0%";
+        	pumpkin17.style.opacity = "0%";
+        	pumpkin18.style.opacity = "0%";
+        	pumpkin19.style.opacity = "0%";
+        	pumpkin20.style.opacity = "0%";
+        	pumpkin21.style.opacity = "0%";
+        	pumpkin22.style.opacity = "0%";
+        	pumpkin23.style.opacity = "0%";
+        	pumpkin24.style.opacity = "0%";
+        	pumpkin25.style.opacity = "0%";
+        	pumpkin26.style.opacity = "0%";
+        	pumpkin27.style.opacity = "0%";
+        	pumpkin28.style.opacity = "0%";
+        	pumpkin29.style.opacity = "0%";
+        	pumpkin30.style.opacity = "0%";
+        	pumpkin31.style.opacity = "0%";
+        	pumpkin32.style.opacity = "0%";
+        	pumpkin33.style.opacity = "0%";
+        	pumpkin34.style.opacity = "0%";
+        	pumpkin35.style.opacity = "0%";
+        	pumpkin36.style.opacity = "0%";
+        	pumpkin37.style.opacity = "0%";
+        	pumpkin38.style.opacity = "0%";
+        	pumpkin39.style.opacity = "0%";
+        	pumpkin40.style.opacity = "0%";
+
+        	pumpkin1.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin2.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin3.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin4.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin5.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin6.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin7.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin8.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin9.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin10.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin11.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin12.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin13.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin14.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin15.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin16.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin17.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin18.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin19.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin20.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin21.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin22.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin23.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin24.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin25.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin26.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin27.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin28.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin29.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin30.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin31.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin32.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin33.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin34.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin35.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin36.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin37.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin38.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin39.style.backgroundImage = "url(pumpkin.png)";
+        	pumpkin40.style.backgroundImage = "url(pumpkin.png)";
+        }
+
+        function checkRandom(){
+        	console.log("checkrandom called");
+        	if (random == 1){
+		    pumpkin1.style.opacity = "100%";
+		    pumpkin1Opacity = 1;
+			}
+			if (random == 2){
+		    pumpkin2.style.opacity = "100%";
+		    pumpkin2Opacity = 1;
+			}
+			if (random == 3){
+		    pumpkin3.style.opacity = "100%";
+		    pumpkin3Opacity = 1;
+			}
+			if (random == 4){
+		    pumpkin4.style.opacity = "100%";
+		    pumpkin4Opacity = 1;
+			}
+			if (random == 5){
+		    pumpkin5.style.opacity = "100%";
+		    pumpkin5Opacity = 1;
+			}
+			if (random == 6){
+		    pumpkin6.style.opacity = "100%";
+		    pumpkin6Opacity = 1;
+			}
+			if (random == 7){
+		    pumpkin7.style.opacity = "100%";
+		    pumpkin7Opacity = 1;
+			}
+			if (random == 8){
+		    pumpkin8.style.opacity = "100%";
+		    pumpkin8Opacity = 1;
+			}
+			if (random == 9){
+		    pumpkin9.style.opacity = "100%";
+		    pumpkin9Opacity = 1;
+			}
+			if (random == 10){
+		    pumpkin10.style.opacity = "100%";
+		    pumpkin10Opacity = 1;
+			}
+			if (random == 11){
+		    pumpkin11.style.opacity = "100%";
+		    pumpkin11Opacity = 1;
+			}
+			if (random == 12){
+		    pumpkin12.style.opacity = "100%";
+		    pumpkin12Opacity = 1;
+			}
+			if (random == 13){
+		    pumpkin13.style.opacity = "100%";
+		    pumpkin13Opacity = 1;
+			}
+			if (random == 14){
+		    pumpkin14.style.opacity = "100%";
+		    pumpkin14Opacity = 1;
+			}
+			if (random == 15){
+		    pumpkin15.style.opacity = "100%";
+		    pumpkin15Opacity = 1;
+			}
+			if (random == 16){
+		    pumpkin16.style.opacity = "100%";
+		    pumpkin16Opacity = 1;
+			}
+			if (random == 17){
+		    pumpkin17.style.opacity = "100%";
+		    pumpkin17Opacity = 1;
+			}
+			if (random == 18){
+		    pumpkin18.style.opacity = "100%";
+		    pumpkin18Opacity = 1;
+			}
+			if (random == 19){
+		    pumpkin19.style.opacity = "100%";
+		    pumpkin19Opacity = 1;
+			}
+			if (random == 20){
+		    pumpkin20.style.opacity = "100%";
+		    pumpkin20Opacity = 1;
+			}
+			if (random == 21){
+		    pumpkin21.style.opacity = "100%";
+		    pumpkin21Opacity = 1;
+			}
+			if (random == 22){
+		    pumpkin22.style.opacity = "100%";
+		    pumpkin22Opacity = 1;
+			}
+			if (random == 23){
+		    pumpkin23.style.opacity = "100%";
+		    pumpkin23Opacity = 1;
+			}
+			if (random == 24){
+		    pumpkin24.style.opacity = "100%";
+		    pumpkin24Opacity = 1;
+			}
+			if (random == 25){
+		    pumpkin25.style.opacity = "100%";
+		    pumpkin25Opacity = 1;
+			}
+			if (random == 26){
+		    pumpkin26.style.opacity = "100%";
+		    pumpkin26Opacity = 1;
+			}
+			if (random == 27){
+		    pumpkin27.style.opacity = "100%";
+		    pumpkin27Opacity = 1;
+			}
+			if (random == 28){
+		    pumpkin28.style.opacity = "100%";
+		    pumpkin28Opacity = 1;
+			}
+			if (random == 29){
+		    pumpkin29.style.opacity = "100%";
+		    pumpkin29Opacity = 1;
+			}
+			if (random == 30){
+		    pumpkin30.style.opacity = "100%";
+		    pumpkin30Opacity = 1;
+			}
+			if (random == 31){
+		    pumpkin31.style.opacity = "100%";
+		    pumpkin31Opacity = 1;
+			}
+			if (random == 32){
+		    pumpkin32.style.opacity = "100%";
+		    pumpkin32Opacity = 1;
+			}
+			if (random == 33){
+		    pumpkin33.style.opacity = "100%";
+		    pumpkin33Opacity = 1;
+			}
+			if (random == 34){
+		    pumpkin34.style.opacity = "100%";
+		    pumpkin34Opacity = 1;
+			}
+			if (random == 35){
+		    pumpkin35.style.opacity = "100%";
+		    pumpkin35Opacity = 1;
+			}
+			if (random == 36){
+		    pumpkin36.style.opacity = "100%";
+		    pumpkin36Opacity = 1;
+			}
+			if (random == 37){
+		    pumpkin37.style.opacity = "100%";
+		    pumpkin37Opacity = 1;
+			}
+			if (random == 38){
+		    pumpkin38.style.opacity = "100%";
+		    pumpkin38Opacity = 1;
+			}
+			if (random == 39){
+		    pumpkin39.style.opacity = "100%";
+		    pumpkin39Opacity = 1;
+			}
+			if (random == 40){
+		    pumpkin40.style.opacity = "100%";
+		    pumpkin40Opacity = 1;
+			}
+        }
+
+        function checkClick(){
+	        	pum1.addEventListener("click", function() {
+	                if (pumpkin1Opacity == 1){
+    					pumpkin1.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin1Opacity = 0;
+	                	pumpkin1.style.opacity = "0%";
+	            	}
+	            })
+	            pum2.addEventListener("click", function() {
+	                if (pumpkin2Opacity == 1){
+	                	pumpkin2.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin2Opacity = 0;
+	                	pumpkin2.style.opacity = "0%";
+	            	}
+	            })
+	            pum3.addEventListener("click", function() {
+	                if (pumpkin3Opacity == 1){
+	                	pumpkin3.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin3Opacity = 0;
+	                	pumpkin3.style.opacity = "0%";
+	            	}
+	            })
+	            pum4.addEventListener("click", function() {
+	                if (pumpkin4Opacity == 1){
+	                	pumpkin4.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin4Opacity = 0;
+	                	pumpkin4.style.opacity = "0%";
+	            	}
+	            })
+	            pum5.addEventListener("click", function() {
+	                if (pumpkin5Opacity == 1){
+	                	pumpkin5.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin5Opacity = 0;
+	                	pumpkin5.style.opacity = "0%";
+	            	}
+	            })
+	            pum6.addEventListener("click", function() {
+	                if (pumpkin6Opacity == 1){
+	                	pumpkin6.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin6Opacity = 0;
+	                	pumpkin6.style.opacity = "0%";
+	            	}
+	            })
+	            pum7.addEventListener("click", function() {
+	                if (pumpkin7Opacity == 1){
+	                	pumpkin7.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin7Opacity = 0;
+	                	pumpkin7.style.opacity = "0%";
+	            	}
+	            })
+	            pum8.addEventListener("click", function() {
+	                if (pumpkin8Opacity == 1){
+	                	pumpkin8.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin8Opacity = 0;
+	                	pumpkin8.style.opacity = "0%";
+	            	}
+	            })
+	            pum9.addEventListener("click", function() {
+	                if (pumpkin9Opacity == 1){
+	                	pumpkin9.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin9Opacity = 0;
+	                	pumpkin9.style.opacity = "0%";
+	            	}
+	            })
+	            pum10.addEventListener("click", function() {
+	                if (pumpkin10Opacity == 1){
+	                	pumpkin10.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin10Opacity = 0;
+	                	pumpkin10.style.opacity = "0%";
+	            	}
+	            })
+	            pum11.addEventListener("click", function() {
+	                if (pumpkin11Opacity == 1){
+	                	pumpkin11.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin11Opacity = 0;
+	                	pumpkin11.style.opacity = "0%";
+	            	}
+	            })
+	            pum12.addEventListener("click", function() {
+	                if (pumpkin12Opacity == 1){
+	                	pumpkin12.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin12Opacity = 0;
+	                	pumpkin12.style.opacity = "0%";
+	            	}
+	            })
+	            pum13.addEventListener("click", function() {
+	                if (pumpkin13Opacity == 1){
+	                	pumpkin13.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin13Opacity = 0;
+	                	pumpkin13.style.opacity = "0%";
+	            	}
+	            })
+	            pum14.addEventListener("click", function() {
+	                if (pumpkin14Opacity == 1){
+	                	pumpkin14.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin14Opacity = 0;
+	                	pumpkin14.style.opacity = "0%";
+	            	}
+	            })
+	            pum15.addEventListener("click", function() {
+	                if (pumpkin15Opacity == 1){
+	                	pumpkin15.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin15Opacity = 0;
+	                	pumpkin15.style.opacity = "0%";
+	            	}
+	            })
+	            pum16.addEventListener("click", function() {
+	                if (pumpkin16Opacity == 1){
+	                	pumpkin16.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin16Opacity = 0;
+	                	pumpkin16.style.opacity = "0%";
+	            	}
+	            })
+	            pum17.addEventListener("click", function() {
+	                if (pumpkin17Opacity == 1){
+	                	pumpkin17.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin17Opacity = 0;
+	                	pumpkin17.style.opacity = "0%";
+	            	}
+	            })
+	            pum18.addEventListener("click", function() {
+	                if (pumpkin18Opacity == 1){
+	                	pumpkin18.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin18Opacity = 0;
+	                	pumpkin18.style.opacity = "0%";
+	            	}
+	            })
+	            pum19.addEventListener("click", function() {
+	                if (pumpkin19Opacity == 1){
+	                	pumpkin19.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin19Opacity = 0;
+	                	pumpkin19.style.opacity = "0%";
+	            	}
+	            })
+	            pum20.addEventListener("click", function() {
+	                if (pumpkin20Opacity == 1){
+	                	pumpkin20.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin20Opacity = 0;
+	                	pumpkin20.style.opacity = "0%";
+	            	}
+	            })
+	            pum21.addEventListener("click", function() {
+	                if (pumpkin21Opacity == 1){
+	                	pumpkin21.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin21Opacity = 0;
+	                	pumpkin21.style.opacity = "0%";
+	            	}
+	            })
+	            pum22.addEventListener("click", function() {
+	                if (pumpkin22Opacity == 1){
+	                	pumpkin22.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin22Opacity = 0;
+	                	pumpkin22.style.opacity = "0%";
+	            	}
+	            })
+	            pum23.addEventListener("click", function() {
+	                if (pumpkin23Opacity == 1){
+	                	pumpkin23.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin23Opacity = 0;
+	                	pumpkin23.style.opacity = "0%";
+	            	}
+	            })
+	            pum24.addEventListener("click", function() {
+	                if (pumpkin24Opacity == 1){
+	                	pumpkin24.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin24Opacity = 0;
+	                	pumpkin24.style.opacity = "0%";
+	            	}
+	            })
+	            pum25.addEventListener("click", function() {
+	                if (pumpkin25Opacity == 1){
+	                	pumpkin25.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin25Opacity = 0;
+	                	pumpkin25.style.opacity = "0%";
+	            	}
+	            })
+	            pum26.addEventListener("click", function() {
+	                if (pumpkin26Opacity == 1){
+	                	pumpkin26.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin26Opacity = 0;
+	                	pumpkin26.style.opacity = "0%";
+	            	}
+	            })
+	            pum27.addEventListener("click", function() {
+	                if (pumpkin27Opacity == 1){
+	                	pumpkin27.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin27Opacity = 0;
+	                	pumpkin27.style.opacity = "0%";
+	            	}
+	            })
+	            pum28.addEventListener("click", function() {
+	                if (pumpkin28Opacity == 1){
+	                	pumpkin28.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin28Opacity = 0;
+	                	pumpkin28.style.opacity = "0%";
+	            	}
+	            })
+	            pum29.addEventListener("click", function() {
+	                if (pumpkin29Opacity == 1){
+	                	pumpkin29.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin29Opacity = 0;
+	                	pumpkin29.style.opacity = "0%";
+	            	}
+	            })
+	            pum30.addEventListener("click", function() {
+	                if (pumpkin10Opacity == 1){
+	                	pumpkin30.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin30Opacity = 0;
+	                	pumpkin30.style.opacity = "0%";
+	            	}
+	            })
+	            pum31.addEventListener("click", function() {
+	                if (pumpkin31Opacity == 1){
+	                	pumpkin31.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin31Opacity = 0;
+	                	pumpkin31.style.opacity = "0%";
+	            	}
+	            })
+	            pum32.addEventListener("click", function() {
+	                if (pumpkin32Opacity == 1){
+	                	pumpkin32.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin32Opacity = 0;
+	                	pumpkin32.style.opacity = "0%";
+	            	}
+	            })
+	            pum33.addEventListener("click", function() {
+	                if (pumpkin33Opacity == 1){
+	                	pumpkin33.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin33Opacity = 0;
+	                	pumpkin33.style.opacity = "0%";
+	            	}
+	            })
+	            pum34.addEventListener("click", function() {
+	                if (pumpkin34Opacity == 1){
+	                	pumpkin34.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin34Opacity = 0;
+	                	pumpkin34.style.opacity = "0%";
+	            	}
+	            })
+	            pum35.addEventListener("click", function() {
+	                if (pumpkin35Opacity == 1){
+	                	pumpkin35.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin35Opacity = 0;
+	                	pumpkin35.style.opacity = "0%";
+	            	}
+	            })
+	            pum36.addEventListener("click", function() {
+	                if (pumpkin36Opacity == 1){
+	                	pumpkin36.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin36Opacity = 0;
+	                	pumpkin36.style.opacity = "0%";
+	            	}
+	            })
+	            pum37.addEventListener("click", function() {
+	                if (pumpkin37Opacity == 1){
+	                	pumpkin37.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin37Opacity = 0;
+	                	pumpkin37.style.opacity = "0%";
+	            	}
+	            })
+	            pum38.addEventListener("click", function() {
+	                if (pumpkin38Opacity == 1){
+	                	pumpkin38.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin38Opacity = 0;
+	                	pumpkin38.style.opacity = "0%";
+	            	}
+	            })
+	            pum39.addEventListener("click", function() {
+	                if (pumpkin39Opacity == 1){
+	                	pumpkin39.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin39Opacity = 0;
+	                	pumpkin39.style.opacity = "0%";
+	            	}
+	            })
+	            pum40.addEventListener("click", function() {
+	                if (pumpkin40Opacity == 1){
+	                	pumpkin40.style.backgroundImage = "url(smashedPumpkin.png)";
+	                	console.log(score);
+	                	score = score + 1;
+	                	console.log(score);
+	                	box2.value = score;
+	                	pumpkin40Opacity = 0;
+	                	pumpkin40.style.opacity = "0%";
+	            	}
+	            })
+        }
+
+        function endGame(){
+            endgame.style.opacity = "100%";
+            startButtonClicked = 0;
+          	startButton.style.opacity = "100%";
+          	resetGame();
+        }
+        function victory(){
+            victor.style.opacity = "100%";
+            startButtonClicked = 0;
+            startButton.style.opacity = "100%";
+            resetGame();
+        }
+
+        function resetGame(){
+    		pumpkins = 0;
+    		score = 0;
+    		box2.value = score;
+    		time = 60;
+    		time2 = 0;
+    		box1.value = time + " sec";
+    		scoreMultiplier = 1;
+    		victor.style.opacity = "0%";
+    		endgame.style.opacity = "0%";
+    		pumpkinClear();
+    	}
+
+      	function timeCount(){
+      		time = time - 1;
+      		box1.value = time + " sec";
+      		console.log("time: " + time);
+      		console.log("score: " + score);
+      	}
+
+      	function gameStart(){
+      		console.log("gamestart called");
+      		getReady();
+      	}
+
+      	function startGame(){
+	      	var looper = setInterval(function(){ 
+	      	    timeCount();
+	      	    pumpkinAppear();
+	      	    checkClick();
+
+	      	    if (time == 0)
+	      	    {	
+	      	    	console.log("time has run out");
+	      	    	evaluateEnd();
+	      	        clearInterval(looper);
+	      	    }
+	      	}, 1000);
+      	}
+
+      	function evaluateEnd(){
+      		if (score <= 45){
+	        	console.log("endgame called");
+	        	endGame();
+        	}
+	        if (score > 45){
+	        	console.log("victory called");
+	        	victory();
+	        }
+      	}
+
+    </script>
+
+
+</body>
+</html>
