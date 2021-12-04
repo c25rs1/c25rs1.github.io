@@ -1,3 +1,4 @@
+<!-- Hi Molly! This code is ready to use aside from the projects button. When clicked it opens 4 options that are ready for a redirect link. Currently the link goes to https://mojopi.github.io/cs1/ but please change this to fulfill the purpose of each button. I did not create this page because it is neccessary for you to be able to change it whenever you like. -Rohan Shah ('25') -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,6 +42,30 @@
         	top:440px;
         	left:800px;
         }
+        .bs{
+        	height:300px;
+        	width:300px;
+        	z-index:20;
+        	position:absolute;
+        	font-size:40px;
+        	transition: 1s;
+        }
+        #b1{
+        	top:120px;
+        	left:300px;
+        }
+        #b2{
+        	top:120px;
+        	left:800px;
+        }
+        #b3{
+        	top:440px;
+        	left:300px;
+        }
+        #b4{
+        	top:440px;
+        	left:800px;
+        }
         #closebutton{
         	width:200px;
         	height:50px;
@@ -61,14 +86,43 @@
         	opacity:0%;
         }
         #instructions{
-        	width:100%;
+        	font-family: "Times New Roman", Times, serif;
+/*        	font-family: "Lucida Console", "Courier New", monospace;
+*/        	width:100%;
         	height:100%;
         	top:-5000px;
         	background-color:lightblue;
         	z-index:5000;
-        	font-size:80px;
+        	font-size:40px;
         	opacity:0%;
         	text-align: center;
+        }
+        .links{
+        	height:300px;
+        	width:300px;
+        	z-index:0;
+        	background-color:blue;
+        	color:black;
+        	position:absolute;
+        	font-size:40px;
+        	opacity:0%;
+        	transition:1s;
+        }
+        #studentProjects{
+        	top:120px;
+        	left:300px;
+        }
+        #classProjects{
+        	top:120px;
+        	left:800px;
+        }
+        #giftInspiration{
+        	top:440px;
+        	left:300px;
+        }
+        #codeIdeas{
+        	top:440px;
+        	left:800px;
         }
         
 	</style>
@@ -76,10 +130,28 @@
 <body>
 	<div id="header">CS1 Instructions</div>
 	<div id="question">What section are you interested in learning about?</div>
+
+	<a href="https://mojopi.github.io/cs1/">
+	<div id = "studentProjects" class="links">Student Projects Found Here</div>
+	</a>
+	<a href="https://mojopi.github.io/cs1/">
+	<div id = "classProjects" class="links">Class Projects Found Here</div>
+	</a>
+	<a href="https://mojopi.github.io/cs1/">
+	<div id = "giftInspiration" class="links">Gift Inspiration Found Here</div>
+	</a>
+	<a href="https://mojopi.github.io/cs1/">
+	<div id = "codeIdeas" class="links">Code Ideas Found Here</div>
+	</a>
+
 	<div id="button1" class="buttons">______HTML___ _____Coding____</div>
 	<div id="button2" class="buttons">______CSS____ _____Coding____</div>
 	<div id="button3" class="buttons">__JAVASCRIPT_ _____Coding____</div>
 	<div id="button4" class="buttons">___PROJECTS__ _____Coding____</div>
+	<div id="b1" class="bs"></div>
+	<div id="b2" class="bs"></div>
+	<div id="b3" class="bs"></div>
+	<div id="b4" class="bs"></div>
 	<div id = "closebutton">__CLOSE_</div>
 
 	<div id="loading">LOADING</div>
@@ -98,24 +170,22 @@
 		var button13 = 0;
 		var button14 = 0;
 
-		var AA = "HTML1";
-		var AB = "HTML2";
-		var AC = "HTML3";
-		var AD = "HTML4";
-		var BA = "CSS1";
-		var BB = "CSS2";
-		var BC = "CSS3";
-		var BD = "CSS4";
-		var CA = "JAVA1";
-		var CB = "JAVA2";
-		var CC = "JAVA3";
-		var CD = "JAVA4";
-		var DA = "PROJECT1";
-		var DB = "PROJECT2";
-		var DC = "PROJECT3";
-		var DD = "PROJECT4";
+		var linebreak = '\n';
 
-		button1.addEventListener("click", function() {
+		var AA = "Titling your files" + linebreak + "When you create your new file in Sublime, immediately type 'command shift s'. When asked to title your file, name it something appropriate to your project so that you can recall it at a later date. (You will need to recall it when you add it to your projects page). Remember to place your file into the folder created at the beginnning of the year." + linebreak + linebreak + "Titling your tab" + linebreak + "In the header section of your sublime code, look at the title tags. In between the title tags, type whatever you would like to title the tab on chrome. Do not add any actual quotation marks, just write the plain text. The text should appear white in Sublime." + linebreak + linebreak + "Adding a header" + linebreak + "To add a header to your page, you will need to create a div. For example, the header of this document is stated as: <div id=''>CS1 Instructions</div> and then in the style section, give it a background-color, font-size, text-align, and z-index. If you do not how how to use any of those above, refer to the CSS styling.";
+		var AB = "Adding ids/classes" + linebreak + "Go to where you define the div. This should look like: <div>text may be here </div>. Inside of the first div tag so before that first > and after the first time div is written, type the following: id='' or class=''. (Note: These would be full quotation marks, but it will not allow me to write that). Then in your style section, you will be able to call these divs and give them attributes. Also keep in mind that divs must be unique for each div. Classes on the other hand are meant to label more than one div and group them together.";
+		var AC = "Fonts" + linebreak + "In the style section under a div or class, fonts can be used to style the text. Find a font that you would like to use on the web. The default font is Times New Roman. To set a different font, add the following line in the style section under a div: font-family: 'Times New Roman', Times, serif. Note: Times New Roman is the font and should have quotation marks around it. Search up the font in css and add that line instead." + linebreak + linebreak + "Background images" + linebreak + "To add a background image, add the line: background-image:url(background.png); Replace the background.png with your image that you have downloaded and renamed. Remember to remove the background of the image to allow it to focus in. Furthermore, remember to place the background image in your folder that you created on the first day.";
+		var AD = "Linking to another page" + linebreak + "It is useful to link different code pages together, especially on your projects page. This will create text that when clicked, will redirect the user to a different code page. Here is an example: <a href='instructions.html'> <div class = 'icons' id='CSSINSTRUCTIONS'>CS1 INSTRUCTIONS</div></a>. Notes: all the '' symbols should be replaced by quotation marks. Also, replace the instructions.html with the title of your code as it is stated in your folder. Replace the id of the div being clicked from CSSINSTRUCTIONS to your id name. Lastly rename CS1 INSTRUCTIONS with the text that you would like to be clicked on.";
+		var BA = "Width/Height" + linebreak + "width:30px or width:30%. The option that you choose is based on your position type and how specifically you want to position." + linebreak + linebreak + "Top/Bottom" + linebreak + "top:15px or top:30%. This can also be done with left, bottom, or right." + linebreak + linebreak + "Background Color" + linebreak + "background-color:red. Change based on the color or use RGB to find your own color aside from that shade.";
+		var BB ="Z-index" + linebreak + "Z index is used to move what divs are more in front of other divs. A higher z index means that div is farther in front." + linebreak + linebreak + "Position" + linebreak + "Position has multiple options that have different functions. Position absolute means that all divs are automatically set to 0,0 (the top left hand corner) and MUST be moved with px not %. Position relative on the other hand makes divs set to be right below the previous div." + linebreak + linebreak + "Opacity" + linebreak + "Opacity can be used to hide a div. Opacity works on a % basis and can be used to move divs around behind the scenes.";
+		var BC = "Body styling" + linebreak + "Body styling allows a code to style the background color of the whole page. This code is in the style section and works as follows: " + linebreak + "body{background-color:red;} " + linebreak + "Note that there is no # or . like normal divs.";
+		var BD = "Animations" + linebreak + "A CSS animation takes a decent amount of code to plan out. Animations have two steps. One is setting up the animations and the second one is the keyframes." + linebreak + linebreak + "Animation Set Up" + linebreak + "The set up includes three parts. This part goes into the style section of a particular div. The first step is declaring an animation name. " + linebreak + "An example is: animation-name: marbleRoll; " + linebreak + "The second step is setting the total amount of time that the animation runs for. Declare it by writing:" + linebreak + "  animation-duration:5s; " + linebreak + "Next, declare how many times it will run total. An animation will repeat itself infinitly if it can. Note that an animation resetting can be choppy if the animation starts and ends in differently places." + linebreak + " animation-iteration-count:1;." + linebreak + linebreak + "Animation Keyframes" + linebreak + "A keyframe is a snapshot of the animation at a certain interval through the animation. Here is an example:" + linebreak + "@keyframes marbleRoll{ " + linebreak + "0%{ " + linebreak + " top:200px; " + linebreak + "} " + linebreak + " 99%{ " + linebreak + " top:0px; " + linebreak + " } " + linebreak + "}" + linebreak + " So to explain, in this keyframe, which is placed seperate from any div, it is declared that the animation called marbleRoll will move some div from a top of 200px to 0px. The insides of each frame can be changed and more frames can be added to create more movement.";
+		var CA = "Variables" + linebreak + "A CSS animation takes a decent amount of code to plan out. Animations have two steps. One is setting up the animations and the second one is the keyframes.";
+		var CB = "Functions" + linebreak + "A function has multiple parts to it as there is the basic set up of a function, calling a function, how to change style in Javascript, and using if statements/for/while loops. There are also other concepts like creating repeating images (see creating divs with functions as a seperate button) and event listeners (see the seperate button for that as well)." + linebreak + linebreak + "Basic Set Up" + linebreak + "The most basic set up of a function is as follows" + linebreak + "function functionNameHere(){" + linebreak + "what the function does when called" + linebreak + "}" + linebreak + "The above is what the function does after being called. A function on its own does nothing but can be called multiple times." + linebreak + linebreak + "Calling a function" + linebreak + "A function can be called once or on repeat if desired. Calling a function normally is simple. See the example:" + linebreak + "functionNameHere();" + linebreak + "Another way to do this on repeat rather than just saying functionNameHere(); over and over again is as follows:" + linebreak + "setInterval(functionNameHere,1000);" + linebreak + "This code sets how often the functio will run. In the example given above, it is every second." + linebreak + linebreak + "setInterval with a limiter" + linebreak + "This is an advance technique so only use this if you really understand it. An example is below and an explanation will follow it:" + linebreak + "var looper = setInterval(function(){" + linebreak + "looperCounter = looperCounter + 1;" + linebreak + "if (looperCounter == 1){" + linebreak + "clearInterval(looper);" + linebreak + "}" + linebreak + "},1000);" + linebreak + "Now for the explanation. If this made no sense, do not worry, that is normal! First the code defines a variable called looper and this can change as long as it stays constant throughout this interval code. Next, it defines the setInterval code described above except the function is not a name, but an actual function sitting in the setInterval. This function counts how many times the function has run with looperCounter. When looperCounter == 1 or a certain numeber of times, it was clearInterval or stop the loop. The frequency that it runs is defined by the 1000 at the bottom." + linebreak + linebreak + "Changing style in Javascript" + linebreak + "When changing the style of divs in javascript, type the div name a period and then the word style. After that type another period and the part you would like to change. See the below example:" + linebreak + "divName.style.top = 15px" + linebreak + "This changes the top of a div to 15px from its previous CSS definition. Note that you do not have to style everything in both CSS and Javascript, only in CSS. Also things like background-color in CSS are called backgroundColor in Javascript where the second word starts with a capital rather than having a dash." + linebreak + linebreak + "If statements/For loops" + linebreak + "If statements can be seen in an above example about setIntervals on this page. Essentially, the code is asking if (variable == number/variable){. The part coming after is what happens when any variable is equal to a certain number or another variable. Other operators like > or < or >= or <= can also be used. To say not equal to use != which can help with conditioning your random numbers. For loops start in a similiar matter" + linebreak + "for (let i = 0; i < 40; i++)" + linebreak + "This code creates a variable of i and defintes it. The second part sets a condition of how many times the code runs. This case being from run 0-39. Lastly, the final part sets that each time the code runs, the number of runs progresses by 1.";	
+		var CC = "Creating divs with functions" + linebreak + "This code is used to repeatidly print images on screen. This can be done using a function that is working on an interval. There are three steps to it. One is to define a variable for the new div. The second line is to add that variable into the body making it a physcial div. Lastly, adding that to a class to be styled. The variable given has no impact on the actual code. Only the class given must be remembered to be included in the CSS code. See an example below:" + linebreak + "var variableName = document.createElement('div');" + linebreak + "document.body.appendChild(variableName);" + linebreak + "variableName.classList.add('className');";
+		var CD = "Event listeners" + linebreak + "There are many types of eventlisteners. The most basic one is the click which checks to see if something or the body in general is clicked. This is written as follows:" + linebreak + "document.addEventListener('click', function(){" + linebreak + "Note that this function closes with }) and not just a bracket like other functions." + linebreak + "Despite where these eventlisterners are placed, they will always be active and listening for the click. If you would like to limit when it is searching add an if statement inside with a condition so that even if the click is detected, it will do nothing. The word document in the example can also be changed to the name of a div if it is a specific thing that you want to be clicked." + linebreak + linebreak + "Other types of eventlisterners (Look them up if you would like)" + linebreak + "Events related to the mouse include:" + linebreak + "mousedown, mouseup, click, dblclick, mousemove, mouseover, mousewheel, mouseout, contextmenu" + linebreak + "Events realted to touch include:" + linebreak + "touchstart, touchmove, touchend, touchcancel" + linebreak + "Events related to keyboard include:" + linebreak + "keydown, keypress, keyup" + linebreak + "Events related to form include:" + linebreak + "focus, blur, change, submit" + linebreak + "Events related to window include" + linebreak + "scroll, resize, hashchange, load, unload";
+
+		b1.addEventListener("click", function() {
 			console.log("button1 hit");
 			if (button1Clicker == 0){
 				htmlCoding();
@@ -134,13 +204,8 @@
 				button13 = 1;
 				java1();
 			}
-			if (button4Clicker == 1){
-				console.log("Project1 clicked");
-				button14 = 1;
-				project1();
-			}
         })
-        button2.addEventListener("click", function() {
+        b2.addEventListener("click", function() {
 			console.log("button2 hit");
 			if (button2Clicker == 0){
 				cssCoding();
@@ -159,13 +224,8 @@
 				button13 = 2;
 				java1();
 			}
-			if (button4Clicker == 1){
-				console.log("Project1 clicked");
-				button14 = 2;
-				project1();
-			}
         })
-        button3.addEventListener("click", function() {
+        b3.addEventListener("click", function() {
 			console.log("button3 hit");
 			if (button3Clicker == 0){
 				javaCoding();
@@ -184,20 +244,11 @@
 				button12 = 3;
 				css1();
 			}
-			if (button4Clicker == 1){
-				console.log("Project1 clicked");
-				button14 = 3;
-				project1();
-			}
         })
-        button4.addEventListener("click", function() {
+        b4.addEventListener("click", function() {
 			console.log("button4 hit");
 			if (button4Clicker == 0){
 				projectCoding();
-			} else if (button4Clicker == 1){
-				console.log("projects button 4 hit");
-				button14 = 4;
-				project1();
 			}
 			if (button1Clicker == 1){
 				console.log("Linking to another page")
@@ -230,6 +281,14 @@
         	button2.style.opacity = "100%";
         	button3.style.opacity = "100%";
         	button4.style.opacity = "100%";
+        	studentProjects.style.opacity = "0%";
+			classProjects.style.opacity = "0%";
+			giftInspiration.style.opacity = "0%";
+			codeIdeas.style.opacity = "0%";
+			studentProjects.style.zIndex = "0";
+			classProjects.style.zIndex = "0";
+			giftInspiration.style.zIndex = "0";
+			codeIdeas.style.zIndex = "0";
         	looperCounter = 0;
 		 	button1Clicker = 0;
 		 	button2Clicker = 0;
@@ -433,46 +492,19 @@
 	      	    	looperCounter = 0;
 	      	    }
 	      	}, 1000);
-			question.innerText = "What would you like to learn in Projects?"
-			button1.innerText = "Student projects";
-			button2.innerText = "Class projects";
-			button3.innerText = "Gifts/Holiday themed inspiration";
-			button4.innerText = "Ideas for codes list";
-		}
-		function project1(){
-			console.log("Project1 called");
-			loading.style.top = "-5000px";
-	      	loading.style.opacity = "100%";
-			var looper = setInterval(function(){
-				looperCounter = looperCounter + 1;
-				console.log(looperCounter) ;
-	      	    
-	      	    if (looperCounter == 1){
-	      	    	loading.style.top = "0px";
-	      	    	loading.style.opacity = "0%";
-	      	    	clearInterval(looper);
-	      	    	looperCounter = 0;
-	      	    }
-	      	}, 1000);
-	      	button1.style.opacity = "0%";
-	      	button2.style.opacity = "0%";
-	      	button3.style.opacity = "0%";
-	      	button4.style.opacity = "0%";
-	      	instructions.style.top = "0px";
-	      	instructions.style.opacity = "100%";
-	      	if (button14 == 1){
-	      		question.innerText = "Student projects";
-	      		instructions.innerText = DA;
-	     	} else if (button14 == 2){
-	      		question.innerText = "Class projects";
-	      		instructions.innerText = DB;
-	     	} else if (button14 == 3){
-	      		question.innerText = "Gifts/Holiday themed inspiration";
-	      		instructions.innerText = DC;
-	     	} else if (button14 == 4){
-	      		question.innerText = "Ideas for codes list";
-	      		instructions.innerText = DD;
-	     	}
+			question.innerText = "What would you like to learn in Projects?";
+			studentProjects.style.opacity = "100%";
+			classProjects.style.opacity = "100%";
+			giftInspiration.style.opacity = "100%";
+			codeIdeas.style.opacity = "100%";
+			studentProjects.style.zIndex = "100";
+			classProjects.style.zIndex = "100";
+			giftInspiration.style.zIndex = "100";
+			codeIdeas.style.zIndex = "100";
+			button1.style.opacity = "0%";
+			button2.style.opacity = "0%";
+			button3.style.opacity = "0%";
+			button4.style.opacity = "0%";
 		}
 	</script>
 
