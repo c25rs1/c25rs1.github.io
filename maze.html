@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Maze!</title>
+	<style type="text/css">
+		*{
+			cursor:none;
+		}
+		body{
+			background-color:lightblue;
+		}
+		#header{
+			width:600px;
+            font-size:40px;
+            text-align:center;
+            background-color:lime;
+            z-index:3;
+        }
+        #charselect{
+        	width:600px;
+        	font-size:30px;
+        	text-align:center;
+        	background-color:lime;
+        }
+        #homebutton{
+        	width:100px;
+        	font-size:30px;
+        	text-align:center;
+        	background-color:lime;
+        	position:absolute;
+        	top:0%;
+        	left:93%;
+        }
+        #clock{
+        	top:0px;
+        	font-size:30px;
+        	background-color:lime;
+        	position:absolute;
+        }
+        #bestClock{
+        	top:30px;
+        	font-size:30px;
+        	background-color:lime;
+        	position:absolute;
+        }
+        #gameCounter{
+        	top:60px;
+        	font-size:30px;
+        	background-color:lime;
+        	position:absolute;
+        }
+		.pickChar{
+			position:relative;
+			height:70px;
+			width:70px;
+			background-size:contain;
+			display:inline-block;
+			z-index:50;
+			opacity:100%;
+		}
+		#char1{
+		  background-image:url(char1.png);
+		}
+		#char2{
+		  background-image:url(char2.png);
+		}
+		#char3{
+		  background-image:url(char3.png);
+		}
+		#char4{
+		  background-image:url(char4.png);
+		}
+		#char5{
+		  background-image:url(char5.png);
+		}
+		#char6{
+		  background-image:url(char6.png);
+		}
+		#char7{
+		  background-image:url(char7.png);
+		}
+		#char8{
+		  background-image:url(char8.png);
+		}
+		#char9{
+		  background-image:url(char9.png);
+		}
+		#char10{
+		  background-image:url(char10.png);
+		}
+		#char11{
+		  background-image:url(char11.png);
+		}
+		#char12{
+		  background-image:url(char12.png);
+		}
+		#start{
+			top:85%;
+			left:85.5%;
+			height:100px;
+			width:200px;
+			background-color:green;
+			position:absolute;
+			font-size:65px;
+			opacity:0%;
+			z-index:50;
+		}
+		#finish{
+			top:14%;
+			height:100px;
+			width:200px;
+			background-color:green;
+			position:absolute;
+			font-size:65px;
+			z-index:50;
+			opacity:0%;
+		}
+		#circle{
+		  position:absolute;
+		  height:35px;
+		  width:35px;
+		  border-radius:50%;
+		  border:2px solid black;
+/*		  background-image:url(char1.png);
+*/		  background-size:contain;
+		  z-index:500;
+		}
+		.blocks{
+			position:absolute;
+			background-color:red;
+			opacity:100%;
+		}
+		#block1{
+			height:550px;
+			width:50px;
+			top:199px;
+		}
+		#block2{
+			height:650px;
+			width:50px;
+			top:99px;
+			left:1380px;
+		}
+		#block3{
+			width:1380px;
+			height:42px;
+			top:107px;
+		}
+		#block4{
+			width:1380px;
+			height:50px;
+			top:699px;
+		}
+		#block5{
+			width:108px;
+			height:70px;
+			top:199px;
+			left:100px;
+		}
+		#block6{
+			width:50px;
+			height:70px;
+			top:320px;
+			left:50px;
+		}
+		#block7{
+			width:60px;
+			height:371px;
+			top:129px;
+			left:158px;
+		}
+		#block8{
+			width:50px;
+			height:400px;
+			top:140px;
+			left:270px;
+		}
+		#block9{
+			width:50px;
+			height:50px;
+			top:450px;
+			left:110px;
+		}
+		#block10{
+			width:50px;
+			height:190px;
+			top:550px;
+			left:110px;
+		}
+		#block11{
+			width:50px;
+			height:110px;
+			top:540px;
+			left:220px;
+		}
+		#block12{
+			width:50px;
+			height:110px;
+			top:590px;
+			left:320px;
+		}
+		#block13{
+			width:50px;
+			height:350px;
+			top:190px;
+			left:370px;
+		}
+		#block14{
+			width:50px;
+			height:110px;
+			top:540px;
+			left:420px;
+		}
+		#block15{
+			width:50px;
+			height:400px;
+			top:140px;
+			left:520px;
+		}
+		#block16{
+			width:50px;
+			height:110px;
+			top:590px;
+			left:520px;
+		}
+		#block17{
+			width:50px;
+			height:50px;
+			top:590px;
+			left:470px;
+		}
+		#block18{
+			width:50px;
+			height:50px;
+			top:440px;
+			left:470px;
+		}
+		#block19{
+			width:50px;
+			height:50px;
+			top:340px;
+			left:420px;
+		}
+		#block20{
+			width:50px;
+			height:50px;
+			top:240px;
+			left:470px;
+		}
+		#block21{
+			width:50px;
+			height:50px;
+			top:140px;
+			left:470px;
+		}
+		#block22{
+			width:100px;
+			height:50px;
+			top:490px;
+			left:570px;
+		}
+		#block23{
+			width:50px;
+			height:110px;
+			top:540px;
+			left:620px;
+		}
+		#block24{
+			width:50px;
+			height:80px;
+			top:570px;
+			left:720px;
+		}
+		#block25{
+			width:50px;
+			height:180px;
+			top:520px;
+			left:820px;
+		}
+		#block26{
+			width:50px;
+			height:50px;
+			top:520px;
+			left:770px;
+		}
+		#block27{
+			width:50px;
+			height:320px;
+			top:190px;
+			left:620px;
+		}
+		#block28{
+			width:50px;
+			height:330px;
+			top:190px;
+			left:720px;
+		}
+		#block29{
+			width:50px;
+			height:250px;
+			top:210px;
+			left:870px;
+		}
+		#block30{
+			width:50px;
+			height:50px;
+			top:410px;
+			left:820px;
+		}
+		#block31{
+			width:50px;
+			height:50px;
+			top:310px;
+			left:770px;
+		}
+		#block32{
+			width:50px;
+			height:50px;
+			top:210px;
+			left:820px;
+		}
+		#block33{
+			width:500px;
+			height:50px;
+			top:260px;
+			left:920px;
+		}
+		#block34{
+			width:50px;
+			height:61px;
+			top:149px;
+			left:970px;
+		}
+		#block35{
+			width:50px;
+			height:315px;
+			top:199px;
+			left:1070px;
+		}
+		#block36{
+			width:50px;
+			height:61px;
+			top:149px;
+			left:1170px;
+		}
+		#block37{
+			width:50px;
+			height:61px;
+			top:199px;
+			left:1270px;
+		}
+		#block38{
+			width:50px;
+			height:240px;
+			top:410px;
+			left:920px;
+		}
+		#block39{
+			width:50px;
+			height:140px;
+			top:510px;
+			left:1020px;
+		}
+		#block40{
+			width:50px;
+			height:100px;
+			top:360px;
+			left:970px;
+		}
+		#block41{
+			width:50px;
+			height:160px;
+			top:560px;
+			left:1120px;
+		}
+		#block42{
+			width:150px;
+			height:110px;
+			top:610px;
+			left:1232px;
+		}
+		#block43{
+			width:150px;
+			height:50px;
+			top:510px;
+			left:1170px;
+		}
+		#block44{
+			width:200px;
+			height:50px;
+			top:410px;
+			left:1120px;
+		}
+		#block45{
+			width:150px;
+			height:50px;
+			top:360px;
+			left:1170px;
+		}
+	</style>
+</head>
+<body>
+<div id="circle"></div>
+<center>
+<div id="header">Maze!</div>
+<div id="charselect">Click on the character you would like to play!</div>
+</center>
+<div id="homebutton">Home</div>
+<div id="clock">Time: 0 sec</div>
+<div id="bestClock"> Best Time:</div>
+<div id="gameCounter"> Game Number:</div>
+
+
+
+<div id="start">START</div>
+<center>
+<div id="char1" class="pickChar"></div>
+<div id="char2" class="pickChar"></div>
+<div id="char3" class="pickChar"></div>
+<div id="char4" class="pickChar"></div>
+<div id="char5" class="pickChar"></div>
+<div id="char6" class="pickChar"></div>
+<div id="char7" class="pickChar"></div>
+<div id="char8" class="pickChar"></div>
+<div id="char9" class="pickChar"></div>
+<div id="char10" class="pickChar"></div>
+<div id="char11" class="pickChar"></div>
+<div id="char12" class="pickChar"></div>
+</center>
+<div id="finish" class="blocks">FINISH</div>
+
+<script type="text/javascript">
+	var charSelect = 0;
+	var gameSetUpCheck = 0;
+	var blocksCount = 0;
+	var readyCheck = 0;
+	var gameRestart = 1;
+	var gameOn = 0;
+
+	var time = 0;
+	var gameCount = 0;
+	var bestTime = 0;
+	bestClock.innerText = "Best Time: "+bestTime+" sec";
+	gameCounter.innerText = "Game Number: "+gameCount;
+
+	window.addEventListener('mousemove', function(event){
+        var x = event.clientX;
+        var y = event.clientY;               
+        circle.style.left = x + "px";
+        circle.style.top = y + "px";
+    });
+
+    char1.addEventListener('click', function(){
+    	if (charSelect == 0){
+    		charSelect = 1;
+    		circle.style.backgroundImage = "url(char1.png)";
+    		characterSelected();
+    	}
+    });
+    char2.addEventListener('click', function(){
+    	if (charSelect == 0){
+    		charSelect = 1;
+    		circle.style.backgroundImage = "url(char2.png)";
+    		characterSelected();
+    	}
+    });
+    char3.addEventListener('click', function(){
+    	if (charSelect == 0){
+    		charSelect = 1;
+    		circle.style.backgroundImage = "url(char3.png)";
+    		characterSelected();
+    	}
+    });
+    char4.addEventListener('click', function(){
+    	if (charSelect == 0){
+    		charSelect = 1;
+    		circle.style.backgroundImage = "url(char4.png)";
+    		characterSelected();
+    	}
+    });
+    char5.addEventListener('click', function(){
+    	if (charSelect == 0){
+    		charSelect = 1;
+    		circle.style.backgroundImage = "url(char5.png)";
+    		characterSelected();
+    	}
+    });
+    char6.addEventListener('click', function(){
+    	if (charSelect == 0){
+    		charSelect = 1;
+    		circle.style.backgroundImage = "url(char6.png)";
+    		characterSelected();
+    	}
+    });
+    char7.addEventListener('click', function(){
+    	if (charSelect == 0){
+    		charSelect = 1;
+    		circle.style.backgroundImage = "url(char7.png)";
+    		characterSelected();
+    	}
+    });
+    char8.addEventListener('click', function(){
+    	if (charSelect == 0){
+    		charSelect = 1;
+    		circle.style.backgroundImage = "url(char8.png)";
+    		characterSelected();
+    	}
+    });
+    char9.addEventListener('click', function(){
+    	if (charSelect == 0){
+    		charSelect = 1;
+    		circle.style.backgroundImage = "url(char9.png)";
+    		characterSelected();
+    	}
+    });
+    char10.addEventListener('click', function(){
+    	if (charSelect == 0){
+    		charSelect = 1;
+    		circle.style.backgroundImage = "url(char10.png)";
+    		characterSelected();
+    	}
+    });
+    char11.addEventListener('click', function(){
+    	if (charSelect == 0){
+    		charSelect = 1;
+    		circle.style.backgroundImage = "url(char11.png)";
+    		characterSelected();
+    	}
+    });
+    char12.addEventListener('click', function(){
+    	if (charSelect == 0){
+    		charSelect = 1;
+    		circle.style.backgroundImage = "url(char12.png)";
+    		characterSelected();
+    	}
+    });
+
+    function characterSelected(){
+    	console.log("character selected")
+    	char1.style.opacity = "0%";
+    	char1.style.top="-500px";
+    	char2.style.opacity = "0%";
+    	char2.style.top="-500px";
+    	char3.style.opacity = "0%";
+    	char3.style.top="-500px";
+    	char4.style.opacity = "0%";
+    	char4.style.top="-500px";
+    	char5.style.opacity = "0%";
+    	char5.style.top="-500px";
+    	char6.style.opacity = "0%";
+    	char6.style.top="-500px";
+    	char7.style.opacity = "0%";
+    	char7.style.top="-500px";
+    	char8.style.opacity = "0%";
+    	char8.style.top="-500px";
+    	char9.style.opacity = "0%";
+    	char9.style.top="-500px";
+    	char10.style.opacity = "0%";
+    	char10.style.top="-500px";
+    	char11.style.opacity = "0%";
+    	char11.style.top="-500px";
+    	char12.style.opacity = "0%";
+    	char12.style.top="-500px";
+    	charselect.innerText="Character Selected";
+    	gameStart();
+    }
+    function gameStart(){
+    	start.style.opacity = "100%";
+    	charselect.innerText = "Please bring your character to the green spot!";
+    }
+    start.addEventListener('mouseover', function(){
+    	if (gameSetUpCheck == 0 && charSelect == 1){
+    		gameSetUpCheck = 1;
+    		charselect.innerText = "Do not move until this message changes"
+    		gameSetUp();
+    	} else if (gameRestart == 1){
+    		gameRestartAgain();
+    	}
+    });
+    homebutton.addEventListener('click', function(){
+    	console.log("homebutton clicked");
+    	char1.style.top = "0px";
+    	char1.style.opacity = "100%";
+    	char2.style.top = "0px";
+    	char2.style.opacity = "100%";
+    	char3.style.top = "0px";
+    	char3.style.opacity = "100%";
+    	char4.style.top = "0px";
+    	char4.style.opacity = "100%";
+    	char5.style.top = "0px";
+    	char5.style.opacity = "100%";
+    	char6.style.top = "0px";
+    	char6.style.opacity = "100%";
+    	char7.style.top = "0px";
+    	char7.style.opacity = "100%";
+    	char8.style.top = "0px";
+    	char8.style.opacity = "100%";
+    	char9.style.top = "0px";
+    	char9.style.opacity = "100%";
+    	char10.style.top = "0px";
+    	char10.style.opacity = "100%";
+    	char11.style.top = "0px";
+    	char11.style.opacity = "100%";
+    	char12.style.top = "0px";
+    	char12.style.opacity = "100%";
+    	charSelect = 0;
+    	charselect.innerText = "Click on the character you would like to play!";
+    });
+    function gameSetUp(){
+    	finish.style.opacity="100%";
+    	for (let i = 0; i < 45; i++){
+	    blocksCount = blocksCount + 1;
+	    console.log(blocksCount)
+        var block = document.createElement('div');
+        document.body.appendChild(block);
+        block.classList.add("blocks");
+        block.id = "block"+blocksCount;
+		}
+		charselect.innerText = "Do not touch red! Get to the finish!";
+		readyCheck = 1;
+		gameOn = 1;
+		gameCount = gameCount + 1;
+    	gameCounter.innerText = "Game Number: "+gameCount;
+    }
+    function checkingBlocks(){
+    	console.log("blocks checked");
+    	if (readyCheck == 1 && gameOn == 1){
+    		console.log("blocks checked w ready");
+	    	block1.addEventListener("mouseover", function() {
+	        gameLose();
+	    	})
+	    	block2.addEventListener("mouseover", function() {
+	        gameLose();
+		    })
+		    block3.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block4.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block5.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block6.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block7.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block8.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block9.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block10.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block11.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block12.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block13.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block14.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block15.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block16.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block17.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block18.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block19.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block20.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block21.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block22.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block23.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block24.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block25.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block26.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block27.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block28.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block29.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block30.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block31.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block32.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block33.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block34.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block35.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block36.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block37.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block38.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block39.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block40.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block41.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block42.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block43.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block44.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    block45.addEventListener("mouseover", function() {
+		        gameLose();
+		    })
+		    finish.addEventListener("mouseover", function() {
+		    	console.log("win");
+		        gameWin();
+		    })
+		}
+	}
+
+	setInterval(checkingBlocks,1000);
+    
+    function gameLose(){
+    	if (gameOn == 1){
+	    	console.log("game lost", gameOn);
+	    	gameOn = 0;
+	    	gameRestart = 1;
+			charselect.innerText = "Lose!";
+			block1.style.opacity = "0%";
+			block2.style.opacity = "0%";
+			block3.style.opacity = "0%";
+			block4.style.opacity = "0%";
+			block5.style.opacity = "0%";
+			block6.style.opacity = "0%";
+			block7.style.opacity = "0%";
+			block8.style.opacity = "0%";
+			block9.style.opacity = "0%";
+			block10.style.opacity = "0%";
+			block11.style.opacity = "0%";
+			block12.style.opacity = "0%";
+			block13.style.opacity = "0%";
+			block14.style.opacity = "0%";
+			block15.style.opacity = "0%";
+			block16.style.opacity = "0%";
+			block17.style.opacity = "0%";
+			block18.style.opacity = "0%";
+			block19.style.opacity = "0%";
+			block20.style.opacity = "0%";
+			block21.style.opacity = "0%";
+			block22.style.opacity = "0%";
+			block23.style.opacity = "0%";
+			block24.style.opacity = "0%";
+			block25.style.opacity = "0%";
+			block26.style.opacity = "0%";
+			block27.style.opacity = "0%";
+			block28.style.opacity = "0%";
+			block29.style.opacity = "0%";
+			block30.style.opacity = "0%";
+			block31.style.opacity = "0%";
+			block32.style.opacity = "0%";
+			block33.style.opacity = "0%";
+			block34.style.opacity = "0%";
+			block35.style.opacity = "0%";
+			block36.style.opacity = "0%";
+			block37.style.opacity = "0%";
+			block38.style.opacity = "0%";
+			block39.style.opacity = "0%";
+			block40.style.opacity = "0%";
+			block41.style.opacity = "0%";
+			block42.style.opacity = "0%";
+			block43.style.opacity = "0%";
+			block44.style.opacity = "0%";
+			block45.style.opacity = "0%";
+			finish.style.opacity = "0%";
+			charselect.innerText = "LOST! Bring your character to the green spot!";
+		}
+    }
+    function gameWin(){
+    	if (gameOn == 1){
+	    	console.log("game win", gameOn);
+	    	gameOn = 0;
+	    	gameRestart = 1;
+			charselect.innerText = "Lose!";
+			block1.style.opacity = "0%";
+			block2.style.opacity = "0%";
+			block3.style.opacity = "0%";
+			block4.style.opacity = "0%";
+			block5.style.opacity = "0%";
+			block6.style.opacity = "0%";
+			block7.style.opacity = "0%";
+			block8.style.opacity = "0%";
+			block9.style.opacity = "0%";
+			block10.style.opacity = "0%";
+			block11.style.opacity = "0%";
+			block12.style.opacity = "0%";
+			block13.style.opacity = "0%";
+			block14.style.opacity = "0%";
+			block15.style.opacity = "0%";
+			block16.style.opacity = "0%";
+			block17.style.opacity = "0%";
+			block18.style.opacity = "0%";
+			block19.style.opacity = "0%";
+			block20.style.opacity = "0%";
+			block21.style.opacity = "0%";
+			block22.style.opacity = "0%";
+			block23.style.opacity = "0%";
+			block24.style.opacity = "0%";
+			block25.style.opacity = "0%";
+			block26.style.opacity = "0%";
+			block27.style.opacity = "0%";
+			block28.style.opacity = "0%";
+			block29.style.opacity = "0%";
+			block30.style.opacity = "0%";
+			block31.style.opacity = "0%";
+			block32.style.opacity = "0%";
+			block33.style.opacity = "0%";
+			block34.style.opacity = "0%";
+			block35.style.opacity = "0%";
+			block36.style.opacity = "0%";
+			block37.style.opacity = "0%";
+			block38.style.opacity = "0%";
+			block39.style.opacity = "0%";
+			block40.style.opacity = "0%";
+			block41.style.opacity = "0%";
+			block42.style.opacity = "0%";
+			block43.style.opacity = "0%";
+			block44.style.opacity = "0%";
+			block45.style.opacity = "0%";
+			finish.style.opacity = "0%";
+			charselect.innerText = "Victory! Reset to Start!";
+		}
+		console.log(time,bestTime,gameCount);
+		if (gameCount == 0){
+			console.log("gamecount besttime");
+			bestTime = time;
+			bestClock.innerText = "Best Time: "+bestTime+" sec";
+		}
+		else if (time < bestTime){
+			console.log("game2 besttime");
+    		bestTime = time;
+			bestClock.innerText = "Best Time: "+bestTime+" sec";
+		}
+    }
+    function gameRestartAgain(){
+    	console.log("BEST TIME", bestTime);
+    	gameOn = 1;
+    	gameRestart = 0;
+    	block1.style.opacity = "100%";
+    	block2.style.opacity = "100%";
+    	block3.style.opacity = "100%";
+    	block4.style.opacity = "100%";
+    	block5.style.opacity = "100%";
+    	block6.style.opacity = "100%";
+    	block7.style.opacity = "100%";
+    	block8.style.opacity = "100%";
+    	block9.style.opacity = "100%";
+    	block10.style.opacity = "100%";
+    	block11.style.opacity = "100%";
+    	block12.style.opacity = "100%";
+    	block13.style.opacity = "100%";
+    	block14.style.opacity = "100%";
+    	block15.style.opacity = "100%";
+    	block16.style.opacity = "100%";
+    	block17.style.opacity = "100%";
+    	block18.style.opacity = "100%";
+    	block19.style.opacity = "100%";
+    	block20.style.opacity = "100%";
+    	block21.style.opacity = "100%";
+    	block22.style.opacity = "100%";
+    	block23.style.opacity = "100%";
+    	block24.style.opacity = "100%";
+    	block25.style.opacity = "100%";
+    	block26.style.opacity = "100%";
+    	block27.style.opacity = "100%";
+    	block28.style.opacity = "100%";
+    	block29.style.opacity = "100%";
+    	block30.style.opacity = "100%";
+    	block31.style.opacity = "100%";
+    	block32.style.opacity = "100%";
+    	block33.style.opacity = "100%";
+    	block34.style.opacity = "100%";
+    	block35.style.opacity = "100%";
+    	block36.style.opacity = "100%";
+    	block37.style.opacity = "100%";
+    	block38.style.opacity = "100%";
+    	block39.style.opacity = "100%";
+    	block40.style.opacity = "100%";
+    	block41.style.opacity = "100%";
+    	block42.style.opacity = "100%";
+    	block43.style.opacity = "100%";
+    	block44.style.opacity = "100%";
+    	block45.style.opacity = "100%";
+    	finish.style.opacity = "100%";
+    	gameCount = gameCount + 1;
+    	gameCounter.innerText = "Game Number: "+gameCount;
+    }
+    setInterval(timeCount,1000);
+    function timeCount(){
+    	if (gameOn == 1){
+      		time = time + 1;
+      		clock.innerText = "Time: "+time+ " sec";
+     	} else {
+     		time = 0;
+     	}
+     }
+</script>
+</body>
+</html>
