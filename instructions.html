@@ -1,4 +1,4 @@
-<!-- Hi Molly! This code is ready to use aside from the projects button. When clicked it opens 4 options that are ready for a redirect link. Currently the link goes to https://mojopi.github.io/cs1/ but please change this to fulfill the purpose of each button. I did not create this page because it is neccessary for you to be able to change it whenever you like. -Rohan Shah ('25') -->
+<!-- Hi Molly! This code is ready to use aside from the projects button. When clicked it opens 4 options that are ready for a redirect link. Currently the link goes to https://mojopi.github.io/cs1/ but please change this to fulfill the purpose of each button. I did not create this page because it is neccessary for you to be able to change it whenever you like. -Rohan Shah ('25) -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -189,6 +189,7 @@
 			console.log("button1 hit");
 			if (button1Clicker == 0){
 				htmlCoding();
+				button4Clicker = 1;
 			} else if (button1Clicker ==  1){
 				console.log("Titling your files clicked");
 				button11 = 1;
@@ -209,6 +210,7 @@
 			console.log("button2 hit");
 			if (button2Clicker == 0){
 				cssCoding();
+				button4Clicker = 1;
 			} else if (button2Clicker == 1){
 				console.log("CSS button 2 clicked");
 				button12 = 2;
@@ -229,6 +231,7 @@
 			console.log("button3 hit");
 			if (button3Clicker == 0){
 				javaCoding();
+				button4Clicker = 1;
 			} else if (button3Clicker == 1){
 				console.log("Java button 3 clicked");
 				button13 = 3;
@@ -246,20 +249,18 @@
 			}
         })
         b4.addEventListener("click", function() {
-			console.log("button4 hit");
+			console.log("button4 hit", button4Clicker);
 			if (button4Clicker == 0){
 				projectCoding();
 			} else if (button1Clicker == 1){
 				console.log("Linking to another page")
 				button11 = 4;
 				html1();
-			}
-			if (button2Clicker == 1){
+			} else if (button2Clicker == 1){
 				console.log("CSS1 clicked");
 				button12 = 4;
 				css1();
-			}
-			if (button3Clicker == 1){
+			} else if (button3Clicker == 1){
 				console.log("Java1 clicked");
 				button13 = 4;
 				java1();
