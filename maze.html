@@ -37,17 +37,17 @@
         	background-color:lime;
         	position:absolute;
         }
-        #bestClock{
-        	top:30px;
+        #gameCounter{
+        	top:40px;
         	font-size:30px;
         	background-color:lime;
         	position:absolute;
         }
-        #gameCounter{
-        	top:60px;
+        #instructions{
+        	width:600px;
         	font-size:30px;
+        	text-align:center;
         	background-color:lime;
-        	position:absolute;
         }
 		.pickChar{
 			position:relative;
@@ -95,8 +95,8 @@
 		  background-image:url(char12.png);
 		}
 		#start{
-			top:85%;
-			left:85.5%;
+			top:82%;
+			left:83%;
 			height:100px;
 			width:200px;
 			background-color:green;
@@ -106,9 +106,10 @@
 			z-index:50;
 		}
 		#finish{
-			top:14%;
+			top:16%;
+			left:2%;
 			height:100px;
-			width:200px;
+			width:180px;
 			background-color:green;
 			position:absolute;
 			font-size:65px;
@@ -131,9 +132,9 @@
 			opacity:100%;
 		}
 		#block1{
-			height:550px;
+			height:640px;
 			width:50px;
-			top:199px;
+			top:109px;
 		}
 		#block2{
 			height:650px;
@@ -397,6 +398,68 @@
 			top:360px;
 			left:1170px;
 		}
+		.tokens{
+			position:absolute;
+			background-color:blue;
+			background-image:url(token.png);
+			background-size:contain;
+			background-repeat:no-repeat;
+			opacity:0%;
+		}
+		#token2{
+			height:50px;
+			width:50px;
+			top:650px;
+			left:59px;
+		}
+		#token3{
+			height:50px;
+			width:50px;
+			top:640px;
+			left:470px;
+		}
+		#token4{
+			height:50px;
+			width:50px;
+			top:360px;
+			left:920px;
+		}
+		#token5{
+			height:50px;
+			width:50px;
+			top:440px;
+			left:570px;
+		}
+		#token6{
+			height:50px;
+			width:50px;
+			top:520px;
+			left:720px;
+		}
+		#token7{
+			height:50px;
+			width:50px;
+			top:570px;
+			left:770px;
+		}
+		#token8{
+			height:50px;
+			width:50px;
+			top:150px;
+			left:219px;
+		}
+		#token9{
+			height:50px;
+			width:50px;
+			top:210px;
+			left:1325px;
+		}
+		#token10{
+			height:50px;
+			width:50px;
+			top:360px;
+			left:1120px;
+		}
 	</style>
 </head>
 <body>
@@ -404,11 +467,12 @@
 <center>
 <div id="header">Maze!</div>
 <div id="charselect">Click on the character you would like to play!</div>
+<br>
+<div id="instructions">Welcome! This is a maze so try to get to the end without touching red! Pick your character! The first row of characters enter the basic game where you just have to make it to the end. Try how long it takes you! The second row takes you into the tokens challenge! You must collect all tokens before reaching the end or you will not win!</div>
 </center>
 <div id="homebutton">Home</div>
 <div id="clock">Time: 0 sec</div>
-<div id="bestClock"> Best Time:</div>
-<div id="gameCounter"> Game Number:</div>
+<div id="gameCounter"> Number of Wins: 0/0</div>
 
 
 
@@ -420,6 +484,7 @@
 <div id="char4" class="pickChar"></div>
 <div id="char5" class="pickChar"></div>
 <div id="char6" class="pickChar"></div>
+<br>
 <div id="char7" class="pickChar"></div>
 <div id="char8" class="pickChar"></div>
 <div id="char9" class="pickChar"></div>
@@ -427,21 +492,42 @@
 <div id="char11" class="pickChar"></div>
 <div id="char12" class="pickChar"></div>
 </center>
-<div id="finish" class="blocks">FINISH</div>
+<div id="finish" class="blocks">END</div>
+
+<div id="token2" class="tokens"></div>
+<div id="token3" class="tokens"></div>
+<div id="token4" class="tokens"></div>
+<div id="token5" class="tokens"></div>
+<div id="token6" class="tokens"></div>
+<div id="token7" class="tokens"></div>
+<div id="token8" class="tokens"></div>
+<div id="token9" class="tokens"></div>
+<div id="token10" class="tokens"></div>
 
 <script type="text/javascript">
 	var charSelect = 0;
+	var charSelect2 = 0;
 	var gameSetUpCheck = 0;
 	var blocksCount = 0;
 	var readyCheck = 0;
 	var gameRestart = 1;
 	var gameOn = 0;
+	var debug = 0;
+
+	var token2Collected = 0;
+	var token3Collected = 0;
+	var token4Collected = 0;
+	var token5Collected = 0;
+	var token6Collected = 0;
+	var token7Collected = 0;
+	var token8Collected = 0;
+	var token9Collected = 0;
+	var token10Collected = 0;
 
 	var time = 0;
 	var gameCount = 0;
-	var bestTime = 0;
-	bestClock.innerText = "Best Time: "+bestTime+" sec";
-	gameCounter.innerText = "Game Number: "+gameCount;
+	var winCount = 0;
+	gameCounter.innerText = "Number of Wins: "+winCount+"/"+gameCount;
 
 	window.addEventListener('mousemove', function(event){
         var x = event.clientX;
@@ -454,6 +540,7 @@
     	if (charSelect == 0){
     		charSelect = 1;
     		circle.style.backgroundImage = "url(char1.png)";
+    		charSelect2 = 1;
     		characterSelected();
     	}
     });
@@ -461,6 +548,7 @@
     	if (charSelect == 0){
     		charSelect = 1;
     		circle.style.backgroundImage = "url(char2.png)";
+    		charSelect2 = 1;
     		characterSelected();
     	}
     });
@@ -468,6 +556,7 @@
     	if (charSelect == 0){
     		charSelect = 1;
     		circle.style.backgroundImage = "url(char3.png)";
+    		charSelect2 = 1;
     		characterSelected();
     	}
     });
@@ -475,6 +564,7 @@
     	if (charSelect == 0){
     		charSelect = 1;
     		circle.style.backgroundImage = "url(char4.png)";
+    		charSelect2 = 1;
     		characterSelected();
     	}
     });
@@ -482,6 +572,7 @@
     	if (charSelect == 0){
     		charSelect = 1;
     		circle.style.backgroundImage = "url(char5.png)";
+    		charSelect2 = 1;
     		characterSelected();
     	}
     });
@@ -489,6 +580,7 @@
     	if (charSelect == 0){
     		charSelect = 1;
     		circle.style.backgroundImage = "url(char6.png)";
+    		charSelect2 = 1;
     		characterSelected();
     	}
     });
@@ -496,6 +588,7 @@
     	if (charSelect == 0){
     		charSelect = 1;
     		circle.style.backgroundImage = "url(char7.png)";
+    		charSelect2 = 2;
     		characterSelected();
     	}
     });
@@ -503,6 +596,7 @@
     	if (charSelect == 0){
     		charSelect = 1;
     		circle.style.backgroundImage = "url(char8.png)";
+    		charSelect2 = 2;
     		characterSelected();
     	}
     });
@@ -510,6 +604,7 @@
     	if (charSelect == 0){
     		charSelect = 1;
     		circle.style.backgroundImage = "url(char9.png)";
+    		charSelect2 = 2;
     		characterSelected();
     	}
     });
@@ -517,6 +612,7 @@
     	if (charSelect == 0){
     		charSelect = 1;
     		circle.style.backgroundImage = "url(char10.png)";
+    		charSelect2 = 2;
     		characterSelected();
     	}
     });
@@ -524,6 +620,7 @@
     	if (charSelect == 0){
     		charSelect = 1;
     		circle.style.backgroundImage = "url(char11.png)";
+    		charSelect2 = 2;
     		characterSelected();
     	}
     });
@@ -531,6 +628,7 @@
     	if (charSelect == 0){
     		charSelect = 1;
     		circle.style.backgroundImage = "url(char12.png)";
+    		charSelect2 = 2;
     		characterSelected();
     	}
     });
@@ -562,6 +660,7 @@
     	char12.style.opacity = "0%";
     	char12.style.top="-500px";
     	charselect.innerText="Character Selected";
+    	instructions.style.opacity = "0%";
     	gameStart();
     }
     function gameStart(){
@@ -572,12 +671,14 @@
     	if (gameSetUpCheck == 0 && charSelect == 1){
     		gameSetUpCheck = 1;
     		charselect.innerText = "Do not move until this message changes"
+    		instructions.style.opacity = "0%";
     		gameSetUp();
     	} else if (gameRestart == 1){
     		gameRestartAgain();
     	}
     });
     homebutton.addEventListener('click', function(){
+    	instructions.style.opacity = "100%";
     	console.log("homebutton clicked");
     	char1.style.top = "0px";
     	char1.style.opacity = "100%";
@@ -605,7 +706,81 @@
     	char12.style.opacity = "100%";
     	charSelect = 0;
     	charselect.innerText = "Click on the character you would like to play!";
+    	gameOn = 0;
+	    	gameRestart = 1;
+			block1.style.opacity = "0%";
+			block2.style.opacity = "0%";
+			block3.style.opacity = "0%";
+			block4.style.opacity = "0%";
+			block5.style.opacity = "0%";
+			block6.style.opacity = "0%";
+			block7.style.opacity = "0%";
+			block8.style.opacity = "0%";
+			block9.style.opacity = "0%";
+			block10.style.opacity = "0%";
+			block11.style.opacity = "0%";
+			block12.style.opacity = "0%";
+			block13.style.opacity = "0%";
+			block14.style.opacity = "0%";
+			block15.style.opacity = "0%";
+			block16.style.opacity = "0%";
+			block17.style.opacity = "0%";
+			block18.style.opacity = "0%";
+			block19.style.opacity = "0%";
+			block20.style.opacity = "0%";
+			block21.style.opacity = "0%";
+			block22.style.opacity = "0%";
+			block23.style.opacity = "0%";
+			block24.style.opacity = "0%";
+			block25.style.opacity = "0%";
+			block26.style.opacity = "0%";
+			block27.style.opacity = "0%";
+			block28.style.opacity = "0%";
+			block29.style.opacity = "0%";
+			block30.style.opacity = "0%";
+			block31.style.opacity = "0%";
+			block32.style.opacity = "0%";
+			block33.style.opacity = "0%";
+			block34.style.opacity = "0%";
+			block35.style.opacity = "0%";
+			block36.style.opacity = "0%";
+			block37.style.opacity = "0%";
+			block38.style.opacity = "0%";
+			block39.style.opacity = "0%";
+			block40.style.opacity = "0%";
+			block41.style.opacity = "0%";
+			block42.style.opacity = "0%";
+			block43.style.opacity = "0%";
+			block44.style.opacity = "0%";
+			block45.style.opacity = "0%";
+			token2.style.opacity = "0%";
+			token3.style.opacity = "0%";
+			token4.style.opacity = "0%";
+			token5.style.opacity = "0%";
+			token6.style.opacity = "0%";
+			token7.style.opacity = "0%";
+			token8.style.opacity = "0%";
+			token9.style.opacity = "0%";
+			token10.style.opacity = "0%";
+			token2Collected = 0;
+			token3Collected = 0;
+			token4Collected = 0;
+			token5Collected = 0;
+			token6Collected = 0;
+			token7Collected = 0;
+			token8Collected = 0;
+			token9Collected = 0;
+			token10Collected = 0;
+			finish.style.opacity = "0%";
     });
+    header.addEventListener('click',function(){
+    	header.innerText = "Welcome to debug";
+    	debug = 1;
+    	block1.classList.remove('blocks');
+    	block2.classList.remove('blocks');
+    	block3.classList.remove('blocks');
+    	block4.classList.remove('blocks');
+    })
     function gameSetUp(){
     	finish.style.opacity="100%";
     	for (let i = 0; i < 45; i++){
@@ -616,12 +791,22 @@
         block.classList.add("blocks");
         block.id = "block"+blocksCount;
 		}
+		if (charSelect2 == 2){
+			token2.style.opacity = "100%";
+			token3.style.opacity = "100%";
+			token4.style.opacity = "100%";
+			token5.style.opacity = "100%";
+			token6.style.opacity = "100%";
+			token7.style.opacity = "100%";
+			token8.style.opacity = "100%";
+			token9.style.opacity = "100%";
+			token10.style.opacity = "100%";
+		}
 		charselect.innerText = "Do not touch red! Get to the finish!";
 		readyCheck = 1;
 		gameOn = 1;
 		gameCount = gameCount + 1;
-    	gameCounter.innerText = "Game Number: "+gameCount;
-    }
+		gameCounter.innerText = "Number of Wins: "+winCount+"/"+gameCount;    }
     function checkingBlocks(){
     	console.log("blocks checked");
     	if (readyCheck == 1 && gameOn == 1){
@@ -761,6 +946,42 @@
 		    block45.addEventListener("mouseover", function() {
 		        gameLose();
 		    })
+		    token2.addEventListener("mouseover", function() {
+		        token2Collected = 1;
+		        token2.style.opacity = "0%";
+		    })
+		    token3.addEventListener("mouseover", function() {
+		        token3Collected = 1;
+		        token3.style.opacity = "0%";
+		    })
+		    token4.addEventListener("mouseover", function() {
+		        token4Collected = 1;
+		        token4.style.opacity = "0%";
+		    })
+		    token5.addEventListener("mouseover", function() {
+		        token5Collected = 1;
+		        token5.style.opacity = "0%";
+		    })
+		    token6.addEventListener("mouseover", function() {
+		        token6Collected = 1;
+		        token6.style.opacity = "0%";
+		    })
+		    token7.addEventListener("mouseover", function() {
+		        token7Collected = 1;
+		        token7.style.opacity = "0%";
+		    })
+		    token8.addEventListener("mouseover", function() {
+		        token8Collected = 1;
+		        token8.style.opacity = "0%";
+		    })
+		    token9.addEventListener("mouseover", function() {
+		        token9Collected = 1;
+		        token9.style.opacity = "0%";
+		    })
+		    token10.addEventListener("mouseover", function() {
+		        token10Collected = 1;
+		        token10.style.opacity = "0%";
+		    })
 		    finish.addEventListener("mouseover", function() {
 		    	console.log("win");
 		        gameWin();
@@ -821,80 +1042,156 @@
 			block43.style.opacity = "0%";
 			block44.style.opacity = "0%";
 			block45.style.opacity = "0%";
+			token2.style.opacity = "0%";
+			token3.style.opacity = "0%";
+			token4.style.opacity = "0%";
+			token5.style.opacity = "0%";
+			token6.style.opacity = "0%";
+			token7.style.opacity = "0%";
+			token8.style.opacity = "0%";
+			token9.style.opacity = "0%";
+			token10.style.opacity = "0%";
+			token2Collected = 0;
+			token3Collected = 0;
+			token4Collected = 0;
+			token5Collected = 0;
+			token6Collected = 0;
+			token7Collected = 0;
+			token8Collected = 0;
+			token9Collected = 0;
+			token10Collected = 0;
 			finish.style.opacity = "0%";
 			charselect.innerText = "LOST! Bring your character to the green spot!";
 		}
     }
     function gameWin(){
+    	console.log("the game is WON!", gameOn, charSelect2)
     	if (gameOn == 1){
-	    	console.log("game win", gameOn);
-	    	gameOn = 0;
-	    	gameRestart = 1;
-			charselect.innerText = "Lose!";
-			block1.style.opacity = "0%";
-			block2.style.opacity = "0%";
-			block3.style.opacity = "0%";
-			block4.style.opacity = "0%";
-			block5.style.opacity = "0%";
-			block6.style.opacity = "0%";
-			block7.style.opacity = "0%";
-			block8.style.opacity = "0%";
-			block9.style.opacity = "0%";
-			block10.style.opacity = "0%";
-			block11.style.opacity = "0%";
-			block12.style.opacity = "0%";
-			block13.style.opacity = "0%";
-			block14.style.opacity = "0%";
-			block15.style.opacity = "0%";
-			block16.style.opacity = "0%";
-			block17.style.opacity = "0%";
-			block18.style.opacity = "0%";
-			block19.style.opacity = "0%";
-			block20.style.opacity = "0%";
-			block21.style.opacity = "0%";
-			block22.style.opacity = "0%";
-			block23.style.opacity = "0%";
-			block24.style.opacity = "0%";
-			block25.style.opacity = "0%";
-			block26.style.opacity = "0%";
-			block27.style.opacity = "0%";
-			block28.style.opacity = "0%";
-			block29.style.opacity = "0%";
-			block30.style.opacity = "0%";
-			block31.style.opacity = "0%";
-			block32.style.opacity = "0%";
-			block33.style.opacity = "0%";
-			block34.style.opacity = "0%";
-			block35.style.opacity = "0%";
-			block36.style.opacity = "0%";
-			block37.style.opacity = "0%";
-			block38.style.opacity = "0%";
-			block39.style.opacity = "0%";
-			block40.style.opacity = "0%";
-			block41.style.opacity = "0%";
-			block42.style.opacity = "0%";
-			block43.style.opacity = "0%";
-			block44.style.opacity = "0%";
-			block45.style.opacity = "0%";
-			finish.style.opacity = "0%";
-			charselect.innerText = "Victory! Reset to Start!";
-		}
-		console.log(time,bestTime,gameCount);
-		if (gameCount == 0){
-			console.log("gamecount besttime");
-			bestTime = time;
-			bestClock.innerText = "Best Time: "+bestTime+" sec";
-		}
-		else if (time < bestTime){
-			console.log("game2 besttime");
-    		bestTime = time;
-			bestClock.innerText = "Best Time: "+bestTime+" sec";
+    		if (charSelect2 == 1){
+		    	console.log("game win", gameOn);
+		    	gameOn = 0;
+		    	gameRestart = 1;
+				block1.style.opacity = "0%";
+				block2.style.opacity = "0%";
+				block3.style.opacity = "0%";
+				block4.style.opacity = "0%";
+				block5.style.opacity = "0%";
+				block6.style.opacity = "0%";
+				block7.style.opacity = "0%";
+				block8.style.opacity = "0%";
+				block9.style.opacity = "0%";
+				block10.style.opacity = "0%";
+				block11.style.opacity = "0%";
+				block12.style.opacity = "0%";
+				block13.style.opacity = "0%";
+				block14.style.opacity = "0%";
+				block15.style.opacity = "0%";
+				block16.style.opacity = "0%";
+				block17.style.opacity = "0%";
+				block18.style.opacity = "0%";
+				block19.style.opacity = "0%";
+				block20.style.opacity = "0%";
+				block21.style.opacity = "0%";
+				block22.style.opacity = "0%";
+				block23.style.opacity = "0%";
+				block24.style.opacity = "0%";
+				block25.style.opacity = "0%";
+				block26.style.opacity = "0%";
+				block27.style.opacity = "0%";
+				block28.style.opacity = "0%";
+				block29.style.opacity = "0%";
+				block30.style.opacity = "0%";
+				block31.style.opacity = "0%";
+				block32.style.opacity = "0%";
+				block33.style.opacity = "0%";
+				block34.style.opacity = "0%";
+				block35.style.opacity = "0%";
+				block36.style.opacity = "0%";
+				block37.style.opacity = "0%";
+				block38.style.opacity = "0%";
+				block39.style.opacity = "0%";
+				block40.style.opacity = "0%";
+				block41.style.opacity = "0%";
+				block42.style.opacity = "0%";
+				block43.style.opacity = "0%";
+				block44.style.opacity = "0%";
+				block45.style.opacity = "0%";
+				finish.style.opacity = "0%";
+				charselect.innerText = "Victory! Reset to Start!";
+				winCount = winCount + 1;
+			} else if (charSelect2 == 2){
+				if (token2Collected == 1 && token3Collected == 1 && token4Collected == 1 && token5Collected == 1 && token6Collected == 1 && token7Collected == 1 && token8Collected == 1 && token9Collected == 1 && token10Collected == 1){
+					console.log("game win", gameOn);
+			    	gameOn = 0;
+			    	gameRestart = 1;
+					block1.style.opacity = "0%";
+					block2.style.opacity = "0%";
+					block3.style.opacity = "0%";
+					block4.style.opacity = "0%";
+					block5.style.opacity = "0%";
+					block6.style.opacity = "0%";
+					block7.style.opacity = "0%";
+					block8.style.opacity = "0%";
+					block9.style.opacity = "0%";
+					block10.style.opacity = "0%";
+					block11.style.opacity = "0%";
+					block12.style.opacity = "0%";
+					block13.style.opacity = "0%";
+					block14.style.opacity = "0%";
+					block15.style.opacity = "0%";
+					block16.style.opacity = "0%";
+					block17.style.opacity = "0%";
+					block18.style.opacity = "0%";
+					block19.style.opacity = "0%";
+					block20.style.opacity = "0%";
+					block21.style.opacity = "0%";
+					block22.style.opacity = "0%";
+					block23.style.opacity = "0%";
+					block24.style.opacity = "0%";
+					block25.style.opacity = "0%";
+					block26.style.opacity = "0%";
+					block27.style.opacity = "0%";
+					block28.style.opacity = "0%";
+					block29.style.opacity = "0%";
+					block30.style.opacity = "0%";
+					block31.style.opacity = "0%";
+					block32.style.opacity = "0%";
+					block33.style.opacity = "0%";
+					block34.style.opacity = "0%";
+					block35.style.opacity = "0%";
+					block36.style.opacity = "0%";
+					block37.style.opacity = "0%";
+					block38.style.opacity = "0%";
+					block39.style.opacity = "0%";
+					block40.style.opacity = "0%";
+					block41.style.opacity = "0%";
+					block42.style.opacity = "0%";
+					block43.style.opacity = "0%";
+					block44.style.opacity = "0%";
+					block45.style.opacity = "0%";
+					finish.style.opacity = "0%";
+					charselect.innerText = "Victory! Reset to Start!";
+					winCount = winCount + 1;
+				} else {
+					charselect.innerText = "Remember to get all tokens!"
+				}
+			}
 		}
     }
     function gameRestartAgain(){
-    	console.log("BEST TIME", bestTime);
     	gameOn = 1;
+    	time = 0;
     	gameRestart = 0;
+		token2Collected = 0;
+		token3Collected = 0;
+		token4Collected = 0;
+		token5Collected = 0;
+		token6Collected = 0;
+		token7Collected = 0;
+		token8Collected = 0;
+		token9Collected = 0;
+		token10Collected = 0;
+
     	block1.style.opacity = "100%";
     	block2.style.opacity = "100%";
     	block3.style.opacity = "100%";
@@ -941,18 +1238,27 @@
     	block44.style.opacity = "100%";
     	block45.style.opacity = "100%";
     	finish.style.opacity = "100%";
+    	if (charSelect2 == 2){
+			token2.style.opacity = "100%";
+			token3.style.opacity = "100%";
+			token4.style.opacity = "100%";
+			token5.style.opacity = "100%";
+			token6.style.opacity = "100%";
+			token7.style.opacity = "100%";
+			token8.style.opacity = "100%";
+			token9.style.opacity = "100%";
+			token10.style.opacity = "100%";
+		}
     	gameCount = gameCount + 1;
-    	gameCounter.innerText = "Game Number: "+gameCount;
+    	gameCounter.innerText = "Number of Wins: "+winCount+"/"+gameCount;
     }
     setInterval(timeCount,1000);
     function timeCount(){
     	if (gameOn == 1){
       		time = time + 1;
       		clock.innerText = "Time: "+time+ " sec";
-     	} else {
-     		time = 0;
-     	}
-     }
+        }
+    }
 </script>
 </body>
 </html>
