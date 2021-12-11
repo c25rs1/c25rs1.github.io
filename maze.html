@@ -1119,6 +1119,7 @@
 				finish.style.opacity = "0%";
 				charselect.innerText = "Victory! Reset to Start!";
 				winCount = winCount + 1;
+				gameCounter.innerText = "Number of Wins: "+winCount+"/"+gameCount;
 			} else if (charSelect2 == 2){
 				if (token2Collected == 1 && token3Collected == 1 && token4Collected == 1 && token5Collected == 1 && token6Collected == 1 && token7Collected == 1 && token8Collected == 1 && token9Collected == 1 && token10Collected == 1){
 					console.log("game win", gameOn);
@@ -1172,6 +1173,7 @@
 					finish.style.opacity = "0%";
 					charselect.innerText = "Victory! Reset to Start!";
 					winCount = winCount + 1;
+					gameCounter.innerText = "Number of Wins: "+winCount+"/"+gameCount;
 				} else {
 					charselect.innerText = "Remember to get all tokens!"
 				}
@@ -1256,7 +1258,7 @@
     function timeCount(){
     	if (gameOn == 1){
       		time = time + 1;
-      		clock.innerText = "Time: "+time+ " sec";
+      		clock.innerText = "Time: "+time+" sec";
         }
     }
 </script>
