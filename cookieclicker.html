@@ -208,7 +208,7 @@
             })
 		}
 		pointer.addEventListener("click", function(){
-			if (cookieStored > 150){
+			if (cookieStored >= 150){
 				pointerOwned = pointerOwned + 1;
 				pointerBoosts = pointerBoosts + 1;
 				cps = cps + 1;
@@ -224,7 +224,7 @@
 			}
 		})
 		grandma.addEventListener("click", function(){
-			if (cookieStored > 500){
+			if (cookieStored >= 500){
 				grandmaOwned = grandmaOwned + 1;
 				grandmaBoosts = grandmaBoosts + 10;
 				cps = cps + 10;
@@ -240,11 +240,11 @@
 			}
 		})
 		superbaker.addEventListener("click", function(){
-			if (cookieStored > 10000){
+			if (cookieStored >= 10000){
 				superbakerOwned = superbakerOwned + 1;
 				superbakerBoosts = superbakerBoosts + 100;
 				cps = cps + 100;
-				cookieStored = cookieStored - 500;
+				cookieStored = cookieStored - 10000;
 			}
 		})
 		superbakerSell.addEventListener("click", function(){
