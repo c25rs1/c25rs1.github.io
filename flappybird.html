@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Flappy Bird</title>
+
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			height: 100vh;
+			width: 100vw;
+		}
+		#header{
+			width:100%;
+            font-size:8vh;
+            text-align:center;
+            background-color:lime;
+            z-index:3;
+            position:absolute;
+
+        }
+
+		.background {
+			height: 100vh;
+			width: 100vw;
+			background-color: lightblue;
+		}
+
+		.bird {
+			height: 100px;
+			width: 100px;
+			position: fixed;
+			top: 40vh;
+			left: 30vw;
+			z-index: 100;
+			opacity:0%;
+			background-size: contain;
+			background-repeat: no-repeat;
+			border-width:10px;
+			background-color:white;
+		}
+
+		.pipe_sprite {
+			position: fixed;
+			top: 40vh;
+			left: 100vw;
+			height: 70vh;
+			width: 6vw;
+			background-color: darkgreen;
+		}
+
+		.message {
+			position: fixed;
+			z-index: 10;
+			height: 10vh;
+			font-size: 10vh;
+			font-weight: 100;
+			color: black;
+			top: 12vh;
+			left: 20vw;
+			text-align: center;
+			background-color:gold;
+		}
+
+		.score {
+			position: fixed;
+			z-index: 10;
+			height: 10vh;
+			font-size: 10vh;
+			font-weight: 100;
+			color: red;
+			top: 0;
+			left: 0;
+			background-color:gold;
+		}
+
+		.score_val {
+			color: red;
+			background-color:gold;
+		}
+
+		.pickChar{
+			position:absolute;
+			height:70px;
+			width:70px;
+			background-size:contain;
+			display:inline-block;
+			z-index:50;
+			opacity:100%;
+			
+		}
+		#char1{
+		  background-image:url(char1.png);
+		  top:200px;
+		  left:500px;
+		}
+		#char2{
+		  background-image:url(char2.png);
+		  top:200px;
+		  left:580px;
+		}
+		#char3{
+		  background-image:url(char3.png);
+		  top:200px;
+		  left:660px;
+		}
+		#char4{
+		  background-image:url(char4.png);
+		  top:200px;
+		  left:740px;
+		}
+		#char5{
+		  background-image:url(char5.png);
+		  top:200px;
+		  left:820px;
+		}
+		#char6{
+		  background-image:url(char6.png);
+		  top:200px;
+		  left:900px;
+		}
+		#char7{
+		  background-image:url(char7.png);
+		  top:280px;
+		  left:500px;
+		}
+		#char8{
+		  background-image:url(char8.png);
+		  top:280px;
+		  left:580px;
+		}
+		#char9{
+		  background-image:url(char9.png);
+		  top:280px;
+		  left:660px;
+		}
+		#char10{
+		  background-image:url(char10.png);
+		  top:280px;
+		  left:740px;
+		}
+		#char11{
+		  background-image:url(char11.png);
+		  top:280px;
+		  left:820px;
+		}
+		#char12{
+		  background-image:url(char12.png);
+		  top:280px;
+		  left:900px;
+		}
+
+	</style>
+</head>
+
+
+
+<body>
+	<center>
+		<div id="header">Flappy Bird</div>
+	</center>
+	<div class="background"></div>
+	<div class="bird"></div>
+	<div class="message">
+		Please Select A Character To Play
+	</div>
+	<div class="score">
+		<span class="score_title"></span>
+		<span class="score_val"></span>
+	</div>
+	<center>
+		<div id="char1" class="pickChar"></div>
+		<div id="char2" class="pickChar"></div>
+		<div id="char3" class="pickChar"></div>
+		<div id="char4" class="pickChar"></div>
+		<div id="char5" class="pickChar"></div>
+		<div id="char6" class="pickChar"></div>
+		<br>
+		<div id="char7" class="pickChar"></div>
+		<div id="char8" class="pickChar"></div>
+		<div id="char9" class="pickChar"></div>
+		<div id="char10" class="pickChar"></div>
+		<div id="char11" class="pickChar"></div>
+		<div id="char12" class="pickChar"></div>
+	</center>
+	<script>
+		var charSelect = 0;
+		let move_speed = 3;
+		let gravity = .5;
+		let bird = document.querySelector('.bird');
+		let bird_props = bird.getBoundingClientRect();
+		let background =
+			document.querySelector('.background')
+					.getBoundingClientRect();
+			
+		let score_val =
+			document.querySelector('.score_val');
+		let message =
+			document.querySelector('.message');
+		let score_title =
+			document.querySelector('.score_title');
+			
+		let game_state = 'Start';
+			
+		char1.addEventListener('click', function(){
+			if (charSelect == 0){
+				charSelect = 1;
+				bird.style.backgroundImage = "url(char1.png)";
+				characterSelected();
+			}
+		});
+		char2.addEventListener('click', function(){
+			if (charSelect == 0){
+				charSelect = 1;
+				bird.style.backgroundImage = "url(char2.png)";
+				characterSelected();
+			}
+		});
+		char3.addEventListener('click', function(){
+			if (charSelect == 0){
+				charSelect = 1;
+				bird.style.backgroundImage = "url(char3.png)";
+				characterSelected();
+			}
+		});
+		char4.addEventListener('click', function(){
+			if (charSelect == 0){
+				charSelect = 1;
+				bird.style.backgroundImage = "url(char4.png)";
+				characterSelected();
+			}
+		});
+		char5.addEventListener('click', function(){
+			if (charSelect == 0){
+				charSelect = 1;
+				bird.style.backgroundImage = "url(char5.png)";
+				characterSelected();
+			}
+		});
+		char6.addEventListener('click', function(){
+			if (charSelect == 0){
+				charSelect = 1;
+				bird.style.backgroundImage = "url(char6.png)";
+				characterSelected();
+			}
+		});
+		char7.addEventListener('click', function(){
+			if (charSelect == 0){
+				charSelect = 1;
+				bird.style.backgroundImage = "url(char7.png)";
+				characterSelected();
+			}
+		});
+		char8.addEventListener('click', function(){
+			if (charSelect == 0){
+				charSelect = 1;
+				bird.style.backgroundImage = "url(char8.png)";
+				characterSelected();
+			}
+		});
+		char9.addEventListener('click', function(){
+			if (charSelect == 0){
+				charSelect = 1;
+				bird.style.backgroundImage = "url(char9.png)";
+				characterSelected();
+			}
+		});
+		char10.addEventListener('click', function(){
+			if (charSelect == 0){
+				charSelect = 1;
+				bird.style.backgroundImage = "url(char10.png)";
+				characterSelected();
+			}
+		});
+		char11.addEventListener('click', function(){
+			if (charSelect == 0){
+				charSelect = 1;
+				bird.style.backgroundImage = "url(char11.png)";
+				characterSelected();
+			}
+		});
+		char12.addEventListener('click', function(){
+			if (charSelect == 0){
+				charSelect = 1;
+				bird.style.backgroundImage = "url(char12.png)";
+				characterSelected();
+			}
+		});
+		function characterSelected(){
+			char1.style.opacity = "0%";
+			char2.style.opacity = "0%";
+			char3.style.opacity = "0%";
+			char4.style.opacity = "0%";
+			char5.style.opacity = "0%";
+			char6.style.opacity = "0%";
+			char7.style.opacity = "0%";
+			char8.style.opacity = "0%";
+			char9.style.opacity = "0%";
+			char10.style.opacity = "0%";
+			char11.style.opacity = "0%";
+			char12.style.opacity = "0%";
+			message.innerText = "Press Enter To Start Game";
+		}
+
+		// Add an eventlistener for key presses
+		document.addEventListener('keydown', (e) => {
+			
+		// Start the game if enter key is pressed
+		if (e.key == 'Enter' &&
+			game_state != 'Play' && charSelect == 1) {
+			document.querySelectorAll('.pipe_sprite')
+					.forEach((e) => {
+			e.remove();
+			});
+			bird.style.opacity = "100%";
+			bird.style.top = '40vh';
+			game_state = 'Play';
+			message.innerHTML = '';
+			score_title.innerHTML = 'Points: ';
+			score_val.innerHTML = '0';
+			play();
+		}
+		});
+		function play() {
+		function move() {
+			
+			// Detect if game has ended
+			if (game_state != 'Play') return;
+			
+			// Getting reference to all the pipe elements
+			let pipe_sprite = document.querySelectorAll('.pipe_sprite');
+			pipe_sprite.forEach((element) => {
+				
+			let pipe_sprite_props = element.getBoundingClientRect();
+			bird_props = bird.getBoundingClientRect();
+				
+			// Delete the pipes if they have moved out
+			// of the screen hence saving memory
+			if (pipe_sprite_props.right <= 0) {
+				element.remove();
+			} else {
+				// Collision detection with bird and pipes
+				if (
+				bird_props.left < pipe_sprite_props.left +
+				pipe_sprite_props.width &&
+				bird_props.left +
+				bird_props.width > pipe_sprite_props.left &&
+				bird_props.top < pipe_sprite_props.top +
+				pipe_sprite_props.height &&
+				bird_props.top +
+				bird_props.height > pipe_sprite_props.top
+				) {
+					
+				// Change game state and end the game
+				// if collision occurs
+				game_state = 'End';
+				message.innerHTML = 'Press Enter To Restart';
+				message.style.left = '28vw';
+				return;
+				} else {
+				// Increase the score if player
+				// has the successfully dodged the
+				if (
+					pipe_sprite_props.right < bird_props.left &&
+					pipe_sprite_props.right +
+					move_speed >= bird_props.left &&
+					element.increase_score == '1'
+				) {
+					score_val.innerHTML = +score_val.innerHTML + 1;
+				}
+				element.style.left =
+					pipe_sprite_props.left - move_speed + 'px';
+				}
+			}
+			});
+
+			requestAnimationFrame(move);
+		}
+		requestAnimationFrame(move);
+
+		let bird_dy = 0;
+		function apply_gravity() {
+			if (game_state != 'Play') return;
+			bird_dy = bird_dy + gravity;
+			document.addEventListener('keydown', (e) => {
+			if (e.key == 'ArrowUp' || e.key == ' ') {
+				bird_dy = -7.6;
+			}
+			});
+
+			// Collision detection with bird and
+			// window top and bottom
+
+			if (bird_props.top <= 0 ||
+				bird_props.bottom >= background.bottom) {
+			game_state = 'End';
+			message.innerHTML = 'Reload To Restart';
+			message.style.left = '28vw';
+			// return;
+			}
+			bird.style.top = bird_props.top + bird_dy + 'px';
+			bird_props = bird.getBoundingClientRect();
+			requestAnimationFrame(apply_gravity);
+		}
+		requestAnimationFrame(apply_gravity);
+
+		let pipe_seperation = 0;
+			
+		// Constant value for the gap between two pipes
+		let pipe_gap = 35;
+		function create_pipe() {
+			if (game_state != 'Play') return;
+			
+			// Create another set of pipes
+			// if distance between two pipe has exceeded
+			// a predefined value
+			if (pipe_seperation > 115) {
+			pipe_seperation = 0
+				
+			// Calculate random position of pipes on y axis
+			let pipe_posi = Math.floor(Math.random() * 43) + 8;
+			let pipe_sprite_inv = document.createElement('div');
+			pipe_sprite_inv.className = 'pipe_sprite';
+			pipe_sprite_inv.style.top = pipe_posi - 70 + 'vh';
+			pipe_sprite_inv.style.left = '100vw';
+				
+			// Append the created pipe element in DOM
+			document.body.appendChild(pipe_sprite_inv);
+			let pipe_sprite = document.createElement('div');
+			pipe_sprite.className = 'pipe_sprite';
+			pipe_sprite.style.top = pipe_posi + pipe_gap + 'vh';
+			pipe_sprite.style.left = '100vw';
+			pipe_sprite.increase_score = '1';
+				
+			// Append the created pipe element in DOM
+			document.body.appendChild(pipe_sprite);
+			}
+			pipe_seperation++;
+			requestAnimationFrame(create_pipe);
+		}
+		requestAnimationFrame(create_pipe);
+		}
+	</script>
+</body>
+
+</html>
