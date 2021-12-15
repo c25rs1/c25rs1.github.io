@@ -224,11 +224,11 @@
 			}
 		})
 		grandma.addEventListener("click", function(){
-			if (cookieStored >= 500){
+			if (cookieStored >= 1000){
 				grandmaOwned = grandmaOwned + 1;
 				grandmaBoosts = grandmaBoosts + 10;
 				cps = cps + 10;
-				cookieStored = cookieStored - 500;
+				cookieStored = cookieStored - 1000;
 			}
 		})
 		grandmaSell.addEventListener("click", function(){
@@ -240,11 +240,11 @@
 			}
 		})
 		superbaker.addEventListener("click", function(){
-			if (cookieStored >= 10000){
+			if (cookieStored >= 100000){
 				superbakerOwned = superbakerOwned + 1;
 				superbakerBoosts = superbakerBoosts + 100;
 				cps = cps + 100;
-				cookieStored = cookieStored - 10000;
+				cookieStored = cookieStored - 100000;
 			}
 		})
 		superbakerSell.addEventListener("click", function(){
@@ -257,8 +257,8 @@
 		})
 		function autoClicks(){
 			pointer.innerText = "POINTER Cost: 150 Owned: " + pointerOwned + ", CPS + 1, CPS bonus: " + pointerBoosts + "   click here to buy";
-			grandma.innerText = "GRANDMA Cost: 500 Owned: " + grandmaOwned + ", CPS + 10, CPS bonus: " + grandmaBoosts + "   click here to buy";
-			superbaker.innerText = "SUPERBAKER Cost: 10k Owned: " + superbakerOwned + ", CPS + 100, CPS bonus: " + superbakerBoosts + "   click here to buy";
+			grandma.innerText = "GRANDMA Cost: 1000 Owned: " + grandmaOwned + ", CPS + 10, CPS bonus: " + grandmaBoosts + "   click here to buy";
+			superbaker.innerText = "SUPERBAKER Cost: 100k Owned: " + superbakerOwned + ", CPS + 100, CPS bonus: " + superbakerBoosts + "   click here to buy";
 			cookieStored = cookieStored + cps;
 			box.value = cookieStored;
 			totalClicked = totalClicked + cps;
