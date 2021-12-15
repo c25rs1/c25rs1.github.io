@@ -153,6 +153,29 @@
 		  top:280px;
 		  left:900px;
 		}
+		.gamemodes{
+			position:absolute;
+			height:70px;
+			width:70px;
+			background-size:contain;
+			display:inline-block;
+			z-index:50;
+			opacity:0%;
+			top:400px;
+			
+		}
+		#gamemode1{
+		  background-color:green;
+		  left:600px;
+		}
+		#gamemode2{
+		  background-color:orange;
+		  left:680px;
+		}
+		#gamemode3{
+		  background-color:red;
+		  left:760px;
+		}
 
 	</style>
 </head>
@@ -186,10 +209,16 @@
 		<div id="char10" class="pickChar"></div>
 		<div id="char11" class="pickChar"></div>
 		<div id="char12" class="pickChar"></div>
+		<br>
+		<br>
+		<div id="gamemode1" class="gamemodes">EASY</div>
+		<div id="gamemode2" class="gamemodes">MEDIUM</div>
+		<div id="gamemode3" class="gamemodes">HARD</div>
 	</center>
 	<script>
 		var charSelect = 0;
-		let move_speed = 3;
+		var gameModeSelect = 5;
+		var move_speed = 2.5;
 		let gravity = .5;
 		let bird = document.querySelector('.bird');
 		let bird_props = bird.getBoundingClientRect();
@@ -303,7 +332,40 @@
 			char10.style.opacity = "0%";
 			char11.style.opacity = "0%";
 			char12.style.opacity = "0%";
+			message.innerText = "Please Select The Difficulty";
+			gameModeSelect = 0;
+			gamemode1.style.opacity = "100%";
+			gamemode2.style.opacity = "100%";
+			gamemode3.style.opacity = "100%";
+
+		}
+		gamemode1.addEventListener('click',function(){
+			if (gameModeSelect == 0){
+				gameModeSelect = 1;
+				move_speed = 3;
+				gameModeSelected();
+			}
+		});
+		gamemode2.addEventListener('click',function(){
+			if (gameModeSelect == 0){
+				gameModeSelect = 1;
+				move_speed = 2.5;
+				gameModeSelected();
+			}
+		});
+		gamemode3.addEventListener('click',function(){
+			if (gameModeSelect == 0){
+				gameModeSelect = 1;
+				move_speed = 2;
+				gameModeSelected();
+			}
+		});
+		function gameModeSelected(){
+			gamemode1.style.opacity = "0%";
+			gamemode2.style.opacity = "0%";
+			gamemode3.style.opacity = "0%";
 			message.innerText = "Press Enter To Start Game";
+			console.log(move_speed);
 		}
 
 		// Add an eventlistener for key presses
@@ -311,7 +373,7 @@
 			
 		// Start the game if enter key is pressed
 		if (e.key == 'Enter' &&
-			game_state != 'Play' && charSelect == 1) {
+			game_state != 'Play' && charSelect == 1 && gameModeSelect == 1) {
 			document.querySelectorAll('.pipe_sprite')
 					.forEach((e) => {
 			e.remove();
