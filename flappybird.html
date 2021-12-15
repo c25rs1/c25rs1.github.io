@@ -176,6 +176,12 @@
 		  background-color:red;
 		  left:760px;
 		}
+		#gamemode4{
+		  background-color:blue;
+		  left:600px;
+		  top:480px;
+		  width:230px;
+		}
 
 	</style>
 </head>
@@ -214,11 +220,15 @@
 		<div id="gamemode1" class="gamemodes">EASY</div>
 		<div id="gamemode2" class="gamemodes">MEDIUM</div>
 		<div id="gamemode3" class="gamemodes">HARD</div>
+		<div id="gamemode4" class="gamemodes">RAMP UP</div>
+
 	</center>
 	<script>
 		var charSelect = 0;
 		var gameModeSelect = 5;
 		var move_speed = 2.5;
+		var gameModeChosen = 0;
+
 		let gravity = .5;
 		let bird = document.querySelector('.bird');
 		let bird_props = bird.getBoundingClientRect();
@@ -337,7 +347,7 @@
 			gamemode1.style.opacity = "100%";
 			gamemode2.style.opacity = "100%";
 			gamemode3.style.opacity = "100%";
-
+			gamemode4.style.opacity = "100%";
 		}
 		gamemode1.addEventListener('click',function(){
 			if (gameModeSelect == 0){
@@ -360,10 +370,19 @@
 				gameModeSelected();
 			}
 		});
+		gamemode4.addEventListener('click',function(){
+			if (gameModeSelect == 0){
+				gameModeSelect = 1;
+				move_speed = 3;
+				gameModeChosen = 4;
+				gameModeSelected();
+			}
+		});
 		function gameModeSelected(){
 			gamemode1.style.opacity = "0%";
 			gamemode2.style.opacity = "0%";
 			gamemode3.style.opacity = "0%";
+			gamemode4.style.opacity = "0%";
 			message.innerText = "Press Enter To Start Game";
 		}
 
@@ -432,6 +451,15 @@
 					element.increase_score == '1'
 				) {
 					score_val.innerHTML = +score_val.innerHTML + 1;
+					if (gameModeChosen == 4 && score_val.innerText <= 10){
+						move_speed = 3;
+					}
+					if (gameModeChosen == 4 && score_val.innerText > 10){
+						move_speed = 2.5;
+					}
+					if (gameModeChosen == 4 && score_val.innerText > 30){
+						move_speed = 2;
+					}
 				}
 				element.style.left =
 					pipe_sprite_props.left - move_speed + 'px';
