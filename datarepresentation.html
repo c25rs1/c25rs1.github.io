@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>% Vaccine Protection</title>
+  </head>
+  <style>
+      body {
+			height: 100vh;
+			width: 100vw;
+			overflow:hidden;
+		}
+		#header{
+			width:100%;
+            font-size:8vh;
+            text-align:center;
+            background-color:lime;
+            z-index:3;
+            position:absolute;
+      }
+      #go{
+      	position:absolute;
+      	top:20%;
+      	left:13%;
+      	text-align:center;
+      	font-size:40px;
+      	background-color:lime;
+      }
+      #menu{
+      	position:absolute;
+      	top:20%;
+      	width:30%;
+      	height:80%;
+      	background-color:lightblue;
+      	z-index:-1;
+      	font-size:40px;
+      	text-align: center;
+      }
+      .buttonH{
+      	width:30%;
+      	font-size:30px;
+      	position:absolute;
+      }
+      #doses{
+     	top:32%;
+      }
+      .buttons{
+      	width:10%;
+      	font-size:30px;
+      	position:absolute;
+      	background-color:lightblue;
+      	text-align:center;
+      }
+      #a{
+      	top:38%;
+      	left:1%;
+      }
+      #b{
+      	top:38%;
+      	left:10%;
+      }
+      #c{
+      	top:38%;
+      	left:20%;
+      }
+      #vaccine{
+      	top:44%;
+      }
+      #one{
+      	top:50%;
+      	left:1%;
+      }
+      #two{
+      	top:50%;
+      	left:10%;
+      }
+      #three{
+      	top:50%;
+      	left:20%;
+      }
+      .bars{
+        width:70px;
+        height:500px;
+        background-color:lightblue;
+        position:absolute;
+        top:250px;
+        text-align:center;
+      }
+      #original{
+        left:40%;
+      }
+      #delta{
+        left:47%;
+      }
+      #omicron{
+        left:54%;
+      }
+      #alpha{
+        left:61%;
+      }
+      #beta{
+        left:68%;
+      }
+      #gamma{
+        left:75%;
+      }
+      .cover{
+        width:70px;
+        height:500px;
+        background-color:blue;
+        position:absolute;
+        top:250px;
+        text-align:center;
+        opacity:0%;
+      }
+      #original2{
+        left:40%;
+      }
+      #delta2{
+        left:47%;
+      }
+      #omicron2{
+        left:54%;
+      }
+      #alpha2{
+        left:61%;
+      }
+      #beta2{
+        left:68%;
+      }
+      #gamma2{
+        left:75%;
+      }
+    </style>
+  <body>
+	<center>
+		<div id="header">% Vaccine Protection Against Symptomatic COVID</div>
+	</center>
+
+    <div id = "go"> GO! </div>
+    <div id = "menu"><br> Menu</div>
+    <div id="doses" class="buttonH">Select Doses:</div>
+    <div id="a" class="buttons">1</div>
+    <div id="b" class="buttons">2</div>
+    <div id="c" class="buttons">Boosted</div>
+    <div id="vaccine" class="buttonH">Select Vaccine:</div>
+    <div id="one" class="buttons">Astra Zeneca</div>
+    <div id="two" class="buttons">Pfizer</div>
+    <div id="three" class="buttons">J&J</div>
+
+    <div id="original" class="bars">Original</div>
+    <div id="delta" class="bars">Delta</div>
+    <div id="omicron" class="bars">Omicron</div>
+    <div id="alpha" class="bars">Alpha</div>
+    <div id="beta" class="bars">Beta</div>
+    <div id="gamma" class="bars">Gamma</div>
+
+    <div id="original2" class="cover">%</div>
+    <div id="delta2" class="cover">%</div>
+    <div id="omicron2" class="cover">%</div>
+    <div id="alpha2" class="cover">%</div>
+    <div id="beta2" class="cover">%</div>
+    <div id="gamma2" class="cover">%</div>
+  </body>
+
+  <script>
+
+  	let doses = 1;
+  	let vaccines = 1;
+
+    a.style.backgroundColor = "blue";
+    one.style.backgroundColor = "blue";
+
+    let math;
+    let math2;
+
+    let data;
+    let data2;
+    let data3;
+    let data4;
+    let data5;
+    let data6;
+    
+    a.addEventListener('click', function(){
+    	if (doses != 1){
+    		doses = 1;
+    		a.style.backgroundColor = "blue";
+    		b.style.backgroundColor = "lightblue";
+    		c.style.backgroundColor = "lightblue";
+    	}
+    })
+    b.addEventListener('click', function(){
+    	if (doses != 2){
+    		doses = 2;
+    		a.style.backgroundColor = "lightblue";
+    		b.style.backgroundColor = "blue";
+    		c.style.backgroundColor = "lightblue";
+    	}
+    })
+    c.addEventListener('click', function(){
+    	if (doses != 3){
+    		doses = 3;
+    		a.style.backgroundColor = "lightblue";
+    		b.style.backgroundColor = "lightblue";
+    		c.style.backgroundColor = "blue";
+    	}
+    })
+    one.addEventListener('click', function(){
+    	if (vaccines != 1){
+    		vaccines = 1;
+    		one.style.backgroundColor = "blue";
+    		two.style.backgroundColor = "lightblue";
+    		three.style.backgroundColor = "lightblue";
+    	}
+    })
+    two.addEventListener('click', function(){
+    	if (vaccines != 2){
+        vaccines = 2;
+    		one.style.backgroundColor = "lightblue";
+    		two.style.backgroundColor = "blue";
+    		three.style.backgroundColor = "lightblue";
+    	}
+    })
+    three.addEventListener('click', function(){
+    	if (vaccines != 3){
+        vaccines = 3;
+    		one.style.backgroundColor = "lightblue";
+    		two.style.backgroundColor = "lightblue";
+    		three.style.backgroundColor = "blue";
+    	}
+    })
+    go.addEventListener('click', function(){
+      clearbars();
+    	if (doses == 1 && vaccines == 1){
+        oneAstraZeneca();
+      }
+      if (doses == 1 && vaccines == 2){
+        onePfizer();
+      }
+      if (doses == 1 && vaccines == 3){
+        oneJJ();
+      }
+      if (doses == 2 && vaccines == 1){
+        twoAstraZeneca();
+      }
+      if (doses == 2 && vaccines == 2){
+        twoPfizer();
+      }
+      if (doses == 2 && vaccines == 3){
+        alert("J&J is only one shot.");
+      }
+      if (doses == 3 && vaccines == 1){
+        threeAstraZeneca();
+      }
+      if (doses == 3 && vaccines == 2){
+        threePfizer();
+      }
+      if (doses == 3 && vaccines == 3){
+        threeJJ();
+      }
+      calculatebars();
+	   });
+    function clearbars(){
+      original2.style.opacity = "0%";
+      delta2.style.opacity = "0%";
+      omicron2.style.opacity = "0%";
+      alpha2.style.opacity = "0%";
+      beta2.style.opacity = "0%";
+      gamma2.style.opacity = "0%";
+      data = 0;
+      data2 = 0;
+      data3 = 0;
+      data4 = 0;
+      data5 = 0;
+      data6 = 0;
+    }
+    function oneAstraZeneca(){
+      data = 60;
+      data2 = 31;
+      data3 = 0;
+      data4 = 50;
+      data5 = 51;
+      data6 = 60;
+    }
+    function onePfizer(){
+      data = 80;
+      data2 = 45;
+      data3 = 0;
+      data4 = 50;
+      data5 = 56;
+      data6 = 34;
+    }
+    function oneJJ(){
+      data = 69;
+      data2 = 72;
+      data3 = 0;
+      data4 = 74;
+      data5 = 66;
+      data6 = 68;
+    }
+    function twoAstraZeneca(){
+      data = 82;
+      data2 = 70;
+      data3 = 10;
+      data4 = 77;
+      data5 = 75;
+      data6 = 75;
+    }
+    function twoPfizer(){
+      data = 95;
+      data2 = 76;
+      data3 = 34;
+      data4 = 91;
+      data5 = 83;
+      data6 = 90;
+    }
+    function threeAstraZeneca(){
+      data = 82;
+      data2 = 94;
+      data3 = 75;
+      data4 = 77;
+      data5 = 75;
+      data6 = 75;
+    }
+    function threePfizer(){
+      data = 95;
+      data2 = 94;
+      data3 = 75;
+      data4 = 91;
+      data5 = 83;
+      data6 = 90;
+    }
+    function threeJJ(){
+      data = 69;
+      data2 = 94;
+      data3 = 75;
+      data4 = 74;
+      data5 = 66;
+      data6 = 68;
+    }
+    function calculatebars(){
+      math = (data*500)/100;
+      math2 = (500-math)+250;
+      original2.style.opacity="100%";
+      original2.style.height = math + "px";
+      original2.style.top = math2 + "px";
+      original2.innerText = data+"%";
+
+      math = (data2*500)/100;
+      math2 = (500-math)+250;
+      delta2.style.opacity="100%";
+      delta2.style.height = math + "px";
+      delta2.style.top = math2 + "px";
+      delta2.innerText = data2+"%";
+
+      math = (data3*500)/100;
+      math2 = (500-math)+250;
+      omicron2.style.opacity="100%";
+      omicron2.style.height = math + "px";
+      omicron2.style.top = math2 + "px";
+      omicron2.innerText = data3+"%";
+
+      math = (data4*500)/100;
+      math2 = (500-math)+250;
+      alpha2.style.opacity="100%";
+      alpha2.style.height = math + "px";
+      alpha2.style.top = math2 + "px";
+      alpha2.innerText = data4+"%";
+
+      math = (data5*500)/100;
+      math2 = (500-math)+250;
+      beta2.style.opacity="100%";
+      beta2.style.height = math + "px";
+      beta2.style.top = math2 + "px";
+      beta2.innerText = data5+"%";
+
+      math = (data6*500)/100;
+      math2 = (500-math)+250;
+      gamma2.style.opacity="100%";
+      gamma2.style.height = math + "px";
+      gamma2.style.top = math2 + "px";
+      gamma2.innerText = data6+"%";
+    }
+  </script> 
+</html>
