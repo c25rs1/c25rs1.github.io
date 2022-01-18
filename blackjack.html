@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Black Jack</title>
+	<style type="text/css">
+		body {
+			height: 100vh;
+			width: 100vw;
+			background-color:lightblue;
+			overflow:hidden;
+		}
+		#header{
+			width:100%;
+		    font-size:8vh;
+		    text-align:center;
+		    background-color:lime;
+		    z-index:3;
+		    position:absolute;
+		    top:0%;
+		    font-family: "Times New Roman", Times, serif;
+ 		}
+		html {
+		  box-sizing: border-box;
+		}
+		.game {
+		  position: absolute;
+		  top: 50%;
+		  left: 50%;
+		  transform: translate(-50%, -50%);
+		}
+
+		.hidden {
+		  display: none !important;
+		}
+
+		.invisble {
+		  visibility: hidden;
+		}
+
+		.heading {
+		  font-size: 3em;
+		}
+
+		.unclickable {
+		  pointer-events: none;
+		}
+
+		.info-section {
+		  text-align: center;
+		  position:relative;
+		  top:250px;
+		}
+
+		.button {
+		  display: inline-block;
+		  height: 38px;
+		  padding: 0 30px;
+		  color: #555;
+		  text-align: center;
+		  font-size: 14px;
+		  font-weight: 600;
+		  line-height: 38px;
+		  letter-spacing: 0.1rem;
+		  text-transform: uppercase;
+		  text-decoration: none;
+		  white-space: nowrap;
+		  background-color: transparent;
+		  border-radius: 4px;
+		  border: 1px solid #bbb;
+		  cursor: pointer;
+		}
+
+		.button:hover {
+		  color: #333;
+		  border-color: #888;
+		  outline: 0;
+		}
+
+		.info {
+		  font-size: 22px;
+		}
+
+		.labels{
+			width:100%;
+			height:50px;
+			font-size:6vh;
+			left:1%;
+			position:absolute;
+		}
+		#dealer{
+			top:10%;
+		}
+		#player{
+			top:40%;
+		}
+		.info {
+		  font-size: 22px;
+		}
+		.cards{
+			width:120px;
+			height:150px;
+			top:75%;
+			position:absolute;
+			background-size:contain;
+		}
+		#cover{
+			background-image:url(cover.png);
+			z-index:2;
+			opacity:0%;
+		}
+	</style>
+</head>
+<body>
+	<div id="header">Black Jack</div>
+
+	    <div id="dealer" class="labels">Dealer:</div>
+	    <div id="player" class="labels">Player:</div>
+	    <div id="cover" class="cards"></div>
+	<main class="game">
+	  <footer class="info-section">
+	    <button class="button" id="start">Start</button>
+	   	<div class="info js-info hidden" id="info"></div>
+	    <div id="moneyValue" class="heading">Money: 50</div>
+	    <div id="betValue" class="heading">Bet: 0</div>
+	    <button class="button" id="plus">+</button>
+	    <button class="button" id="minus">-</button>
+	    <button class="button" id="all">ALL IN</button>
+	    <button class="button hidden" id="stay">STAY</button>
+		<button class="button hidden" id="hit">HIT</button>
+		<button class="button hidden" id="split">SPLIT</button>
+	    <button class="button hidden" id="double">2X</button>
+	  </footer>
+	</main>
+		
+
+
+
+	<script type="text/javascript">
+		var cardsCount = 0;
+		var dealerTotal = 0;
+		var playerTotal = 0;
+		var playerTotal2 = 0;
+		var money = 50;
+		var bet = 0;
+
+		var random;
+		var random2;
+		var suitChosen;
+		var cardSelected;
+		var i = 0;
+
+		var hiddenCard;
+		var hiddenNumber;
+
+		var playerCard1;
+		var playerCard2;
+		var dealerCard1;
+		var dealerCard2;
+
+		var cardsTotal;
+
+		var reset = 0;
+		var secondHand = 0;
+		var saveRandom = 0;
+		var playerSplit1 = 0;
+		var playerSplit2 = 1;
+		var playerSplitYes = 0;
+
+		var hiddenAdded = 0;
+		var winnerChecked = 0;
+
+		const startButton = document.getElementById("start");
+		const plusButton = document.getElementById("plus");
+		const minusButton = document.getElementById("minus");
+		const allButton = document.getElementById("all");
+		const info = document.getElementById("info");		
+
+		function newCard() {
+			console.log("newCard called");
+		  const cards = ['2', '3', '4', '5', '6', '7','8','9','10','11','12','13'];
+		   random = cards[Math.floor(Math.random() * cards.length)];
+		  const suit = ['clubs','hearts','spades','diamonds'];
+		   random2 = suit[Math.floor(Math.random() * suit.length)];
+		   if (random2 == 'clubs'){
+		   	suitChosen = "C";
+		   }
+		   if (random2 == 'hearts'){
+		   	suitChosen = "H";
+		   }
+		   if (random2 == 'spades'){
+		   	suitChosen = "S";
+		   }
+		   if (random2 == 'diamonds'){
+		   	suitChosen = "D";
+		   }
+		   cardSelected = random + suitChosen;
+
+		   saveRandom = random;
+		   random = parseInt(random);
+		   if (random >= 10){
+		   	random = 10;
+		   }
+		   console.log("New card called ", random, cardSelected);
+
+		  return cardSelected;
+		  return random;
+		  return random2;
+		}
+
+		function deal() {
+			if (info.textContent == 'Wait for the deal'){
+				var looper = setInterval(function(){
+					newCard();
+	        		i = i + 1;
+	        		if (i == 1){
+						playerCard1 = random;
+						playerSplit1 = saveRandom;
+						card1.style.backgroundImage = 'url('+cardSelected+'.png)';
+						card1.style.top = "50%";
+						playerTotal = playerTotal + random;
+					}
+					if (i == 2){
+						dealerCard1 = random;
+						hiddenCard = cardSelected;
+						hiddenNumber = random;
+						card2.style.backgroundImage = 'url(cover.png)';
+						card2.style.top = "20%";
+						dealerTotal = dealerTotal + random;
+						dealerTotal = dealerTotal - hiddenNumber;
+					}
+					if (i == 3){
+						playerCard2 = random;
+						playerSplit2 = saveRandom;
+						card3.style.backgroundImage = 'url('+cardSelected+'.png)';
+						card3.style.top = "50%";
+						card3.style.left = "10%";
+						playerTotal = playerTotal + random;
+					}
+					if (i == 4){
+						dealerCard2 = random;
+						card4.style.backgroundImage = 'url('+cardSelected+'.png)';
+						card4.style.top = "20%";
+						card4.style.left = "10%";
+						clearInterval(looper);
+						console.log("deal ", playerCard1, dealerCard1,playerCard2, dealerCard2);
+						dealerTotal = dealerTotal + random;
+						cardsTotal = 4;
+						playerTurn();
+					}
+					player.textContent = 'Player: ' + playerTotal;	   
+					dealer.textContent = 'Dealer: ' + (dealerTotal);
+					console.log("after deal ", playerTotal, dealerTotal);     	
+
+        		}, 500)
+			}
+		}
+
+		function playerTurn(){
+			console.log("players turn called");
+			info.textContent = 'Player turn';
+			stay.classList.remove('hidden');
+			hit.classList.remove('hidden');
+			split.classList.remove('hidden');
+			double.classList.remove('hidden');
+			stay.addEventListener('click',stayClicked);
+			hit.addEventListener('click',hitClicked);
+			split.addEventListener('click',splitClicked);
+			double.addEventListener('click',doubleClicked);
+		}
+		function stayClicked(){
+			console.log("stay clicked");
+			if (secondHand == 0 || secondHand == 2){
+				console.log("normal stay x1 ", secondHand);
+				hideButtons();
+				dealerTurn();
+			} else {
+				console.log("stay x2 ", secondHand)
+				alert("Now to hand #2");
+				secondHand = 2;
+				console.log("stays all done", secondHand)
+			}
+			
+		}
+		function hitClicked(){
+			newCard();
+			cardsTotal = cardsTotal + 1; 
+			if (secondHand == 2){
+				playerTotal2 = playerTotal2 + random;
+			} else if (secondHand == 0 || secondHand == 1){
+				playerTotal = playerTotal + random;
+			}
+			console.log("player totals: ", playerTotal, playerTotal2)
+			player.textContent = 'Player: ' + playerTotal;
+			console.log("added to display playerTotal")
+			if (cardsTotal == 5){
+				card5.style.backgroundImage = 'url('+cardSelected+'.png';
+				card5.style.top = "50%";
+				card5.style.left = "20%";
+				console.log("player cards x3");
+			}
+			if (cardsTotal == 6){
+				card6.style.backgroundImage = 'url('+cardSelected+'.png';
+				card6.style.top = "50%";
+				card6.style.left = "30%";
+				console.log("player cards x4");
+			}
+			if (cardsTotal == 7){
+				card7.style.backgroundImage = 'url('+cardSelected+'.png';
+				card7.style.top = "50%";
+				card7.style.left = "40%";
+				console.log("player cards x5");
+			}
+			if (cardsTotal == 8){
+				card8.style.backgroundImage = 'url('+cardSelected+'.png';
+				card8.style.top = "50%";
+				card8.style.left = "55%";
+				console.log("player cards x6");
+			}
+			if (cardsTotal == 9){
+				card9.style.backgroundImage = 'url('+cardSelected+'.png';
+				card9.style.top = "50%";
+				card9.style.left = "60%";
+			}
+			if (cardsTotal == 10){
+				card10.style.backgroundImage = 'url('+cardSelected+'.png';
+				card10.style.top = "50%";
+				card10.style.left = "70%";
+			}
+			if (cardsTotal == 11){
+				card11.style.backgroundImage = 'url('+cardSelected+'.png';
+				card11.style.top = "50%";
+				card11.style.left = "80%";
+			}
+			if (cardsTotal == 12){
+				card12.style.backgroundImage = 'url('+cardSelected+'.png';
+				card12.style.top = "50%";
+				card12.style.left = "90%";
+			}
+			if (cardsTotal == 13){
+				card13.style.backgroundImage = 'url('+cardSelected+'.png';
+				card13.style.top = "50%";
+				card13.style.left = "100%";
+			}
+
+			if (playerTotal > 21){
+				if (secondHand == 0){
+					info.textContent = 'Game Over! Bust!'+playerTotal;
+					dealerTurn();
+				} else if (secondHand == 1){
+					alert("First Hand is bust");
+					secondHand = 2;
+				}
+			}
+		}
+		function splitClicked(){
+			if (playerSplit1 == playerSplit2){
+				card3.style.left = "50%";
+				secondHand = 1;
+				playerTotal = playerTotal - playerCard2;
+				playerTotal2 = playerCard2;
+				playerSplitYes = 1;
+				bet = bet/2;
+				betValue.textContent = 'Bet: ' + bet + ' per hand';
+				console.log("split clicked. bet: ", bet, playerTotal, playerTotal2)
+			} else {
+				alert("These cards are not the same");
+				console.log("tried to split, bet: ", bet, playerTotal, playerTotal2);
+			}
+		}
+		function doubleClicked(){
+			if (bet*2 > money){
+				alert("You do not have enough money");
+				console.log("tried to double, bet: ", bet)
+			} else {
+				bet = bet * 2;
+				betValue.textContent = 'Bet: ' + bet;
+				console.log("doubled, bet: ", bet);
+				hitClicked();
+				dealerTurn();
+			}
+		}
+
+		function dealerTurn(){
+			info.textContent = 'Dealer Turn';
+			card2.style.backgroundImage = 'url('+hiddenCard+'.png)';
+			cardsTotal = 13;
+			var looper2 = setInterval(function(){
+				console.log("dealers total:", dealerTotal)
+				if (hiddenAdded == 0){
+					dealerTotal = dealerTotal + hiddenNumber;
+					dealer.textContent = 'Dealer: ' + (dealerTotal);
+					hiddenAdded = 1;
+					console.log("added hidden number ", dealerTotal);
+				}
+				if (dealerTotal <= 16){
+					newCard();
+					cardsTotal = cardsTotal + 1;
+					console.log("cards: ", cardsTotal)
+					dealerTotal = dealerTotal + random;
+					dealer.textContent = 'Dealer: ' + dealerTotal;
+					if (cardsTotal == 14){
+						card14.style.backgroundImage = 'url('+cardSelected+'.png';
+						card14.style.top = "20%";
+						card14.style.left = "20%";
+					}
+					if (cardsTotal == 15){
+						card15.style.backgroundImage = 'url('+cardSelected+'.png';
+						card15.style.top = "20%";
+						card15.style.left = "30%";
+					}
+					if (cardsTotal == 16){
+						card16.style.backgroundImage = 'url('+cardSelected+'.png';
+						card16.style.top = "20%";
+						card16.style.left = "40%";
+					}
+					if (cardsTotal == 17){
+						card17.style.backgroundImage = 'url('+cardSelected+'.png';
+						card17.style.top = "20%";
+						card17.style.left = "50%";
+					}
+					if (cardsTotal == 18){
+						card18.style.backgroundImage = 'url('+cardSelected+'.png';
+						card18.style.top = "20%";
+						card18.style.left = "60%";
+					}
+					if (cardsTotal == 19){
+						card19.style.backgroundImage = 'url('+cardSelected+'.png';
+						card19.style.top = "20%";
+						card19.style.left = "70%";
+					}
+					if (cardsTotal == 20){
+						card20.style.backgroundImage = 'url('+cardSelected+'.png';
+						card20.style.top = "20%";
+						card20.style.left = "80%";
+					}
+					if (cardsTotal == 21){
+						card21.style.backgroundImage = 'url('+cardSelected+'.png';
+						card21.style.top = "20%";
+						card21.style.left = "90%";
+					}
+					if (cardsTotal == 22){
+						card22.style.backgroundImage = 'url('+cardSelected+'.png';
+						card22.style.top = "20%";
+						card22.style.left = "100%";
+					}
+
+					if (dealerTotal > 21){
+						clearInterval(looper2);
+						winnerCheck();
+					}
+				} else if (dealerTotal >= 17){
+					clearInterval(looper2);
+					winnerCheck();
+				}
+				if (dealerTotal <= 21 && dealerTotal >= 17){
+						clearInterval(looper2);
+						winnerCheck();
+				}
+			}, 500)
+		}
+
+		function winnerCheck(){
+			console.log(playerTotal, dealerTotal);
+			if (winnerChecked == 0){
+				winnerChecked = 1;
+				if (playerSplitYes == 1){
+					bet = bet/2;
+					if (playerTotal2 > 21 && dealerTotal > 21){
+						tie();
+					} else if (playerTotal2 > 21 && dealerTotal < 21){
+						lose();
+					} else if (playerTotal2 < 21 && playerTotal2 > 21){
+						win();
+					} else if (playerTotal2 > dealerTotal){
+						win();
+					} else if (playerTotal2 < dealerTotal){
+						lose();
+					} else if (playerTotal2 = dealerTotal){
+						tie();
+					}
+				}
+				if (playerTotal > 21 && dealerTotal > 21){
+					console.log("player bust dealer bust - tie");
+					tie();
+				} else if (playerTotal > 21 && dealerTotal <= 21){
+					console.log("player bust dealer in - lose");
+					console.log("worked");
+					lose();
+				} else if (playerTotal <= 21 && dealerTotal > 21){
+					console.log("player in dealer bust - win");
+					console.log("worked");
+					win();
+				} else if (playerTotal > dealerTotal){
+					console.log("player > dealer - win");
+					console.log("worked");
+					win();
+				} else if (playerTotal < dealerTotal){
+					console.log("player < dealer - lose");
+					console.log("worked");
+					lose();
+				} else if (playerTotal = dealerTotal){
+					console.log("player = dealer - tie");
+					console.log("worked");
+					tie();
+				}
+			}	
+		}
+
+		function win(){
+			money = money + bet;
+			betValue.textContent = 'Bet: ' + bet;
+			moneyValue.textContent = 'Money: ' + money;
+			info.textContent = 'You Win';
+			end();
+		}
+		function lose(){
+			money = money - bet;
+			betValue.textContent = 'Bet: ' + bet;
+			moneyValue.textContent = 'Money: ' + money;
+			info.textContent = 'You Lose';
+			end();
+		}
+		function tie(){
+			bet = 0;
+			betValue.textContent = 'Bet: ' + bet;
+			moneyValue.textContent = 'Money: ' + money;
+			info.textContent = 'You Push';
+			end();
+		}
+		function end(){
+			startButton.classList.remove('hidden');
+			hideButtons();
+			startButton.textContent = 'RESET';
+			reset = 1;
+		}
+		function done(){
+			i = 0;
+			cardsCount = 0;
+			bet = 0;
+			betValue.textContent = 'Bet: ' + bet;
+			cardsTotal = 0;
+			secondHand = 0;
+			player.textContent = 'Player: ';
+			dealer.textContent = 'Dealer: ';
+			hiddenAdded = 0;
+			playerSplitYes = 0;
+			winnerChecked = 0;
+		}
+
+		function hideButtons(){
+			stay.classList.add('hidden');
+			hit.classList.add('hidden');
+			split.classList.add('hidden');
+			double.classList.add('hidden');
+		}
+
+		function newDeck(){
+			var a = document.getElementById('card1');
+			a.remove();
+			var a = document.getElementById('card2');
+			a.remove();
+			var a = document.getElementById('card3');
+			a.remove();
+			var a = document.getElementById('card4');
+			a.remove();
+			var a = document.getElementById('card5');
+			a.remove();
+			var a = document.getElementById('card6');
+			a.remove();
+			var a = document.getElementById('card7');
+			a.remove();
+			var a = document.getElementById('card8');
+			a.remove();
+			var a = document.getElementById('card9');
+			a.remove();
+			var a = document.getElementById('card10');
+			a.remove();
+			var a = document.getElementById('card11');
+			a.remove();
+			var a = document.getElementById('card12');
+			a.remove();
+			var a = document.getElementById('card13');
+			a.remove();
+			var a = document.getElementById('card14');
+			a.remove();
+			var a = document.getElementById('card15');
+			a.remove();
+			var a = document.getElementById('card16');
+			a.remove();
+			var a = document.getElementById('card17');
+			a.remove();
+			var a = document.getElementById('card18');
+			a.remove();
+			var a = document.getElementById('card19');
+			a.remove();
+			var a = document.getElementById('card20');
+			a.remove();
+			var a = document.getElementById('card21');
+			a.remove();
+			var a = document.getElementById('card22');
+			a.remove();
+		}
+
+		function startGame() {
+			plusButton.classList.remove('hidden');
+			minusButton.classList.remove('hidden');
+			allButton.classList.remove('hidden');
+			if (money <= 0){
+				alert("NO MONEY LEFT");
+				hideButtons();
+				done();
+				newDeck();
+				createDeck();
+				startButton.textContent = 'START';
+				reset = 0;
+			} else if (reset == 0){
+				if (bet == 0){
+					alert("Please set a bet first");
+				} else {
+					startButton.classList.add('hidden');
+					plusButton.classList.add('hidden');
+					minusButton.classList.add('hidden');
+					allButton.classList.add('hidden');
+					info.classList.remove('hidden');
+					info.textContent = 'Wait for the deal';
+					dealerTotal = 0;
+					playerTotal = 0;
+					deal();
+				}
+			} else {
+				done();
+				newDeck();
+				createDeck();
+				startButton.textContent = 'START';
+				reset = 0;
+			}
+		}
+		function createDeck(){
+			for (let i = 0; i < 22; i++){
+	    		cardsCount = cardsCount + 1;
+	            var card = document.createElement('div');
+	            document.body.appendChild(card);
+	            card.classList.add("cards");
+	            card.id = "card"+cardsCount;
+	    	}
+	    	cover.style.opacity="100%";
+		}
+		function addBet(){
+			console.log("plus");
+			bet = bet + 1;
+			if (bet > money){
+				alert("You do not have that much money");
+				bet = bet - 1;
+			}
+			betValue.textContent = "Bet: " + bet;
+		}
+		function minusBet(){
+			console.log("minus");
+			bet = bet - 1;
+			if (bet < 1){
+				alert("Minimum bet is one!");
+				bet = bet + 1;
+			}
+			betValue.textContent = "Bet: " + bet;
+		}
+		function allBet(){
+			console.log("all in");
+			bet = money;
+			betValue.textContent = "Bet: " + bet;
+		}
+		createDeck();
+		plusButton.addEventListener('click',addBet);
+		minusButton.addEventListener('click',minusBet);
+		allButton.addEventListener('click',allBet);
+		startButton.addEventListener('click', startGame);
+	</script>
+</body>
+</html>

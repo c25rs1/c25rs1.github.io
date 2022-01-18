@@ -1337,6 +1337,12 @@
       const RIGHT_KEY = 39;
       const UP_KEY = 38;
       const DOWN_KEY = 40;
+
+      const LEFT_KEY2 = 65;
+      const RIGHT_KEY2 = 68;
+      const UP_KEY2 = 87;
+      const DOWN_KEY2 = 83;
+
           
       if (changing_direction) return;
       changing_direction = true;
@@ -1358,6 +1364,22 @@
         dy = 0;
       }
       if (keyPressed === DOWN_KEY && !goingUp) {
+        dx = 0;
+        dy = size;
+      }
+      if (keyPressed === LEFT_KEY2 && !goingRight) {
+        dx = -1 * size;
+        dy = 0;
+      }
+      if (keyPressed === UP_KEY2 && !goingDown) {
+        dx = 0;
+        dy = -1 * size;
+      }
+      if (keyPressed === RIGHT_KEY2 && !goingLeft) {
+        dx = size;
+        dy = 0;
+      }
+      if (keyPressed === DOWN_KEY2 && !goingUp) {
         dx = 0;
         dy = size;
       }

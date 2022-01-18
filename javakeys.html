@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Key Codes
+	</title>
+	<style type="text/css">
+		#header{
+			width:100%;
+            font-size:8vh;
+            text-align:center;
+            background-color:lime;
+            z-index:3;
+            position:absolute;
+      }
+		#instruct{
+			font-size:20px;
+			text-align:center;
+		}
+		body {
+			background-color: lightblue;
+			overflow:hidden;
+		}
+		#bigdisplay{
+			width:50%;
+			height:30%;
+			position:absolute;
+			top:20%;
+			left:25%;
+			background-color:blue;
+			text-align:center;
+			font-size: 200px;
+		}
+		.text{
+			width:20%;
+			height:20%;
+			position:absolute;
+			top:60%;
+			background-color:red;
+			text-align:center;
+			font-size:50px;
+		}
+		#small1{
+			left:2.5%;
+		}
+		#small2{
+			left:28.5%;
+		}
+		#small3{
+			left:53.5%;
+		}
+		#small4{
+			left:78.5%;
+		}
+		.title{
+			width:20%;
+			height:5%;
+			position:absolute;
+			top:55%;
+			background-color:green;
+			text-align:center;
+			font-size:30px;
+		}
+		#title1{
+			left:2.5%;
+		}
+		#title2{
+			left:28.5%;
+		}
+		#title3{
+			left:53.5%;
+		}
+		#title4{
+			left:78.5%;
+		}
+	</style>
+</head>
+<body>
+	<div id="header">
+		Key Codes
+	</div>
+	<div id="instruct">
+		Hit a key to gain the info!
+	</div>
+	<div id="bigdisplay">AB</div>
+	<div id="small1" class="text">A</div>
+	<div id="small2" class="text">B</div>
+	<div id="small3" class="text">C</div>
+	<div id="small4" class="text">D</div>
+	<div id="title1" class="title">event.key</div>
+	<div id="title2" class="title">event.location</div>
+	<div id="title3" class="title">event.keyCode</div>
+	<div id="title4" class="title">event.code</div>
+
+	<script type="text/javascript">
+		document.addEventListener("keydown", keyPressed);
+		
+		function keyPressed(event) {
+			const keyPushed = event.keyCode;
+
+			if (keyPushed == 49){
+				small1.innerText = "1";
+				small2.innerText = "0";
+				small4.innerText = "Digit1";
+			}
+			if (keyPushed == 50){
+				small1.innerText = "2";
+				small2.innerText = "0";
+				small4.innerText = "Digit2";
+			}
+			if (keyPushed == 51){
+				small1.innerText = "3";
+				small2.innerText = "0";
+				small4.innerText = "Digit3";
+			}
+			if (keyPushed == 52){
+				small1.innerText = "4";
+				small2.innerText = "0";
+				small4.innerText = "Digit4";
+			}
+			if (keyPushed == 53){
+				small1.innerText = "5";
+				small2.innerText = "0";
+				small4.innerText = "Digit5";
+			}
+			if (keyPushed == 54){
+				small1.innerText = "6";
+				small2.innerText = "0";
+				small4.innerText = "Digit6";
+			}
+			if (keyPushed == 55){
+				small1.innerText = "7";
+				small2.innerText = "0";
+				small4.innerText = "Digit7";
+			}
+			if (keyPushed == 56){
+				small1.innerText = "8";
+				small2.innerText = "0";
+				small4.innerText = "Digit8";
+			}
+			if (keyPushed == 57){
+				small1.innerText = "9";
+				small2.innerText = "0";
+				small4.innerText = "Digit9";
+			}
+			if (keyPushed == 48){
+				small1.innerText = "0";
+				small2.innerText = "0";
+				small4.innerText = "Digit0";
+			}
+			if (keyPushed == 27){
+				small1.innerText = "Escape";
+				small2.innerText = "0";
+				small4.innerText = "Escape";
+			}
+			if (keyPushed == 192){
+				small1.innerText = "`";
+				small2.innerText = "0";
+				small4.innerText = "Backquote";
+			}
+			if (keyPushed == 189){
+				small1.innerText = "-";
+				small2.innerText = "0";
+				small4.innerText = "Minus";
+			}
+			if (keyPushed == 187){
+				small1.innerText = "=";
+				small2.innerText = "0";
+				small4.innerText = "Equal";
+			}
+			if (keyPushed == 49){
+				small1.innerText = "1";
+				small2.innerText = "0";
+				small4.innerText = "Digit1";
+			}
+			if (keyPushed == 8){
+				small1.innerText = "Backspace";
+				small2.innerText = "0";
+				small4.innerText = "Backspace";
+			}
+			if (keyPushed == 9){
+				small1.innerText = "Tab";
+				small2.innerText = "0";
+				small4.innerText = "Tab";
+			}
+			if (keyPushed == 65){
+				small1.innerText = "a";
+				small2.innerText = "0";
+				small4.innerText = "KeyA";
+			}
+			if (keyPushed == 66){
+				small1.innerText = "b";
+				small2.innerText = "0";
+				small4.innerText = "KeyB";
+			}
+			if (keyPushed == 67){
+				small1.innerText = "c";
+				small2.innerText = "0";
+				small4.innerText = "KeyC";
+			}
+			if (keyPushed == 68){
+				small1.innerText = "d";
+				small2.innerText = "0";
+				small4.innerText = "KeyD";
+			}
+			if (keyPushed == 69){
+				small1.innerText = "e";
+				small2.innerText = "0";
+				small4.innerText = "KeyE";
+			}
+			if (keyPushed == 70){
+				small1.innerText = "f";
+				small2.innerText = "0";
+				small4.innerText = "KeyF";
+			}
+			if (keyPushed == 71){
+				small1.innerText = "g";
+				small2.innerText = "0";
+				small4.innerText = "KeyG";
+			}
+			if (keyPushed == 72){
+				small1.innerText = "h";
+				small2.innerText = "0";
+				small4.innerText = "KeyH";
+			}
+			if (keyPushed == 73){
+				small1.innerText = "i";
+				small2.innerText = "0";
+				small4.innerText = "KeyI";
+			}
+			if (keyPushed == 74){
+				small1.innerText = "j";
+				small2.innerText = "0";
+				small4.innerText = "KeyJ";
+			}
+			if (keyPushed == 75){
+				small1.innerText = "k";
+				small2.innerText = "0";
+				small4.innerText = "KeyK";
+			}
+			if (keyPushed == 76){
+				small1.innerText = "l";
+				small2.innerText = "0";
+				small4.innerText = "KeyL";
+			}
+			if (keyPushed == 77){
+				small1.innerText = "m";
+				small2.innerText = "0";
+				small4.innerText = "KeyM";
+			}
+			if (keyPushed == 78){
+				small1.innerText = "n";
+				small2.innerText = "0";
+				small4.innerText = "KeyN";
+			}
+			if (keyPushed == 79){
+				small1.innerText = "o";
+				small2.innerText = "0";
+				small4.innerText = "KeyO";
+			}
+			if (keyPushed == 80){
+				small1.innerText = "p";
+				small2.innerText = "0";
+				small4.innerText = "KeyP";
+			}
+			if (keyPushed == 81){
+				small1.innerText = "q";
+				small2.innerText = "0";
+				small4.innerText = "KeyQ";
+			}
+			if (keyPushed == 82){
+				small1.innerText = "r";
+				small2.innerText = "0";
+				small4.innerText = "KeyR";
+			}
+			if (keyPushed == 83){
+				small1.innerText = "s";
+				small2.innerText = "0";
+				small4.innerText = "KeyS";
+			}
+			if (keyPushed == 84){
+				small1.innerText = "t";
+				small2.innerText = "0";
+				small4.innerText = "KeyT";
+			}
+			if (keyPushed == 85){
+				small1.innerText = "u";
+				small2.innerText = "0";
+				small4.innerText = "KeyU";
+			}
+			if (keyPushed == 86){
+				small1.innerText = "v";
+				small2.innerText = "0";
+				small4.innerText = "KeyV";
+			}
+			if (keyPushed == 87){
+				small1.innerText = "w";
+				small2.innerText = "0";
+				small4.innerText = "KeyW";
+			}
+			if (keyPushed == 88){
+				small1.innerText = "x";
+				small2.innerText = "0";
+				small4.innerText = "KeyX";
+			}
+			if (keyPushed == 89){
+				small1.innerText = "y";
+				small2.innerText = "0";
+				small4.innerText = "KeyY";
+			}
+			if (keyPushed == 90){
+				small1.innerText = "z";
+				small2.innerText = "0";
+				small4.innerText = "KeyZ";
+			}
+			if (keyPushed == 20){
+				small1.innerText = "CapsLock";
+				small2.innerText = "0";
+				small4.innerText = "CapsLock";
+			}
+			if (keyPushed == 16){
+				small1.innerText = "Shift";
+				small2.innerText = "1";
+				small4.innerText = "ShiftLeft";
+			}
+			if (keyPushed == 17){
+				small1.innerText = "Control";
+				small2.innerText = "1";
+				small4.innerText = "ControlLeft";
+			}
+			if (keyPushed == 18){
+				small1.innerText = "Alt";
+				small2.innerText = "1";
+				small4.innerText = "AltLeft";
+			}
+			if (keyPushed == 91){
+				small1.innerText = "Meta";
+				small2.innerText = "1";
+				small4.innerText = "MetaLeft";
+			}
+			if (keyPushed == 32){
+				small1.innerText = "Space";
+				small2.innerText = "0";
+				small4.innerText = "Space";
+			}
+			if (keyPushed == 219){
+				small1.innerText = "[";
+				small2.innerText = "0";
+				small4.innerText = "BracketLeft";
+			}
+			if (keyPushed == 221){
+				small1.innerText = "]";
+				small2.innerText = "0";
+				small4.innerText = "BracketRight";
+			}
+			if (keyPushed == 220){
+				small1.innerText = "|";
+				small2.innerText = "0";
+				small4.innerText = "Backslash";
+			}
+			if (keyPushed == 186){
+				small1.innerText = ";";
+				small2.innerText = "0";
+				small4.innerText = "Semicolon";
+			}
+			if (keyPushed == 222){
+				small1.innerText = "'";
+				small2.innerText = "0";
+				small4.innerText = "Quote";
+			}
+			if (keyPushed == 13){
+				small1.innerText = "Enter";
+				small2.innerText = "0";
+				small4.innerText = "Enter";
+			}
+			if (keyPushed == 188){
+				small1.innerText = ",";
+				small2.innerText = "0";
+				small4.innerText = "Comma";
+			}
+			if (keyPushed == 190){
+				small1.innerText = ".";
+				small2.innerText = "0";
+				small4.innerText = "Period";
+			}
+			if (keyPushed == 191){
+				small1.innerText = "/";
+				small2.innerText = "0";
+				small4.innerText = "Slash";
+			}
+			if (keyPushed == 16){
+				small1.innerText = "Shift";
+				small2.innerText = "2";
+				small4.innerText = "ShiftRight";
+			}
+			if (keyPushed == 93){
+				small1.innerText = "Meta";
+				small2.innerText = "2";
+				small4.innerText = "MetaRight";
+			}
+			if (keyPushed == 18){
+				small1.innerText = "Alt";
+				small2.innerText = "2";
+				small4.innerText = "AltRight";
+			}
+			if (keyPushed == 37){
+				small1.innerText = "ArrowLeft";
+				small2.innerText = "0";
+				small4.innerText = "ArrowLeft";
+			}
+			if (keyPushed == 38){
+				small1.innerText = "ArrowUp";
+				small2.innerText = "0";
+				small4.innerText = "ArrowUp";
+			}
+			if (keyPushed == 39){
+				small1.innerText = "ArrowRight";
+				small2.innerText = "0";
+				small4.innerText = "ArrowRight";
+			}
+			if (keyPushed == 40){
+				small1.innerText = "ArrowDown";
+				small2.innerText = "0";
+				small4.innerText = "ArrowDown";
+			}
+
+
+
+			small3.innerText = keyPushed;
+			bigdisplay.innerText = small3.innerText;
+		}
+	</script>
+</body>
+</html>
