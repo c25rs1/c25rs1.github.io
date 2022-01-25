@@ -1,141 +1,61 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+  
 <head>
-	<title>
-		Testing
-	</title>
-
-	<style type="text/css">
-		body{
-			width: 1425px;
-			height: 800px;
-			background-color:lightblue;
-		}
-		#green{
-			width:100px;
-			height:100px;
-			position:absolute;
-			background-color:green;
-			background-repeat:no-repeat;
-			background-size:contain;
-			opacity:50%;
-			top:100px;
-			left:100px;
-			animation: greenChange 0.5s linear infinite
-		}
-		#red{
-			width:100px;
-			height:100px;
-			position:absolute;
-			background-color:red;
-			background-repeat:no-repeat;
-			background-size:contain;
-			opacity:50%;
-			top:100px;
-			left:200px;
-			animation: redChange 0.5s linear infinite
-		}
-		#yellow{
-			width:100px;
-			height:100px;
-			position:absolute;
-			background-color:yellow;
-			background-repeat:no-repeat;
-			background-size:contain;
-			opacity:50%;
-			top:200px;
-			left:100px;
-			animation: yellowChange 0.5s linear infinite
-		}
-		#blue{
-			width:100px;
-			height:100px;
-			position:absolute;
-			background-color:blue;
-			background-repeat:no-repeat;
-			background-size:contain;
-			opacity:50%;
-			top:200px;
-			left:200px;
-			animation: blueChange 0.5s linear infinite
-		}
-
-		@keyframes greenChange{
-			0%{
-				opacity: 20%;
-			}
-			100%{
-				opacity:100%;
-			}
-
-		}
-		@keyframes redChange{
-			0%{
-				opacity: 20%;
-			}
-			100%{
-				opacity:100%;
-			}
-
-		}
-		@keyframes yellowChange{
-			0%{
-				opacity: 20%;
-			}
-			100%{
-				opacity:100%;
-			}
-
-		}
-		@keyframes blueChange{
-			0%{
-				opacity: 20%;
-			}
-			100%{
-				opacity:100%;
-			}
-
-		}
-
-	</style>
+    <title>
+      How to check if a variable
+      is an array in JavaScript?
+  </title>
 </head>
+  
 <body>
-	<div id="green"></div>
-	<div id="red"></div>
-	<div id="yellow"></div>
-	<div id="blue"></div>
-
-	<script type="text/javascript">
-
-		document.getElementById("green").style.webkitAnimationPlayState = "paused";
-		document.getElementById("red").style.webkitAnimationPlayState = "paused";
-		document.getElementById("yellow").style.webkitAnimationPlayState = "paused";
-		document.getElementById("blue").style.webkitAnimationPlayState = "paused";
-
-		window.addEventListener("keydown", start);
-
-		function start() {
-		    document.getElementById("green").style.webkitAnimationPlayState = "running";
-		    setTimeout(function() {
-		        document.getElementById("green").style.webkitAnimationPlayState = "paused";
-		    }, 501);
-
-		    document.getElementById("red").style.webkitAnimationPlayState = "running";
-		    setTimeout(function() {
-		        document.getElementById("red").style.webkitAnimationPlayState = "paused";
-		    }, 501);
-
-		    document.getElementById("yellow").style.webkitAnimationPlayState = "running";
-		    setTimeout(function() {
-		        document.getElementById("yellow").style.webkitAnimationPlayState = "paused";
-		    }, 501);
-
-		    document.getElementById("blue").style.webkitAnimationPlayState = "running";
-		    setTimeout(function() {
-		        document.getElementById("blue").style.webkitAnimationPlayState = "paused";
-		    }, 501);
-		}
-
-	</script>
+    <h1 style="color: green">
+      GeeksforGeeks
+  </h1>
+    <b>
+      How to check if a variable 
+      is an array in JavaScript?
+  </b>
+    <p>
+      Click on the button to check
+      if the variable is an array
+  </p>
+    <p>Output for string:
+        <div class="outputString">
+  </div>
+  
+    <p>Output for number:
+        <div class="outputNumber">
+  </div>
+  
+    <p>Output for array:
+        <div class="outputArray">
+  </div>
+  
+  
+    <button onclick="checkArray()">
+      Click here
+  </button>
+    <script type="text/javascript">
+        function checkArray() {
+            let str = 'This is a string';
+            let num = 25;
+            let arr = [10, 20, 30, 40];
+  
+            ans = Array.isArray(str);
+            document.querySelector(
+              '.outputString').textContent = ans;
+            
+            ans = Array.isArray(num);
+            document.querySelector(
+              '.outputNumber').textContent = ans;
+            
+            ans = Array.isArray(arr);
+            document.querySelector(
+              '.outputArray').textContent = ans;
+        }
+    </script>
 </body>
+  
 </html>

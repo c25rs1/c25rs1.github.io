@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WORDLE</title>
+	<style type="text/css">
+		body {
+			height: 100vh;
+			width: 100vw;
+			background-color:lightblue;
+			overflow:hidden;
+			font-size:100px;
+		}
+		#header{
+			width:100%;
+		    font-size:8vh;
+		    text-align:center;
+		    background-color:lime;
+		    z-index:3;
+		    position:absolute;
+		    top:0%;
+		    font-family: "Times New Roman", Times, serif;
+ 		}
+ 		#cover{
+ 			width:100%;
+ 			height:85%;
+ 			position:absolute;
+ 			text-align:center;
+ 			top:15%;
+ 			z-index:5;
+ 			background-color:lightblue;
+ 			font-size:4vh;
+ 		}
+ 		#cover2{
+ 			width:80%;
+ 			height:5%;
+ 			position:absolute;
+ 			top:10%;
+ 			left:20%;
+ 			background-color:lightblue;
+ 			z-index:5;
+ 		}
+ 		#start {
+		  display: inline-block;
+		  height: 38px;
+		  padding: 0 30px;
+		  color: #555;
+		  text-align: center;
+		  font-size: 14px;
+		  font-weight: 600;
+		  line-height: 38px;
+		  letter-spacing: 0.1rem;
+		  text-transform: uppercase;
+		  text-decoration: none;
+		  white-space: nowrap;
+		  background-color: transparent;
+		  border-radius: 4px;
+		  border: 1px solid #bbb;
+		  cursor: pointer;
+		  z-index:6;
+		}
+		#start:hover {
+		  color: #333;
+		  border-color: #888;
+		  outline: 0;
+		}
+		#guess {
+		  display: inline-block;
+		  height: 38px;
+		  padding: 0 30px;
+		  color: #555;
+		  text-align: center;
+		  font-size: 14px;
+		  font-weight: 600;
+		  line-height: 38px;
+		  letter-spacing: 0.1rem;
+		  text-transform: uppercase;
+		  text-decoration: none;
+		  white-space: nowrap;
+		  background-color: transparent;
+		  border-radius: 4px;
+		  border: 1px solid #bbb;
+		  cursor: pointer;
+		  z-index:6;
+		}
+		#guess:hover {
+		  color: #333;
+		  border-color: #888;
+		  outline: 0;
+		}
+ 		.hidden {
+		  display: none !important;
+		}
+ 		.guessbox{
+ 			width:100px;
+ 			height:100px;
+ 			position:absolute;
+ 			background-color:white;
+ 			border-style: solid;
+  			border-width: 2px;
+ 			border-color:black;
+ 		}
+ 		.g1{
+ 			top:11%;
+ 		}
+ 		.g2{
+ 			top:26%;
+ 		}
+ 		.g3{
+ 			top:41%;
+ 		}
+ 		.g4{
+ 			top:56%;
+ 		}
+ 		.g5{
+ 			top:71%;
+ 		}
+ 		.g6{
+ 			top:86%;
+ 		}
+ 		.b1{
+ 			left:25%;
+ 		}
+ 		.b2{
+ 			left:35%;
+ 		}
+ 		.b3{
+ 			left:45%;
+ 		}
+ 		.b4{
+ 			left:55%;
+ 		}
+ 		.b5{
+ 			left:65%;
+ 		}
+ 	</style>
+</head>
+<body>
+	<div id="header">Wordle</div>
+
+	<button id="start">Start</button>
+	<br>
+	<button id="guess">Guess</button>
+
+	<div id="cover">Rules:<br>Guess the WORDLE in 6 tries<br><br>After each guess, the color of the tiles will change to show how close your guess wa to the word<br><br>Green indicates the letter is in the word and in the correct spot<br><br>Yellow indicates the letter is in the word but in the wrong spot<br><br>Grey indicates the letter is not in the word or in any spot<br><br>Type each guess into your keboard!<br><br>Unlike the real WORDLE, there is no dictionary linked, but please only guess real words<br><br>Good luck!<br><br>
+	</div>
+	<div id="cover2"></div>
+
+
+
+
+	<div id="g1b1" class="g1 b1 guessbox"></div>
+	<div id="g1b2" class="g1 b2 guessbox"></div>
+	<div id="g1b3" class="g1 b3 guessbox"></div>
+	<div id="g1b4" class="g1 b4 guessbox"></div>
+	<div id="g1b5" class="g1 b5 guessbox"></div>
+
+	<div id="g2b1" class="g2 b1 guessbox"></div>
+	<div id="g2b2" class="g2 b2 guessbox"></div>
+	<div id="g2b3" class="g2 b3 guessbox"></div>
+	<div id="g2b4" class="g2 b4 guessbox"></div>
+	<div id="g2b5" class="g2 b5 guessbox"></div>
+
+	<div id="g3b1" class="g3 b1 guessbox"></div>
+	<div id="g3b2" class="g3 b2 guessbox"></div>
+	<div id="g3b3" class="g3 b3 guessbox"></div>
+	<div id="g3b4" class="g3 b4 guessbox"></div>
+	<div id="g3b5" class="g3 b5 guessbox"></div>
+
+	<div id="g4b1" class="g4 b1 guessbox"></div>
+	<div id="g4b2" class="g4 b2 guessbox"></div>
+	<div id="g4b3" class="g4 b3 guessbox"></div>
+	<div id="g4b4" class="g4 b4 guessbox"></div>
+	<div id="g4b5" class="g4 b5 guessbox"></div>
+
+	<div id="g5b1" class="g5 b1 guessbox"></div>
+	<div id="g5b2" class="g5 b2 guessbox"></div>
+	<div id="g5b3" class="g5 b3 guessbox"></div>
+	<div id="g5b4" class="g5 b4 guessbox"></div>
+	<div id="g5b5" class="g5 b5 guessbox"></div>
+
+	<div id="g6b1" class="g6 b1 guessbox"></div>
+	<div id="g6b2" class="g6 b2 guessbox"></div>
+	<div id="g6b3" class="g6 b3 guessbox"></div>
+	<div id="g6b4" class="g6 b4 guessbox"></div>
+	<div id="g6b5" class="g6 b5 guessbox"></div>
+
+	<script type="text/javascript">
+		alert("Warning: You are free to type any string of letters that you would like. However, please follow the rules of wordle");
+		const startButton = document.getElementById("start");
+		const guessButton = document.getElementById("guess");
+		guessButton.classList.add('hidden');
+
+		var currentBox = g1b1;
+		var boxNumber = 1;
+		var keyPushed;
+		var works = 0;
+
+		var gameOn = 1;
+
+		var min=1;
+		var max=41;
+		var random = Math.floor(Math.random() * (+max - +min)) + +min;
+
+		var word = "level" + random;
+
+
+		var word = ["C", "O", "D", "E", "R"];
+
+		if (random == 2){
+			word = ["A", "F", "T", "E", "R"];
+		} else if (random == 3){
+			word = ["A", "L", "O", "N", "G"];
+		} else if (random == 4){
+		word = ["A", "L", "T", "E", "R"];
+		} else if (random == 5){
+		word  = ["A", "N", "G", "E", "R"];
+		} else if (random == 6){
+		word = ["A", "P", "A", "R", "T"];
+		} else if (random == 7){
+		word = ["B", "A", "D", "L", "Y"];
+		} else if (random == 8){
+		word = ["B", "A", "K", "E", "R"];
+		} else if (random == 9){
+		word = ["B", "E", "I", "N", "G"];
+		} else if (random == 10){
+		word = ["B", "E", "L", "O", "W"];
+		} else if (random == 11){
+		word = ["B", "O", "A", "R", "D"];
+		} else if (random == 12){
+		word = ["C", "A", "U", "S", "E"];
+		} else if (random == 13){
+		word = ["C", "H", "I", "E", "F"];
+		} else if (random == 14){
+		word = ["C", "L", "O", "C", "K"];
+		} else if (random == 15){
+		word = ["C", "O", "A", "S", "T"];
+		} else if (random == 16){
+		word = ["C", "R", "O", "W", "N"];
+		} else if (random == 17){
+
+		word = ["D", "O", "U", "B", "T"];
+		} else if (random == 18){
+		word = ["D", "R", "I", "N", "K"];
+		} else if (random == 19){
+		word = ["D", "Y", "I", "N", "G"];
+		} else if (random == 20){
+		word = ["D", "A", "I", "L", "Y"];
+		} else if (random == 21){
+		word = ["D", "R", "O", "V", "E"];
+		} else if (random == 22){
+
+		word = ["E", "L", "I", "T", "E"];
+		} else if (random == 23){
+		word = ["E", "N", "J", "O", "Y"];
+		} else if (random == 24){
+		word = ["E", "X", "A", "C", "T"];
+		} else if (random == 25){
+		word = ["E", "A", "R", "L", "Y"];
+		} else if (random == 26){
+		word = ["E", "Q", "U", "A", "L"];
+		} else if (random == 27){
+
+		word = ["F", "I", "B", "E", "R"];
+		} else if (random == 28){
+		word = ["F", "I", "X", "E", "D"];
+		} else if (random == 29){
+		word = ["F", "L", "A", "S", "H"];
+		} else if (random == 30){
+		word = ["F", "O", "C", "U", "S"];
+		} else if (random == 31){
+		word = ["F", "O", "R", "C", "E"];
+		} else if (random == 32){
+
+		word = ["G", "R", "A", "N", "T"];
+		} else if (random == 33){
+		word = ["G", "I", "V", "E", "N"];
+		} else if (random == 34){
+		word = ["G", "R", "A", "D", "E"];
+		} else if (random == 35){
+		word = ["G", "R", "O", "W", "N"];
+		} else if (random == 36){
+		word = ["G", "U", "A", "R", "D"];
+		} else if (random == 37){
+
+		word = ["H", "E", "A", "V", "Y"];
+		} else if (random == 38){
+		word = ["H", "E", "N", "C", "E"];
+		} else if (random == 39){
+		word = ["H", "O", "T", "E", "L"];
+		} else if (random == 40){
+		word = ["H", "O", "U", "S", "E"];
+		} else if (random == 41){
+		word = ["H", "E", "A", "R", "T"];
+		} else if (random == 42){
+
+		word = ["I", "N", "D", "E", "X"];
+		} else if (random == 43){
+		word = ["I", "N", "P", "U", "T"];
+		} else if (random == 44){
+		word = ["I", "M", "A", "G", "E"];
+		} else if (random == 45){
+		word = ["I", "D", "E", "A", "L"];
+		} else if (random == 46){
+		word = ["I", "S", "S", "U", "E"];
+		} else if (random == 47){
+
+		word = ["J", "O", "I", "N", "T"];
+		} else if (random == 48){
+		word = ["J", "U", "D", "G", "E"];
+		} else if (random == 49){
+
+		word = ["L", "A", "R", "G", "E"];
+		} else if (random == 50){
+		word = ["L", "A", "U", "G", "H"];
+		} else if (random == 51){
+		word = ["L", "A", "Y", "E", "R"];
+		} else if (random == 52){
+		word = ["L", "E", "A", "V", "E"];
+		} else if (random == 53){
+		word = ["L", "O", "G", "I", "C"];
+		} else if (random == 54){
+
+		word = ["M", "A", "G", "I", "C"];
+		} else if (random == 55){
+		word = ["M", "A", "Y", "B", "E"];
+		} else if (random == 56){
+		word = ["M", "E", "A", "N", "T"];
+		} else if (random == 57){
+		word = ["M", "A", "Y", "O", "R"];
+		} else if (random == 58){
+		word = ["M", "O", "N", "E", "Y"];
+		} else if (random == 59){
+
+		word = ["N", "I", "G", "H", "T"];
+		} else if (random == 60){
+		word = ["N", "O", "R", "T", "H"];
+		} else if (random == 61){
+		word = ["N", "O", "V", "E", "L"];
+		} else if (random == 62){
+		word = ["N", "U", "R", "S", "E"];
+		} else if (random == 63){
+		word = ["N", "O", "T", "E", "D"];
+		} else if (random == 64){
+
+		word = ["O", "C", "E", "A", "N"];
+		} else if (random == 65){
+		word = ["O", "F", "T", "E", "N"];
+		} else if (random == 66){
+		word = ["O", "R", "D", "E", "R"];
+		} else if (random == 67){
+		word = ["O", "U", "G", "H", "T"];
+		} else if (random == 68){
+		word = ["O", "T", "H", "E", "R"];
+		} else if (random == 69){
+
+		word = ["P", "A", "I", "N", "T"];
+		} else if (random == 70){
+		word = ["P", "E", "A", "C", "E"];
+		} else if (random == 71){
+		word = ["P", "H", "A", "S", "E"];
+		} else if (random == 72){
+		word = ["P", "H", "O", "N", "E"];
+		} else if (random == 73){
+		word = ["P", "I", "E", "C", "E"];
+		} else if (random == 74){
+
+		word = ["Q", "U", "I", "C", "K"];
+		} else if (random == 75){
+		word = ["Q", "U", "I", "E", "T"];
+		} else if (random == 76){
+		word = ["Q", "U", "I", "T", "E"];
+		} else if (random == 77){
+
+		word = ["R", "A", "D", "I", "O"];
+		} else if (random == 78){
+		word = ["R", "E", "A", "C", "H"];
+		} else if (random == 79){
+		word = ["R", "I", "V", "A", "L"];
+		} else if (random == 80){
+		word = ["R", "O", "G", "E", "R"];
+		} else if (random == 81){
+		word = ["R", "O", "Y", "A", "L"];
+		} else if (random == 82){
+
+		word = ["S", "C", "O", "R", "E"];
+		} else if (random == 83){
+		word = ["S", "H", "A", "R", "P"];
+		} else if (random == 84){
+		word = ["S", "H", "E", "L", "F"];
+		} else if (random == 85){
+		word = ["S", "I", "X", "T", "H"];
+		} else if (random == 86){
+		word = ["S", "I", "Z", "E", "D"];
+		} else if (random == 87){
+
+		word = ["T", "H", "E", "F", "T"];
+		} else if (random == 88){
+		word = ["T", "H", "I", "R", "D"];
+		} else if (random == 89){
+		word = ["T", "H", "I", "C", "K"];
+		} else if (random == 90){
+		word = ["T", "O", "D", "A", "Y"];
+		} else if (random == 91){
+		word = ["T", "O", "U", "G", "H"];
+		} else if (random == 92){
+
+		word = ["U", "N", "D", "E", "R"];
+		} else if (random == 93){
+		word = ["U", "N", "I", "O", "N"];
+		} else if (random == 94){
+		word = ["U", "R", "B", "A", "N"];
+		} else if (random == 95){
+		word = ["U", "S", "A", "G", "E"];
+		} else if (random == 96){
+		word = ["U", "N", "D", "U", "E"];
+		} else if (random == 97){
+
+		word = ["V", "A", "L", "I", "D"];
+		} else if (random == 98){
+		word = ["V", "O", "I", "C", "E"];
+		} else if (random == 99){
+		word = ["V", "I", "R", "U", "S"];
+		} else if (random == 100){
+		word = ["V", "I", "T", "A", "L"];
+		} else if (random == 101){
+
+		word = ["W", "A", "S", "T", "E"];
+		} else if (random == 102){
+		word = ["W", "A", "T", "C", "H"];
+		} else if (random == 103){
+		word = ["W", "H", "I", "C", "H"];
+		} else if (random == 104){
+
+		word = ["Y", "I", "E", "L", "D"];
+		} else if (random == 105){
+		word = ["Y", "O", "U", "N", "G"];
+		} else if (random == 106){
+		word = ["Y", "O", "U", "T", "H"];
+		}
+
+		const keys = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+		const keysLower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+		console.log(word)
+
+		startButton.addEventListener('click', startGame);
+		guessButton.addEventListener('click', guessNow);
+		document.addEventListener("keydown", keyPressed);
+
+
+		function startGame(){
+			startButton.classList.add('hidden');
+			cover.style.top = "-1000px";
+			cover2.style.top="-1000px";
+			currentBox.style.borderWidth = "5px";
+		}
+
+
+		function keyPressed(event) {
+			var keyPushed = event.key;
+
+			confirmKey();
+			
+			if (works == 1 && gameOn == 1){
+				currentBox.innerText = keyPushed;
+				if (boxNumber == 5 || boxNumber == 10 || boxNumber == 15 || boxNumber == 20 || boxNumber == 25 || boxNumber == 30){
+					guessButton.classList.remove('hidden');
+					works = 0;
+				} else {
+					guessButton.classList.add('hidden');
+					normalChange();
+					works = 0;
+				}
+			}
+			
+		}
+		function changeBox(){
+			if (boxNumber == 1){
+				currentBox = g1b1;
+			}
+			if (boxNumber == 2){
+				currentBox = g1b2;
+			}
+			if (boxNumber == 3){
+				currentBox = g1b3;
+			}
+			if (boxNumber == 4){
+				currentBox = g1b4;
+			}
+			if (boxNumber == 5){
+				currentBox = g1b5;
+			}
+			if (boxNumber == 6){
+				currentBox = g2b1;
+			}
+			if (boxNumber == 7){
+				currentBox = g2b2;
+			}
+			if (boxNumber == 8){
+				currentBox = g2b3;
+			}
+			if (boxNumber == 9){
+				currentBox = g2b4;
+			}
+			if (boxNumber == 10){
+				currentBox = g2b5;
+			}
+			if (boxNumber == 11){
+				currentBox = g3b1;
+			}
+			if (boxNumber == 12){
+				currentBox = g3b2;
+			}
+			if (boxNumber == 13){
+				currentBox = g3b3;
+			}
+			if (boxNumber == 14){
+				currentBox = g3b4;
+			}
+			if (boxNumber == 15){
+				currentBox = g3b5;
+			}
+			if (boxNumber == 16){
+				currentBox = g4b1;
+			}
+			if (boxNumber == 17){
+				currentBox = g4b2;
+			}
+			if (boxNumber == 18){
+				currentBox = g4b3;
+			}
+			if (boxNumber == 19){
+				currentBox = g4b4;
+			}
+			if (boxNumber == 20){
+				currentBox = g4b5;
+			}
+			if (boxNumber == 21){
+				currentBox = g5b1;
+			}
+			if (boxNumber == 22){
+				currentBox = g5b2;
+			}
+			if (boxNumber == 23){
+				currentBox = g5b3;
+			}
+			if (boxNumber == 24){
+				currentBox = g5b4;
+			}
+			if (boxNumber == 25){
+				currentBox = g5b5;
+			}
+			if (boxNumber == 26){
+				currentBox = g6b1;
+			}
+			if (boxNumber == 27){
+				currentBox = g6b2;
+			}
+			if (boxNumber == 28){
+				currentBox = g6b3;
+			}
+			if (boxNumber == 29){
+				currentBox = g6b4;
+			}
+			if (boxNumber == 30){
+				currentBox = g6b5;
+			}
+			if (boxNumber == 31){
+				gameOn = 0;
+			}
+
+		}
+		function confirmKey(){
+			if (event.keyCode == 8){
+					guessButton.classList.add('hidden');
+					currentBox.innerText = " ";
+					boxNumber = boxNumber - 1;
+					currentBox.style.borderWidth = "2px";
+					if (boxNumber == 5 || boxNumber == 10 || boxNumber == 15 || boxNumber == 20 || boxNumber == 25 || boxNumber == 30){
+						boxNumber = boxNumber + 1;
+					}
+					changeBox();
+					currentBox.innerText = " ";
+					currentBox.style.borderWidth = "5px";
+			} else if (keys.includes(event.key)){
+				works = 1;
+			} else if (keysLower.includes(event.key)){
+				alert("Please select capslock");
+			} else {
+				if (event.keyCode != 20){
+					alert("Please choose a letter!");
+				}
+			}
+		}
+		function normalChange(){
+			currentBox.style.borderWidth = "2px";
+			boxNumber = boxNumber + 1;
+			changeBox();
+			currentBox.style.borderWidth = "5px";
+		}
+
+		function guessNow(){
+			checkGuess();
+			boxNumber = boxNumber+1;
+			currentBox.style.borderWidth = "2px";
+			changeBox();
+			currentBox.style.borderWidth = "5px";
+		}
+
+		function checkGuess(){
+			if (boxNumber == 5){
+				if (g1b1.innerText == word[0]){
+					g1b1.style.backgroundColor = "lime";
+				}
+				if (g1b1.innerText == word[1] || g1b1.innerText == word[2] || g1b1.innerText == word[3] || g1b1.innerText == word[4]){
+					g1b1.style.backgroundColor = "yellow";
+				}
+				if (g1b2.innerText == word[1]){
+					g1b2.style.backgroundColor = "lime";
+				}
+				if (g1b2.innerText == word[0] || g1b2.innerText == word[2] || g1b2.innerText == word[3] || g1b2.innerText == word[4]){
+					g1b2.style.backgroundColor = "yellow";
+				}
+				if (g1b3.innerText == word[2]){
+					g1b3.style.backgroundColor = "lime";
+				}
+				if (g1b3.innerText == word[1] || g1b3.innerText == word[0] || g1b3.innerText == word[3] || g1b3.innerText == word[4]){
+					g1b3.style.backgroundColor = "yellow";
+				}
+				if (g1b4.innerText == word[3]){
+					g1b4.style.backgroundColor = "lime";
+				}
+				if (g1b4.innerText == word[1] || g1b4.innerText == word[2] || g1b4.innerText == word[0] || g1b4.innerText == word[4]){
+					g1b4.style.backgroundColor = "yellow";
+				}
+				if (g1b5.innerText == word[4]){
+					g1b5.style.backgroundColor = "lime";
+				}
+				if (g1b5.innerText == word[1] || g1b5.innerText == word[2] || g1b5.innerText == word[3] || g1b5.innerText == word[0]){
+					g1b5.style.backgroundColor = "yellow";
+				}
+				checkWin();
+			}
+			if (boxNumber == 10){
+				if (g2b1.innerText == word[0]){
+					g2b1.style.backgroundColor = "lime";
+				}
+				if (g2b1.innerText == word[1] || g2b1.innerText == word[2] || g2b1.innerText == word[3] || g2b1.innerText == word[4]){
+					g2b1.style.backgroundColor = "yellow";
+				}
+				if (g2b2.innerText == word[1]){
+					g2b2.style.backgroundColor = "lime";
+				}
+				if (g2b2.innerText == word[0] || g2b2.innerText == word[2] || g2b2.innerText == word[3] || g2b2.innerText == word[4]){
+					g2b2.style.backgroundColor = "yellow";
+				}
+				if (g2b3.innerText == word[2]){
+					g2b3.style.backgroundColor = "lime";
+				}
+				if (g2b3.innerText == word[1] || g2b3.innerText == word[0] || g2b3.innerText == word[3] || g2b3.innerText == word[4]){
+					g2b3.style.backgroundColor = "yellow";
+				}
+				if (g2b4.innerText == word[3]){
+					g2b4.style.backgroundColor = "lime";
+				}
+				if (g2b4.innerText == word[1] || g2b4.innerText == word[2] || g2b4.innerText == word[0] || g2b4.innerText == word[4]){
+					g2b4.style.backgroundColor = "yellow";
+				}
+				if (g2b5.innerText == word[4]){
+					g2b5.style.backgroundColor = "lime";
+				}
+				if (g2b5.innerText == word[1] || g2b5.innerText == word[2] || g2b5.innerText == word[3] || g2b5.innerText == word[0]){
+					g2b5.style.backgroundColor = "yellow";
+				}
+				checkWin();
+			}
+			if (boxNumber == 15){
+				if (g3b1.innerText == word[0]){
+					g3b1.style.backgroundColor = "lime";
+				}
+				if (g3b1.innerText == word[1] || g3b1.innerText == word[2] || g3b1.innerText == word[3] || g3b1.innerText == word[4]){
+					g3b1.style.backgroundColor = "yellow";
+				}
+				if (g3b2.innerText == word[1]){
+					g3b2.style.backgroundColor = "lime";
+				}
+				if (g3b2.innerText == word[0] || g3b2.innerText == word[2] || g3b2.innerText == word[3] || g3b2.innerText == word[4]){
+					g3b2.style.backgroundColor = "yellow";
+				}
+				if (g3b3.innerText == word[2]){
+					g3b3.style.backgroundColor = "lime";
+				}
+				if (g3b3.innerText == word[1] || g3b3.innerText == word[0] || g3b3.innerText == word[3] || g3b3.innerText == word[4]){
+					g3b3.style.backgroundColor = "yellow";
+				}
+				if (g3b4.innerText == word[3]){
+					g3b4.style.backgroundColor = "lime";
+				}
+				if (g3b4.innerText == word[1] || g3b4.innerText == word[2] || g3b4.innerText == word[0] || g3b4.innerText == word[4]){
+					g3b4.style.backgroundColor = "yellow";
+				}
+				if (g3b5.innerText == word[4]){
+					g3b5.style.backgroundColor = "lime";
+				}
+				if (g3b5.innerText == word[1] || g3b5.innerText == word[2] || g3b5.innerText == word[3] || g3b5.innerText == word[0]){
+					g3b5.style.backgroundColor = "yellow";
+				}
+				checkWin();
+			}
+			if (boxNumber == 20){
+				if (g4b1.innerText == word[0]){
+					g4b1.style.backgroundColor = "lime";
+				}
+				if (g4b1.innerText == word[1] || g4b1.innerText == word[2] || g4b1.innerText == word[3] || g4b1.innerText == word[4]){
+					g4b1.style.backgroundColor = "yellow";
+				}
+				if (g4b2.innerText == word[1]){
+					g4b2.style.backgroundColor = "lime";
+				}
+				if (g4b2.innerText == word[0] || g4b2.innerText == word[2] || g4b2.innerText == word[3] || g4b2.innerText == word[4]){
+					g4b2.style.backgroundColor = "yellow";
+				}
+				if (g4b3.innerText == word[2]){
+					g4b3.style.backgroundColor = "lime";
+				}
+				if (g4b3.innerText == word[1] || g4b3.innerText == word[0] || g4b3.innerText == word[3] || g4b3.innerText == word[4]){
+					g4b3.style.backgroundColor = "yellow";
+				}
+				if (g4b4.innerText == word[3]){
+					g4b4.style.backgroundColor = "lime";
+				}
+				if (g4b4.innerText == word[1] || g4b4.innerText == word[2] || g4b4.innerText == word[0] || g4b4.innerText == word[4]){
+					g4b4.style.backgroundColor = "yellow";
+				}
+				if (g4b5.innerText == word[4]){
+					g4b5.style.backgroundColor = "lime";
+				}
+				if (g4b5.innerText == word[1] || g4b5.innerText == word[2] || g4b5.innerText == word[3] || g4b5.innerText == word[0]){
+					g4b5.style.backgroundColor = "yellow";
+				}
+				checkWin();
+			}
+			if (boxNumber == 25){
+				if (g5b1.innerText == word[0]){
+					g5b1.style.backgroundColor = "lime";
+				}
+				if (g5b1.innerText == word[1] || g5b1.innerText == word[2] || g5b1.innerText == word[3] || g5b1.innerText == word[4]){
+					g5b1.style.backgroundColor = "yellow";
+				}
+				if (g5b2.innerText == word[1]){
+					g5b2.style.backgroundColor = "lime";
+				}
+				if (g5b2.innerText == word[0] || g5b2.innerText == word[2] || g5b2.innerText == word[3] || g5b2.innerText == word[4]){
+					g5b2.style.backgroundColor = "yellow";
+				}
+				if (g5b3.innerText == word[2]){
+					g5b3.style.backgroundColor = "lime";
+				}
+				if (g5b3.innerText == word[1] || g5b3.innerText == word[0] || g5b3.innerText == word[3] || g5b3.innerText == word[4]){
+					g5b3.style.backgroundColor = "yellow";
+				}
+				if (g5b4.innerText == word[3]){
+					g5b4.style.backgroundColor = "lime";
+				}
+				if (g5b4.innerText == word[1] || g5b4.innerText == word[2] || g5b4.innerText == word[0] || g5b4.innerText == word[4]){
+					g5b4.style.backgroundColor = "yellow";
+				}
+				if (g5b5.innerText == word[4]){
+					g5b5.style.backgroundColor = "lime";
+				}
+				if (g5b5.innerText == word[1] || g5b5.innerText == word[2] || g5b5.innerText == word[3] || g5b5.innerText == word[0]){
+					g5b5.style.backgroundColor = "yellow";
+				}
+				checkWin();
+			}
+			if (boxNumber == 30){
+				if (g6b1.innerText == word[0]){
+					g6b1.style.backgroundColor = "lime";
+				}
+				if (g6b1.innerText == word[1] || g6b1.innerText == word[2] || g6b1.innerText == word[3] || g6b1.innerText == word[4]){
+					g6b1.style.backgroundColor = "yellow";
+				}
+				if (g6b2.innerText == word[1]){
+					g6b2.style.backgroundColor = "lime";
+				}
+				if (g6b2.innerText == word[0] || g6b2.innerText == word[2] || g6b2.innerText == word[3] || g6b2.innerText == word[4]){
+					g6b2.style.backgroundColor = "yellow";
+				}
+				if (g6b3.innerText == word[2]){
+					g6b3.style.backgroundColor = "lime";
+				}
+				if (g6b3.innerText == word[1] || g6b3.innerText == word[0] || g6b3.innerText == word[3] || g6b3.innerText == word[4]){
+					g6b3.style.backgroundColor = "yellow";
+				}
+				if (g6b4.innerText == word[3]){
+					g6b4.style.backgroundColor = "lime";
+				}
+				if (g6b4.innerText == word[1] || g6b4.innerText == word[2] || g6b4.innerText == word[0] || g6b4.innerText == word[4]){
+					g6b4.style.backgroundColor = "yellow";
+				}
+				if (g6b5.innerText == word[4]){
+					g6b5.style.backgroundColor = "lime";
+				}
+				if (g6b5.innerText == word[1] || g6b5.innerText == word[2] || g6b5.innerText == word[3] || g6b5.innerText == word[0]){
+					g6b5.style.backgroundColor = "yellow";
+				}
+				checkWin();
+			}
+		}
+
+		function checkWin(){
+			if (g1b1.style.backgroundColor == "lime" && g1b2.style.backgroundColor == "lime" && g1b3.style.backgroundColor == "lime" && g1b4.style.backgroundColor == "lime" && g1b5.style.backgroundColor == "lime"){
+				gameOn = 0;
+			}
+			if (g2b1.style.backgroundColor == "lime" && g2b2.style.backgroundColor == "lime" && g2b3.style.backgroundColor == "lime" && g2b4.style.backgroundColor == "lime" && g2b5.style.backgroundColor == "lime"){
+				gameOn = 0;
+			}
+			if (g3b1.style.backgroundColor == "lime" && g3b2.style.backgroundColor == "lime" && g3b3.style.backgroundColor == "lime" && g3b4.style.backgroundColor == "lime" && g3b5.style.backgroundColor == "lime"){
+				gameOn = 0;
+			}
+			if (g4b1.style.backgroundColor == "lime" && g4b2.style.backgroundColor == "lime" && g4b3.style.backgroundColor == "lime" && g4b4.style.backgroundColor == "lime" && g4b5.style.backgroundColor == "lime"){
+				gameOn = 0;
+			}
+			if (g5b1.style.backgroundColor == "lime" && g5b2.style.backgroundColor == "lime" && g5b3.style.backgroundColor == "lime" && g5b4.style.backgroundColor == "lime" && g5b5.style.backgroundColor == "lime"){
+				gameOn = 0;
+			}
+			if (g6b1.style.backgroundColor == "lime" && g6b2.style.backgroundColor == "lime" && g6b3.style.backgroundColor == "lime" && g6b4.style.backgroundColor == "lime" && g6b5.style.backgroundColor == "lime"){
+				gameOn = 0;
+			}
+		}
+
+	</script>
+
+
+</body>
+</html>
