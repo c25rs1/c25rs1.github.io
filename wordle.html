@@ -198,11 +198,8 @@
 		var gameOn = 1;
 
 		var min=1;
-		var max=41;
+		var max=107;
 		var random = Math.floor(Math.random() * (+max - +min)) + +min;
-
-		var word = "level" + random;
-
 
 		var word = ["C", "O", "D", "E", "R"];
 
@@ -440,8 +437,7 @@
 
 		const keys = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 		const keysLower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-		console.log(word)
-
+		
 		startButton.addEventListener('click', startGame);
 		guessButton.addEventListener('click', guessNow);
 		document.addEventListener("keydown", keyPressed);
