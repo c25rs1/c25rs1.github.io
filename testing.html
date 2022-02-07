@@ -1,60 +1,92 @@
-
 <!DOCTYPE html>
 <html lang="en">
   
 <head>
     <title>
-      How to check if a variable
-      is an array in JavaScript?
+      testing
   </title>
+  <style type="text/css">
+    * {
+      margin: 0px;
+    }
+
+    #logo {
+      position: fixed;
+      top: 200px;
+      height: 200px;
+      width: 1000px;
+      left: 5%;
+      z-index: 4;
+      opacity: 0.8;
+      background-image:red;
+    }
+
+    #earthlogo {
+      position: fixed;
+      top: 200px;
+      height: 120px;
+      align-self: center;
+      left: 5%;
+      margin-left: 870px;
+      margin-top: 60px;
+      z-index: 4;
+      opacity: 0.9;
+    }
+
+    @keyframes anim {
+      50% {
+        transform: rotate(-15deg);
+      }
+      100% {
+        height: 100px;
+        width: 500px;
+        left: 10px;
+        top: 10px;
+        box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.7);
+        background-color: rgba(0, 0, 1, 0.3);
+        opacity: 0.7;
+      }
+    }
+
+    @keyframes anim2 {
+      50% {
+        filter: blur(40px);
+        transform: rotate(-15deg);
+      }
+      100% {
+        height: 60px;
+        width: 60px;
+        left: 10px;
+        top: 10px;
+        margin-left: 435px;
+        margin-top: 30px;
+        opacity: 0.8;
+      }
+    }
+
+    #backstar {
+      position: fixed;
+      width: 100%;
+      z-index: 1;
+    }
+
+    #earth {
+      position: absolute;
+      width: 100%;
+      z-index: 2;
+      top: 300px;
+    }
+
+  </style>
 </head>
   
 <body>
-    <h1 style="color: green">
-      GeeksforGeeks
-  </h1>
-    <b>
-      How to check if a variable 
-      is an array in JavaScript?
-  </b>
-    <p>
-      Click on the button to check
-      if the variable is an array
-  </p>
-    <p>Output for string:
-        <div class="outputString">
-  </div>
-  
-    <p>Output for number:
-        <div class="outputNumber">
-  </div>
-  
-    <p>Output for array:
-        <div class="outputArray">
-  </div>
-  
-  
-    <button onclick="checkArray()">
-      Click here
-  </button>
+
     <script type="text/javascript">
-        function checkArray() {
-            let str = 'This is a string';
-            let num = 25;
-            let arr = [10, 20, 30, 40];
-  
-            ans = Array.isArray(str);
-            document.querySelector(
-              '.outputString').textContent = ans;
-            
-            ans = Array.isArray(num);
-            document.querySelector(
-              '.outputNumber').textContent = ans;
-            
-            ans = Array.isArray(arr);
-            document.querySelector(
-              '.outputArray').textContent = ans;
-        }
+      function start() {
+        document.getElementById('logo').style.animation = "anim 2s 2s forward";
+        document.getElementById('earthlogo').style.animation = "anim2 2s 2s forward";
+      }
     </script>
 </body>
   

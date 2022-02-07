@@ -1,0 +1,34 @@
+		body {
+			height: 100vh;
+			width: 100vw;
+			background-color:lightblue;
+			overflow:hidden;
+		}
+		#header{
+			width:100%;
+		    font-size:8vh;
+		    text-align:center;
+		    background-color:lime;
+		    z-index:3;
+		    position:absolute;
+		    top:0%;
+		    font-family: "Times New Roman", Times, serif;
+ 		}
+#mine-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#mine-wrap .cell {
+  box-sizing: border-box;
+  background: #ddd;
+  border: 1px solid #ccc;
+  font-size: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+#mine-wrap .cell.mark { background: #fea; }
+#mine-wrap .cell.reveal { background: #f7f7f7; }
+#mine-wrap .cell.boom { background: #f00; }
+
+body, html { font-family: arial, sans-serif; }

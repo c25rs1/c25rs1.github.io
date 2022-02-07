@@ -38,12 +38,6 @@
 			font-size:20px;
 			text-align:center;
 		}
-		#bigbox{
-			top:125px;
-			width:45%;
-			left:54%;
-			position:absolute;
-		}
 		.break {
 			height:20px;
 			width:1000px;
@@ -55,14 +49,8 @@
 			background-color:lime;
 			color:blue;
 		}
-		.date2 {
-			font-size: 20px;
-			width:100px;
-			background-color:lime;
-			color:blue;
-		}
 		.text{
-			width:45%;
+			width:95%;
 			background-color:lightblue;
 			color:lightblue;
 		}
@@ -70,17 +58,6 @@
 			background-color:lime;
 			color:black;
 			transition:1.5s;
-		}
-		.text2{
-			position:relative;
-			background-color:lightblue;
-			color:lightblue;
-		}
-		.text2:hover{
-			background-color: lime;
-			color:black;
-			transition:1.5s;
-
 		}
 
 		body {
@@ -103,155 +80,98 @@
 	</div>
 
 <!-- COPY LINES AND REPEAT -->
-	<div class="break" id="break1">
+	<div class="break">
 		<br>
 		 </div>
-	<div class="date" id="date1">
+	<div class="date">
 		Oct 3rd, 21
 	</div>
-	<div class="text" id="text1">
+	<div class="text">
 		So far in CS1, I have learned how to create shapes and images and how to move them around the screen. Recently, I finished coding the design part of my website home screen which shows a background image that fills the screen, a tree, and a bird. I think it looks cool and it has taken me a considerable amount of time as I am not yet used to this format of coding. I was able to complete this by using nested divs which was a bit frustrating at first because as a parent div was moved, all the children divs moved as well. This made it hard to make small adjustments because it would lead to me having to fix all of the smaller issues that it would cause. Currently, I am designing my website to have multiple invisible boxes that link to different pages, which is my goal for the next few days. I want to make the invisible boxes hyperlink, but they are currently in nested divs. The problem with this is that one parent div will override the redirect code of its child div. I want to try and fix this which I think may result in me having to redo all the divs. 
 	</div>
 <!-- 	COPY ABOVE -->
-	<div id="bigbox">
-<!-- 		COPY BELOW -->		
-		<div class="break" id="break2">
-			<br>
-		 </div>
-		<div class="date2" id="date2">
+	<div class="break">
+		<br>
+	</div>
+		<div class="date">
 			Oct 4th, 21
 		</div>
-		<div class="text2" id="text2">
+		<div class="text">
 			Today, I worked on designing the journal page of my website. I was able to design the code to be copy paste so that I could easily enter new entries every time. I designed it with a heading as well as played with font sizing a little. I am trying to get the text to appear in a box by giving background colors in two columns, but I ran into an issue. I got the background colors, but to do that, I need to create a new class to break the texts from one another as I am using a br tag in the class of date. This creates a background color for that br as well which is the problem. This problem was just fixed as I wrote this. The other problem is that I do not know how to make the text alternate between two columns! Small change that I just made was to add a redirect bar to jump between pages at the top. This included making new divs and a tags to redirect the text to differet code pages.
 		</div>
-<!-- 		COPY ABOVE -->		
+		<div class="break" id="break3">
+			<br>
+			 </div>
+		<div class="date" id="date3">
+			Oct 6th, 21
+		</div>
+		<div class="text" id="text3">
+			Today, in CS1, I worked on javascript. I made my homescreen have invisible boxes behind the two sides of the sky and the field. These three parts were then coded with events to tell if they were clicked to run a function. I looked at previous student's code to try and find the way to control the function. What I found is to create a list that would keep adding to it for each new click. Then it would style a small icon to be added to the screen. This was not that difficult and I think it looks quite good. My next plan is for two things. One to create the journal to be side by side text boxes. Which I tried doing by setting two classes, but that did not work. Then the second thing is to create the AboutMe page to cycle through textboxes at the click instead of creating a div in a list. 
+		</div>
  		<div class="break" id="break4">
 		<br>
 		 </div>
-		<div class="date2" id="date4">
+		<div class="date" id="date4">
 			Oct 8th, 21
 		</div>
-		<div class="text2" id="text4">
+		<div class="text" id="text4">
 			These last few days, I have spent a lot of time working with Java. I created an AboutMe page that has a similiar redirect bar to the Journal. The way the aboutme page looks is that you click on the screen to show letters that spell out my name that are placed where it is clicked. Then those letters organize themselves at the bottom of the screen under the bird in a transition. So, the first 9 clicks write my name, and the tenth click organizes the letters. The letters are screenshots of a fun text to make them easier to move around as a div. Clicking 5 more times creates 5 new text boxes about me which are also screenshots. The next click then organizes them. The hardest thing here was to make sure the letters were spaced out correctly as they are all different widths. I also worked on the jounral page. Now, to make the entry appear, one must hover over the empty space using the hover feature. The next step for the weekend will be to try and automate the home screen to make the birds and trees organize themselves and them have the trees turn into birds, and the birds fly away. 
+		</div>
+		<div class="break" id="break5">
+			<br>
+			 </div>
+		<div class="date" id="date5">
+			Oct 13th, 21
+		</div>
+		<div class="text" id="text5">
+			As I stated in my previous entry, my goal for this weekend was to automate my homescreen a little bit more. Up until this point, the aboutme page was much more animated and difficult than the homescreen, so I decided to make some changes. I already had the homescreen set to where birds would appear in the sky facing one of two directions based on where on the screen is clicked. Then the ground clicks turn into trees. The first step I did was to create an overall counter of how many clicks have occured. Then, I needed to change the code, so there were a maximum amount of clicks allowed in one space. Instead of using a while loop, I chose to use if statements so that each bird/tree would be a new div that I could control individually. After adding debugs into that to make sure they were working, I made it so each tree click actually stacked 4 trees in that spot, so as to use them later. This step also entailed adding variable definitions for each of the 60 trees and 13 birds. It also meant adding a style tag for each one as well. For the birds, the 77th thing placed on the counter will organize the birds into a flight triangle utilizing the big bird already on the screen. the other side would then mirror that appearence. Then the trees would split from their stacks into a 2 (one on each side of the main tree) 6x5 grids. The 78th click rotates the trees in unison by -70 degrees. The 79th click turns all the trees into birds and rotates them back up. The 80th click sets the original birds to fly off screen upwards. The 81st click makes the tree-birds fly up to the sky in unison. The 82nd click gives a nice timed effect as the birds all cross the screen to the sides off screen. Lastly, I added a else statement to make sure any clicks that were unwanted would undo the counter. This code was then copied so that the clicks anywhere on the screen would lead to the same actions. There are a few bugs with this new code. One, sometimes if the clicks happen too fast, the code is not able to register what step it is on and it skips ahead. Two, when making the 82nd click, the ground being clicked for the 82nd time does nothing. Three, the code has created an extended width somehow, that I do not know how to remove. I have tried debugging, and that has not worked. The next steps would be to try and make the code cycle back to the start at the end. The issue with that is every new bird would have to be converted to a tree offscreen (which was not working when I tried) and as I saw with the original problems, the trees would just be replaced with new tree divs. Overall, this code is a success. 
 		</div>
 		<div class="break" id="break6">
 			<br>
 		 </div>
-		<div class="date2" id="date6">
+		<div class="date" id="date6">
 			Oct 16th, 21
 		</div>
-		<div class="text2" id="text6">
+		<div class="text" id="text6">
 			Over the last few days, I have designed a Projects page and worked on creating links to the three projects that I have made thus far. (Two of which were also made during these last few days.) The original project was my person card which I added a cover photo, label, and redirect link. I found it card to figure out how to link something on codepen to this, so I just set it as a url to the code. However, I am sure there is a better solution to this. One of the new projects that I made was my gift for my father's birthday coming up! This project has a background image of a father and son watching the sunset. Then there are 5 thought bubbles around the family. These outlines can be hovered over to reveal a spin animation and something special between me and my father. While they are all combined loves for different things, the bubbles on the child's side represent things that I am closer to and vice versa for him. The bubble in the middle shows something both of us love equaly and something that often leads to bonding time. The most recent project that I made was for my Science Research Methods class. I am designing an expierement where I will show subjects a list of words with 5 seconds for each word. The study is testing to see if the background color of the word makes it easier to remember. Therefore, this code had me expierementing with wait commands or setTimeout. It was an interesting project to code and had me trying some things for the first time. 
 		</div>
+		<div class="break" id="break7">
+			<br>
+			 </div>
+		<div class="date" id="date7">
+			Oct 20th, 21
+		</div>
+		<div class="text" id="text7">
+			This week we learned and worked on making animations. I decided to start on an idea that Arav and Ajai also wanted to make. We had the goal of creating some sort of rube goldberg code that could have two computers run the same code and look like the animation carried from screen to screen. When starting on that, we made a marble roll down a slide and onto the next screen. The issue with this was the code get being very glitchy and the top control was not working. We later realized this was caused by the code wanting to transition to the next stopping top control and taking a different path to get there. This code is still in the works, but it is coming along. While researching about animations, I found a type of code that works with morphing shapes. This is similiar to the process of morphing from one color to another. I made one basic code ("Stretch") to try it and then wanting to play with dimensions and using multiple animations, I made another code ("Multi Stretch"). After learning about running multiple animations, I wanted to make a wave function. After learning the previous things with the Rube Goldberg, this was straightforward. This code is titled, "Marbles". 
+		</div>
 		<div class="break" id="break8">
 			<br>
 		 </div>
-		<div class="date2" id="date8">
+		<div class="date" id="date8">
 			Oct 25th, 21
 		</div>
-		<div class="text2" id="text8">
+		<div class="text" id="text8">
 			Today, I worked on more javascript automatations. In today's class we did the official lesson on javascript functions. Therefore, I created a new code called Lion Showdown. I wanted to create a basic function that could create new divs and then every other div creates the same type of lion. One lion faces one way the other towards it. While, it would have taken too much code and a struggle of specific style sections, I decided to keep the infinite repeating quality of this and just make it scrolling. I tried to center the divs by using a  technique called auto margins. This sets margin-left and margin-right to auto meaning that it centers an entire class on one page. I further set up a if statement to alternate and worked with remainders to determine if the counter was even or odd. I did this by using the (counter%2==0) which means that if counter divided by 2 has a remainder of 0 then the statement is true. Then I used an else statement for the odd option. I further tried to research an automatic scroller, but it seems it requires external imports. To download the proper instruction, I needed admin permissions which I will try to aquire at a later date. Otherwise, the code was a success. 
 		</div>
+		<div class="break" id="break9">
+			<br>
+			 </div>
+		<div class="date" id="date9">
+			Oct 27th, 21
+		</div>
+		<div class="text" id="text9">
+			The assignment for this week was to create animations and functions which I did in my marbles code for the animation and lions code for the function. Intrigued by the heart simulator shown in class, I decided to make a water cycle simulator based on this song that I heard. Here is the link: https://www.youtube.com/watch?v=Yw275056JtA . To do this, I wrote a 1000 lined code to control different divs and each one had its own animation. There are two clouds, two dust particles, two water droplets, two water vapors, two snowflakes, and a background image of a field and a lake. The way this code works is at intervals of 7.7% or 13 parts, it moves each div to a position to set it up. That part of the code took about 500 lines to move each div around so that the same divs could be used multiple times. The process shows Evaporation, Condensation, and Precipitation. The other 500 lines move captions based on the song in a cycle of the same 13 intervals to move with the divs. These are shown in the bottom right hand corner of the screen. The hardest challenge was syncing one opacity change with the other because opacity takes time to change especially with large intervals. I overcame this by adding updates for most intervals, so divs would not start moving until I wanted them to. 
+		</div>
 		<div class="break" id="break8">
 			<br>
 		 </div>
-		<div class="date2" id="date8">
+		<div class="date" id="date8">
 			Oct 28th, 21
 		</div>
-		<div class="text2" id="text8">
+		<div class="text" id="text8">
 			This is my review on what I have learned so far about javascript and coding. A variable is how the equivelent of a div, but in javascript. So, if I wanted to create a counter that went up every second. I would create a var counter = 0; which sets a var (variable) called counter and puts it equal to 0. The part where it goes up would be in a function. A function is a sequence of actions that happen when the code calls for it. The code can call it by using setInterval(FUNCTION_NAME, TIME_BETWEEN_FUNCTION_RUNNING). This would set the function to run through at certain intervals of time. So if my function was called clock. By saying setInterval(clock,1000); in my script section of the body, I am telling the code every 1 second run the function of clock. The function would be written as follows: function clock () {}. Then inside the curly brackets, the instructions would be written. For example, there may be a line indicating that counter=counter+1 if there was that sort of code. There may also be new divs being created using: var VARIABLE_NAME = document.createElement("div"). This sets a new div called whatever it is labelled as. Then, this can be placed into the body using: document.body.appendChild(VARIABLE_NAME); Lastly, this can be added style by putting it in a class (it must be a class to ensure that the code can print multiple divs as it is a function. Functions are only helpful if they can be run more than once). This is done by writing: VARIABLE_NAME.classList.add("CLASS_NAME"). Throughout my projects  I have used functions for a variety of things as well as other forms of animations. In my personcard and present, I used CSS hover features. In my Science Research project, I used a function with setTimeout to show words and then have the wait before fading into the next word. In my Animation 1, Multistretch, Stretch, Marbles, Water Cycle, I used CSS animation because I needed the interval percentages that it set. The advantage of CSS is to have those intervals whereas functions are more helpful for repetition. In my Lions code, I used a function for as I said before, printing lions repeatedly on a clock alternating between two images. To get into the actual website design, my journal page uses CSS hover. My aboutme and my home page use functions because I wanted to have them be click based so I learned about the click idea through that. While, I do not have time to write through everything on my home page or aboutme page because that would take far too long, I did learn many new functions and types of ways to use functions. That is everything I have done thus far!
-		</div>
-		<div class="break" id="break8">
-			<br>
-		 </div>
-		<div class="date2" id="date8">
-			Nov 8th, 21
-		</div>
-		<div class="text2" id="text8">
-			This last week I took on many challenges in Euler. There is not much to say as they were pretty easy and I worked with Miles. The code was all in Javascript and was really short for each problem. The hardest problems were just figuring out what type of if statements to call to sort through the information.
-		</div>
-		<div class="break" id="break8">
-			<br>
-		 </div>
-		<div class="date2" id="date8">
-			Nov 14th,21
-		</div>
-		<div class="text2" id="text8">
-			Today, I worked on another new code: 8 ball. This code was fun to make because it is not your average 8 ball. While the ball is coded to when clicked prompt the user to enter a question and then sends that to a function to randomize an answer, it has hacks added. If the user clicks on the title, they will see that there are three boxes in three corners and when clicked, those force an answer. These forced answers do not force the specific answer but rather forcing the answer to mean no. Try it! I also added a hack to the cookie clicker so when the name entered is "hack", it will allow me to edit the game and test out the later progression. Both were really fun, and the only thing I would add to the 8 ball is a way to make sure that a question is being asked rather than a statement like "hi". 
-		</div>
-		<div class="break" id="break8">
-			<br>
-		 </div>
-		<div class="date2" id="date8">
-			Nov 29th,21
-		</div>
-		<div class="text2" id="text8">
-			Over Thanksgiving Break, I created a new 1000 line code that is a game! For the spirit of Thanksgiving, this game is related to Fall and pumpkins (again)! This code is more like whack-a-mole which is a carnaval game. In the real game, little creatures pop out of holes on a platform and the player has to try and whack the creature with a bat before the creature goes back into its hole. For my code, my objective was to use as many functions as possible, so every aspect of the code minus the declaring variables and style section is in a function. This makes the code a little hard to understand, so I will go through it. The first things that happen are a welcome message explains the rules, and two input boxes are created to display time and score. Other variables are also defined, but I will review those later. Next, a for loop is called and runs the function of setPumpkin 40 times. This function counts how many times it has created pumpkins, then creates new divs and adds them to a class. The interesting part here was I actually gave the individual pumpkins their own id based on the counter. The code then lists various functions which are called later until the var looper comes up. This is the interval that is counting out the one minute that the game is played in and is runnning the game. This first calls timeCount which adds one second to the timer in the top left (note that the interval is set to one second as well). It also updates the score to ensure the player can not tamper with the input box. Next, the code runs the function pumpkinAppear which immediately calls another function of pumpkinClear. pumpkinClear only sets all the pumpkins to be invisible (0% opacity). pumpkinAppear then gets a random number between 1-40 (as there are 40 pumpkins), and calls the function checkRandom. checkRandom reads the random number and sets the corresponding pumpkin to be visible. (It also does something else which will be touched on later.) Next, the code goes back to the interval and runs the next function of checkClick. This function adds eventlistners to every pumpkin, makes sure that the pumkin is visible at that time using other variables defined at earlier places and reset in checkRandom. This adds a point to the score if it is visible and then makes it vanish. Lastly, once the time reaches 60 seconds, the code detects this and evaluates how to end the game in another function of evaluateEnd. It also ends the interval. EvaluateEnd assesses if the score was above 55 or below and based on that, calls one of two functions to display the winning or losing message. While there are other functions, these mainly run the game set up, reset, and start buttons.  This is my game and I would argue it was one of the best and most fun to make and play! 
-		</div>
-		<div class="break" id="break8">
-			<br>
-		 </div>
-		<div class="date2" id="date8">
-			Dec 17th,21
-		</div>
-		<div class="text2" id="text8">
-			This is a short entry with my goals for winter break. I plan to finish with two codes. One is a tic tac toe game with logic for two players to go against one another. The other is a fully functioning snake game (which will probably take much longer). 
-		</div>
-		<div class="break" id="break8">
-			<br>
-		 </div>
-		<div class="date2" id="date8">
-			Jan 10th,22
-		</div>
-		<div class="text2" id="text8">
-			I just finished a new code called % Vaccine Protection. This code looks at the percent the vaccine protects against different strains of COVID depending on which shots a person has taken. This code uses the menu option from the snake game where the user can set certain variables with eventlisteners and if statements. Then the code calls a data function to get the specific data points depending on the information given. Lastly, the code runs some math function to configure the image. This is how the math works. It takes the data point given and multiplies it by the height of the bar (500px) and divides by 100. This creates the percentage so that the height of the bar in the image is proportionate. Next that number is subtracted from 500 and added to 250 (the top value of the original bar). That ne wnumber is used for the top of the bar. Lastly, the bar is turned into 100% opacity and labelled with the data point. This repeats six times for all six variants. 
-		</div>
-
-
-
-
-	</div>
+		</div>	
 	
-
-	<div class="break" id="break3">
-		<br>
-		 </div>
-	<div class="date" id="date3">
-		Oct 6th, 21
-	</div>
-	<div class="text" id="text3">
-		Today, in CS1, I worked on javascript. I made my homescreen have invisible boxes behind the two sides of the sky and the field. These three parts were then coded with events to tell if they were clicked to run a function. I looked at previous student's code to try and find the way to control the function. What I found is to create a list that would keep adding to it for each new click. Then it would style a small icon to be added to the screen. This was not that difficult and I think it looks quite good. My next plan is for two things. One to create the journal to be side by side text boxes. Which I tried doing by setting two classes, but that did not work. Then the second thing is to create the AboutMe page to cycle through textboxes at the click instead of creating a div in a list. 
-	</div>
-
-	
-
-	<div class="break" id="break5">
-		<br>
-		 </div>
-	<div class="date" id="date5">
-		Oct 13th, 21
-	</div>
-	<div class="text" id="text5">
-		As I stated in my previous entry, my goal for this weekend was to automate my homescreen a little bit more. Up until this point, the aboutme page was much more animated and difficult than the homescreen, so I decided to make some changes. I already had the homescreen set to where birds would appear in the sky facing one of two directions based on where on the screen is clicked. Then the ground clicks turn into trees. The first step I did was to create an overall counter of how many clicks have occured. Then, I needed to change the code, so there were a maximum amount of clicks allowed in one space. Instead of using a while loop, I chose to use if statements so that each bird/tree would be a new div that I could control individually. After adding debugs into that to make sure they were working, I made it so each tree click actually stacked 4 trees in that spot, so as to use them later. This step also entailed adding variable definitions for each of the 60 trees and 13 birds. It also meant adding a style tag for each one as well. For the birds, the 77th thing placed on the counter will organize the birds into a flight triangle utilizing the big bird already on the screen. the other side would then mirror that appearence. Then the trees would split from their stacks into a 2 (one on each side of the main tree) 6x5 grids. The 78th click rotates the trees in unison by -70 degrees. The 79th click turns all the trees into birds and rotates them back up. The 80th click sets the original birds to fly off screen upwards. The 81st click makes the tree-birds fly up to the sky in unison. The 82nd click gives a nice timed effect as the birds all cross the screen to the sides off screen. Lastly, I added a else statement to make sure any clicks that were unwanted would undo the counter. This code was then copied so that the clicks anywhere on the screen would lead to the same actions. There are a few bugs with this new code. One, sometimes if the clicks happen too fast, the code is not able to register what step it is on and it skips ahead. Two, when making the 82nd click, the ground being clicked for the 82nd time does nothing. Three, the code has created an extended width somehow, that I do not know how to remove. I have tried debugging, and that has not worked. The next steps would be to try and make the code cycle back to the start at the end. The issue with that is every new bird would have to be converted to a tree offscreen (which was not working when I tried) and as I saw with the original problems, the trees would just be replaced with new tree divs. Overall, this code is a success. 
-	</div>
-	<div class="break" id="break7">
-		<br>
-		 </div>
-	<div class="date" id="date7">
-		Oct 20th, 21
-	</div>
-	<div class="text" id="text7">
-		This week we learned and worked on making animations. I decided to start on an idea that Arav and Ajai also wanted to make. We had the goal of creating some sort of rube goldberg code that could have two computers run the same code and look like the animation carried from screen to screen. When starting on that, we made a marble roll down a slide and onto the next screen. The issue with this was the code get being very glitchy and the top control was not working. We later realized this was caused by the code wanting to transition to the next stopping top control and taking a different path to get there. This code is still in the works, but it is coming along. While researching about animations, I found a type of code that works with morphing shapes. This is similiar to the process of morphing from one color to another. I made one basic code ("Stretch") to try it and then wanting to play with dimensions and using multiple animations, I made another code ("Multi Stretch"). After learning about running multiple animations, I wanted to make a wave function. After learning the previous things with the Rube Goldberg, this was straightforward. This code is titled, "Marbles". 
-	</div>
-	<div class="break" id="break9">
-		<br>
-		 </div>
-	<div class="date" id="date9">
-		Oct 27th, 21
-	</div>
-	<div class="text" id="text9">
-		The assignment for this week was to create animations and functions which I did in my marbles code for the animation and lions code for the function. Intrigued by the heart simulator shown in class, I decided to make a water cycle simulator based on this song that I heard. Here is the link: https://www.youtube.com/watch?v=Yw275056JtA . To do this, I wrote a 1000 lined code to control different divs and each one had its own animation. There are two clouds, two dust particles, two water droplets, two water vapors, two snowflakes, and a background image of a field and a lake. The way this code works is at intervals of 7.7% or 13 parts, it moves each div to a position to set it up. That part of the code took about 500 lines to move each div around so that the same divs could be used multiple times. The process shows Evaporation, Condensation, and Precipitation. The other 500 lines move captions based on the song in a cycle of the same 13 intervals to move with the divs. These are shown in the bottom right hand corner of the screen. The hardest challenge was syncing one opacity change with the other because opacity takes time to change especially with large intervals. I overcame this by adding updates for most intervals, so divs would not start moving until I wanted them to. 
-	</div>
 	<div class="break" id="break11">
 		<br>
 		 </div>
@@ -261,6 +181,15 @@
 	<div class="text" id="text11">
 		I made another new code called Pumpkin Game. This code focused on random variables and using functions. In the spirit of Halloween, I coded it to create random pumpkins every second and then every other second move them to a random location. Then in the top right using input tags, I display that data using a similiar technique from my index of using getElementId to link a HTML div to a Java var. It was an interesting code but the only minor hiccups were with the setIntervals. To end the game, there must be a condition set that when the total amount of pumpkins on screen reaches too high, the code stops working and stops the intervals. I first tried to do this by putting a if statement around the setInterval but that is not what is repeating. Therefore, I had to put the if statements inside the functions to control it.
 	</div>
+	<div class="break" id="break8">
+			<br>
+		 </div>
+		<div class="date" id="date8">
+			Nov 8th, 21
+		</div>
+		<div class="text" id="text8">
+			This last week I took on many challenges in Euler. There is not much to say as they were pretty easy and I worked with Miles. The code was all in Javascript and was really short for each problem. The hardest problems were just figuring out what type of if statements to call to sort through the information.
+		</div>
 	<div class="break" id="break11">
 		<br>
 		 </div>
@@ -270,6 +199,15 @@
 	<div class="text" id="text11">
 		So, these last two days, I created two new codes. The first one is a little easier and I finished it quickly called Cookie Dinosaur. This code calls a function to print a cookie per second on screen and when it is clicked, it turns into a dinosaur. I learned how to use "cookie.style.display = "inline-block"" to print in one row. The harder code that I made is the Cookie Clicker Game. This game functions like the real cookie clicker game where a player enters their name using system alerts, then clicks a cookie to gain points which are recorded. Those points then can be spent in the shop to gain cps which automatically clicks cookies per second gaining points. This game has a lot of potential to expand by adding more to the shop or more animations and liveliness to the game. 
 	</div>
+	<div class="break" id="break8">
+			<br>
+		 </div>
+		<div class="date" id="date8">
+			Nov 14th,21
+		</div>
+		<div class="text" id="text8">
+			Today, I worked on another new code: 8 ball. This code was fun to make because it is not your average 8 ball. While the ball is coded to when clicked prompt the user to enter a question and then sends that to a function to randomize an answer, it has hacks added. If the user clicks on the title, they will see that there are three boxes in three corners and when clicked, those force an answer. These forced answers do not force the specific answer but rather forcing the answer to mean no. Try it! I also added a hack to the cookie clicker so when the name entered is "hack", it will allow me to edit the game and test out the later progression. Both were really fun, and the only thing I would add to the 8 ball is a way to make sure that a question is being asked rather than a statement like "hi". 
+		</div>
 	<div class="break" id="break11">
 		<br>
 		 </div>
@@ -279,6 +217,15 @@
 	<div class="text" id="text11">
 		Today, I made Key Press which as the code title implies, is an eventlisner working with the keyboard. When any of the three keys (1,2,3) is pressed, an image on a cycle is created using the inline block as well. Then depending on which key is pressed, the image will have an inner text of Hi, Bye, or Ugh. This code was easy aside from adding the background image to work with a variable. It was a neat tactic but was a pain to understand.  
 	</div>
+	<div class="break" id="break8">
+			<br>
+		 </div>
+		<div class="date" id="date8">
+			Nov 29th,21
+		</div>
+		<div class="text" id="text8">
+			Over Thanksgiving Break, I created a new 1000 line code that is a game! For the spirit of Thanksgiving, this game is related to Fall and pumpkins (again)! This code is more like whack-a-mole which is a carnaval game. In the real game, little creatures pop out of holes on a platform and the player has to try and whack the creature with a bat before the creature goes back into its hole. For my code, my objective was to use as many functions as possible, so every aspect of the code minus the declaring variables and style section is in a function. This makes the code a little hard to understand, so I will go through it. The first things that happen are a welcome message explains the rules, and two input boxes are created to display time and score. Other variables are also defined, but I will review those later. Next, a for loop is called and runs the function of setPumpkin 40 times. This function counts how many times it has created pumpkins, then creates new divs and adds them to a class. The interesting part here was I actually gave the individual pumpkins their own id based on the counter. The code then lists various functions which are called later until the var looper comes up. This is the interval that is counting out the one minute that the game is played in and is runnning the game. This first calls timeCount which adds one second to the timer in the top left (note that the interval is set to one second as well). It also updates the score to ensure the player can not tamper with the input box. Next, the code runs the function pumpkinAppear which immediately calls another function of pumpkinClear. pumpkinClear only sets all the pumpkins to be invisible (0% opacity). pumpkinAppear then gets a random number between 1-40 (as there are 40 pumpkins), and calls the function checkRandom. checkRandom reads the random number and sets the corresponding pumpkin to be visible. (It also does something else which will be touched on later.) Next, the code goes back to the interval and runs the next function of checkClick. This function adds eventlistners to every pumpkin, makes sure that the pumkin is visible at that time using other variables defined at earlier places and reset in checkRandom. This adds a point to the score if it is visible and then makes it vanish. Lastly, once the time reaches 60 seconds, the code detects this and evaluates how to end the game in another function of evaluateEnd. It also ends the interval. EvaluateEnd assesses if the score was above 55 or below and based on that, calls one of two functions to display the winning or losing message. While there are other functions, these mainly run the game set up, reset, and start buttons.  This is my game and I would argue it was one of the best and most fun to make and play! 
+		</div>
 	<div class="break" id="break11">
 		<br>
 		 </div>
@@ -288,6 +235,16 @@
 	<div class="text" id="text11">
 		These last few weeks I have made my How It Works and my three codes. My how it works presentation is about bomb robots and I will present on Dec 15th,21. The presentation was interesting to make and allowed me to learn a lot of new things. The first code I made is the CS1 Instructions. This code essentially has four buttons that switch where they direct the user to. The first four shown are the three types of coding languages that we learn (HTML, CSS, JAVASCRIPT) and a students page. Each page goes to one more round of buttons to get specifics about each type of language. This code is meant to teach other students how to code and serve as a quick guide/review to different aspects of coding. The next code, the maze game, introduced a bunch of new aspects to my coding. Games require a ton of functions and event listeners to ensure that the player/user is winning and has not lost yet. For example, this code has blocks of red (a total of 40) set up with eventlistners set to mouseover. Since the div of a character moves around with the mouse, when the mouse or character goes over the wall, it ends the game and forces the character to restart. This also allowed me to bring in a character selection aspect and multiple gamemodes. The newest code is a Flappy Bird. I followed a video for help and it consists of a couple parts. The first part is a character selection which is quite similiar to the maze code. The next is the barrier pipes. The pipes work where every set distance, a new barrier is created where at a random point, an opening of set height will be created in the pipe. Next is the gravity. The gravity will automatically carry the character down unless the up arrow key is pressed which will bring the character upwards. Lastly is the collision. To detect the collision of two divs, it takes the position of the left of the character and the left of the pipes (combined with the width if neccessary) to see if they overlap.
 	</div>
+	<div class="break" id="break8">
+			<br>
+		 </div>
+		<div class="date" id="date8">
+			Dec 17th,21
+		</div>
+		<div class="text" id="text8">
+			This is a short entry with my goals for winter break. I plan to finish with two codes. One is a tic tac toe game with logic for two players to go against one another. The other is a fully functioning snake game (which will probably take much longer). 
+		</div>
+		
 	<div class="break" id="break11">
 		<br>
 		 </div>
@@ -297,5 +254,27 @@
 	<div class="text" id="text11">
 		Here is a journal entry discussing my projects over break. I completed the two codes from my previous entry where I planned it out and one additional one. The first code is tic tac toe. I started with something new which I learned which is a meta tag to create a view window that did not have scrolling. The code first creates 9 read only input boxes for the nine squares in tic tac toe. In the java section, the code uses a series of if statements to find which box has been pressed and if any player has won. To do this, each if statement is one win scenario and the code disables the box inputs from further clicks. Additionally, it alerts on the window who won. The code uses a variable called flag to remember whos turn it is. Additionally functions are used to change the value of each box when clicked. This code is around 460 lines long. The snake code is considerably longer at 1400 lines long but has many many many more elements and parts. The CSS includes using overflow:hidden to ensure the arrow keys can be used for gameplay rather than moving the screen. Then various buttons are set up to be used in the game and gridlines as well which I will discuss in a little. After around 500 lines of CSS, the HTML creates buttons which are used to make the game harder or easier and gridlines. The majority of this code is Javascript. This code mainly works by designating an array of a snake and including different pieces, and during the code it adds or subtracts from that. After the start key is pressed, an eventlisteners is created for changing directions (which is a function). The main function checks if the game has ended or on every tick (a set speed determined by the settings window) the code will clear the board, add a piece of food if eaten, move the snake in the direction it is going and then redraw the snake. Finally, it repeats the main code again to happen after the tick. To make the game easier or harder, the settings menu can be adapted to make it faster or slower, different numbers of food on the screen at one time, different size game boards, snake colors, food colors, or gridlines in the playing field. My last code is the reflex game which uses the same meta tags. This code creates an input button and tests if a player can click a button when they see the color change. By using random numbers to change the color and then a clock to check how long it takes before the button is pressed, the code senses the reaction time of a user. Lastly, a witty remark is posted along with the response time. 
 	</div>
+	<div class="break" id="break8">
+			<br>
+		 </div>
+		<div class="date" id="date8">
+			Jan 10th,22
+		</div>
+		<div class="text" id="text8">
+			I just finished a new code called % Vaccine Protection. This code looks at the percent the vaccine protects against different strains of COVID depending on which shots a person has taken. This code uses the menu option from the snake game where the user can set certain variables with eventlisteners and if statements. Then the code calls a data function to get the specific data points depending on the information given. Lastly, the code runs some math function to configure the image. This is how the math works. It takes the data point given and multiplies it by the height of the bar (500px) and divides by 100. This creates the percentage so that the height of the bar in the image is proportionate. Next that number is subtracted from 500 and added to 250 (the top value of the original bar). That ne wnumber is used for the top of the bar. Lastly, the bar is turned into 100% opacity and labelled with the data point. This repeats six times for all six variants. 
+		</div>
+		<div class="break" id="break8">
+			<br>
+		 </div>
+		<div class="date" id="date8">
+			Feb 5th,22
+		</div>
+		<div class="text" id="text8">
+			Here is an overview of the last month. I have completed five new games. <br>
+			Code #1: Simon Says. This code is simple. It creates two arrays for the player sequence and the game sequence. Every round, it picks a random from the colors buttons and makes the buttons unclickable. Then it will play the sequence by channging the color and playing a sound. Then the buttons become clickable and the player must repeat the code and it has to match the game sequence. This code was based on an online code as I was unable to figure out the evaluation of how to calculate if the player has won on my own. <br> Code #2: Blackjack. This code was a big achievement as I was unable to use any previous codes for a basis. The game first creates a deck which places a bunch of blank cards in the corner to be dealt or used in game. Then a plus and minus button add to the bet. The player can also click all in if they choose. The start button will check that a bet is placed and then deal the starting four cards. After finding random cards for the starting four and not labeling the dealer's hidden card so it is not displayed anywhere in the code (to avoid cheating). The code then changes the buttons for stay, hit, split, and double to work.  Each one is coded to perform the button for the player. After that, the game will auto play the dealer's hand if the total is under 17 and calculate who won and who went bust. <br>
+			Code #3: Wordle. Wordle has 30 boxes where 5 letters over 6 guesses. The html code creates these boxes so they can have multiple classes to be easily organized. The word is chosen out of a random 106 words all hand coded (I should have tried to import a database of words but I did not know where to find that). When the game starts, it cycles through any letter on the keyboard and makes sure the letter is not a character and in caps lock. When the guess is locked, it prevents the player from deleting the guess and cycles through each letter to see if it matches the exact place or any places in the word. If all the boxes turn lime, it will give the player the win! <br>
+			Code #4: Hangman. this code is very similiar to wordle and uses the same logic. One of the same 106 words is selected but this time only one letter is guessed. When locked in, it checks if it is in the word and places it in the correct spot by revealing that letter. An interesting add on is the keyboard is displayed on the screen. If the letter is wrong, it marks the key red. Otherwise it is marked lime. If all the letters are guessed, the game ends! <br>
+			Code #5: Minesweeper. This code is almost entirely based off of another code. The reason for this is because while I understood what needed to happen in the javascript section, it was new to me. I used this other code to learn about objects which are basically variables that have their own sub variables under them. The code showed me how to utilize them to add a flag value, position value, and adjacent flag values. The issue with this code is the first reveal of tiles can sometimes be a flag and their was no way to fix this. The reason is that to make it completely random, the game must not be able to give a free set of letters.
+		</div>
 </body>
 </html>
