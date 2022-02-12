@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>Space Invaders Game</title>
+  </head>
+  <style>
+      body {
+			height: 100vh;
+			width: 100vw;
+			overflow:hidden;
+		}
+		#header{
+			width:100%;
+            font-size:8vh;
+            text-align:center;
+            background-color:lime;
+            z-index:3;
+            position:absolute;
+
+        }
+      #snakeboard {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      #score {
+      	position:absolute;
+      	top:65%;
+      	left:35%;
+        text-align: center;
+        font-size: 140px;
+      }
+      #start{
+      	position:absolute;
+      	top:20%;
+      	left:11%;
+      	text-align:center;
+      	font-size:40px;
+      	background-color:lime;
+      }
+      #settings{
+      	position:absolute;
+      	top:20%;
+      	width:30%;
+      	height:80%;
+      	background-color:lightblue;
+      	z-index:-1;
+      	font-size:40px;
+      	text-align: center;
+      }
+      .buttonH{
+      	width:30%;
+      	font-size:30px;
+      	position:absolute;
+      }
+      #speeds{
+     	top:32%;
+      }
+      .buttons{
+      	width:10%;
+      	font-size:30px;
+      	position:absolute;
+      	background-color:lightblue;
+      	text-align:center;
+      }
+      #slow{
+      	top:38%;
+      	left:1%;
+      }
+      #reg{
+      	top:38%;
+      	left:10%;
+      }
+      #fast{
+      	top:38%;
+      	left:20%;
+      }
+      #laserSpeed{
+      	top:44%;
+      }
+      #slowL{
+      	top:50%;
+      	left:1%;
+      }
+      #regL{
+      	top:50%;
+      	left:10%;
+      }
+      #fastL{
+      	top:50%;
+      	left:20%;
+      }
+      #chanceLaser{
+      	top:56%;
+      }
+      #low{
+      	top:62%;
+      	left:1%;
+      }
+      #mid{
+      	top:62%;
+      	left:10%;
+      }
+      #high{
+      	top:62%;
+      	left:20%;
+      }
+      #character{
+      	top:68%;
+      }
+      .charChoice{
+        top:74%;
+        width:3%;
+        height:5%;
+        background-size:contain;
+        background-repeat:no-repeat;
+      }
+      #redColor{
+      	left:1%;
+        background-image:url("char1.png");  
+      }
+      #orange{
+      	left:4%;
+      	background-image:url("char2.png");
+      }
+      #yellow{
+      	left:7%;
+      	background-image:url("char3.png");
+      }
+      #greenColor{
+      	left:10%;
+      	background-image:url("char4.png");
+      }
+      #blueColor{
+      	left:13%;
+      	background-image:url("char5.png");
+      }
+      #purple{
+      	left:16%;
+      	background-image:url("char6.png");
+      }
+      #pink{
+      	left:19%;
+      	background-image:url("char7.png");
+      }
+      #brown{
+      	left:22%;
+      	background-image:url("char8.png");
+      }
+      #grey{
+      	left:25%;
+      	background-image:url("char9.png");
+      }
+    </style>
+  <body>
+	<center>
+		<div id="header">Space Invaders</div>
+	</center>
+    <div id="score">Score: 0</div>
+    <canvas id="snakeboard" width="400" height="400">
+    </canvas>
+
+    <div id = "start"> START </div>
+    <div id = "settings"><br> SETTINGS</div>
+    <div id="speeds" class="buttonH">Select Speed:</div>
+    <div id="slow" class="buttons">SLOW</div>
+    <div id="reg" class="buttons">REG</div>
+    <div id="fast" class="buttons">FAST</div>
+    <div id="laserSpeed" class="buttonH">Select Laser Speed:</div>
+    <div id="slowL" class="buttons">SLOW</div>
+    <div id="regL" class="buttons">REG</div>
+    <div id="fastL" class="buttons">FAST</div>
+    <div id="chanceLaser" class="buttonH">Select Difficulty:</div>
+    <div id="low" class="buttons">LOW</div>
+    <div id="mid" class="buttons">MID</div>
+    <div id="high" class="buttons">HIGH</div>
+    <div id="character" class="buttonH">Select Character :</div>
+    <div id="redColor" class="buttons charChoice">
+    </div>
+    <div id="orange" class="buttons charChoice"></div>
+    <div id="yellow" class="buttons charChoice"></div>
+    <div id="greenColor" class="buttons charChoice"></div>
+    <div id="blueColor" class="buttons charChoice"></div>
+    <div id="purple" class="buttons charChoice"></div>
+    <div id="pink" class="buttons charChoice"></div>
+    <div id="brown" class="buttons charChoice"></div>
+    <div id="grey" class="buttons charChoice"></div>
+
+    
+  </body>
+
+      <script src="p5.js"></script>
+<!--       <script src="p5.sound.min.js"></script>
+ -->      <script src="myShip.js"></script>
+      <script src="shot.js"></script>
+      <script src="alien.js"></script>
+      <script src="laser.js"></script>
+      <script src="redAlien.js"></script>
+      <link rel="stylesheet" type="text/css" href="style.css">
+      <meta charset="utf-8">
+
+      <script src="sketch.js"></script>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>p5 Testing</title>
+</head>
+<body>
+	<script src="file:///Users/student/Desktop/repositories/c25rs1.github.io/p5/p5.min.js"></script>
+	
+	<script type="text/javascript">
+		function setup() {
+		  createCanvas(windowWidth, windowHeight);
+		}
+
+		function draw() {
+		  background(220);
+		}
+
+		// Move the mouse across the quadrants
+		// to see the cursor change
+
+		function preload() {
+		  alive = 'char8.png';
+		  dead = 'char10.png';
+		 }
+
+		function draw() { //cursor
+		  line(width / 2, 0, width / 2, height);
+		  line(0, height / 2, width, height / 2);
+		  if (mouseX < width/2 && mouseY < height/2) {
+		    cursor(CROSS);
+		  } else if (mouseX > width/2 && mouseY < height/2) {
+		    cursor(dead);
+		  } else if (mouseX > width/2 && mouseY > height/2) {
+		    cursor(alive);
+		  } else {
+		    cursor('grab');
+		  }
+
+		  //time
+		  	let d = day();
+		  	let mo = month();
+		  	let y = year();
+
+		  	text('Current Date: \n' + mo + "/"+ d + "/" + y, 5, 50);
+		  }
+		  
+		
+
+	</script>
+
+</body>
+</html>
