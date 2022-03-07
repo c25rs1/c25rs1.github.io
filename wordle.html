@@ -582,9 +582,12 @@
 			} else if (keysLower.includes(event.key)){
 				alert("Please select capslock");
 			} else {
-				if (event.keyCode != 20){
+				if (event.keyCode == 13){
+					guessNow();
+				} else if (event.keyCode != 20){
 					alert("Please choose a letter!");
 				}
+
 			}
 		}
 		function normalChange(){
@@ -601,6 +604,9 @@
 			changeBox();
 			currentBox.style.borderWidth = "5px";
 			guessButton.classList.add('hidden');
+			if (gameOn == 0){
+				alert("You Lose, Correct Answer: " + word[0]+ word[1]+word[2]+word[3]+word[4]);
+			}
 		}
 
 		function checkGuess(){
