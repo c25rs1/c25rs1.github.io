@@ -42,6 +42,9 @@
 
     .heading {
       font-size: 3em;
+      top:200px;
+      left:10px;
+      position:relative;
     }
 
     .unclickable {
@@ -104,7 +107,10 @@
     <footer class="info-section">
       <button class="button" id="start">Start</button>
       <div class="info js-info hidden" id="info"></div>
-      
+      <div id="bestScoreDisplay" class="heading js-heading">Best: 0</div>
+      <div id="scoreDisplay" class="heading js-heading">Moves: 0</div>
+
+
     </footer>
   </main>
     
@@ -117,8 +123,12 @@
     var cardChosen;
     var card1Chosen;
     var card2Chosen;
+
     var card1ID;
     var card2ID;
+
+    var score = 0;
+
     var reveal = 0;
     var i = 0;
     var deck = ['2C','3H','4S','5D','6C','7H','8S','9D','2C','3H','4S','5D','6C','7H','8S','9D'];
@@ -196,6 +206,8 @@
         card2IDA = this.id
         card2ID = document.getElementById(card2IDA);
         if (card1Chosen != card2Chosen){
+          score = score + 1;
+          scoreDisplay.innerText = "Moves: " + score;
           console.log(card1ID,card2ID);
           makeUnclickable();
         }
