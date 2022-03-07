@@ -1,93 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-  
-<head>
+<!DOCTYPE HTML>
+<html>
+  <head>
     <title>
-      testing
-  </title>
-  <style type="text/css">
-    * {
-      margin: 0px;
-    }
-
-    #logo {
-      position: fixed;
-      top: 200px;
-      height: 200px;
-      width: 1000px;
-      left: 5%;
-      z-index: 4;
-      opacity: 0.8;
-      background-image:red;
-    }
-
-    #earthlogo {
-      position: fixed;
-      top: 200px;
-      height: 120px;
-      align-self: center;
-      left: 5%;
-      margin-left: 870px;
-      margin-top: 60px;
-      z-index: 4;
-      opacity: 0.9;
-    }
-
-    @keyframes anim {
-      50% {
-        transform: rotate(-15deg);
-      }
-      100% {
-        height: 100px;
-        width: 500px;
-        left: 10px;
-        top: 10px;
-        box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.7);
-        background-color: rgba(0, 0, 1, 0.3);
-        opacity: 0.7;
-      }
-    }
-
-    @keyframes anim2 {
-      50% {
-        filter: blur(40px);
-        transform: rotate(-15deg);
-      }
-      100% {
-        height: 60px;
-        width: 60px;
-        left: 10px;
-        top: 10px;
-        margin-left: 435px;
-        margin-top: 30px;
-        opacity: 0.8;
-      }
-    }
-
-    #backstar {
-      position: fixed;
-      width: 100%;
-      z-index: 1;
-    }
-
-    #earth {
-      position: absolute;
-      width: 100%;
-      z-index: 2;
-      top: 300px;
-    }
-
-  </style>
-</head>
+    </title>
+  </head>
   
-<body>
+  <body style = "text-align:center;">
+    
+    <button id="1" onClick="GFG_click(this.id)">
+      Button1
+    </button>
+    
+    <button id="2" onClick="GFG_click(this.id)">
+      Button2
+    </button>
+    
+    <button id="3" onClick="GFG_click(this.id)">
+      Button3
+    </button>
 
-    <script type="text/javascript">
-      function start() {
-        document.getElementById('logo').style.animation = "anim 2s 2s forward";
-        document.getElementById('earthlogo').style.animation = "anim2 2s 2s forward";
-      }
+    <p id = "GFG_DOWN" style =
+      "color:green; font-size: 20px; font-weight: bold;">
+    </p>
+    
+    <script>
+      var el_down = document.getElementById("GFG_DOWN");
+      el_up.innerHTML = "Click on button to get ID";
+    
+      function GFG_click(clicked) {
+        el_down.innerHTML = "ID = "+clicked;
+      }   
     </script>
-</body>
-  
-</html>
+  </body>
+</html>         

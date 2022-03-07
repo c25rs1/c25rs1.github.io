@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>HTML and CSS Challenge</title>
+	<style type="text/css">
+		.abc{
+			width:100px;
+			height:100px;
+			position:absolute;
+			transition:1s;
+		}
+		#a{
+			background-color:red;
+			left:150px;
+			color: blue;
+			font-size: 40px;
+			font-family: "Times New Roman", Times, serif;
+		}
+		#a:hover{
+			background-color:green;
+			transition:1s;
+		}
+		#b{
+			background-color:green;
+			left:300px;
+			color: red;
+			font-size: 30px;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		#b:hover{
+			background-color:blue;
+			transition:1s;
+		}
+		#c{
+			background-color:blue;
+			left:450px;
+			color: yellow;
+			font-size: 20px;
+			font-family: "Lucida Console", "Courier New", monospace;
+		}
+		#c:hover{
+			background-color:red;
+			transition:1s;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="a" class="abc">A</div>
+	<div id="b" class="abc">B</div>
+	<div id="c" class="abc">C</div>
+
+<!-- 	turn off js to have html challenge -->	
+	<script type="text/javascript">
+		a.addEventListener('click', function(){
+			a.style.height = "500px";
+		});
+		b.addEventListener('click', function(){
+			for(var i = 0; i < 100; i++){
+				var newDiv = document.createElement("div")
+				document.body.appendChild(newDiv);
+				newDiv.style.height = "100px";
+				newDiv.style.width = "100px";
+				newDiv.style.backgroundColor = "purple";
+				newDiv.style.left = "290px";
+				newDiv.style.position = "relative";
+			}
+		});
+
+		var songStatus = "paused";
+		
+		c.addEventListener('click', function(){
+			if (songStatus == "paused"){
+				songStatus = "played";
+				c.style.backgroundColor = "yellow";
+			}else{
+				songStatus = "paused";
+				c.style.backgroundColor = "purple";
+			}
+		});
+
+		var counter = 1;
+		var colors = ["red", "orange", "yellow", "green", "blue", "purple"] 
+		function color(){
+			a.style.backgroundColor = colors[counter];
+			b.style.backgroundColor = colors[counter+1];
+			c.style.backgroundColor = colors[counter+2];
+			counter = counter + 1;
+			if (counter == 6){
+				counter = 0;
+			}
+		}
+		setInterval(color,1000);
+	</script>
+
+</body>
+</html>
