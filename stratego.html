@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Stratego</title>
+	<style type="text/css">
+		body {
+			height: 100vh;
+			width: 100vw;
+			background-color:lightblue;
+			overflow:hidden;
+		}
+		#header{
+			width:100%;
+		    font-size:8vh;
+		    text-align:center;
+		    background-color:lime;
+		    z-index:3;
+		    position:absolute;
+		    top:0%;
+		    font-family: "Times New Roman", Times, serif;
+ 		}
+ 		#gameboard{
+ 			width:600px;
+ 			height:600px;
+ 			background-color:red;
+ 			border-radius: 4px;
+		  	border: 1px solid black;
+ 			position:absolute;
+ 			left:450px;
+ 			top:100px;
+ 		}
+ 		.spaces{
+ 			width:60px;
+ 			height:60px;
+ 			background-color:blue;
+ 			border-radius:2px;
+ 			border:1px solid black;
+ 			position:absolute;
+ 		}
+ 		.A{
+ 			top:0px;
+ 		}
+ 		.B{
+ 			top:60px;
+ 		}
+ 		.C{
+ 			top:120px;
+ 		}
+ 		.D{
+ 			top:180px;
+ 		}
+ 		.E{
+ 			top:240px;
+ 		}
+ 		.F{
+ 			top:300px;
+ 		}
+ 		.G{
+ 			top:360px;
+ 		}
+ 		.H{
+ 			top:420px;
+ 		}
+ 		.I{
+ 			top:480px;
+ 		}
+ 		.J{
+ 			top:540px;
+ 		}
+ 		.a{
+ 			left:0px;
+ 		}
+ 		.b{
+ 			left:60px;
+ 		}
+ 		.c{
+ 			left:120px;
+ 		}
+ 		.d{
+ 			left:180px;
+ 		}
+ 		.e{
+ 			left:240px;
+ 		}
+ 		.f{
+ 			left:300px;
+ 		}
+ 		.g{
+ 			left:360px;
+ 		}
+ 		.h{
+ 			left:420px;
+ 		}
+ 		.i{
+ 			left:480px;
+ 		}
+ 		.j{
+ 			left:540px;
+ 		}
+
+ 		#currentPlayer{
+ 			width:200px;
+ 			height:38px;
+ 			background-color:aqua;
+ 			text-align:center;
+ 			font-size:28px;
+ 			font-weight:600;
+ 			position:absolute;
+ 			top:80px;
+ 			border-radius: 4px;
+		  	border: 1px solid #bbb;
+ 		}
+ 		#alerts{
+ 			width:200px;
+ 			height:300px;
+ 			background-color:aqua;
+ 			text-align:center;
+ 			font-size:28px;
+ 			font-weight:600;
+ 			position:absolute;
+ 			top:150px;
+ 			border-radius: 4px;
+		  	border: 1px solid #bbb;
+ 		}
+
+ 		.button {
+		  display: inline-block;
+		  height: 38px;
+		  padding: 0 30px;
+		  color: #555;
+		  text-align: center;
+		  font-size: 14px;
+		  font-weight: 600;
+		  line-height: 38px;
+		  letter-spacing: 0.1rem;
+		  text-transform: uppercase;
+		  text-decoration: none;
+		  white-space: nowrap;
+		  background-color: aqua;
+		  border-radius: 4px;
+		  border: 1px solid #bbb;
+		  cursor: pointer;
+		  top:500px;
+		  position:absolute;
+		}
+
+		.button:hover {
+		  color: #333;
+		  border-color: #888;
+		  outline: 0;
+		}
+
+		#pieceTable{
+			width:350px;
+ 			height:550px;
+ 			background-color:aqua;
+ 			text-align:center;
+ 			font-size:28px;
+ 			font-weight:600;
+ 			position:absolute;
+ 			top:100px;
+ 			left:1080px;
+ 			border-radius: 4px;
+		  	border: 1px solid #bbb;
+		}
+
+		.pieces{
+			width:45px;
+			height:60px;
+			position:relative;
+			background-size:contain;
+			background-repeat:no-repeat;
+		}
+		.bomb{
+			background-image:url("./strategoImages/B.png");
+		}
+		.marshall{
+			background-image:url("./strategoImages/10.png");
+		}
+		.general{
+			background-image:url("./strategoImages/9.png");
+		}
+		.colonel{
+			background-image:url("./strategoImages/8.png");
+		}
+		.major{
+			background-image:url("./strategoImages/7.png");
+		}
+		.captain{
+			background-image:url("./strategoImages/6.png");
+		}
+		.lieutenant{
+			background-image:url("./strategoImages/5.png");
+		}
+		.sergant{
+			background-image:url("./strategoImages/4.png");
+		}
+		.miner{
+			background-image:url("./strategoImages/3.png");
+		}
+		.scout{
+			background-image:url("./strategoImages/2.png");
+		}
+		.spy{
+			background-image:url("./strategoImages/S.png");
+		}
+		.flag{
+			background-image:url("./strategoImages/F.png");
+		}
+	</style>
+</head>
+<body>
+	<div id="header">Stratego</div>
+
+	<div id="gameboard">
+		
+	</div>
+	<div id="currentPlayer">Player 1</div>
+	<div id="alerts">Alerts: <br> Pass the computer to P1</div>
+	<button class="button" id="button">Ready</button>
+
+	<div id="pieceTable">
+		B: Bomb (blows up any piece if touched) x6 <br>
+		10: Marshall (Value: 10) x1 <br>
+		9: General (Value: 9) x1 <br>
+		8: Colonel (Value: 8) x2 <br>
+		7: Major (Value: 7) x3 <br>
+		6: Captain (Value: 6) x4 <br>
+		5: Lieutenant (Value: 5) x4 <br>
+		4: Sergant (Value: 4) x4 <br>
+		3: Miner (Value: 3 - can defuse bombs) x5 <br>
+		2: Scout (Value: 2 - can move any number of tiles) x8 <br>
+		S: Spy (Value: 1 - except defeats Marshall) x1 <br>
+		F: Flag (If opponent attacks flag, game over)
+	</div>
+
+
+
+	<script type="text/javascript">
+		var upper;
+		var lower = 0;
+		var gameOn = 0;
+		var playerOneSetUp = 1;
+
+		var idValue;
+
+		//prepares for button
+		const Button = document.getElementById("button");
+		Button.addEventListener('click', buttonPress);
+
+		function buttonPress(){
+			if (gameOn == 0){
+				//this is at the start of the game
+				gameOn = 1;
+				buildGameBoard();
+				alerts.innerText = "Alerts: \n Board Created \n Please select ready to begin placing pieces";
+			}
+			if (playerOneSetUp == 1){
+				//this is for when player one wants to place pieces
+				playerOneSetUp = 2;
+				firstPiecePlace();
+			}
+		}
+
+
+		function buildGameBoard(){
+			//brings in gameboard as father div
+			let gameboard = document.getElementById('gameboard');
+
+			//cycles through creating individual divs and styes them to create tiles on board
+			for (let i = 1; i <= 100; i++){
+	            var div = document.createElement('div');
+	            gameboard.appendChild(div);
+	            div.classList.add("spaces");
+	            if (i <= 10){
+	            	div.classList.add("A");
+	            	upper = "A";
+	            } else if (i <= 20){
+	            	div.classList.add("B");
+	            	upper = "B";
+	            } else if (i <= 30){
+	            	div.classList.add("C");
+	            	upper = "C";
+	            } else if (i <= 40){
+	            	div.classList.add("D");
+	            	upper = "D";
+	            } else if (i <= 50){
+	            	div.classList.add("E");
+	            	upper = "E";
+	            } else if (i <= 60){
+	            	div.classList.add("F");
+	            	upper = "F";
+	            } else if (i <= 70){
+	            	div.classList.add("G");
+	            	upper = "G";
+	            } else if (i <= 80){
+	            	div.classList.add("H");
+	            	upper = "H";
+	            } else if (i <= 90){
+	            	div.classList.add("I");
+	            	upper = "I";
+	            } else if (i <= 100){
+	            	div.classList.add("J");
+	            	upper = "J";
+	            }
+	            lower = lower + 1;
+	           	div.id = upper + lower;
+	            if (lower == 1){
+	            	div.classList.add("a");
+	            } else if (lower == 2){
+	            	div.classList.add("b");
+	            } else if (lower == 3){
+	            	div.classList.add("c");
+	            } else if (lower == 4){
+	            	div.classList.add("d");
+	            } else if (lower == 5){
+	            	div.classList.add("e");
+	            } else if (lower == 6){
+	            	div.classList.add("f");
+	            } else if (lower == 7){
+	            	div.classList.add("g");
+	            } else if (lower == 8){
+	            	div.classList.add("h");
+	            } else if (lower == 9){
+	            	div.classList.add("i");
+	            } else if (lower == 10){
+	            	div.classList.add("j");
+	            	lower = 0;
+	            }
+	    	}
+	    	E3.style.backgroundColor = "red";
+	    	E4.style.backgroundColor = "red";
+	    	F3.style.backgroundColor = "red";
+	    	F4.style.backgroundColor = "red";
+	    	E7.style.backgroundColor = "red";
+	    	E8.style.backgroundColor = "red";
+	    	F7.style.backgroundColor = "red";
+	    	F8.style.backgroundColor = "red";
+		}
+
+		function firstPiecePlace(){
+			for (let i = 1; i <= 40; i++){
+		        var div = document.createElement('div');
+		        document.body.appendChild(div);
+		        div.classList.add("pieces");
+		        if (i <= 6){
+		           	div.classList.add("bomb");
+		           	idValue = "Bomb" + i;
+		           	div.value = 11;
+		        } else if (i <= 7){
+		        	div.classList.add("marshall");
+		           	idValue = "Marshall1";
+		           	div.value = 10;
+		        } else if (i <= 8){
+		        	div.classList.add("general");
+		           	idValue = "General1";
+		           	div.value = 9;
+		        } else if (i <= 10){
+		        	div.classList.add("colonel");
+		        	if (i == 9){
+		        		idValue = "Colonel1";
+		        	} else {
+		        		idValue = "Colonel2";
+		        	}
+		           	div.value = 8;
+		        } else if (i <= 13){
+		        	div.classList.add("major");
+		        	if (i == 11){
+		        		idValue = "Major1";
+		        	} else if (i == 12){
+		        		idValue = "Major2";
+		        	} else {
+		        		idValue = "Major3";
+		        	}
+		           	div.value = 7;
+		        } else if (i <= 17){
+		        	div.classList.add("captain");
+		        	if (i == 14){
+		        		idValue = "Captain1";
+		        	} else if (i == 15){
+		        		idValue = "Captain2";
+		        	} else if (i == 16){
+		        		idValue = "Captain3";
+		        	} else if (i == 17){
+		        		idValue = "Captain4";
+		        	}
+		           	div.value = 6;
+		        } else if (i <= 21){
+		        	div.classList.add("lieutenant");
+		        	if (i == 18){
+		        		idValue = "Lieutenant1";
+		        	} else if (i == 19){
+		        		idValue = "Lieutenant2";
+		        	} else if (i == 20){
+		        		idValue = "Lieutenant3";
+		        	} else if (i == 21){
+		        		idValue = "Lieutenant4";
+		        	}
+		           	div.value = 5;
+		        } else if (i <= 25){
+		        	div.classList.add("sergant");
+		        	if (i == 22){
+		        		idValue = "Sergant1";
+		        	} else if (i == 23){
+		        		idValue = "Sergant2";
+		        	} else if (i == 24){
+		        		idValue = "Sergant3";
+		        	} else if (i == 25){
+		        		idValue = "Sergant4";
+		        	}
+		           	div.value = 4;
+		        } else if (i <= 30){
+		        	div.classList.add("miner");
+		        	if (i == 26){
+		        		idValue = "Miner1";
+		        	} else if (i == 27){
+		        		idValue = "Miner2";
+		        	} else if (i == 28){
+		        		idValue = "Miner3";
+		        	} else if (i == 29){
+		        		idValue = "Miner4";
+		        	} else if (i == 30){
+		        		idValue = "Miner5";
+		        	}
+		           	div.value = 3;
+		        } else if (i <= 38){
+		        	div.classList.add("scout");
+		        	if (i == 31){
+		        		idValue = "Scout1";
+		        	} else if (i == 32){
+		        		idValue = "Scout2";
+		        	} else if (i == 33){
+		        		idValue = "Scout3";
+		        	} else if (i == 34){
+		        		idValue = "Scout4";
+		        	} else if (i == 35){
+		        		idValue = "Scout5";
+		        	} else if (i == 36){
+		        		idValue = "Scout6";
+		        	} else if (i == 37){
+		        		idValue = "Scout7";
+		        	} else if (i == 38){
+		        		idValue = "Scout8";
+		        	}
+		           	div.value = 2;
+		        } else if (i <= 39){
+		        	div.classList.add("spy");
+		        	idValue = "Spy1";
+		           	div.value = 1;
+		        } 
+		        else if (i <= 40){
+		        	div.classList.add("flag");
+		        	idValue = "Flag";
+		           	div.value = 0;
+		        } 
+
+		        div.id = idValue;
+		            
+		   	}
+		}
+	</script>
+
+
+
+</body>
+</html>
