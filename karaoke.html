@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Karaoke</title>
+
+	<style type="text/css">
+		#background{
+			width:100%;
+			height:100%;
+			background-image:url(background.png);
+			background-size:contain;
+			position:absolute;
+		}
+		#header{
+			width:100%;
+		    font-size:8vh;
+		    text-align:center;
+		    background-color:lime;
+		    z-index:3;
+		    position:absolute;
+		    top:0%;
+		    font-family: "Times New Roman", Times, serif;
+ 		}
+
+		.songbox{
+			width:200px;
+			height:200px;
+			border-radius:50%;
+			border-width:5px;
+			border-color:black;
+			background-repeat: no-repeat;
+			background-size:contain;
+			position:absolute;
+			opacity:80%;
+			z-index:1 ;
+
+		}
+		#song1{
+			left:212px;
+			top:370px;
+			background-image:url(char1.png);
+			animation-name: boxrotate;
+			animation-duration: 15s;
+			animation-iteration-count: infinite;
+		}
+		#song2{
+			left:450px;
+			top:300px;
+			background-image:url(char7.png);
+			animation-name: boxrotate;
+			animation-duration: 5s;
+			animation-iteration-count: infinite;
+		}
+		#song3{
+			left:700px;
+			top:370px;
+			background-image:url(char6.png);
+			animation-name: boxrotate;
+			animation-duration: 20s;
+			animation-iteration-count: infinite;
+		}
+		#song4{
+			left:1000px;
+			top:300px;
+			background-image:url(char5.png);
+			animation-name: boxrotate;
+			animation-duration: 10s;
+			animation-iteration-count: infinite;
+		}
+		#word{
+			width:200px;
+			position:relative;
+			font-size:5vh;
+			text-align:center;
+			background-color:lightblue;
+			top:100px;
+		}
+		@keyframes boxrotate{
+			0%{
+			transform:rotate(-45deg);
+			}
+			50%{
+			transform:rotate(45deg)
+			}
+			99%{
+			transform:rotate(-45deg)
+			}
+
+		}
+
+		
+	</style>
+</head>
+<body>
+<div id="background"></div>
+<div id="header">Karaoke</div>
+<div id="song1" class="songbox"></div>
+<div id="song2" class="songbox"></div>
+<div id="song3" class="songbox"></div>
+<div id="song4" class="songbox"></div>
+<audio id="songs"></audio>
+<center>
+	<div id="word">Tequila</div>
+
+</center>
+<script type="text/javascript">
+
+
+		var i = 0; 
+		document.addEventListener("click", function(){
+			songs.src = "song.mov";
+			songs.play();
+			createInterval();
+		})
+		word.style.opacity = "0%";
+		function createInterval(){
+			var looper = setInterval(function(){
+				i = i + 1;
+				if (i == 40){
+					word.style.opacity = "50%";
+					word.style.backgroundColor = "lightblue";
+				}
+				if (i == 42){
+					word.style.opacity = "100%";
+					word.style.backgroundColor = "lime";
+				}
+				if (i == 43){
+					word.style.opacity = "0%";
+				}
+
+				if (i == 83){
+					word.style.opacity = "50%";
+					word.style.backgroundColor = "lightblue";
+				}
+				if (i == 85){
+					word.style.opacity = "100%";
+					word.style.backgroundColor = "lime";
+				}
+				if (i == 86){
+					word.style.opacity = "0%";
+				}
+
+				if (i == 110){
+					word.style.opacity = "50%";
+					word.style.backgroundColor = "lightblue";
+				}
+				if (i == 112){
+					word.style.opacity = "100%";
+					word.style.backgroundColor = "lime";
+				}
+				if (i == 113){
+					word.style.opacity = "0%";
+				}
+			},1000)
+		}
+
+
+
+
+</script>
+</body>
+</html>

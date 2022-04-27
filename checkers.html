@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Checkers</title>
+	<style type="text/css">
+		body {
+			height: 100vh;
+			width: 100vw;
+			background-color:lightblue;
+			overflow:hidden;
+		}
+		#header{
+			width:100%;
+		    font-size:8vh;
+		    text-align:center;
+		    background-color:lime;
+		    z-index:3;
+		    position:absolute;
+		    top:0%;
+		    font-family: "Times New Roman", Times, serif;
+ 		}
+ 		#gameboard{
+ 			width:600px;
+ 			height:600px;
+ 			background-color:red;
+ 			border-radius: 4px;
+		  	border: 1px solid black;
+ 			position:absolute;
+ 			left:450px;
+ 			top:100px;
+ 		}
+ 		.spaces{
+ 			width:75px;
+ 			height:75px;
+ 			background-color:blue;
+ 			border-radius:2px;
+ 			border:1px solid black;
+ 			position:absolute;
+ 		}
+ 		.A{
+ 			top:0px;
+ 		}
+ 		.B{
+ 			top:75px;
+ 		}
+ 		.C{
+ 			top:150px;
+ 		}
+ 		.D{
+ 			top:225px;
+ 		}
+ 		.E{
+ 			top:300px;
+ 		}
+ 		.F{
+ 			top:375px;
+ 		}
+ 		.G{
+ 			top:450px;
+ 		}
+ 		.H{
+ 			top:525px;
+ 		}
+ 		.a{
+ 			left:0px;
+ 		}
+ 		.b{
+ 			left:75px;
+ 		}
+ 		.c{
+ 			left:150px;
+ 		}
+ 		.d{
+ 			left:225px;
+ 		}
+ 		.e{
+ 			left:300px;
+ 		}
+ 		.f{
+ 			left:375px;
+ 		}
+ 		.g{
+ 			left:450px;
+ 		}
+ 		.h{
+ 			left:525px;
+ 		}
+ 		.blackpiece{
+ 			width:75px;
+ 			height:75px;
+ 			background-image:url(checker1.png);
+ 			position:absolute;
+ 			background-repeat:no-repeat;
+ 			background-size:contain;
+ 			z-index:2;
+ 		}
+ 		.whitepiece{
+ 			width:75px;
+ 			height:75px;
+ 			background-image:url(checker2.png);
+ 			position:absolute;
+ 			background-repeat:no-repeat;
+ 			background-size:contain;
+ 			z-index:2;
+ 		}
+	</style>
+</head>
+<body>
+	<div id="header">Checkers</div>
+
+	<div id="gameboard">
+		
+	</div>
+
+	<script type="text/javascript">
+		//gameboard build variables
+		var upper;
+		var lower = 0;
+
+		//pieces build variables
+		var color = "black";
+	    var id;
+	    var j;
+
+	    //click square variables
+	    var currentSquare;
+	    var currentPiece;
+
+	    var pieceSelected = 0;
+
+		buildGameBoard();
+		function buildGameBoard(){
+			//brings in gameboard as father div
+			let gameboard = document.getElementById('gameboard');
+
+			//cycles through creating individual divs and styes them to create tiles on board
+			var counter = 0;
+			for (let i = 1; i <= 64; i++){
+	            var div = document.createElement('div');
+	            gameboard.appendChild(div);
+	            
+	            counter = counter + 1;
+	            if (counter % 9 == 0){
+	            	counter = counter + 1;
+	            } 
+
+	            if (counter % 2 == 0){
+	            	div.style.backgroundColor = "black";
+	            	div.addEventListener('click', function(){
+	            		console.log(currentPiece.hasChildNodes());
+	            		if (currentPiece.hasChildNodes() ==  false && pieceSelected == 0){
+	            			console.log(this.id);
+	            			 currentSquare = this;
+	            			console.log(this)
+	            			squareClicked();
+	            		}
+					});
+	            } else {
+	            	div.style.backgroundColor = "white";
+	            }
+
+	            div.classList.add("spaces");
+	            if (i <= 8){
+	            	div.classList.add("A");
+	            	upper = "A";
+	            } else if (i <= 16){
+	            	div.classList.add("B");
+	            	upper = "B";
+	            } else if (i <= 24){
+	            	div.classList.add("C");
+	            	upper = "C";
+	            } else if (i <= 32){
+	            	div.classList.add("D");
+	            	upper = "D";
+	            } else if (i <= 40){
+	            	div.classList.add("E");
+	            	upper = "E";
+	            } else if (i <= 48){
+	            	div.classList.add("F");
+	            	upper = "F";
+	            } else if (i <= 56){
+	            	div.classList.add("G");
+	            	upper = "G";
+	            } else if (i <= 64){
+	            	div.classList.add("H");
+	            	upper = "H";
+	            }
+	            lower = lower + 1;
+	           	div.id = upper + lower;
+	            if (lower == 1){
+	            	div.classList.add("a");
+	            } else if (lower == 2){
+	            	div.classList.add("b");
+	            } else if (lower == 3){
+	            	div.classList.add("c");
+	            } else if (lower == 4){
+	            	div.classList.add("d");
+	            } else if (lower == 5){
+	            	div.classList.add("e");
+	            } else if (lower == 6){
+	            	div.classList.add("f");
+	            } else if (lower == 7){
+	            	div.classList.add("g");
+	            } else if (lower == 8){
+	            	div.classList.add("h");
+	            	lower = 0;
+	            }
+	    	}
+	    }  
+	    buildPiece();  
+	    function buildPiece(){
+	    	for (let i = 1; i <= 24; i++){
+	            var div = document.createElement('div');
+	            
+	            gameboard.appendChild(div);
+	            
+	            j = i;
+	            if (color == "white"){
+	            	j = i - 12;
+	            	div.classList.add("whitepiece");
+	            } else {
+	            	div.classList.add("blackpiece");
+	            }
+	            id = color + j;
+	            div.id = id;
+
+	            div.addEventListener('click', function(){
+						console.log(this.id)
+						currentPiece = this;
+						console.log(this)
+						console.log(currentPiece);
+						pieceSelected = 1;
+				});
+
+				div.addEventListener('dblclick', function(){
+					this.classList.remove('whitepiece');
+					this.classList.remove('blackpiece');
+				})
+
+	            if (i == 1){
+	            	A2.appendChild(div);
+	            } else if (i == 2){
+	            	A4.appendChild(div);
+	            } else if (i == 3){
+	            	A6.appendChild(div);
+	            } else if (i == 4){
+	            	A8.appendChild(div);
+	            } else if (i == 5){
+	            	B1.appendChild(div);
+	            } else if (i == 6){
+	            	B3.appendChild(div);
+	            } else if (i == 7){
+	            	B5.appendChild(div);
+	            } else if (i == 8){
+	            	B7.appendChild(div);
+	            } else if (i == 9){
+	            	C2.appendChild(div);
+	            } else if (i == 10){
+	            	C4.appendChild(div);
+	            } else if (i == 11){
+	            	C6.appendChild(div);
+	            } else if (i == 12){
+	            	C8.appendChild(div);
+	            	color = "white";
+	            } else if (i == 13){
+	            	F1.appendChild(div);
+	            } else if (i == 14){
+	            	F3.appendChild(div);
+	            } else if (i == 15){
+	            	F5.appendChild(div);
+	            } else if (i == 16){
+	            	F7.appendChild(div);
+	            } else if (i == 17){
+	            	G2.appendChild(div);
+	            } else if (i == 18){
+	            	G4.appendChild(div);
+	            } else if (i == 19){
+	            	G6.appendChild(div);
+	            } else if (i == 20){
+	            	G8.appendChild(div);
+	            } else if (i == 21){
+	            	H1.appendChild(div);
+	            } else if (i == 22){
+	            	H3.appendChild(div);
+	            } else if (i == 23){
+	            	H5.appendChild(div); 
+	            } else if (i == 24){
+	            	H7.appendChild(div);
+	            }
+	        }  
+	    }
+
+	    function squareClicked(){
+	    	console.log(currentSquare);
+	    	currentSquare.appendChild(currentPiece);
+	    }
+
+	    var looper = setInterval(function(){
+			pieceSelected = 0;
+		},100)
+	</script>
+
+</body>
+</html>

@@ -167,9 +167,15 @@
 		.pieces{
 			width:45px;
 			height:60px;
-			position:relative;
+			position:absolute;
 			background-size:contain;
 			background-repeat:no-repeat;
+			opacity: 100%;
+			z-index:2;
+		}
+		.piecesLocation{
+			top:100px;
+			left:300px;
 		}
 		.bomb{
 			background-image:url("./strategoImages/B.png");
@@ -206,6 +212,47 @@
 		}
 		.flag{
 			background-image:url("./strategoImages/F.png");
+		}
+
+		.Abomb{
+			background-image:url("./strategoImages/B2.png");
+		}
+		.Amarshall{
+			background-image:url("./strategoImages/102.png");
+		}
+		.Ageneral{
+			background-image:url("./strategoImages/92.png");
+		}
+		.Acolonel{
+			background-image:url("./strategoImages/82.png");
+		}
+		.Amajor{
+			background-image:url("./strategoImages/72.png");
+		}
+		.Acaptain{
+			background-image:url("./strategoImages/62.png");
+		}
+		.Alieutenant{
+			background-image:url("./strategoImages/52.png");
+		}
+		.Asergant{
+			background-image:url("./strategoImages/42.png");
+		}
+		.Aminer{
+			background-image:url("./strategoImages/32.png");
+		}
+		.Ascout{
+			background-image:url("./strategoImages/22.png");
+		}
+		.Aspy{
+			background-image:url("./strategoImages/S2.png");
+		}
+		.Aflag{
+			background-image:url("./strategoImages/F2.png");
+		}
+
+		.hidden {
+		  display: none !important;
 		}
 	</style>
 </head>
@@ -248,20 +295,42 @@
 		const Button = document.getElementById("button");
 		Button.addEventListener('click', buttonPress);
 
+		var buttonCounter = 0;
 		function buttonPress(){
+			buttonCounter = buttonCounter + 1;
 			if (gameOn == 0){
 				//this is at the start of the game
 				gameOn = 1;
 				buildGameBoard();
 				alerts.innerText = "Alerts: \n Board Created \n Please select ready to begin placing pieces";
-			}
-			if (playerOneSetUp == 1){
+			} else if (playerOneSetUp == 1){
 				//this is for when player one wants to place pieces
 				playerOneSetUp = 2;
 				firstPiecePlace();
+			} else if (buttonCounter == 3 && currentPlacer == 2){
+				//moving to P2 placing
+				alerts.innerText = "Alerts \n Click ready, then pass the computer.";
+				hideBlueTiles();
+			} else if (buttonCounter == 4){
+				currentPlayer.innerText = "Player 2";
+				alerts.innerText = "Alerts \n Please select ready to begin placing pieces"
+			} else if (buttonCounter == 5){
+				alerts.innerText = "Alerts \n Click the square where you would like to place the flag";
+				secondPiecePlace2();
+			} else if (buttonCounter == 6 && currentPlacer == 3){
+				alerts.innerText = "Alerts \n Pass the computer, then click ready";
+				unhighlight();
+				hideRedTiles();
+			} else if (buttonCounter == 7){
+				currentPlayer.innerText = "Player 1";
+				alerts.innerText = "Alerts \n Please select ready to begin your turn";
+				showBlueTiles();
+			} else if (buttonCounter == 8){
+				alerts.innerText = "Alerts \n Click the piece that you would like to move";
+				createPieceEventListeners();
+				// player1Turn();
 			}
 		}
-
 
 		function buildGameBoard(){
 			//brings in gameboard as father div
@@ -328,6 +397,10 @@
 	            	lower = 0;
 	            }
 	    	}
+
+	    	makeEventListeners();
+
+
 	    	E3.style.backgroundColor = "red";
 	    	E4.style.backgroundColor = "red";
 	    	F3.style.backgroundColor = "red";
@@ -336,121 +409,121 @@
 	    	E8.style.backgroundColor = "red";
 	    	F7.style.backgroundColor = "red";
 	    	F8.style.backgroundColor = "red";
-		}
 
-		function firstPiecePlace(){
-			for (let i = 1; i <= 40; i++){
+	    	//build pieces player 1
+	    	for (let i = 1; i <= 40; i++){
 		        var div = document.createElement('div');
 		        document.body.appendChild(div);
 		        div.classList.add("pieces");
+		        div.classList.add("piecesLocation");
 		        if (i <= 6){
 		           	div.classList.add("bomb");
-		           	idValue = "Bomb" + i;
+		           	idValue = "bomb" + i;
 		           	div.value = 11;
 		        } else if (i <= 7){
 		        	div.classList.add("marshall");
-		           	idValue = "Marshall1";
+		           	idValue = "marshall1";
 		           	div.value = 10;
 		        } else if (i <= 8){
 		        	div.classList.add("general");
-		           	idValue = "General1";
+		           	idValue = "general1";
 		           	div.value = 9;
 		        } else if (i <= 10){
 		        	div.classList.add("colonel");
 		        	if (i == 9){
-		        		idValue = "Colonel1";
+		        		idValue = "colonel1";
 		        	} else {
-		        		idValue = "Colonel2";
+		        		idValue = "colonel2";
 		        	}
 		           	div.value = 8;
 		        } else if (i <= 13){
 		        	div.classList.add("major");
 		        	if (i == 11){
-		        		idValue = "Major1";
+		        		idValue = "major1";
 		        	} else if (i == 12){
-		        		idValue = "Major2";
+		        		idValue = "major2";
 		        	} else {
-		        		idValue = "Major3";
+		        		idValue = "major3";
 		        	}
 		           	div.value = 7;
 		        } else if (i <= 17){
 		        	div.classList.add("captain");
 		        	if (i == 14){
-		        		idValue = "Captain1";
+		        		idValue = "captain1";
 		        	} else if (i == 15){
-		        		idValue = "Captain2";
+		        		idValue = "captain2";
 		        	} else if (i == 16){
-		        		idValue = "Captain3";
+		        		idValue = "captain3";
 		        	} else if (i == 17){
-		        		idValue = "Captain4";
+		        		idValue = "captain4";
 		        	}
 		           	div.value = 6;
 		        } else if (i <= 21){
 		        	div.classList.add("lieutenant");
 		        	if (i == 18){
-		        		idValue = "Lieutenant1";
+		        		idValue = "lieutenant1";
 		        	} else if (i == 19){
-		        		idValue = "Lieutenant2";
+		        		idValue = "lieutenant2";
 		        	} else if (i == 20){
-		        		idValue = "Lieutenant3";
+		        		idValue = "lieutenant3";
 		        	} else if (i == 21){
-		        		idValue = "Lieutenant4";
+		        		idValue = "lieutenant4";
 		        	}
 		           	div.value = 5;
 		        } else if (i <= 25){
 		        	div.classList.add("sergant");
 		        	if (i == 22){
-		        		idValue = "Sergant1";
+		        		idValue = "sergant1";
 		        	} else if (i == 23){
-		        		idValue = "Sergant2";
+		        		idValue = "sergant2";
 		        	} else if (i == 24){
-		        		idValue = "Sergant3";
+		        		idValue = "sergant3";
 		        	} else if (i == 25){
-		        		idValue = "Sergant4";
+		        		idValue = "sergant4";
 		        	}
 		           	div.value = 4;
 		        } else if (i <= 30){
 		        	div.classList.add("miner");
 		        	if (i == 26){
-		        		idValue = "Miner1";
+		        		idValue = "miner1";
 		        	} else if (i == 27){
-		        		idValue = "Miner2";
+		        		idValue = "miner2";
 		        	} else if (i == 28){
-		        		idValue = "Miner3";
+		        		idValue = "miner3";
 		        	} else if (i == 29){
-		        		idValue = "Miner4";
+		        		idValue = "miner4";
 		        	} else if (i == 30){
-		        		idValue = "Miner5";
+		        		idValue = "miner5";
 		        	}
 		           	div.value = 3;
 		        } else if (i <= 38){
 		        	div.classList.add("scout");
 		        	if (i == 31){
-		        		idValue = "Scout1";
+		        		idValue = "scout1";
 		        	} else if (i == 32){
-		        		idValue = "Scout2";
+		        		idValue = "scout2";
 		        	} else if (i == 33){
-		        		idValue = "Scout3";
+		        		idValue = "scout3";
 		        	} else if (i == 34){
-		        		idValue = "Scout4";
+		        		idValue = "scout4";
 		        	} else if (i == 35){
-		        		idValue = "Scout5";
+		        		idValue = "scout5";
 		        	} else if (i == 36){
-		        		idValue = "Scout6";
+		        		idValue = "scout6";
 		        	} else if (i == 37){
-		        		idValue = "Scout7";
+		        		idValue = "scout7";
 		        	} else if (i == 38){
-		        		idValue = "Scout8";
+		        		idValue = "scout8";
 		        	}
 		           	div.value = 2;
 		        } else if (i <= 39){
 		        	div.classList.add("spy");
-		        	idValue = "Spy1";
+		        	idValue = "spy1";
 		           	div.value = 1;
 		        } 
 		        else if (i <= 40){
 		        	div.classList.add("flag");
-		        	idValue = "Flag";
+		        	idValue = "flag";
 		           	div.value = 0;
 		        } 
 
@@ -458,6 +531,2155 @@
 		            
 		   	}
 		}
+
+		function hideBlueTiles(){
+			flag.classList.add('hidden');
+			spy1.classList.add('hidden');
+			scout1.classList.add('hidden');
+			scout2.classList.add('hidden');
+			scout3.classList.add('hidden');
+			scout4.classList.add('hidden');
+			scout5.classList.add('hidden');
+			scout6.classList.add('hidden');
+			scout7.classList.add('hidden');
+			scout8.classList.add('hidden');
+			miner1.classList.add('hidden');
+			miner2.classList.add('hidden');
+			miner3.classList.add('hidden');
+			miner4.classList.add('hidden');
+			miner5.classList.add('hidden');
+			sergant1.classList.add('hidden');
+			sergant2.classList.add('hidden');
+			sergant3.classList.add('hidden');
+			sergant4.classList.add('hidden');
+			lieutenant1.classList.add('hidden');
+			lieutenant2.classList.add('hidden');
+			lieutenant3.classList.add('hidden');
+			lieutenant4.classList.add('hidden');
+			captain1.classList.add('hidden');
+			captain2.classList.add('hidden');
+			captain3.classList.add('hidden');
+			captain4.classList.add('hidden');
+			major1.classList.add('hidden');
+			major2.classList.add('hidden');
+			major3.classList.add('hidden');
+			colonel1.classList.add('hidden');
+			colonel2.classList.add('hidden');
+			general1.classList.add('hidden');
+			marshall1.classList.add('hidden');
+			bomb1.classList.add('hidden');
+			bomb2.classList.add('hidden');
+			bomb3.classList.add('hidden');
+			bomb4.classList.add('hidden');
+			bomb5.classList.add('hidden');
+			bomb6.classList.add('hidden');
+		}
+		function showBlueTiles(){
+			flag.classList.remove('hidden');
+			spy1.classList.remove('hidden');
+			scout1.classList.remove('hidden');
+			scout2.classList.remove('hidden');
+			scout3.classList.remove('hidden');
+			scout4.classList.remove('hidden');
+			scout5.classList.remove('hidden');
+			scout6.classList.remove('hidden');
+			scout7.classList.remove('hidden');
+			scout8.classList.remove('hidden');
+			miner1.classList.remove('hidden');
+			miner2.classList.remove('hidden');
+			miner3.classList.remove('hidden');
+			miner4.classList.remove('hidden');
+			miner5.classList.remove('hidden');
+			sergant1.classList.remove('hidden');
+			sergant2.classList.remove('hidden');
+			sergant3.classList.remove('hidden');
+			sergant4.classList.remove('hidden');
+			lieutenant1.classList.remove('hidden');
+			lieutenant2.classList.remove('hidden');
+			lieutenant3.classList.remove('hidden');
+			lieutenant4.classList.remove('hidden');
+			captain1.classList.remove('hidden');
+			captain2.classList.remove('hidden');
+			captain3.classList.remove('hidden');
+			captain4.classList.remove('hidden');
+			major1.classList.remove('hidden');
+			major2.classList.remove('hidden');
+			major3.classList.remove('hidden');
+			colonel1.classList.remove('hidden');
+			colonel2.classList.remove('hidden');
+			general1.classList.remove('hidden');
+			marshall1.classList.remove('hidden');
+			bomb1.classList.remove('hidden');
+			bomb2.classList.remove('hidden');
+			bomb3.classList.remove('hidden');
+			bomb4.classList.remove('hidden');
+			bomb5.classList.remove('hidden');
+			bomb6.classList.remove('hidden');
+		}
+		function hideRedTiles(){
+			Aflag.classList.add('hidden');
+			Aspy1.classList.add('hidden');
+			Ascout1.classList.add('hidden');
+			Ascout2.classList.add('hidden');
+			Ascout3.classList.add('hidden');
+			Ascout4.classList.add('hidden');
+			Ascout5.classList.add('hidden');
+			Ascout6.classList.add('hidden');
+			Ascout7.classList.add('hidden');
+			Ascout8.classList.add('hidden');
+			Aminer1.classList.add('hidden');
+			Aminer2.classList.add('hidden');
+			Aminer3.classList.add('hidden');
+			Aminer4.classList.add('hidden');
+			Aminer5.classList.add('hidden');
+			Asergant1.classList.add('hidden');
+			Asergant2.classList.add('hidden');
+			Asergant3.classList.add('hidden');
+			Asergant4.classList.add('hidden');
+			Alieutenant1.classList.add('hidden');
+			Alieutenant2.classList.add('hidden');
+			Alieutenant3.classList.add('hidden');
+			Alieutenant4.classList.add('hidden');
+			Acaptain1.classList.add('hidden');
+			Acaptain2.classList.add('hidden');
+			Acaptain3.classList.add('hidden');
+			Acaptain4.classList.add('hidden');
+			Amajor1.classList.add('hidden');
+			Amajor2.classList.add('hidden');
+			Amajor3.classList.add('hidden');
+			Acolonel1.classList.add('hidden');
+			Acolonel2.classList.add('hidden');
+			Ageneral1.classList.add('hidden');
+			Amarshall1.classList.add('hidden');
+			Abomb1.classList.add('hidden');
+			Abomb2.classList.add('hidden');
+			Abomb3.classList.add('hidden');
+			Abomb4.classList.add('hidden');
+			Abomb5.classList.add('hidden');
+			Abomb6.classList.add('hidden');
+		}
+		function showRedTiles(){
+			Aflag.classList.remove('hidden');
+			Aspy1.classList.remove('hidden');
+			Ascout1.classList.remove('hidden');
+			Ascout2.classList.remove('hidden');
+			Ascout3.classList.remove('hidden');
+			Ascout4.classList.remove('hidden');
+			Ascout5.classList.remove('hidden');
+			Ascout6.classList.remove('hidden');
+			Ascout7.classList.remove('hidden');
+			Ascout8.classList.remove('hidden');
+			Aminer1.classList.remove('hidden');
+			Aminer2.classList.remove('hidden');
+			Aminer3.classList.remove('hidden');
+			Aminer4.classList.remove('hidden');
+			Aminer5.classList.remove('hidden');
+			Asergant1.classList.remove('hidden');
+			Asergant2.classList.remove('hidden');
+			Asergant3.classList.remove('hidden');
+			Asergant4.classList.remove('hidden');
+			Alieutenant1.classList.remove('hidden');
+			Alieutenant2.classList.remove('hidden');
+			Alieutenant3.classList.remove('hidden');
+			Alieutenant4.classList.remove('hidden');
+			Acaptain1.classList.remove('hidden');
+			Acaptain2.classList.remove('hidden');
+			Acaptain3.classList.remove('hidden');
+			Acaptain4.classList.remove('hidden');
+			Amajor1.classList.remove('hidden');
+			Amajor2.classList.remove('hidden');
+			Amajor3.classList.remove('hidden');
+			Acolonel1.classList.remove('hidden');
+			Acolonel2.classList.remove('hidden');
+			Ageneral1.classList.remove('hidden');
+			Amarshall1.classList.remove('hidden');
+			Abomb1.classList.remove('hidden');
+			Abomb2.classList.remove('hidden');
+			Abomb3.classList.remove('hidden');
+			Abomb4.classList.remove('hidden');
+			Abomb5.classList.remove('hidden');
+			Abomb6.classList.remove('hidden');
+		}
+
+
+
+		var letter = "G";
+		var counter = 1;
+		var piece;
+		var currentPiece;
+
+		function firstPiecePlace(){
+			//make bottom 4 rows highlighted
+			for (let i = 1; i <= 40; i++){
+				piece = document.getElementById(letter+counter);
+				piece.style.backgroundColor = "CornflowerBlue";
+				counter = counter + 1;
+				if (i == 10){
+					counter = 1;
+					letter = "H";
+				}
+				if (i == 20){
+					counter = 1;
+					letter = "I";
+				}
+				if (i == 30){
+					counter = 1;
+					letter = "J";
+				}
+			}
+			alerts.innerText = "Alerts: \n Click the square where you would like to place the flag";
+			// currentPiece = "flag";
+			currentPiece = document.getElementById("flag");
+		}
+		function secondPiecePlace(){
+			alerts.innerText = "Alerts: \n Click the button to hide P1 tiles";
+		}
+		function secondPiecePlace2(){
+			//create divs red
+			for (let i = 1; i <= 40; i++){
+		        var div = document.createElement('div');
+		        document.body.appendChild(div);
+		        div.classList.add("pieces");
+		        div.classList.add("piecesLocation");
+		        if (i <= 6){
+		           	div.classList.add("Abomb");
+		           	idValue = "Abomb" + i;
+		           	div.value = 11;
+		        } else if (i <= 7){
+		        	div.classList.add("Amarshall");
+		           	idValue = "Amarshall1";
+		           	div.value = 10;
+		        } else if (i <= 8){
+		        	div.classList.add("Ageneral");
+		           	idValue = "Ageneral1";
+		           	div.value = 9;
+		        } else if (i <= 10){
+		        	div.classList.add("Acolonel");
+		        	if (i == 9){
+		        		idValue = "Acolonel1";
+		        	} else {
+		        		idValue = "Acolonel2";
+		        	}
+		           	div.value = 8;
+		        } else if (i <= 13){
+		        	div.classList.add("Amajor");
+		        	if (i == 11){
+		        		idValue = "Amajor1";
+		        	} else if (i == 12){
+		        		idValue = "Amajor2";
+		        	} else {
+		        		idValue = "Amajor3";
+		        	}
+		           	div.value = 7;
+		        } else if (i <= 17){
+		        	div.classList.add("Acaptain");
+		        	if (i == 14){
+		        		idValue = "Acaptain1";
+		        	} else if (i == 15){
+		        		idValue = "Acaptain2";
+		        	} else if (i == 16){
+		        		idValue = "Acaptain3";
+		        	} else if (i == 17){
+		        		idValue = "Acaptain4";
+		        	}
+		           	div.value = 6;
+		        } else if (i <= 21){
+		        	div.classList.add("Alieutenant");
+		        	if (i == 18){
+		        		idValue = "Alieutenant1";
+		        	} else if (i == 19){
+		        		idValue = "Alieutenant2";
+		        	} else if (i == 20){
+		        		idValue = "Alieutenant3";
+		        	} else if (i == 21){
+		        		idValue = "Alieutenant4";
+		        	}
+		           	div.value = 5;
+		        } else if (i <= 25){
+		        	div.classList.add("Asergant");
+		        	if (i == 22){
+		        		idValue = "Asergant1";
+		        	} else if (i == 23){
+		        		idValue = "Asergant2";
+		        	} else if (i == 24){
+		        		idValue = "Asergant3";
+		        	} else if (i == 25){
+		        		idValue = "Asergant4";
+		        	}
+		           	div.value = 4;
+		        } else if (i <= 30){
+		        	div.classList.add("Aminer");
+		        	if (i == 26){
+		        		idValue = "Aminer1";
+		        	} else if (i == 27){
+		        		idValue = "Aminer2";
+		        	} else if (i == 28){
+		        		idValue = "Aminer3";
+		        	} else if (i == 29){
+		        		idValue = "Aminer4";
+		        	} else if (i == 30){
+		        		idValue = "Aminer5";
+		        	}
+		           	div.value = 3;
+		        } else if (i <= 38){
+		        	div.classList.add("Ascout");
+		        	if (i == 31){
+		        		idValue = "Ascout1";
+		        	} else if (i == 32){
+		        		idValue = "Ascout2";
+		        	} else if (i == 33){
+		        		idValue = "Ascout3";
+		        	} else if (i == 34){
+		        		idValue = "Ascout4";
+		        	} else if (i == 35){
+		        		idValue = "Ascout5";
+		        	} else if (i == 36){
+		        		idValue = "Ascout6";
+		        	} else if (i == 37){
+		        		idValue = "Ascout7";
+		        	} else if (i == 38){
+		        		idValue = "Ascout8";
+		        	}
+		           	div.value = 2;
+		        } else if (i <= 39){
+		        	div.classList.add("Aspy");
+		        	idValue = "Aspy1";
+		           	div.value = 1;
+		        } 
+		        else if (i <= 40){
+		        	div.classList.add("Aflag");
+		        	idValue = "Aflag";
+		           	div.value = 0;
+		        } 
+
+		        div.id = idValue;
+		    }
+
+		    letter = "A";
+		    counter = 1;
+		    for (let i = 1; i <= 40; i++){
+				piece = document.getElementById(letter+counter);
+				piece.style.backgroundColor = "CornflowerBlue";
+				counter = counter + 1;
+				if (i == 10){
+					counter = 1;
+					letter = "B";
+				}
+				if (i == 20){
+					counter = 1;
+					letter = "C";
+				}
+				if (i == 30){
+					counter = 1;
+					letter = "D";
+				}
+			}
+
+			letter = "G";
+		    counter = 1;
+		    for (let i = 1; i <= 40; i++){
+				piece = document.getElementById(letter+counter);
+				piece.style.backgroundColor = "blue";
+				counter = counter + 1;
+				if (i == 10){
+					counter = 1;
+					letter = "H";
+				}
+				if (i == 20){
+					counter = 1;
+					letter = "I";
+				}
+				if (i == 30){
+					counter = 1;
+					letter = "J";
+				}
+			}
+		          
+			alerts.innerText = "Alerts: \n Click the square where you would like to place the flag";
+			currentPiece = "Aflag";
+			currentPiece = document.getElementById(currentPiece);
+			currentPieceCounter = 1;
+		}
+		function piecesPlaced(){
+			alerts.innerText = "Alerts: \n Click the button to hide P2 tiles";
+		}
+
+		function unhighlight(){
+			letter = "A";
+		    counter = 1;
+		    for (let i = 1; i <= 40; i++){
+				piece = document.getElementById(letter+counter);
+				piece.style.backgroundColor = "blue";
+				counter = counter + 1;
+				if (i == 10){
+					counter = 1;
+					letter = "B";
+				}
+				if (i == 20){
+					counter = 1;
+					letter = "C";
+				}
+				if (i == 30){
+					counter = 1;
+					letter = "D";
+				}
+			}
+		}
+
+		var currentPlacer = 1;
+		var currentPieceCounter = 1;
+
+	//occupied variables
+		var A1Occupied = 1;
+		var A2Occupied = 1;
+		var A3Occupied = 1;
+		var A4Occupied = 1;
+		var A5Occupied = 1;
+		var A6Occupied = 1;
+		var A7Occupied = 1;
+		var A8Occupied = 1;
+		var A9Occupied = 1;
+		var A10Occupied = 1;
+		var B1Occupied = 1;
+		var B2Occupied = 1;
+		var B3Occupied = 1;
+		var B4Occupied = 1;
+		var B5Occupied = 1;
+		var B6Occupied = 1;
+		var B7Occupied = 1;
+		var B8Occupied = 1;
+		var B9Occupied = 1;
+		var B10Occupied = 1;
+		var C1Occupied = 1;
+		var C2Occupied = 1;
+		var C3Occupied = 1;
+		var C4Occupied = 1;
+		var C5Occupied = 1;
+		var C6Occupied = 1;
+		var C7Occupied = 1;
+		var C8Occupied = 1;
+		var C9Occupied = 1;
+		var C10Occupied = 1;
+		var D1Occupied = 1;
+		var D2Occupied = 1;
+		var D3Occupied = 1;
+		var D4Occupied = 1;
+		var D5Occupied = 1;
+		var D6Occupied = 1;
+		var D7Occupied = 1;
+		var D8Occupied = 1;
+		var D9Occupied = 1;
+		var D10Occupied = 1;
+		var E1Occupied = 1;
+		var E2Occupied = 1;
+		var E5Occupied = 1;
+		var E6Occupied = 1;
+		var E9Occupied = 1;
+		var E10Occupied = 1;
+		var F1Occupied = 1;
+		var F2Occupied = 1;
+		var F5Occupied = 1;
+		var F6Occupied = 1;
+		var F9Occupied = 1;
+		var F10Occupied = 1;
+		var G1Occupied = 1;
+		var G2Occupied = 1;
+		var G3Occupied = 1;
+		var G4Occupied = 1;
+		var G5Occupied = 1;
+		var G6Occupied = 1;
+		var G7Occupied = 1;
+		var G8Occupied = 1;
+		var G9Occupied = 1;
+		var G10Occupied = 1;
+		var H1Occupied = 1;
+		var H2Occupied = 1;
+		var H3Occupied = 1;
+		var H4Occupied = 1;
+		var H5Occupied = 1;
+		var H6Occupied = 1;
+		var H7Occupied = 1;
+		var H8Occupied = 1;
+		var H9Occupied = 1;
+		var H10Occupied = 1;
+		var I1Occupied = 1;
+		var I2Occupied = 1;
+		var I3Occupied = 1;
+		var I4Occupied = 1;
+		var I5Occupied = 1;
+		var I6Occupied = 1;
+		var I7Occupied = 1;
+		var I8Occupied = 1;
+		var I9Occupied = 1;
+		var I10Occupied = 1;
+		var J1Occupied = 1;
+		var J2Occupied = 1;
+		var J3Occupied = 1;
+		var J4Occupied = 1;
+		var J5Occupied = 1;
+		var J6Occupied = 1;
+		var J7Occupied = 1;
+		var J8Occupied = 1;
+		var J9Occupied = 1;
+		var J10Occupied = 1;
+
+	//clicks below for red boxes
+		function A1Clicked(){
+			if (currentPlacer == 2 && A1Occupied == 1){
+				A1Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("A");
+				currentPiece.classList.add("a");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function A2Clicked(){
+			if (currentPlacer == 2 && A2Occupied == 1){
+				A2Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("A");
+				currentPiece.classList.add("b");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function A3Clicked(){
+			if (currentPlacer == 2 && A3Occupied == 1){
+				A3Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("A");
+				currentPiece.classList.add("c");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function A4Clicked(){
+			if (currentPlacer == 2 && A4Occupied == 1){
+				A4Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("A");
+				currentPiece.classList.add("d");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function A5Clicked(){
+			if (currentPlacer == 2 && A5Occupied == 1){
+				A5Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("A");
+				currentPiece.classList.add("e");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function A6Clicked(){
+			if (currentPlacer == 2 && A6Occupied == 1){
+				A6Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("A");
+				currentPiece.classList.add("f");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function A7Clicked(){
+			if (currentPlacer == 2 && A7Occupied == 1){
+				A7Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("A");
+				currentPiece.classList.add("g");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function A8Clicked(){
+			if (currentPlacer == 2 && A8Occupied == 1){
+				A8Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("A");
+				currentPiece.classList.add("h");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function A9Clicked(){
+			if (currentPlacer == 2 && A9Occupied == 1){
+				A9Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("A");
+				currentPiece.classList.add("i");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function A10Clicked(){
+			if (currentPlacer == 2 && A10Occupied == 1){
+				A10Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("A");
+				currentPiece.classList.add("j");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function B1Clicked(){
+			if (currentPlacer == 2 && B1Occupied == 1){
+				B1Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("B");
+				currentPiece.classList.add("a");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function B2Clicked(){
+			if (currentPlacer == 2 && B2Occupied == 1){
+				B2Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("B");
+				currentPiece.classList.add("b");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function B3Clicked(){
+			if (currentPlacer == 2 && B3Occupied == 1){
+				B3Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("B");
+				currentPiece.classList.add("c");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function B4Clicked(){
+			if (currentPlacer == 2 && B4Occupied == 1){
+				B4Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("B");
+				currentPiece.classList.add("d");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function B5Clicked(){
+			if (currentPlacer == 2 && B5Occupied == 1){
+				B5Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("B");
+				currentPiece.classList.add("e");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function B6Clicked(){
+			if (currentPlacer == 2 && B6Occupied == 1){
+				B6Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("B");
+				currentPiece.classList.add("f");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function B7Clicked(){
+			if (currentPlacer == 2 && B7Occupied == 1){
+				B7Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("B");
+				currentPiece.classList.add("g");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function B8Clicked(){
+			if (currentPlacer == 2 && B8Occupied == 1){
+				B8Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("B");
+				currentPiece.classList.add("h");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function B9Clicked(){
+			if (currentPlacer == 2 && B9Occupied == 1){
+				B9Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("B");
+				currentPiece.classList.add("i");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function B10Clicked(){
+			if (currentPlacer == 2 && B10Occupied == 1){
+				B10Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("B");
+				currentPiece.classList.add("j");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function C1Clicked(){
+			if (currentPlacer == 2 && C1Occupied == 1){
+				C1Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("C");
+				currentPiece.classList.add("a");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function C2Clicked(){
+			if (currentPlacer == 2 && C2Occupied == 1){
+				C2Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("C");
+				currentPiece.classList.add("b");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function C3Clicked(){
+			if (currentPlacer == 2 && C3Occupied == 1){
+				C3Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("C");
+				currentPiece.classList.add("c");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function C4Clicked(){
+			if (currentPlacer == 2 && C4Occupied == 1){
+				C4Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("C");
+				currentPiece.classList.add("d");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function C5Clicked(){
+			if (currentPlacer == 2 && C5Occupied == 1){
+				C5Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("C");
+				currentPiece.classList.add("e");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function C6Clicked(){
+			if (currentPlacer == 2 && C6Occupied == 1){
+				C6Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("C");
+				currentPiece.classList.add("f");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function C7Clicked(){
+			if (currentPlacer == 2 && C7Occupied == 1){
+				C7Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("C");
+				currentPiece.classList.add("g");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function C8Clicked(){
+			if (currentPlacer == 2 && C8Occupied == 1){
+				C8Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("C");
+				currentPiece.classList.add("h");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function C9Clicked(){
+			if (currentPlacer == 2 && C9Occupied == 1){
+				C9Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("C");
+				currentPiece.classList.add("i");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function C10Clicked(){
+			if (currentPlacer == 2 && C10Occupied == 1){
+				C10Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("C");
+				currentPiece.classList.add("j");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function D1Clicked(){
+			if (currentPlacer == 2 && D1Occupied == 1){
+				D1Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("D");
+				currentPiece.classList.add("a");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function D2Clicked(){
+			if (currentPlacer == 2 && D2Occupied == 1){
+				D2Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("D");
+				currentPiece.classList.add("b");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function D3Clicked(){
+			if (currentPlacer == 2 && D3Occupied == 1){
+				D3Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("D");
+				currentPiece.classList.add("c");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function D4Clicked(){
+			if (currentPlacer == 2 && D4Occupied == 1){
+				D4Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("D");
+				currentPiece.classList.add("d");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function D5Clicked(){
+			if (currentPlacer == 2 && D5Occupied == 1){
+				D5Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("D");
+				currentPiece.classList.add("e");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function D6Clicked(){
+			if (currentPlacer == 2 && D6Occupied == 1){
+				D6Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("D");
+				currentPiece.classList.add("f");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function D7Clicked(){
+			if (currentPlacer == 2 && D7Occupied == 1){
+				D7Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("D");
+				currentPiece.classList.add("g");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function D8Clicked(){
+			if (currentPlacer == 2 && D8Occupied == 1){
+				D8Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("D");
+				currentPiece.classList.add("h");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function D9Clicked(){
+			if (currentPlacer == 2 && D9Occupied == 1){
+				D9Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("D");
+				currentPiece.classList.add("i");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+		function D10Clicked(){
+			if (currentPlacer == 2 && D10Occupied == 1){
+				D10Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("D");
+				currentPiece.classList.add("j");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "Abomb6"){
+					currentPlacer = 3;
+					piecesPlaced();
+				}
+				checkPieceCounter2();
+			}
+		}
+	//clicks below for middle boxes
+		function E1Clicked(){
+			if (currentPlacer == 3 && pieceSelected != 0){
+				
+			}
+		}
+		function E2Clicked(){
+			if (currentPlacer == 3){
+				
+			}
+		}
+		function E5Clicked(){
+			if (currentPlacer == 3){
+				
+			}
+		}
+		function E6Clicked(){
+			if (currentPlacer == 3){
+				
+			}
+		}
+		function E9Clicked(){
+			if (currentPlacer == 3){
+				
+			}
+		}
+		function E10Clicked(){
+			if (currentPlacer == 3){
+				
+			}
+		}
+		function F1Clicked(){
+			if (currentPlacer == 3){
+
+			}
+		}
+		function F2Clicked(){
+			if (currentPlacer == 3){
+				
+			}
+		}
+		function F5Clicked(){
+			if (currentPlacer == 3){
+				
+			}
+		}
+		function F6Clicked(){
+			if (currentPlacer == 3){
+				
+			}
+		}
+		function F9Clicked(){
+			if (currentPlacer == 3){
+				
+			}
+		}
+		function F10Clicked(){
+			if (currentPlacer == 3){
+				
+			}
+		}
+	//clicks below for blue boxes
+		function G1Clicked(){
+			if (currentPlacer == 1 && G1Occupied == 1){
+				G1Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("G");
+				currentPiece.classList.add("a");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function G2Clicked(){
+			if (currentPlacer == 1 && G2Occupied == 1){
+				G2Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("G");
+				currentPiece.classList.add("b");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function G3Clicked(){
+			if (currentPlacer == 1 && G3Occupied == 1){
+				G3Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("G");
+				currentPiece.classList.add("c");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function G4Clicked(){
+			if (currentPlacer == 1 && G4Occupied == 1){
+				G4Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("G");
+				currentPiece.classList.add("d");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function G5Clicked(){
+			if (currentPlacer == 1 && G5Occupied == 1){
+				G5Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("G");
+				currentPiece.classList.add("e");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function G6Clicked(){
+			if (currentPlacer == 1 && G6Occupied == 1){
+				G6Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("G");
+				currentPiece.classList.add("f");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function G7Clicked(){
+			if (currentPlacer == 1 && G7Occupied == 1){
+				G7Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("G");
+				currentPiece.classList.add("g");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function G8Clicked(){
+			if (currentPlacer == 1 && G8Occupied == 1){
+				G8Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("G");
+				currentPiece.classList.add("h");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function G9Clicked(){
+			if (currentPlacer == 1 && G9Occupied == 1){
+				G9Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("G");
+				currentPiece.classList.add("i");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function G10Clicked(){
+			if (currentPlacer == 1 && G10Occupied == 1){
+				G10Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("G");
+				currentPiece.classList.add("j");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function H1Clicked(){
+			if (currentPlacer == 1 && H1Occupied == 1){
+				H1Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("H");
+				currentPiece.classList.add("a");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function H2Clicked(){
+			if (currentPlacer == 1 && H2Occupied == 1){
+				H2Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("H");
+				currentPiece.classList.add("b");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function H3Clicked(){
+			if (currentPlacer == 1 && H3Occupied == 1){
+				H3Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("H");
+				currentPiece.classList.add("c");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function H4Clicked(){
+			if (currentPlacer == 1 && H4Occupied == 1){
+				H4Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("H");
+				currentPiece.classList.add("d");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function H5Clicked(){
+			if (currentPlacer == 1 && H5Occupied == 1){
+				H5Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("H");
+				currentPiece.classList.add("e");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function H6Clicked(){
+			if (currentPlacer == 1 && H6Occupied == 1){
+				H6Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("H");
+				currentPiece.classList.add("f");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function H7Clicked(){
+			if (currentPlacer == 1 && H7Occupied == 1){
+				H7Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("H");
+				currentPiece.classList.add("g");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function H8Clicked(){
+			if (currentPlacer == 1 && H8Occupied == 1){
+				H8Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("H");
+				currentPiece.classList.add("h");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function H9Clicked(){
+			if (currentPlacer == 1 && H9Occupied == 1){
+				H9Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("H");
+				currentPiece.classList.add("i");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function H10Clicked(){
+			if (currentPlacer == 1 && H10Occupied == 1){
+				H10Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("H");
+				currentPiece.classList.add("j");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function I1Clicked(){
+			if (currentPlacer == 1 && I1Occupied == 1){
+				I1Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("I");
+				currentPiece.classList.add("a");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function I2Clicked(){
+			if (currentPlacer == 1 && I2Occupied == 1){
+				I2Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("I");
+				currentPiece.classList.add("b");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function I3Clicked(){
+			if (currentPlacer == 1 && I3Occupied == 1){
+				I3Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("I");
+				currentPiece.classList.add("c");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function I4Clicked(){
+			if (currentPlacer == 1 && I4Occupied == 1){
+				I4Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("I");
+				currentPiece.classList.add("d");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function I5Clicked(){
+			if (currentPlacer == 1 && I5Occupied == 1){
+				I5Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("I");
+				currentPiece.classList.add("e");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function I6Clicked(){
+			if (currentPlacer == 1 && I6Occupied == 1){
+				I6Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("I");
+				currentPiece.classList.add("f");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function I7Clicked(){
+			if (currentPlacer == 1 && I7Occupied == 1){
+				I7Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("I");
+				currentPiece.classList.add("g");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function I8Clicked(){
+			if (currentPlacer == 1 && I8Occupied == 1){
+				I8Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("I");
+				currentPiece.classList.add("h");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function I9Clicked(){
+			if (currentPlacer == 1 && I9Occupied == 1){
+				I9Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("I");
+				currentPiece.classList.add("i");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function I10Clicked(){
+			if (currentPlacer == 1 && I10Occupied == 1){
+				I10Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("I");
+				currentPiece.classList.add("j");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function J1Clicked(){
+			if (currentPlacer == 1 && J1Occupied == 1){
+				J1Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("J");
+				currentPiece.classList.add("a");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function J2Clicked(){
+			if (currentPlacer == 1 && J2Occupied == 1){
+				J2Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("J");
+				currentPiece.classList.add("b");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function J3Clicked(){
+			if (currentPlacer == 1 && J3Occupied == 1){
+				J3Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("J");
+				currentPiece.classList.add("c");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function J4Clicked(){
+			if (currentPlacer == 1 && J4Occupied == 1){
+				J4Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("J");
+				currentPiece.classList.add("d");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function J5Clicked(){
+			if (currentPlacer == 1 && J5Occupied == 1){
+				J5Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("J");
+				currentPiece.classList.add("e");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function J6Clicked(){
+			if (currentPlacer == 1 && J6Occupied == 1){
+				J6Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("J");
+				currentPiece.classList.add("f");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function J7Clicked(){
+			if (currentPlacer == 1 && J7Occupied == 1){
+				J7Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("J");
+				currentPiece.classList.add("g");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function J8Clicked(){
+			if (currentPlacer == 1 && J8Occupied == 1){
+				J8Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("J");
+				currentPiece.classList.add("h");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function J9Clicked(){
+			if (currentPlacer == 1 && J9Occupied == 1){
+				J9Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("J");
+				currentPiece.classList.add("i");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+		function J10Clicked(){
+			if (currentPlacer == 1 && J10Occupied == 1){
+				J10Occupied = 2;
+				gameboard.appendChild(currentPiece)
+				currentPiece.classList.remove("piecesLocation");
+				currentPiece.classList.add("J");
+				currentPiece.classList.add("j");
+				currentPieceCounter = currentPieceCounter + 1;
+				if (currentPiece.id == "bomb6"){
+					currentPlacer = 2;
+					secondPiecePlace();
+				}
+				checkPieceCounter();
+			}
+		}
+
+	//end of box clicked functions
+
+		//used for placing pieces
+		var pieceCounter = 0;
+		function checkPieceCounter(){
+			if (currentPieceCounter == 2){
+				currentPiece = "spy1";
+				alerts.innerText = "Alerts \n Click the square where you would like to place the spy";
+			} else if (currentPieceCounter <= 10){
+				pieceCounter = pieceCounter + 1;
+				currentPiece = "scout" + pieceCounter;
+				if (currentPieceCounter  == 10){
+					pieceCounter = 0;
+				}
+				alerts.innerText = "Alerts \n Click the square where you would like to place the scout";
+			} else if (currentPieceCounter <= 15){
+				pieceCounter = pieceCounter + 1;
+				currentPiece = "miner" + pieceCounter;
+				if (currentPieceCounter  == 15){
+					pieceCounter = 0;
+				}
+				alerts.innerText = "Alerts \n Click the square where you would like to place the miner";
+			} else if (currentPieceCounter <= 19){
+				pieceCounter = pieceCounter + 1;
+				currentPiece = "sergant" + pieceCounter;
+				if (currentPieceCounter  == 19){
+					pieceCounter = 0;
+				}
+				alerts.innerText = "Alerts \n Click the square where you would like to place the sergant";
+			} else if (currentPieceCounter <= 23){
+				pieceCounter = pieceCounter + 1;
+				currentPiece = "lieutenant" + pieceCounter;
+				if (currentPieceCounter  == 23){
+					pieceCounter = 0;
+				}
+				alerts.innerText = "Alerts \n Click the square where you would like to place the lieutenant";
+			} else if (currentPieceCounter <= 27){
+				pieceCounter = pieceCounter + 1;
+				currentPiece = "captain" + pieceCounter;
+				if (currentPieceCounter  == 27){
+					pieceCounter = 0;
+				}
+				alerts.innerText = "Alerts \n Click the square where you would like to place the captain";
+			} else if (currentPieceCounter <= 30){
+				pieceCounter = pieceCounter + 1;
+				currentPiece = "major" + pieceCounter;
+				if (currentPieceCounter  == 30){
+					pieceCounter = 0;
+				}
+				alerts.innerText = "Alerts \n Click the square where you would like to place the major";
+			} else if (currentPieceCounter <= 32){
+				pieceCounter = pieceCounter + 1;
+				currentPiece = "colonel" + pieceCounter;
+				if (currentPieceCounter  == 32){
+					pieceCounter = 0;
+				}
+				alerts.innerText = "Alerts \n Click the square where you would like to place the colonel";
+			} else if (currentPieceCounter <= 33){
+				pieceCounter = pieceCounter + 1;
+				currentPiece = "general" + pieceCounter;
+				if (currentPieceCounter  == 33){
+					pieceCounter = 0;
+				}
+				alerts.innerText = "Alerts \n Click the square where you would like to place the general";
+			} else if (currentPieceCounter <= 34){
+				pieceCounter = pieceCounter + 1;
+				currentPiece = "marshall" + pieceCounter;
+				if (currentPieceCounter  == 34){
+					pieceCounter = 0;
+				}
+				alerts.innerText = "Alerts \n Click the square where you would like to place the marshall";
+			} else if (currentPieceCounter <= 40){
+				pieceCounter = pieceCounter + 1;
+				currentPiece = "bomb" + pieceCounter;
+				if (currentPieceCounter  == 40){
+					pieceCounter = 0;
+				}
+				alerts.innerText = "Alerts \n Click the square where you would like to place the bomb";
+			} 
+			currentPiece = document.getElementById(currentPiece);
+		}
+
+		var pieceCounter2 = 0;
+		function checkPieceCounter2(){
+			if (currentPieceCounter == 2){
+				currentPiece = "Aspy1";
+				alerts.innerText = "Alerts \n Click the square where you would like to place the spy";
+			} else if (currentPieceCounter <= 10){
+				pieceCounter2 = pieceCounter2 + 1;
+				currentPiece = "Ascout" + pieceCounter2;
+				if (currentPieceCounter  == 10){
+					pieceCounter2 = 0;
+				}
+				alerts.innerText = "Alerts \n Click the square where you would like to place the scout";
+			} else if (currentPieceCounter <= 15){
+				pieceCounter2 = pieceCounter2 + 1;
+				currentPiece = "Aminer" + pieceCounter2;
+				if (currentPieceCounter  == 15){
+					pieceCounter2 = 0;
+				}
+				alerts.innerText = "Alerts \n Click the square where you would like to place the miner";
+			} else if (currentPieceCounter <= 19){
+				pieceCounter2 = pieceCounter2 + 1;
+				currentPiece = "Asergant" + pieceCounter2;
+				if (currentPieceCounter  == 19){
+					pieceCounter2 = 0;
+				}
+				alerts.innerText = "Alerts \n Click the square where you would like to place the sergant";
+			} else if (currentPieceCounter <= 23){
+				pieceCounter2 = pieceCounter2 + 1;
+				currentPiece = "Alieutenant" + pieceCounter2;
+				if (currentPieceCounter  == 23){
+					pieceCounter2 = 0;
+				}
+				alerts.innerText = "Alerts \n Click the square where you would like to place the lieutenant";
+			} else if (currentPieceCounter <= 27){
+				pieceCounter2 = pieceCounter2 + 1;
+				currentPiece = "Acaptain" + pieceCounter2;
+				if (currentPieceCounter  == 27){
+					pieceCounter2 = 0;
+				}
+				alerts.innerText = "Alerts \n Click the square where you would like to place the captain";
+			} else if (currentPieceCounter <= 30){
+				pieceCounter2 = pieceCounter2 + 1;
+				currentPiece = "Amajor" + pieceCounter2;
+				if (currentPieceCounter  == 30){
+					pieceCounter2 = 0;
+				}
+				alerts.innerText = "Alerts \n Click the square where you would like to place the major";
+			} else if (currentPieceCounter <= 32){
+				pieceCounter2 = pieceCounter2 + 1;
+				currentPiece = "Acolonel" + pieceCounter2;
+				if (currentPieceCounter  == 32){
+					pieceCounter2 = 0;
+				}
+				alerts.innerText = "Alerts \n Click the square where you would like to place the colonel";
+			} else if (currentPieceCounter <= 33){
+				pieceCounter2 = pieceCounter2 + 1;
+				currentPiece = "Ageneral" + pieceCounter2;
+				if (currentPieceCounter  == 33){
+					pieceCounter2 = 0;
+				}
+				alerts.innerText = "Alerts \n Click the square where you would like to place the general";
+			} else if (currentPieceCounter <= 34){
+				pieceCounter2 = pieceCounter2 + 1;
+				currentPiece = "Amarshall" + pieceCounter2;
+				if (currentPieceCounter  == 34){
+					pieceCounter2 = 0;
+				}
+				alerts.innerText = "Alerts \n Click the square where you would like to place the marshall";
+			} else if (currentPieceCounter <= 40){
+				pieceCounter2 = pieceCounter2 + 1;
+				currentPiece = "Abomb" + pieceCounter2;
+				if (currentPieceCounter  == 40){
+					pieceCounter2 = 0;
+				}
+				alerts.innerText = "Alerts \n Click the square where you would like to place the bomb";
+			} 
+			currentPiece = document.getElementById(currentPiece);
+		}
+
+		function makeEventListeners(){
+			A1.addEventListener('click', A1Clicked);
+			A2.addEventListener('click', A2Clicked);
+			A3.addEventListener('click', A3Clicked);
+			A4.addEventListener('click', A4Clicked);
+			A5.addEventListener('click', A5Clicked);
+			A6.addEventListener('click', A6Clicked);
+			A7.addEventListener('click', A7Clicked);
+			A8.addEventListener('click', A8Clicked);
+			A9.addEventListener('click', A9Clicked);
+			A10.addEventListener('click', A10Clicked);
+
+			B1.addEventListener('click', B1Clicked);
+			B2.addEventListener('click', B2Clicked);
+			B3.addEventListener('click', B3Clicked);
+			B4.addEventListener('click', B4Clicked);
+			B5.addEventListener('click', B5Clicked);
+			B6.addEventListener('click', B6Clicked);
+			B7.addEventListener('click', B7Clicked);
+			B8.addEventListener('click', B8Clicked);
+			B9.addEventListener('click', B9Clicked);
+			B10.addEventListener('click', B10Clicked);
+
+			C1.addEventListener('click', C1Clicked);
+			C2.addEventListener('click', C2Clicked);
+			C3.addEventListener('click', C3Clicked);
+			C4.addEventListener('click', C4Clicked);
+			C5.addEventListener('click', C5Clicked);
+			C6.addEventListener('click', C6Clicked);
+			C7.addEventListener('click', C7Clicked);
+			C8.addEventListener('click', C8Clicked);
+			C9.addEventListener('click', C9Clicked);
+			C10.addEventListener('click', C10Clicked);
+
+			D1.addEventListener('click', D1Clicked);
+			D2.addEventListener('click', D2Clicked);
+			D3.addEventListener('click', D3Clicked);
+			D4.addEventListener('click', D4Clicked);
+			D5.addEventListener('click', D5Clicked);
+			D6.addEventListener('click', D6Clicked);
+			D7.addEventListener('click', D7Clicked);
+			D8.addEventListener('click', D8Clicked);
+			D9.addEventListener('click', D9Clicked);
+			D10.addEventListener('click', D10Clicked);
+
+			E1.addEventListener('click', E1Clicked);
+			E2.addEventListener('click', E2Clicked);
+			E5.addEventListener('click', E5Clicked);
+			E6.addEventListener('click', E6Clicked);
+			E9.addEventListener('click', E9Clicked);
+			E10.addEventListener('click', E10Clicked);
+
+			F1.addEventListener('click', F1Clicked);
+			F2.addEventListener('click', F2Clicked);
+			F5.addEventListener('click', F5Clicked);
+			F6.addEventListener('click', F6Clicked);
+			F9.addEventListener('click', F9Clicked);
+			F10.addEventListener('click', F10Clicked);
+
+
+			G1.addEventListener('click', G1Clicked);
+			G2.addEventListener('click', G2Clicked);
+			G3.addEventListener('click', G3Clicked);
+			G4.addEventListener('click', G4Clicked);
+			G5.addEventListener('click', G5Clicked);
+			G6.addEventListener('click', G6Clicked);
+			G7.addEventListener('click', G7Clicked);
+			G8.addEventListener('click', G8Clicked);
+			G9.addEventListener('click', G9Clicked);
+			G10.addEventListener('click', G10Clicked);
+
+
+			H1.addEventListener('click', H1Clicked);
+			H2.addEventListener('click', H2Clicked);
+			H3.addEventListener('click', H3Clicked);
+			H4.addEventListener('click', H4Clicked);
+			H5.addEventListener('click', H5Clicked);
+			H6.addEventListener('click', H6Clicked);
+			H7.addEventListener('click', H7Clicked);
+			H8.addEventListener('click', H8Clicked);
+			H9.addEventListener('click', H9Clicked);
+			H10.addEventListener('click', H10Clicked);
+
+			I1.addEventListener('click', I1Clicked);
+			I2.addEventListener('click', I2Clicked);
+			I3.addEventListener('click', I3Clicked);
+			I4.addEventListener('click', I4Clicked);
+			I5.addEventListener('click', I5Clicked);
+			I6.addEventListener('click', I6Clicked);
+			I7.addEventListener('click', I7Clicked);
+			I8.addEventListener('click', I8Clicked);
+			I9.addEventListener('click', I9Clicked);
+			I10.addEventListener('click', I10Clicked);
+
+			J1.addEventListener('click', J1Clicked);
+			J2.addEventListener('click', J2Clicked);
+			J3.addEventListener('click', J3Clicked);
+			J4.addEventListener('click', J4Clicked);
+			J5.addEventListener('click', J5Clicked);
+			J6.addEventListener('click', J6Clicked);
+			J7.addEventListener('click', J7Clicked);
+			J8.addEventListener('click', J8Clicked);
+			J9.addEventListener('click', J9Clicked);
+			J10.addEventListener('click', J10Clicked);
+		}
+
+	//selecting piece for player turn
+		function createPieceEventListeners(){
+			flag.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			scout1.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			scout2.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			scout3.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			scout4.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			scout5.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			scout6.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			scout7.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			scout8.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			miner1.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			miner2.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			miner3.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			miner4.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			miner5.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			sergant1.addEventListener('click',function(){
+				pieceClicked(this.id);
+			});
+			sergant2.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			sergant3.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			sergant4.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			lieutenant1.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			lieutenant2.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			lieutenant3.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			lieutenant4.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			captain1.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			captain2.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			captain3.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			captain4.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			major1.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			major2.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			major3.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			colonel1.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			colonel2.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			general1.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			marshall1.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			bomb1.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			bomb2.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			bomb3.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			bomb4.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			bomb5.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+			bomb6.addEventListener('click', function(){
+				pieceClicked(this.id);
+			});
+		}
+		var pieceSelected = "A";
+		function pieceClicked(pieceSelected){
+			console.log(pieceSelected + " selected");
+			alerts.innerText = "Alerts: \n Piece selected is \n" + pieceSelected;
+		}
+
 	</script>
 
 

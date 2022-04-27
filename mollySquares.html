@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<style type="text/css">
+		
+		#parent{
+			width:200px;
+			height:200px;
+			background-color:blue;
+
+		}
+
+		#child{
+			width:20px;
+			height:20px;
+			background-color:red;
+
+		}
+	</style>
+</head>
+<body>
+
+	<div id="parent">
+		<div id="child"></div>
+	</div>
+
+	<script type="text/javascript">
+		var childClick = 0;
+
+		child.addEventListener("click", function (){
+			console.log("i am the child");
+			childClick = 1;
+		})
+		parent.addEventListener("click", function(){
+			if (childClick == 0){
+				console.log("i am the parent");
+			}	
+		})
+		var looper = setInterval(function(){
+			childClick = 0;
+		},100)
+	</script>
+
+</body>
+</html>
