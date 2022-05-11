@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Escape Room</title>
+	<style type="text/css">
+		body {
+			height: 100vh;
+			width: 100vw;
+			background-color:lightblue;
+			overflow:hidden;
+			font-size:100px;
+		}
+		#header{
+			width:100%;
+		    font-size:8vh;
+		    text-align:center;
+		    background-color:lime;
+		    z-index:3;
+		    position:absolute;
+		    top:0%;
+		    font-family: "Times New Roman", Times, serif;
+ 		}
+ 		#cover{
+ 			width:100%;
+ 			height:91%;
+ 			position:absolute;
+ 			text-align:center;
+ 			top:9%;
+ 			z-index:5;
+ 			background-color:lightblue;
+ 			font-size:4vh;
+ 		}
+
+ 		#start {
+ 		  position:absolute;
+ 		  top:550px;
+ 		  left:46.5%;
+		  display: inline-block;
+		  height: 38px;
+		  padding: 0 30px;
+		  color: #555;
+		  text-align: center;
+		  font-size: 14px;
+		  font-weight: 600;
+		  line-height: 38px;
+		  letter-spacing: 0.1rem;
+		  text-transform: uppercase;
+		  text-decoration: none;
+		  white-space: nowrap;
+		  background-color: transparent;
+		  border-radius: 4px;
+		  border: 1px solid #bbb;
+		  cursor: pointer;
+		  z-index:6;
+		}
+		#start:hover {
+		  color: #333;
+		  border-color: #888;
+		  outline: 0;
+		}
+
+ 		.hidden {
+		  display: none !important;
+		}
+		#answerText{
+			top:620px;
+			left:610px;
+			position:absolute;
+			width:300px;
+			height:100px;
+			font-size: 28px;
+			z-index:7;
+		}
+		#answer{
+			top:650px;
+			left:610px;
+			position:absolute;
+			width:220px;
+			height:50px;
+			font-size: 28px;
+			z-index:7;
+		}
+
+		#submit {
+ 		  position:absolute;
+ 		  top:660px;
+ 		  left:60%;
+		  display: inline-block;
+		  height: 38px;
+		  padding: 0 30px;
+		  color: #555;
+		  text-align: center;
+		  font-size: 14px;
+		  font-weight: 600;
+		  line-height: 38px;
+		  letter-spacing: 0.1rem;
+		  text-transform: uppercase;
+		  text-decoration: none;
+		  white-space: nowrap;
+		  background-color: transparent;
+		  border-radius: 4px;
+		  border: 1px solid #bbb;
+		  cursor: pointer;
+		  z-index:6;
+		}
+		#submit:hover {
+		  color: #333;
+		  border-color: #888;
+		  outline: 0;
+		}
+
+		.door{
+			width:145px;
+			height:270px;
+/*			background-color:red;
+*/			background-image:url(doorClose.png);
+			background-size:contain;
+			background-repeat:no-repeat;
+			font-size:28px;
+			position:absolute;
+			top:70px;
+		}
+		.door:hover{
+			background-image:url(doorOpen.png);
+		}
+		.door2{
+			top:350px;
+		}
+		#door1{
+			left:250px;
+		}
+		#door2{
+			left:450px;
+		}
+		#door3{
+			left:650px;
+		}
+		#door4{
+			left:850px;
+		}
+		#door5{
+			left:1050px;
+		}
+		#door6{
+			left:250px;
+		}
+		#door7{
+			left:450px;
+		}
+		#door8{
+			left:650px;
+		}
+		#door9{
+			left:850px;
+		}
+		#door10{
+			left:1050px;
+		}
+ 	</style>
+</head>
+<body>
+	<!-- set up page -->
+	<div id="header">Escape Room</div>
+
+	<button id="start">Start</button>
+	<br>
+	<div id="cover">Welcome<br><br>You are about to see ten doors in front of you<br><br>Behind each door is a different game/puzzle for you to beat<br><br>Only three doors will help you and give you a piece of the exit code<br><br><br>Here is a hint for the correct doors: <br>Try to pick the doors that have you go the right way!
+	</div>
+
+	<div id="answerText">Enter Answer Code:</div>
+	<input type="text" id="answer"></input>
+
+	<button id="submit">Submit</button>
+
+	<!-- doors page -->
+	<div id="door1" class="door" onclick="Open(this.id)">Maze</div>
+	<div id="door2" class="door" onclick="Open(this.id)">Flappy Bird</div>
+	<div id="door3" class="door" onclick="Open(this.id)">Tic Tac Toe</div>
+	<div id="door4" class="door" onclick="Open(this.id)">Reflex</div>
+	<div id="door5" class="door" onclick="Open(this.id)">Simon Says</div>
+	<div id="door6" class="door door2" onclick="Open(this.id)">Black Jack</div>
+	<div id="door7" class="door door2" onclick="Open(this.id)">Snake</div>
+	<div id="door8" class="door door2" onclick="Open(this.id)">Minesweeper</div>
+	<div id="door9" class="door door2" onclick="Open(this.id)">Checkers</div>
+	<div id="door10" class="door door2" onclick="Open(this.id)">Matching</div>
+	
+	<script type="text/javascript">
+		const startButton = document.getElementById("start");
+
+		startButton.addEventListener('click', startGame);
+
+		const submitButtonB = document.getElementById("submit");
+		submitButtonB.addEventListener('click', submitButtonFunction);
+
+
+		function startGame(){
+			startButton.classList.add('hidden');
+			cover.style.top = "-1000px";
+			currentBox.style.borderWidth = "5px";
+		}
+
+		function Open(div) {
+			if (div == "door1"){
+				window.open("https://c25rs1.github.io/mazeFinal.html", "_blank");
+			} else if (div == "door2"){
+				window.open("https://c25rs1.github.io/flappybirdFinal.html", "_blank");
+			} else if (div == "door3"){
+				window.open("https://c25rs1.github.io/tictactoeFinal.html", "_blank");
+			} else if (div == "door4"){
+				window.open("https://c25rs1.github.io/reflexFinal.html", "_blank");
+			} else if (div == "door5"){
+				window.open("https://c25rs1.github.io/simonsaysFinal.html", "_blank");
+			} else if (div == "door6"){
+				window.open("https://c25rs1.github.io/blackjackFinal.html", "_blank");
+			} else if (div == "door7"){
+				window.open("https://c25rs1.github.io/snakeFinal.html", "_blank");
+			} else if (div == "door8"){
+				window.open("https://c25rs1.github.io/mineFinal.html", "_blank");
+			} else if (div == "door9"){
+				window.open("https://c25rs1.github.io/checkersFinal.html", "_blank");
+			} else if (div == "door10"){
+				window.open("https://c25rs1.github.io/matchingFinal.html", "_blank");
+			}
+        }
+        var inputVal;
+
+        function submitButtonFunction(){
+        	inputVal = answer.value
+        	console.log("test", inputVal);
+
+        	if (inputVal == "SHAHS"){
+        		alert("YOU ESCAPED");
+        	} else {
+        		alert("WRONG CODE");
+        	}
+        }
+
+
+
+	</script>
+
+
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+    <title>
+      Matching (Escape Room)
+  </title>
+  <style type="text/css">
+    body {
+      height: 100vh;
+      width: 100vw;
+      background-color:lightblue;
+      overflow:hidden;
+    }
+    #header{
+      width:100%;
+        font-size:8vh;
+        text-align:center;
+        background-color:lime;
+        z-index:3;
+        position:absolute;
+        top:0%;
+        font-family: "Times New Roman", Times, serif;
+    }
+    html {
+      box-sizing: border-box;
+    }
+    .game {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .invisble {
+      visibility: hidden;
+    }
+
+    .heading {
+      font-size: 3em;
+      top:200px;
+      left:10px;
+      position:relative;
+    }
+
+    .unclickable {
+      pointer-events: none;
+    }
+
+    .guessed{
+      color:black;
+    }
+
+    .button {
+      display: inline-block;
+      height: 38px;
+      padding: 0 30px;
+      color: #555;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 38px;
+      letter-spacing: 0.1rem;
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+      background-color: transparent;
+      border-radius: 4px;
+      border: 1px solid #bbb;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      color: #333;
+      border-color: #888;
+      outline: 0;
+    }
+
+    .info {
+      font-size: 22px;
+    }
+    .cards{
+      width:120px;
+      height:150px;
+      top:75%;
+      position:absolute;
+      background-size:contain;
+      transition:1s;
+      background-image:url('cover.png');
+      font-size:1px;
+    }
+    #cover{
+      background-image:url(cover.png);
+      z-index:2;
+      opacity:100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">Matching (Escape Room)</div>
+      <div id="cover" class="cards"></div>
+  <main class="game">
+    <footer class="info-section">
+      <button class="button" id="start">Start</button>
+      <div class="info js-info hidden" id="info"></div>
+      <div id="scoreDisplay" class="heading js-heading">Moves: 0</div>
+
+
+    </footer>
+  </main>
+    
+
+
+
+  <script type="text/javascript">
+    var random;
+    var cardSelected;
+    var cardChosen;
+    var card1Chosen;
+    var card2Chosen;
+
+    var card1ID;
+    var card2ID;
+
+    var score = 0;
+
+    var reveal = 0;
+    var i = 0;
+    var totalrevealed = 0;
+    var deck = ['2C','3H','4S','5D','6C','7H','8S','9D','2C','3H','4S','5D','6C','7H','8S','9D'];
+
+    alert("Welcome! This is matching so try to get all of the matches correct! After doing so, you may recieve a piece of the exit code!")
+
+
+    const startButton = document.getElementById("start");
+
+    function newCard() {
+      console.log("newCard called");
+      
+      random = deck[Math.floor(Math.random() * deck.length)];
+           
+      for( var i = 0; i < deck.length; i++){ 
+           
+        if ( deck[i] === random) { 
+          deck.splice(i, 1); 
+          break;
+        }
+           
+      }
+       cardSelected = random;
+       
+       console.log("New card called ", cardSelected);
+
+      return cardSelected;
+    }
+
+    function deal(){
+      var currentCard;
+      var left = 10;
+      var looper = setInterval(function(){
+          newCard();
+              i = i + 1;
+          var card = document.createElement("div")
+          document.body.appendChild(card);
+          card.classList.add("cards");
+
+          card.id = "card"+i;
+          card.style.left = left+"%";
+
+          if (i % 2 == 0){
+            card.style.top = "20%";
+            left = left + 10;
+          } else {
+            card.style.top = "50%";
+          }
+
+          card.innerText = cardSelected;        
+          if (i == 16){
+            clearInterval(looper);
+            setUpListeners()
+          }       
+
+       }, 500)
+    }
+
+
+    function startGame() {
+        deal();;
+        startButton.classList.add("hidden");
+
+    }
+    startButton.addEventListener('click', startGame);
+
+    function click(clicked){
+      cardChosen = this.innerText;
+      reveal = reveal + 1;
+      this.style.backgroundImage = 'url('+cardChosen+'.png)';
+      if (reveal == 1){
+        card1Chosen = cardChosen;
+        card1IDA = this.id
+        card1ID = document.getElementById(card1IDA);
+      }
+      if (reveal == 2){
+        card2Chosen = cardChosen;
+        card2IDA = this.id
+        card2ID = document.getElementById(card2IDA);
+        console.log(totalrevealed);
+        if (card1Chosen != card2Chosen){
+          score = score + 1;
+          scoreDisplay.innerText = "Moves: " + score;
+          console.log(card1ID,card2ID);
+          makeUnclickable();
+        } else {
+          totalrevealed = totalrevealed + 1;
+          if (totalrevealed == 8){
+             alert("This is the wrong door. Return to the other tab.")
+          }
+        }
+        reveal = 0;
+      }
+    }
+    function setUpListeners(){
+      card1.onclick = click;
+      card2.onclick = click;
+      card3.onclick = click;
+      card4.onclick = click;
+      card5.onclick = click;
+      card6.onclick = click;
+      card7.onclick = click;
+      card8.onclick = click;
+      card9.onclick = click;
+      card10.onclick = click;
+      card11.onclick = click;
+      card12.onclick = click;
+      card13.onclick = click;
+      card14.onclick = click;
+      card15.onclick = click;
+      card16.onclick = click;
+    }
+    function makeUnclickable(){
+      card1.classList.add("unclickable");
+      card2.classList.add("unclickable");
+      card3.classList.add("unclickable");
+      card4.classList.add("unclickable");
+      card5.classList.add("unclickable");
+      card6.classList.add("unclickable");
+      card7.classList.add("unclickable");
+      card8.classList.add("unclickable");
+      card9.classList.add("unclickable");
+      card10.classList.add("unclickable");
+      card11.classList.add("unclickable");
+      card12.classList.add("unclickable");
+      card13.classList.add("unclickable");
+      card14.classList.add("unclickable");
+      card15.classList.add("unclickable");
+      card16.classList.add("unclickable");
+
+      var looper2 = setInterval(function(){
+        card1ID.style.backgroundImage = 'url(cover.png)';
+        card2ID.style.backgroundImage = 'url(cover.png)';
+
+        card1.classList.remove("unclickable");
+        card2.classList.remove("unclickable");
+        card3.classList.remove("unclickable");
+        card4.classList.remove("unclickable");
+        card5.classList.remove("unclickable");
+        card6.classList.remove("unclickable");
+        card7.classList.remove("unclickable");
+        card8.classList.remove("unclickable");
+        card9.classList.remove("unclickable");
+        card10.classList.remove("unclickable");
+        card11.classList.remove("unclickable");
+        card12.classList.remove("unclickable");
+        card13.classList.remove("unclickable");
+        card14.classList.remove("unclickable");
+        card15.classList.remove("unclickable");
+        card16.classList.remove("unclickable");
+        
+        clearInterval(looper2);
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

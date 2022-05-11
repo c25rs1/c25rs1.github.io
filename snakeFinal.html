@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>Snake Game (Escape Room)</title>
+  </head>
+  <style>
+      body {
+			height: 100vh;
+			width: 100vw;
+			overflow:hidden;
+		}
+		#header{
+			width:100%;
+            font-size:8vh;
+            text-align:center;
+            background-color:lime;
+            z-index:3;
+            position:absolute;
+
+        }
+      #snakeboard {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      #score {
+      	position:absolute;
+      	top:65%;
+      	left:35%;
+        text-align: center;
+        font-size: 140px;
+      }
+      #start{
+      	position:absolute;
+      	top:20%;
+      	left:11%;
+      	text-align:center;
+      	font-size:40px;
+      	background-color:lime;
+      }
+      #settings{
+      	position:absolute;
+      	top:20%;
+      	width:30%;
+      	height:80%;
+      	background-color:lightblue;
+      	z-index:-1;
+      	font-size:40px;
+      	text-align: center;
+      }
+      .buttonH{
+      	width:30%;
+      	font-size:30px;
+      	position:absolute;
+      }
+      #speeds{
+     	top:32%;
+      }
+      .buttons{
+      	width:10%;
+      	font-size:30px;
+      	position:absolute;
+      	background-color:lightblue;
+      	text-align:center;
+      }
+      #slow{
+      	top:38%;
+      	left:1%;
+      }
+      #reg{
+      	top:38%;
+      	left:10%;
+      }
+      #fast{
+      	top:38%;
+      	left:20%;
+      }
+      #foods{
+      	top:44%;
+      }
+      #one{
+      	top:50%;
+      	left:1%;
+      }
+      #three{
+      	top:50%;
+      	left:10%;
+      }
+      #five{
+      	top:50%;
+      	left:20%;
+      }
+      #sizes{
+      	top:56%;
+      }
+      #small{
+      	top:62%;
+      	left:1%;
+      }
+      #mid{
+      	top:62%;
+      	left:10%;
+      }
+      #large{
+      	top:62%;
+      	left:20%;
+      }
+      #snakeColor{
+      	top:68%;
+      }
+      #red{
+      	top:74%;
+      	width:3%;
+      	left:1%;
+      	color:red;
+      	background-color:red;
+      }
+      #orange{
+      	top:74%;
+      	width:3%;
+      	left:4%;
+      	color:orange;
+      	background-color:orange;
+      }
+      #yellow{
+      	top:74%;
+      	width:3%;
+      	left:7%;
+      	color:yellow;
+      	background-color:yellow;
+      }
+      #green{
+      	top:74%;
+      	width:3%;
+      	left:10%;
+      	color:lightgreen;
+      	background-color:lightgreen;
+      }
+      #blue{
+      	top:74%;
+      	width:3%;
+      	left:13%;
+      	color:blue;
+      	background-color:blue;
+      }
+      #purple{
+      	top:74%;
+      	width:3%;
+      	left:16%;
+      	color:purple;
+      	background-color:purple;
+      }
+      #pink{
+      	top:74%;
+      	width:3%;
+      	left:19%;
+      	color:pink;
+      	background-color:pink;
+      }
+      #brown{
+      	top:74%;
+      	width:3%;
+      	left:22%;
+      	color:brown;
+      	background-color:brown;
+      }
+      #grey{
+      	top:74%;
+      	width:3%;
+      	left:25%;
+      	color:grey;
+      	background-color:grey;
+      }
+       #foodColor{
+      	top:80%;
+      }
+      #red2{
+      	top:86%;
+      	width:3%;
+      	left:1%;
+      	color:red;
+      	background-color:red;
+      }
+      #orange2{
+      	top:86%;
+      	width:3%;
+      	left:4%;
+      	color:orange;
+      	background-color:orange;
+      }
+      #yellow2{
+      	top:86%;
+      	width:3%;
+      	left:7%;
+      	color:yellow;
+      	background-color:yellow;
+      }
+      #green2{
+      	top:86%;
+      	width:3%;
+      	left:10%;
+      	color:lightgreen;
+      	background-color:lightgreen;
+      }
+      #blue2{
+      	top:86%;
+      	width:3%;
+      	left:13%;
+      	color:blue;
+      	background-color:blue;
+      }
+      #purple2{
+      	top:86%;
+      	width:3%;
+      	left:16%;
+      	color:purple;
+      	background-color:purple;
+      }
+      #pink2{
+      	top:86%;
+      	width:3%;
+      	left:19%;
+      	color:pink;
+      	background-color:pink;
+      }
+      #brown2{
+      	top:86%;
+      	width:3%;
+      	left:22%;
+      	color:brown;
+      	background-color:brown;
+      }
+      #grey2{
+      	top:86%;
+      	width:3%;
+      	left:25%;
+      	color:grey;
+      	background-color:grey;
+      }
+      #gridlines{
+      	top:92%;
+      }
+      #yes{
+      	top:96%;
+      	left:1%;
+      }
+      #no{
+      	top:96%;
+      	left:10%;
+      }
+      .lines{
+      	height: 400px;
+      	width:1px;
+      	top:76px;
+      	position:absolute;
+      	background-color:black;
+      	opacity:0%;
+      }
+      #line1{
+      	left: 520px;
+      }
+      #line2{
+      	left: 540px;
+      }
+      #line3{
+      	left: 560px;
+      }
+      #line4{
+      	left: 580px;
+      }
+      #line5{
+      	left: 600px;
+      }
+      #line6{
+      	left: 620px;
+      }
+      #line7{
+      	left: 640px;
+      }
+      #line8{
+      	left: 660px;
+      }
+      #line9{
+      	left: 680px;
+      }
+      #line10{
+      	left: 700px;
+      }
+
+      #line11{
+      	left: 720px;
+      }
+      #line12{
+      	left: 740px;
+      }
+      #line13{
+      	left: 760px;
+      }
+      #line14{
+      	left: 780px;
+      }
+      #line15{
+      	left: 800px;
+      }
+      #line16{
+      	left: 820px;
+      }
+      #line17{
+      	left: 840px;
+      }
+      #line18{
+      	left: 860px;
+      }
+      #line19{
+      	left: 880px;
+      }
+      #line20{
+      	left: 900px;
+      }
+      .linesV{
+      	width: 400px;
+      	height:1px;
+      	left: 520px;
+      	position:absolute;
+      	background-color:black;
+      	opacity:0%;
+      }
+      #lineV1{
+      	top:76px;
+      }
+      #lineV2{
+      	top:96px;
+      }
+      #lineV3{
+      	top:116px;
+      }
+      #lineV4{
+      	top:136px;
+      }
+      #lineV5{
+      	top:156px;
+      }
+	  #lineV6{
+      	top:176px;
+      }
+      #lineV7{
+      	top:196px;
+      }
+      #lineV8{
+      	top:216px;
+      }
+      #lineV9{
+      	top:236px;
+      }
+      #lineV10{
+      	top:256px;
+      }
+      #lineV11{
+      	top:276px;
+      }
+      #lineV12{
+      	top:296px;
+      }
+      #lineV13{
+      	top:316px;
+      }
+      #lineV14{
+      	top:336px;
+      }
+      #lineV15{
+      	top:356px;
+      }
+      #lineV16{
+      	top:376px;
+      }
+      #lineV17{
+      	top:396px;
+      }
+      #lineV18{
+      	top:416px;
+      }
+      #lineV19{
+      	top:436px;
+      }
+      #lineV20{
+      	top:456px;
+      }
+      .linesL{
+      	height: 400px;
+      	width:1px;
+      	top:76px;
+      	position:absolute;
+      	background-color:black;
+      	opacity:0%;
+      }
+      #lineL1{
+      	left: 530px;
+      }
+      #lineL2{
+      	left: 550px;
+      }
+      #lineL3{
+      	left: 570px;
+      }
+      #lineL4{
+      	left: 590px;
+      }
+      #lineL5{
+      	left: 610px;
+      }
+      #lineL6{
+      	left: 630px;
+      }
+      #lineL7{
+      	left: 650px;
+      }
+      #lineL8{
+      	left: 670px;
+      }
+      #lineL9{
+      	left: 690px;
+      }
+      #lineL10{
+      	left: 710px;
+      }
+
+      #lineL11{
+      	left: 730px;
+      }
+      #lineL12{
+      	left: 750px;
+      }
+      #lineL13{
+      	left: 770px;
+      }
+      #lineL14{
+      	left: 790px;
+      }
+      #lineL15{
+      	left: 810px;
+      }
+      #lineL16{
+      	left: 830px;
+      }
+      #lineL17{
+      	left: 850px;
+      }
+      #lineL18{
+      	left: 870px;
+      }
+      #lineL19{
+      	left: 890px;
+      }
+      #lineL20{
+      	left: 910px;
+      }
+      .linesVL{
+      	width: 400px;
+      	height:1px;
+      	left: 520px;
+      	position:absolute;
+      	background-color:black;
+      	opacity:0%;
+      }
+      #lineVL1{
+      	top:86px;
+      }
+      #lineVL2{
+      	top:106px;
+      }
+      #lineVL3{
+      	top:126px;
+      }
+      #lineVL4{
+      	top:146px;
+      }
+      #lineVL5{
+      	top:166px;
+      }
+	  #lineVL6{
+      	top:186px;
+      }
+      #lineVL7{
+      	top:206px;
+      }
+      #lineVL8{
+      	top:226px;
+      }
+      #lineVL9{
+      	top:246px;
+      }
+      #lineVL10{
+      	top:266px;
+      }
+      #lineVL11{
+      	top:286px;
+      }
+      #lineVL12{
+      	top:306px;
+      }
+      #lineVL13{
+      	top:326px;
+      }
+      #lineVL14{
+      	top:346px;
+      }
+      #lineVL15{
+      	top:366px;
+      }
+      #lineVL16{
+      	top:386px;
+      }
+      #lineVL17{
+      	top:406px;
+      }
+      #lineVL18{
+      	top:426px;
+      }
+      #lineVL19{
+      	top:446px;
+      }
+      #lineVL20{
+      	top:466px;
+      }
+    </style>
+  <body>
+	<center>
+		<div id="header">Snake (Escape Room)</div>
+	</center>
+    <div id="score">Score: 0</div>
+    <canvas id="snakeboard" width="400" height="400">
+    </canvas>
+
+    <div id = "start"> START </div>
+
+
+    <div id="line1" class = "lines"></div>
+    <div id="line2" class = "lines"></div>
+    <div id="line3" class = "lines"></div>
+    <div id="line4" class = "lines"></div>
+    <div id="line5" class = "lines"></div>
+    <div id="line6" class = "lines"></div>
+    <div id="line7" class = "lines"></div>
+    <div id="line8" class = "lines"></div>
+    <div id="line9" class = "lines"></div>
+    <div id="line10" class = "lines"></div>
+    <div id="line11" class = "lines"></div>
+    <div id="line12" class = "lines"></div>
+    <div id="line13" class = "lines"></div>
+    <div id="line14" class = "lines"></div>
+    <div id="line15" class = "lines"></div>
+    <div id="line16" class = "lines"></div>
+    <div id="line17" class = "lines"></div>
+    <div id="line18" class = "lines"></div>
+    <div id="line19" class = "lines"></div>
+    <div id="line20" class = "lines"></div>
+    <div id="lineV1" class = "linesV"></div>
+    <div id="lineV2" class = "linesV"></div>
+    <div id="lineV3" class = "linesV"></div>
+    <div id="lineV4" class = "linesV"></div>
+    <div id="lineV5" class = "linesV"></div>
+    <div id="lineV6" class = "linesV"></div>
+    <div id="lineV7" class = "linesV"></div>
+    <div id="lineV8" class = "linesV"></div>
+    <div id="lineV9" class = "linesV"></div>
+    <div id="lineV10" class = "linesV"></div>
+    <div id="lineV11" class = "linesV"></div>
+    <div id="lineV12" class = "linesV"></div>
+    <div id="lineV13" class = "linesV"></div>
+    <div id="lineV14" class = "linesV"></div>
+    <div id="lineV15" class = "linesV"></div>
+    <div id="lineV16" class = "linesV"></div>
+    <div id="lineV17" class = "linesV"></div>
+    <div id="lineV18" class = "linesV"></div>
+    <div id="lineV19" class = "linesV"></div>
+    <div id="lineV20" class = "linesV"></div>
+
+    <div id="lineL1" class = "linesL"></div>
+    <div id="lineL2" class = "linesL"></div>
+    <div id="lineL3" class = "linesL"></div>
+    <div id="lineL4" class = "linesL"></div>
+    <div id="lineL5" class = "linesL"></div>
+    <div id="lineL6" class = "linesL"></div>
+    <div id="lineL7" class = "linesL"></div>
+    <div id="lineL8" class = "linesL"></div>
+    <div id="lineL9" class = "linesL"></div>
+    <div id="lineL10" class = "linesL"></div>
+    <div id="lineL11" class = "linesL"></div>
+    <div id="lineL12" class = "linesL"></div>
+    <div id="lineL13" class = "linesL"></div>
+    <div id="lineL14" class = "linesL"></div>
+    <div id="lineL15" class = "linesL"></div>
+    <div id="lineL16" class = "linesL"></div>
+    <div id="lineL17" class = "linesL"></div>
+    <div id="lineL18" class = "linesL"></div>
+    <div id="lineL19" class = "linesL"></div>
+    <div id="lineL20" class = "linesL"></div>
+    <div id="lineVL1" class = "linesVL"></div>
+    <div id="lineVL2" class = "linesVL"></div>
+    <div id="lineVL3" class = "linesVL"></div>
+    <div id="lineVL4" class = "linesVL"></div>
+    <div id="lineVL5" class = "linesVL"></div>
+    <div id="lineVL6" class = "linesVL"></div>
+    <div id="lineVL7" class = "linesVL"></div>
+    <div id="lineVL8" class = "linesVL"></div>
+    <div id="lineVL9" class = "linesVL"></div>
+    <div id="lineVL10" class = "linesVL"></div>
+    <div id="lineVL11" class = "linesVL"></div>
+    <div id="lineVL12" class = "linesVL"></div>
+    <div id="lineVL13" class = "linesVL"></div>
+    <div id="lineVL14" class = "linesVL"></div>
+    <div id="lineVL15" class = "linesVL"></div>
+    <div id="lineVL16" class = "linesVL"></div>
+    <div id="lineVL17" class = "linesVL"></div>
+    <div id="lineVL18" class = "linesVL"></div>
+    <div id="lineVL19" class = "linesVL"></div>
+    <div id="lineVL20" class = "linesVL"></div>
+
+
+    
+  </body>
+
+  <script>
+  	const board_border = 'black';
+  	const board_background = "white";
+  	let snake_col = 'lightblue';
+  	const snake_border = 'darkblue';
+  	let foodColor = 'lightgreen'
+  	var gameOn = 0;
+  	
+  	let snake = [
+  	  {x: 200, y: 200},
+  	  {x: 190, y: 200},
+  	  {x: 180, y: 200},
+  	  {x: 170, y: 200},
+  	  {x: 160, y: 200}
+  	]
+
+  	let score = 0;
+  	let changing_direction = false;
+  	let food_x;
+  	let food_y;
+  	let food_x2;
+  	let food_y2;
+  	let food_x3;
+  	let food_y3;
+  	let food_x4;
+  	let food_y4;
+  	let food_x5;
+  	let food_y5;
+  	let size;
+  	let gridlinesChosen;
+  	gridlinesChosen = 0;
+
+  	size = 20;
+
+    var alertGiven = 0;
+
+  	let dx = size;
+  	let dy = 0;
+  	let speed;
+  	let foodCount;
+
+  	speed = 75;
+
+  	foodCount = 1;
+
+  	function gameReset(){
+	    snake = [
+	      {x: 200, y: 200},
+	      {x: 190, y: 200},
+	      {x: 180, y: 200},
+	      {x: 170, y: 200},
+	      {x: 160, y: 200}
+	    ]
+
+	    score = 0;
+	    changing_direction = false;
+	    dx = size;
+		dy = 0;
+	}
+    
+    
+    const snakeboard = document.getElementById("snakeboard");
+    const snakeboard_ctx = snakeboard.getContext("2d");
+    let max = 0;
+    let min = snakeboard.width - size;
+
+
+    		speed = 100;
+
+    		foodCount = 5;
+
+    		size = 20;
+
+    alert("Welcome! This is snake so try to get to a score of 20! After doing so, you may recieve a piece of the exit code!")
+    
+    start.addEventListener('click', function(){
+    	if (gameOn == 0){
+    		gameOn = 1;
+    		gameReset();
+    		first_food();
+    		clearGridlines();
+    		if (size == 20 && gridlinesChosen == 1){
+    			gridSmall();
+    		} else if (size == 10 && gridlinesChosen == 1){
+    			gridSmall();
+    			gridLarge();
+    		} else if (size == 40 && gridlinesChosen == 1){
+    			gridTiny();
+    		} else if (gridlinesChosen == 0){
+    			clearGridlines();
+    		}
+    		if (size == 40){
+    			if (speed == 100){
+	    			speed = 150;
+	    		} else if (speed == 75){
+	    			speed = 125;
+	    		} else if (speed == 50){
+	    			speed = 100;
+	    		}
+    		}
+    		main();
+    	}
+	});
+	var number = 1;
+	var currentLeft = 600;
+	var currentTop = 500;
+
+    function first_food(){
+    	gen_food();
+    }
+    function gridTiny(){
+    	line1.style.opacity = "10%";
+    	line3.style.opacity = "10%";
+    	line5.style.opacity = "10%";
+    	line7.style.opacity = "10%";
+    	line9.style.opacity = "10%";
+    	line11.style.opacity = "10%";
+    	line13.style.opacity = "10%";
+    	line15.style.opacity = "10%";
+    	line17.style.opacity = "10%";
+    	line19.style.opacity = "10%";
+    	lineV1.style.opacity = "10%";
+    	lineV3.style.opacity = "10%";
+    	lineV5.style.opacity = "10%";
+    	lineV7.style.opacity = "10%";
+    	lineV9.style.opacity = "10%";
+    	lineV11.style.opacity = "10%";
+    	lineV13.style.opacity = "10%";
+    	lineV15.style.opacity = "10%";
+    	lineV17.style.opacity = "10%";
+    	lineV19.style.opacity = "10%";
+    }
+    function gridSmall(){
+    	line1.style.opacity = "10%";
+    	line2.style.opacity = "10%";
+    	line3.style.opacity = "10%";
+    	line4.style.opacity = "10%";
+    	line5.style.opacity = "10%";
+    	line6.style.opacity = "10%";
+    	line7.style.opacity = "10%";
+    	line8.style.opacity = "10%";
+    	line9.style.opacity = "10%";
+    	line10.style.opacity = "10%";
+    	line11.style.opacity = "10%";
+    	line12.style.opacity = "10%";
+    	line13.style.opacity = "10%";
+    	line14.style.opacity = "10%";
+    	line15.style.opacity = "10%";
+    	line16.style.opacity = "10%";
+    	line17.style.opacity = "10%";
+    	line18.style.opacity = "10%";
+    	line19.style.opacity = "10%";
+    	line20.style.opacity = "10%";
+    	lineV1.style.opacity = "10%";
+    	lineV2.style.opacity = "10%";
+    	lineV3.style.opacity = "10%";
+    	lineV4.style.opacity = "10%";
+    	lineV5.style.opacity = "10%";
+    	lineV6.style.opacity = "10%";
+    	lineV7.style.opacity = "10%";
+    	lineV8.style.opacity = "10%";
+    	lineV9.style.opacity = "10%";
+    	lineV10.style.opacity = "10%";
+    	lineV11.style.opacity = "10%";
+    	lineV12.style.opacity = "10%";
+    	lineV13.style.opacity = "10%";
+    	lineV14.style.opacity = "10%";
+    	lineV15.style.opacity = "10%";
+    	lineV16.style.opacity = "10%";
+    	lineV17.style.opacity = "10%";
+    	lineV18.style.opacity = "10%";
+    	lineV19.style.opacity = "10%";
+    	lineV20.style.opacity = "10%";
+    }
+    function gridLarge(){
+    	lineL1.style.opacity = "10%";
+    	lineL2.style.opacity = "10%";
+    	lineL3.style.opacity = "10%";
+    	lineL4.style.opacity = "10%";
+    	lineL5.style.opacity = "10%";
+    	lineL6.style.opacity = "10%";
+    	lineL7.style.opacity = "10%";
+    	lineL8.style.opacity = "10%";
+    	lineL9.style.opacity = "10%";
+    	lineL10.style.opacity = "10%";
+    	lineL11.style.opacity = "10%";
+    	lineL12.style.opacity = "10%";
+    	lineL13.style.opacity = "10%";
+    	lineL14.style.opacity = "10%";
+    	lineL15.style.opacity = "10%";
+    	lineL16.style.opacity = "10%";
+    	lineL17.style.opacity = "10%";
+    	lineL18.style.opacity = "10%";
+    	lineL19.style.opacity = "10%";
+    	lineL20.style.opacity = "10%";
+    	lineVL1.style.opacity = "10%";
+    	lineVL2.style.opacity = "10%";
+    	lineVL3.style.opacity = "10%";
+    	lineVL4.style.opacity = "10%";
+    	lineVL5.style.opacity = "10%";
+    	lineVL6.style.opacity = "10%";
+    	lineVL7.style.opacity = "10%";
+    	lineVL8.style.opacity = "10%";
+    	lineVL9.style.opacity = "10%";
+    	lineVL10.style.opacity = "10%";
+    	lineVL11.style.opacity = "10%";
+    	lineVL12.style.opacity = "10%";
+    	lineVL13.style.opacity = "10%";
+    	lineVL14.style.opacity = "10%";
+    	lineVL15.style.opacity = "10%";
+    	lineVL16.style.opacity = "10%";
+    	lineVL17.style.opacity = "10%";
+    	lineVL18.style.opacity = "10%";
+    	lineVL19.style.opacity = "10%";
+    	lineVL20.style.opacity = "10%";
+    }
+    function clearGridlines(){
+		line1.style.opacity = "0%";
+    	line2.style.opacity = "0%";
+    	line3.style.opacity = "0%";
+    	line4.style.opacity = "0%";
+    	line5.style.opacity = "0%";
+    	line6.style.opacity = "0%";
+    	line7.style.opacity = "0%";
+    	line8.style.opacity = "0%";
+    	line9.style.opacity = "0%";
+    	line10.style.opacity = "0%";
+    	line11.style.opacity = "0%";
+    	line12.style.opacity = "0%";
+    	line13.style.opacity = "0%";
+    	line14.style.opacity = "0%";
+    	line15.style.opacity = "0%";
+    	line16.style.opacity = "0%";
+    	line17.style.opacity = "0%";
+    	line18.style.opacity = "0%";
+    	line19.style.opacity = "0%";
+    	line20.style.opacity = "0%";
+    	lineV1.style.opacity = "0%";
+    	lineV2.style.opacity = "0%";
+    	lineV3.style.opacity = "0%";
+    	lineV4.style.opacity = "0%";
+    	lineV5.style.opacity = "0%";
+    	lineV6.style.opacity = "0%";
+    	lineV7.style.opacity = "0%";
+    	lineV8.style.opacity = "0%";
+    	lineV9.style.opacity = "0%";
+    	lineV10.style.opacity = "0%";
+    	lineV11.style.opacity = "0%";
+    	lineV12.style.opacity = "0%";
+    	lineV13.style.opacity = "0%";
+    	lineV14.style.opacity = "0%";
+    	lineV15.style.opacity = "0%";
+    	lineV16.style.opacity = "0%";
+    	lineV17.style.opacity = "0%";
+    	lineV18.style.opacity = "0%";
+    	lineV19.style.opacity = "0%";
+    	lineV20.style.opacity = "0%";
+      	lineL1.style.opacity = "0%";
+    	lineL2.style.opacity = "0%";
+    	lineL3.style.opacity = "0%";
+    	lineL4.style.opacity = "0%";
+    	lineL5.style.opacity = "0%";
+    	lineL6.style.opacity = "0%";
+    	lineL7.style.opacity = "0%";
+    	lineL8.style.opacity = "0%";
+    	lineL9.style.opacity = "0%";
+    	lineL10.style.opacity = "0%";
+    	lineL11.style.opacity = "0%";
+    	lineL12.style.opacity = "0%";
+    	lineL13.style.opacity = "0%";
+    	lineL14.style.opacity = "0%";
+    	lineL15.style.opacity = "0%";
+    	lineL16.style.opacity = "0%";
+    	lineL17.style.opacity = "0%";
+    	lineL18.style.opacity = "0%";
+    	lineL19.style.opacity = "0%";
+    	lineL20.style.opacity = "0%";
+    	lineVL1.style.opacity = "0%";
+    	lineVL2.style.opacity = "0%";
+    	lineVL3.style.opacity = "0%";
+    	lineVL4.style.opacity = "0%";
+    	lineVL5.style.opacity = "0%";
+    	lineVL6.style.opacity = "0%";
+    	lineVL7.style.opacity = "0%";
+    	lineVL8.style.opacity = "0%";
+    	lineVL9.style.opacity = "0%";
+    	lineVL10.style.opacity = "0%";
+    	lineVL11.style.opacity = "0%";
+    	lineVL12.style.opacity = "0%";
+    	lineVL13.style.opacity = "0%";
+    	lineVL14.style.opacity = "0%";
+    	lineVL15.style.opacity = "0%";
+    	lineVL16.style.opacity = "0%";
+    	lineVL17.style.opacity = "0%";
+    	lineVL18.style.opacity = "0%";
+    	lineVL19.style.opacity = "0%";
+    	lineVL20.style.opacity = "0%";
+    }
+    document.addEventListener("keydown", change_direction);
+    
+    function main() {
+        if (has_game_ended()){
+        	gameOn = 0;
+        } else {
+	        changing_direction = false;
+	        setTimeout(function onTick() {
+	        clear_board();
+	        drawFood();
+	        move_snake();
+	        drawSnake();
+	        console.log(speed);
+	        // Repeat
+	        main();
+	      	}, speed)
+      }
+    }
+    
+    function clear_board() {
+      snakeboard_ctx.fillStyle = board_background;
+      snakeboard_ctx.strokestyle = board_border;
+      snakeboard_ctx.fillRect(0, 0, snakeboard.width, snakeboard.height);
+      snakeboard_ctx.strokeRect(0, 0, snakeboard.width, snakeboard.height);
+    }
+    
+    function drawSnake() {
+      snake.forEach(drawSnakePart)
+    }
+
+    function drawFood() {
+      snakeboard_ctx.fillStyle = foodColor;
+      snakeboard_ctx.strokestyle = 'darkgreen';
+      snakeboard_ctx.fillRect(food_x, food_y, size, size);
+      snakeboard_ctx.strokeRect(food_x, food_y, size, size);
+      snakeboard_ctx.fillRect(food_x2, food_y2, size, size);
+      snakeboard_ctx.strokeRect(food_x2, food_y2, size, size);
+      snakeboard_ctx.fillRect(food_x3, food_y3, size, size);
+      snakeboard_ctx.strokeRect(food_x3, food_y3, size, size);
+      snakeboard_ctx.fillRect(food_x4, food_y4, size, size);
+      snakeboard_ctx.strokeRect(food_x4, food_y4, size, size);
+      snakeboard_ctx.fillRect(food_x5, food_y5, size, size);
+      snakeboard_ctx.strokeRect(food_x5, food_y5, size, size);
+    }
+    
+    function drawSnakePart(snakePart) {
+      snakeboard_ctx.fillStyle = snake_col;
+      snakeboard_ctx.strokestyle = snake_border;
+      snakeboard_ctx.fillRect(snakePart.x, snakePart.y, size, size);
+      snakeboard_ctx.strokeRect(snakePart.x, snakePart.y, size, size);
+    }
+
+    function has_game_ended() {
+      for (let i = 4; i < snake.length; i++) {
+        if (snake[i].x === snake[0].x && snake[i].y === snake[0].y){
+        	gameOn = 0;
+        	return true
+        }
+      }
+      const hitLeftWall = snake[0].x < 0;
+      const hitRightWall = snake[0].x > snakeboard.width - size;
+      const hitToptWall = snake[0].y < 0;
+      const hitBottomWall = snake[0].y > snakeboard.height - size;
+      return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall
+    }
+
+    function gen_food() {
+    	if (foodCount == 1){
+	      food_x = Math.round((Math.random() * (max-min) + min) / size) * size;
+	      food_y = Math.round((Math.random() * (max-min) + min) / size) * size;
+	      snake.forEach(function has_snake_eaten_food(part) {
+	        const has_eaten = part.x == food_x && part.y == food_y;
+	        foodEaten = 1;
+	        if (has_eaten) new_food1();
+	      });
+  		}
+  		if (foodCount == 3){
+	      food_x = Math.round((Math.random() * (max-min) + min) / size) * size;
+	      food_y = Math.round((Math.random() * (max-min) + min) / size) * size;
+	      snake.forEach(function has_snake_eaten_food(part) {
+	        const has_eaten = part.x == food_x && part.y == food_y;
+	        foodEaten = 1;
+	        if (has_eaten) new_food1();
+	      });
+	      food_x2 = Math.round((Math.random() * (max-min) + min) / size) * size;;
+	      food_y2 = Math.round((Math.random() * (max-min) + min) / size) * size;
+	      snake.forEach(function has_snake_eaten_food(part) {
+	        const has_eaten = part.x == food_x2 && part.y == food_y2;
+	        foodEaten = 2;
+	        if (has_eaten) new_food2();
+	      });
+	      food_x3 = Math.round((Math.random() * (max-min) + min) / size) * size;
+	       
+	      food_y3 = Math.round((Math.random() * (max-min) + min) / size) * size;
+	      snake.forEach(function has_snake_eaten_food(part) {
+	        const has_eaten = part.x == food_x3 && part.y == food_y3;
+	        foodEaten = 3;
+	        if (has_eaten) new_food3();
+	      });
+  		}
+  		if (foodCount == 5){
+	      food_x = Math.round((Math.random() * (max-min) + min) / size) * size;
+	      food_y = Math.round((Math.random() * (max-min) + min) / size) * size;
+	      snake.forEach(function has_snake_eaten_food(part) {
+	        const has_eaten = part.x == food_x && part.y == food_y;
+	        foodEaten = 1;
+	        if (has_eaten) new_food1();
+	      });
+	      food_x2 = Math.round((Math.random() * (max-min) + min) / size) * size;;
+	      food_y2 = Math.round((Math.random() * (max-min) + min) / size) * size;
+	      snake.forEach(function has_snake_eaten_food(part) {
+	        const has_eaten = part.x == food_x2 && part.y == food_y2;
+	        foodEaten = 2;
+	        if (has_eaten) new_food2();
+	      });
+	      food_x3 = Math.round((Math.random() * (max-min) + min) / size) * size;
+	   	  food_y3 = Math.round((Math.random() * (max-min) + min) / size) * size;
+	      snake.forEach(function has_snake_eaten_food(part) {
+	        const has_eaten = part.x == food_x3 && part.y == food_y3;
+	        foodEaten = 3;
+	        if (has_eaten) new_food3();
+	      });
+	      food_x4 = Math.round((Math.random() * (max-min) + min) / size) * size;
+	   	  food_y4 = Math.round((Math.random() * (max-min) + min) / size) * size;
+	      snake.forEach(function has_snake_eaten_food(part) {
+	        const has_eaten = part.x == food_x4 && part.y == food_y4;
+	        foodEaten = 4;
+	        if (has_eaten) new_food4();
+	      });
+	      food_x5 = Math.round((Math.random() * (max-min) + min) / size) * size;
+	   	  food_y5 = Math.round((Math.random() * (max-min) + min) / size) * size;
+	      snake.forEach(function has_snake_eaten_food(part) {
+	        const has_eaten = part.x == food_x5 && part.y == food_y5;
+	        foodEaten = 5;
+	        if (has_eaten) new_food5();
+	      });
+  		}
+    }
+
+    function new_food1(){
+    	food_x = Math.round((Math.random() * (max-min) + min) / size) * size;
+    	food_y = Math.round((Math.random() * (max-min) + min) / size) * size;
+    }
+    function new_food2(){
+    	food_x2 = Math.round((Math.random() * (max-min) + min) / size) * size;
+    	food_y2 = Math.round((Math.random() * (max-min) + min) / size) * size;
+    }
+    function new_food3(){
+    	food_x3 = Math.round((Math.random() * (max-min) + min) / size) * size;
+    	food_y3 = Math.round((Math.random() * (max-min) + min) / size) * size;
+    }
+    function new_food4(){
+    	food_x4 = Math.round((Math.random() * (max-min) + min) / size) * size;
+    	food_y4 = Math.round((Math.random() * (max-min) + min) / size) * size;
+    }
+    function new_food5(){
+    	food_x5 = Math.round((Math.random() * (max-min) + min) / size) * size;
+    	food_y5 = Math.round((Math.random() * (max-min) + min) / size) * size;
+    }
+
+    function change_direction(event) {
+      const LEFT_KEY = 37;
+      const RIGHT_KEY = 39;
+      const UP_KEY = 38;
+      const DOWN_KEY = 40;
+
+      const LEFT_KEY2 = 65;
+      const RIGHT_KEY2 = 68;
+      const UP_KEY2 = 87;
+      const DOWN_KEY2 = 83;
+
+          
+      if (changing_direction) return;
+      changing_direction = true;
+      const keyPressed = event.keyCode;
+      const goingUp = dy === -1 * size;
+      const goingDown = dy === size;
+      const goingRight = dx === size;
+      const goingLeft = dx === -1 * size;
+      if (keyPressed === LEFT_KEY && !goingRight) {
+        dx = -1 * size;
+        dy = 0;
+      }
+      if (keyPressed === UP_KEY && !goingDown) {
+        dx = 0;
+        dy = -1 * size;
+      }
+      if (keyPressed === RIGHT_KEY && !goingLeft) {
+        dx = size;
+        dy = 0;
+      }
+      if (keyPressed === DOWN_KEY && !goingUp) {
+        dx = 0;
+        dy = size;
+      }
+      if (keyPressed === LEFT_KEY2 && !goingRight) {
+        dx = -1 * size;
+        dy = 0;
+      }
+      if (keyPressed === UP_KEY2 && !goingDown) {
+        dx = 0;
+        dy = -1 * size;
+      }
+      if (keyPressed === RIGHT_KEY2 && !goingLeft) {
+        dx = size;
+        dy = 0;
+      }
+      if (keyPressed === DOWN_KEY2 && !goingUp) {
+        dx = 0;
+        dy = size;
+      }
+    }
+
+    function move_snake() {
+      const head = {x: snake[0].x + dx, y: snake[0].y + dy};
+      snake.unshift(head);
+      const has_eaten_food = snake[0].x === food_x && snake[0].y === food_y;
+      const has_eaten_food2 = snake[0].x === food_x2 && snake[0].y === food_y2;
+      const has_eaten_food3 = snake[0].x === food_x3 && snake[0].y === food_y3;
+      const has_eaten_food4 = snake[0].x === food_x4 && snake[0].y === food_y4;
+      const has_eaten_food5 = snake[0].x === food_x5 && snake[0].y === food_y5;
+      if (has_eaten_food) {
+        score += 1;
+        document.getElementById('score').innerHTML = "Score: " + score;
+        new_food1();
+   	} else if (has_eaten_food2) {
+        score += 1;
+        document.getElementById('score').innerHTML = "Score: " + score;
+        new_food2();
+   	} else if (has_eaten_food3) {
+        score += 1;
+        document.getElementById('score').innerHTML = "Score: " + score;
+        new_food3();
+      } else if (has_eaten_food4) {
+        score += 1;
+        document.getElementById('score').innerHTML = "Score: " + score;
+        new_food4();
+      } else if (has_eaten_food5) {
+        score += 1;
+        document.getElementById('score').innerHTML = "Score: " + score;
+        new_food5();
+      }else {
+        snake.pop();
+      }
+      if (score == 20 && alertGiven == 0){
+        alertGiven = 1;
+        alert("Game WON! This is a correct door. Return to the other tab. The fourth and fifth letters of the code are: HS")
+      }
+    }
+    
+  </script> 
+</html>

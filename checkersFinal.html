@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Checkers</title>
+	<title>Checkers (Escape Room)</title>
 	<style type="text/css">
 		body {
 			height: 100vh;
@@ -106,7 +106,7 @@
 	</style>
 </head>
 <body>
-	<div id="header">Checkers</div>
+	<div id="header">Checkers (Escape Room)</div>
 
 	<div id="gameboard">
 		
@@ -127,7 +127,7 @@
 	    var currentPiece;
 
 	    var pieceSelected = 0;
-	    alert("Click a character then the box to move them. Delete characters by double clicking.")
+	   	alert("Click a character then the box to move them. Delete characters by double clicking. This is the checkers game and you must play for 10 seconds. After doing so, you may recieve a piece of the exit code.")
 
 		buildGameBoard();
 		function buildGameBoard(){
@@ -295,9 +295,13 @@
 	    	console.log(currentSquare);
 	    	currentSquare.appendChild(currentPiece);
 	    }
-
+	    var time = 0;
 	    var looper = setInterval(function(){
 			pieceSelected = 0;
+			time = time + 100;
+			if (time == 10000){
+				alert("This is the wrong door. Return to the other tab.")
+			}
 		},100)
 	</script>
 
