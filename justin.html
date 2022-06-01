@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+</title>
+
+ <style type="text/css">
+ 
+  #onefurlongDiv{
+width:10%;
+height:80px;
+background-size:contain;
+background-image: url("horse1.png");
+background-color:red;
+background-position: center;
+background-repeat: no-repeat;
+position:absolute;
+/* animation-name:run1Now;
+*/ animation-duration: 55s;
+position: absolute;
+z-index: 1;
+animation-iteration-count: 1;
+}
+
+#twofurlongDiv{
+width:10%;
+height:80px;
+background-size:contain;
+background-color:yellow;
+background-image: url("horse2.png");
+background-position: center;
+background-repeat: no-repeat;
+position:absolute;
+/* animation-name:run2Now;
+*/ animation-duration: 45s;
+position: absolute;
+z-index: 1;
+animation-iteration-count: 1;
+}
+
+#threefurlongDiv{
+width:10%;
+height:80px;
+background-size:contain;
+background-image: url("horse3.png");
+background-color:green;
+background-position: center;
+background-repeat: no-repeat;
+position:absolute;
+/* animation-name:run3Now;
+*/ animation-duration: 65s;
+position: absolute;
+z-index: 1;
+animation-iteration-count: 1;
+}
+
+#fourfurlongDiv{
+width:10%;
+height:80px;
+background-size:contain;
+background-image: url("horse4.png");
+background-color:blue;
+
+background-position: center;
+background-repeat: no-repeat;
+position:absolute;
+/* animation-name:run4Now;
+*/ animation-duration: 85s;
+position: absolute;
+z-index: 1;
+animation-iteration-count: 1;
+}
+
+#trackDiv{
+width:1400px;
+height:1400px;
+position: absolute;
+left:0%;
+z-index: -1;
+top:0px;
+background-size:contain;
+background-image: url("horsetrack.png");
+background-repeat: no-repeat;
+
+}
+@keyframes run1Now{
+0%{ left:677px; top:538px; }
+25%{ left:515px; top:556px; }
+
+}
+
+@keyframes run2Now{
+0%{ left:679px; top:538px; }
+25%{ left:658px; top:548px; }
+
+}
+
+@keyframes run3Now{
+0%{ left:678px; top:539px; }
+25%{ left:618px; top:538px; }
+
+}
+
+@keyframes run4Now{
+0%{ left:675px; top:537px; }
+25%{ left:613px; top:520px; }
+30%{ left:200px; top:300px; }
+}
+
+
+
+ </style>
+</head>
+<body>
+
+<div id="onefurlongDiv">
+
+
+</div>
+
+<div id="twofurlongDiv">
+
+
+</div>
+
+<div id="threefurlongDiv">
+
+
+</div>
+
+<div id="fourfurlongDiv">
+
+
+</div>
+
+
+<div id="trackDiv">
+
+
+</div>
+
+<audio id="sound" src="KD22.mp3"></audio>
+
+<script type="text/javascript">
+
+document.addEventListener("click", function(){
+sound.play()
+})
+</script>
+
+<script type="text/javascript">
+
+trackDiv.addEventListener(
+"click", function(input){
+onefurlongDiv.style.animationName ="run1Now";
+twofurlongDiv.style.animationName ="run2Now";
+threefurlongDiv.style.animationName ="run3Now";
+fourfurlongDiv.style.animationName ="run4Now";
+console.log(input.clientX, input.clientY)
+console.log('start!')})
+
+
+</script>
+
+
+
+</body>
+</html>
